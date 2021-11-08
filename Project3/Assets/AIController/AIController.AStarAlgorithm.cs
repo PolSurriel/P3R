@@ -19,8 +19,85 @@ public partial class AIController : MonoBehaviour
         }
 
 
+        void PortalCase(ref AStarNode nextNode, Vector2 prevPos)
+        {
 
-        float CalculateCost(Vector2 from, Vector2 to, bool checkCollision = true)
+            int layerMaskPortal = 1 << LayerMask.NameToLayer("Portal");
+
+            RaycastHit2D portalHit = Physics2D.Linecast(prevPos, nextNode.position, layerMaskPortal);
+
+            if (portalHit)
+            {
+                Vector2 portalPos = portalHit.collider.transform.position;
+                Vector2 otherPortalpos = portalHit.collider.GetComponent<Portal>().otherPortal.transform.position;
+                nextNode.portalOffset += (otherPortalpos - portalPos);
+            }
+
+            
+        }
+
+        public List<MovingObstacle> movingObstaclesToHandle = new List<MovingObstacle>(0);
+        public List<RotatingObstacle> rotatingObstaclesToHandle = new List<RotatingObstacle>(0);
+
+
+        bool circleCircle(Vector2 c1, Vector2 c2, float r1, float r2)
+        {
+
+            // get distance between the circle's centers
+            // use the Pythagorean Theorem to compute the distance
+            float distX = c1.x - c2.x;
+            float distY = c1.y - c2.y;
+            float distance = Mathf.Sqrt((distX * distX) + (distY * distY));
+
+            // if the distance is less than the sum of the circle's
+            // radii, the circles are touching!
+            if (distance <= r1 + r2)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        bool LineToCircleCast(Vector2 from, Vector2 to, Vector2 circlePoint, float radius)
+        {
+
+            //var stepRadius = (from - to).magnitude / 3f;
+
+            var stepRadius = predictionPlayerRadius*1.1f;
+            var one = from * 0.25f + to * 0.75f;
+            var mid = from * 0.5f + to * 0.5f;
+            var end = from * 0.25f + to * 0.75f;
+
+            return circleCircle(one, circlePoint, stepRadius, radius) ||
+                    circleCircle(to, circlePoint, stepRadius, radius) ||
+                    circleCircle(end, circlePoint, stepRadius, radius) ;
+
+        }
+
+        bool CollidesWithDynamicObstacle(Vector2 nextPos, Vector2 prevPos, float time)
+        {
+
+            foreach (var obstacle in movingObstaclesToHandle)
+            {
+                if (LineToCircleCast(prevPos, nextPos, obstacle.GetFuturePos(time), 1f))
+                {
+                    return true;
+                }
+            }
+
+            foreach (var obstacle in movingObstaclesToHandle)
+            {
+                if (LineToCircleCast(prevPos, nextPos, obstacle.GetFuturePos(time), 1f))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        float CalculateCost(Vector2 from, Vector2 to, float time, bool checkCollision = true)
         {
             int layerMaskPrediction = 1 << LayerMask.NameToLayer("floor");
         
@@ -31,7 +108,12 @@ public partial class AIController : MonoBehaviour
             bool collides = false;
 
             if (checkCollision)
-                collides = Physics2D.Linecast(from+perp, to+perp, layerMaskPrediction) || Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction);
+            {
+                collides = Physics2D.Linecast(from+perp, to+perp, layerMaskPrediction) || Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction) || CollidesWithDynamicObstacle(to,from, time);
+
+                
+
+            }
             //bool collides = Physics2D.Linecast(from, to, layerMaskPrediction);
 
             //Color c = collides ? new Color(1f, 0f, 0f, 0.1f) : new Color(0f, 1f, 0f, 0.1f);
@@ -76,12 +158,14 @@ public partial class AIController : MonoBehaviour
 
 
 
-                float cost = CalculateCost(inNode.position, nextPos);
+                float cost = CalculateCost(inNode.position, nextPos, inNode.time);
 
 
                 if(cost >= 0)
                 {
                     AStarNode next = new AStarNode(nextPos, inNode.secondJumpDone, inNode.directionIndex, inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT, cost, inNode.time + PRECALCULATION_INCREMENT_DELTATIME);
+                    PortalCase(ref next, inNode.position);
+
                     method(next);
                 }
             }
@@ -93,10 +177,12 @@ public partial class AIController : MonoBehaviour
                 ForEachNewJumpNeighbour(inNode.position, (nextNodePos) => {
 
 
-                    float cost = CalculateCost(inNode.position, nextNodePos);
+                    float cost = CalculateCost(inNode.position, nextNodePos, inNode.time);
                     if (cost >= 0)
                     { 
                         AStarNode next = new AStarNode(nextNodePos, true, dirIndex++, 0, cost, inNode.time + PRECALCULATION_INCREMENT_DELTATIME);
+                        PortalCase(ref next, inNode.position);
+
                         method(next);
                     }
                 });
@@ -107,7 +193,7 @@ public partial class AIController : MonoBehaviour
 
 
 
-        PriorityQueue<AStarNode, float> SetUpFrontierAstar(Vector2 goalPosition)
+        PriorityQueue<AStarNode, float> SetUpFrontierAstar(Vector2 goalPosition, float timeToStart)
         {
 
             var frontier = new PriorityQueue<AStarNode, float>(0f);
@@ -117,7 +203,7 @@ public partial class AIController : MonoBehaviour
             {
 
                 Vector2 position = originPosition + jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, 0);
-                float cost = CalculateCost(originPosition, position, false);
+                float cost = CalculateCost(originPosition, position, PRECALCULATION_DELTATIME+ timeToStart, false);
 
 
                 if(cost >= 0)
@@ -174,13 +260,13 @@ public partial class AIController : MonoBehaviour
             return false;
         }
 
-        public List<AStarNode> AStar(Vector2 startPosition, AstarGoal goal)
+        public List<AStarNode> AStar(Vector2 startPosition, AstarGoal goal, float timeToStart)
         {
             originPosition = startPosition;
 
 
 
-            var frontier = SetUpFrontierAstar(goal.position);
+            var frontier = SetUpFrontierAstar(goal.position, timeToStart);
 
 
             Dictionary<AStarNode, AStarNode> cameFrom = new Dictionary<AStarNode, AStarNode>();

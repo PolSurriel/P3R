@@ -11,6 +11,9 @@ public partial class AIController : MonoBehaviour
 
     AstarGoal aStarGoal;
 
+
+
+
     public class AstarGoal
     {
         public bool useIncisionConstrain;
@@ -50,7 +53,7 @@ public partial class AIController : MonoBehaviour
 
     float predictionPlayerRadius;
 
-    AStarSolver aStarSolver;
+    public AStarSolver aStarSolver;
 
     // Start is called before the first frame update
     void Start()
@@ -281,7 +284,8 @@ public partial class AIController : MonoBehaviour
             ChooseTarget();
 
             // Go to the target
-            currentPath = aStarSolver.AStar(transform.position, aStarGoal);
+            
+            currentPath = aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
             executingAstarRoutine = ExecuteAstar(currentPath);
             StartCoroutine(executingAstarRoutine);
 
@@ -321,6 +325,7 @@ public partial class AIController : MonoBehaviour
     }
 
 
+    float timeBeforeJump = 0.1f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -335,7 +340,7 @@ public partial class AIController : MonoBehaviour
             {
                 StopCoroutine(executingAstarRoutine);
             }
-            StartCoroutine(WaitAndRestartAstar(0.1f));
+            StartCoroutine(WaitAndRestartAstar(timeBeforeJump));
 
 
         }

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - floor
+  - portal
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - 
   - 
   - floor
-  - 
-  - 
-  - 
-  - 
+  - Portal
+  - Player
+  - Trigger
+  - Obstacle
   - 
   - 
   - 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Runner : MonoBehaviour
 {
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     float jumpMagnitude = 10f;
 
     float playerRadius; 
@@ -81,6 +81,10 @@ public class Runner : MonoBehaviour
             rb.isKinematic = true;
             rb.velocity = Vector2.zero;
         }
+
+        
     }
+
+
 
 }
