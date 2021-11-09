@@ -308,6 +308,11 @@ public class JobyfablePrecalculatedPredictionSystem
     private float simulationDeltaTime;
 
 
+    public int GetPrecalculationDirectionsCount()
+    {
+        return precalculatedDirections.Count;
+    }
+
     public JobyfablePrecalculatedPredictionSystem (Rigidbody2DInfo rb, List<List<Vector2>> precalculatedDirections, List<Vector2> impulseForces, float deltaAnglePerIndex, float simulationDeltaTime)
     {
 

@@ -9,20 +9,22 @@ public class MovingObstacle : MonoBehaviour
     public Transform obstacle;
     public List<Transform> points = new List<Transform>();
     public float speed = 6f;
-    int currentTarget = 1;
+    int currentTargetIndex = 1;
 
     private void FixedUpdate()
     {
 
-        Vector2 dir = points[currentTarget].position - obstacle.position;
+        Vector2 dir = points[currentTargetIndex].position - obstacle.position;
         float dist = dir.magnitude;
         dir.Normalize();
 
         Vector2 deltaMove = (Vector3)dir * speed * Time.fixedDeltaTime;
 
-        if(deltaMove.magnitude > dist)
+        if(deltaMove.magnitude > dist || dir == Vector2.zero)
         {
-            currentTarget = ++currentTarget % points.Count;
+
+            currentTargetIndex = ++currentTargetIndex % points.Count;
+
         }
             
         
@@ -38,7 +40,7 @@ public class MovingObstacle : MonoBehaviour
 
         float totalDeltaMove = time * speed;
         Vector2 obstaclePos = obstacle.position;
-        int virtualTarget = currentTarget;
+        int virtualTarget = currentTargetIndex;
 
         Vector2 dir = (Vector2)points[virtualTarget].position - obstaclePos;
         float dist = dir.magnitude;

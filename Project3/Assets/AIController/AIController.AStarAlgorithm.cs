@@ -28,9 +28,35 @@ public partial class AIController : MonoBehaviour
 
             if (portalHit)
             {
-                Vector2 portalPos = portalHit.collider.transform.position;
-                Vector2 otherPortalpos = portalHit.collider.GetComponent<Portal>().otherPortal.transform.position;
+                var portal = portalHit.collider.GetComponent<Portal>();
+
+
+
+                if (portal.inverseY)
+                {
+                    nextNode.portalSense.y *= -1;
+
+                }
+
+                if (portal.inverseX)
+                {
+                    nextNode.portalSense.x *= -1;
+                }
+
+                var prevNext = nextNode.position;
+
+                // Change nextPos
+                Vector2 deltaMove = nextNode.position - prevPos;
+                deltaMove *= nextNode.portalSense;
+                nextNode.position = prevPos + deltaMove;
+
+
+                // Calculate offset
+                Vector2 portalPos = portal.transform.position;
+                Vector2 otherPortalpos = portal.otherPortal.transform.position;
                 nextNode.portalOffset += (otherPortalpos - portalPos);
+
+                
             }
 
             
@@ -67,10 +93,10 @@ public partial class AIController : MonoBehaviour
             var stepRadius = predictionPlayerRadius*1.1f;
             var one = from * 0.25f + to * 0.75f;
             var mid = from * 0.5f + to * 0.5f;
-            var end = from * 0.25f + to * 0.75f;
+            var end = from * 0.75f + to * 0.25f;
 
             return circleCircle(one, circlePoint, stepRadius, radius) ||
-                    circleCircle(to, circlePoint, stepRadius, radius) ||
+                    circleCircle(mid, circlePoint, stepRadius, radius) ||
                     circleCircle(end, circlePoint, stepRadius, radius) ;
 
         }
@@ -136,11 +162,11 @@ public partial class AIController : MonoBehaviour
 
 
         public delegate void DelegationNeighbour(Vector2 node);
-        void ForEachNewJumpNeighbour(Vector2 node, DelegationNeighbour method)
+        void ForEachNewJumpNeighbour(AStarNode node, DelegationNeighbour method)
         {
             for (int i = 0; i < DIRECTIONS_COUNT; i++)
             {
-                method(jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, 0) + node);
+                method(node.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, 0) + node.position);
             }
 
         }
@@ -153,8 +179,8 @@ public partial class AIController : MonoBehaviour
             if (inNode.positionIndex < NUMBER_OF_PRECALCULATED_POINTS - PRECALCULATED_POINTS_INCREMENT)
             {
                 // Calculamos la posición inmediatamente siguiente en la trayectoria actual
-                Vector2 origin = inNode.position - jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex);
-                Vector2 nextPos = origin + jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT);
+                Vector2 origin = inNode.position - inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex);
+                Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT);
 
 
 
@@ -174,7 +200,7 @@ public partial class AIController : MonoBehaviour
             {
 
                 int dirIndex = 0;
-                ForEachNewJumpNeighbour(inNode.position, (nextNodePos) => {
+                ForEachNewJumpNeighbour(inNode, (nextNodePos) => {
 
 
                     float cost = CalculateCost(inNode.position, nextNodePos, inNode.time);

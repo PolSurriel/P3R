@@ -24,6 +24,8 @@ public class RotatingObstacle : MonoBehaviour
         float deltaRotation = rotationSpeed * Time.deltaTime;
 
         transform.Rotate(Vector3.forward  * deltaRotation);
+
+        Debug.DrawLine(transform.position, GetFuturePosition(1f));
     }
 
 

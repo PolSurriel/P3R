@@ -1172,6 +1172,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTarget (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3822899963274555760, guid: 5064484a6e405f741879d0fab6b8a66c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3822899963274555761, guid: 5064484a6e405f741879d0fab6b8a66c,
         type: 3}
       propertyPath: incisionVector.x
@@ -1355,12 +1360,12 @@ PrefabInstance:
     - target: {fileID: 7933926629593723897, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.44
+      value: -4.167
       objectReference: {fileID: 0}
     - target: {fileID: 7933926629593723897, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.94
+      value: -1.181
       objectReference: {fileID: 0}
     - target: {fileID: 7933926629593723900, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
@@ -1371,6 +1376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933926629593723902, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
+        type: 3}
+      propertyPath: inverseX
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7933926629695877552, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
@@ -1415,7 +1425,7 @@ PrefabInstance:
     - target: {fileID: 7933926629695877553, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.93
+      value: -0.63
       objectReference: {fileID: 0}
     - target: {fileID: 7933926629695877556, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
@@ -1426,6 +1436,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933926629695877558, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
+        type: 3}
+      propertyPath: inverseX
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb, type: 3}

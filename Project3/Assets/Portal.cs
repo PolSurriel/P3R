@@ -1,10 +1,30 @@
-﻿using System.Collections;
+﻿using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
+
     public Portal otherPortal;
+
+    [OnValueChanged("OnInverseXChanged")]
+    public bool inverseX;
+    [OnValueChanged("OnInverseYChanged")]
+    public bool inverseY;
+
+    void OnInverseXChanged()
+    {
+        otherPortal.inverseX = inverseX;
+    }
+    
+    void OnInverseYChanged()
+    {
+        otherPortal.inverseY = inverseY;
+    }
+
+
+
 
 
     public List<GameObject> ignoring = new List<GameObject>();
@@ -34,6 +54,23 @@ public class Portal : MonoBehaviour
             collision.gameObject.transform.position = otherPortal.transform.position + localPos;
 
             StartCoroutine(StopIgnoringAt(0.5f, collision.gameObject));
+
+            var rb = collision.gameObject.GetComponent<Rigidbody2D>();
+
+
+            var vel = rb.velocity;
+
+            if (inverseX)
+            {
+                vel.x = vel.x * -1f;
+            }
+
+            if (inverseY)
+            {
+                vel.y = vel.y * -1f;
+            }
+
+            rb.velocity = vel;
 
 
         }

@@ -44,5 +44,14 @@ public class PlayerController : MonoBehaviour
 
             Debug.DrawLine(worldPosition1, worldPosition2, Color.yellow);
         }
+
+
+        int currentIndex = 2;
+        int maxIndex = 12;
+
+        int newIndex = (maxIndex - currentIndex - maxIndex/2) % maxIndex;
+
+        Debug.Log(newIndex);
+
     }
 }

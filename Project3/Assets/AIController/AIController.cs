@@ -41,7 +41,7 @@ public partial class AIController : MonoBehaviour
     MapController mapController;
 
 
-    const int DIRECTIONS_COUNT = 35;
+    const int DIRECTIONS_COUNT = 36;
     const int NUMBER_OF_PRECALCULATED_POINTS = 300;
     const int PRECALCULATED_POINTS_INCREMENT = 30;
     const float DELTA_DEGREE = 360f / (float)DIRECTIONS_COUNT;
