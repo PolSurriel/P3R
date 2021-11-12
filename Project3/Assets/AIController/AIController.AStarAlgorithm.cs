@@ -19,7 +19,7 @@ public partial class AIController : MonoBehaviour
         }
 
 
-        void PortalCase(ref AStarNode nextNode, Vector2 prevPos)
+        void PortalCase(ref AStarNode nextNode,  Vector2 prevPos)
         {
 
             int layerMaskPortal = 1 << LayerMask.NameToLayer("Portal");
@@ -66,7 +66,7 @@ public partial class AIController : MonoBehaviour
         public List<RotatingObstacle> rotatingObstaclesToHandle = new List<RotatingObstacle>(0);
 
 
-        bool circleCircle(Vector2 c1, Vector2 c2, float r1, float r2)
+        bool circleCircle( ref Vector2 c1, ref Vector2 c2, ref float r1, ref float r2)
         {
 
             // get distance between the circle's centers
@@ -85,7 +85,7 @@ public partial class AIController : MonoBehaviour
         }
 
 
-        bool LineToCircleCast(Vector2 from, Vector2 to, Vector2 circlePoint, float radius)
+        bool LineToCircleCast(ref Vector2 from, ref Vector2 to, Vector2 circlePoint, float radius)
         {
 
             //var stepRadius = (from - to).magnitude / 3f;
@@ -95,18 +95,18 @@ public partial class AIController : MonoBehaviour
             var mid = from * 0.5f + to * 0.5f;
             var end = from * 0.75f + to * 0.25f;
 
-            return circleCircle(one, circlePoint, stepRadius, radius) ||
-                    circleCircle(mid, circlePoint, stepRadius, radius) ||
-                    circleCircle(end, circlePoint, stepRadius, radius) ;
+            return circleCircle(ref one, ref circlePoint, ref stepRadius, ref radius) ||
+                    circleCircle(ref mid, ref circlePoint, ref stepRadius, ref radius) ||
+                    circleCircle(ref end, ref circlePoint, ref stepRadius, ref radius) ;
 
         }
 
-        bool CollidesWithDynamicObstacle(Vector2 nextPos, Vector2 prevPos, float time)
+        bool CollidesWithDynamicObstacle(ref Vector2 nextPos, ref Vector2 prevPos, ref float time)
         {
 
             foreach (var obstacle in movingObstaclesToHandle)
             {
-                if (LineToCircleCast(prevPos, nextPos, obstacle.GetFuturePos(time), 1f))
+                if (LineToCircleCast(ref prevPos, ref nextPos, obstacle.GetFuturePos(time), 1f))
                 {
                     return true;
                 }
@@ -114,7 +114,7 @@ public partial class AIController : MonoBehaviour
 
             foreach (var obstacle in movingObstaclesToHandle)
             {
-                if (LineToCircleCast(prevPos, nextPos, obstacle.GetFuturePos(time), 1f))
+                if (LineToCircleCast(ref prevPos, ref nextPos, obstacle.GetFuturePos(time), 1f))
                 {
                     return true;
                 }
@@ -123,7 +123,7 @@ public partial class AIController : MonoBehaviour
             return false;
         }
 
-        float CalculateCost(Vector2 from, Vector2 to, float time, bool checkCollision = true)
+        float CalculateCost(Vector2 from, ref Vector2 to, ref float time, bool checkCollision = true)
         {
             int layerMaskPrediction = 1 << LayerMask.NameToLayer("floor");
         
@@ -135,7 +135,7 @@ public partial class AIController : MonoBehaviour
 
             if (checkCollision)
             {
-                collides = Physics2D.Linecast(from+perp, to+perp, layerMaskPrediction) || Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction) || CollidesWithDynamicObstacle(to,from, time);
+                collides = Physics2D.Linecast(from+perp, to+perp, layerMaskPrediction) || Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction) || CollidesWithDynamicObstacle(ref to, ref from, ref time);
 
                 
 
@@ -162,7 +162,7 @@ public partial class AIController : MonoBehaviour
 
 
         public delegate void DelegationNeighbour(Vector2 node);
-        void ForEachNewJumpNeighbour(AStarNode node, DelegationNeighbour method)
+        void ForEachNewJumpNeighbour(ref AStarNode node, DelegationNeighbour method)
         {
             for (int i = 0; i < DIRECTIONS_COUNT; i++)
             {
@@ -173,7 +173,7 @@ public partial class AIController : MonoBehaviour
 
 
         delegate void ASDelegationNeighbour(AStarNode node);
-        void ForeachNeighbour(AStarNode inNode, ASDelegationNeighbour method)
+        void ForeachNeighbour(ref AStarNode inNode, ASDelegationNeighbour method)
         {
 
             if (inNode.positionIndex < NUMBER_OF_PRECALCULATED_POINTS - PRECALCULATED_POINTS_INCREMENT)
@@ -183,8 +183,9 @@ public partial class AIController : MonoBehaviour
                 Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT);
 
 
+                
 
-                float cost = CalculateCost(inNode.position, nextPos, inNode.time);
+                float cost = CalculateCost(inNode.position, ref nextPos, ref inNode.time);
 
 
                 if(cost >= 0)
@@ -200,23 +201,41 @@ public partial class AIController : MonoBehaviour
             {
 
                 int dirIndex = 0;
-                ForEachNewJumpNeighbour(inNode, (nextNodePos) => {
 
-
-                    float cost = CalculateCost(inNode.position, nextNodePos, inNode.time);
+                for (int i = 0; i < DIRECTIONS_COUNT; i++)
+                {
+                    var nextNodePos = inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, 0) + inNode.position;
+                    float cost = CalculateCost(inNode.position, ref nextNodePos, ref inNode.time);
                     if (cost >= 0)
-                    { 
+                    {
                         AStarNode next = new AStarNode(nextNodePos, true, dirIndex++, 0, cost, inNode.time + PRECALCULATION_INCREMENT_DELTATIME);
                         PortalCase(ref next, inNode.position);
 
                         method(next);
                     }
-                });
+
+
+                }
+
+                //ForEachNewJumpNeighbour(inNode, (nextNodePos) => {
+
+
+                //    float cost = CalculateCost(inNode.position, nextNodePos, inNode.time);
+                //    if (cost >= 0)
+                //    { 
+                //        AStarNode next = new AStarNode(nextNodePos, true, dirIndex++, 0, cost, inNode.time + PRECALCULATION_INCREMENT_DELTATIME);
+                //        PortalCase(ref next, inNode.position);
+
+                //        method(next);
+                //    }
+                //});
             }
 
 
         }
 
+
+        
 
 
         PriorityQueue<AStarNode, float> SetUpFrontierAstar(Vector2 goalPosition, float timeToStart)
@@ -229,7 +248,9 @@ public partial class AIController : MonoBehaviour
             {
 
                 Vector2 position = originPosition + jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, 0);
-                float cost = CalculateCost(originPosition, position, PRECALCULATION_DELTATIME+ timeToStart, false);
+
+                var time = PRECALCULATION_DELTATIME + timeToStart;
+                float cost = CalculateCost(originPosition, ref position, ref time, false);
 
 
                 if(cost >= 0)
@@ -246,7 +267,7 @@ public partial class AIController : MonoBehaviour
         }
 
 
-        Vector2 GetNextDeltaPos(AStarNode inNode)
+        Vector2 GetNextDeltaPos(ref AStarNode inNode)
         {
             if (inNode.positionIndex < NUMBER_OF_PRECALCULATED_POINTS - PRECALCULATED_POINTS_INCREMENT)
             {
@@ -265,7 +286,7 @@ public partial class AIController : MonoBehaviour
             }
         }
 
-        bool EarlyExit(AStarNode current, AstarGoal goal)
+        bool EarlyExit(ref AStarNode current, ref AstarGoal goal)
         {
 
             float distanceToGoal = (goal.position - current.position).magnitude;
@@ -274,7 +295,7 @@ public partial class AIController : MonoBehaviour
                 if (!goal.useIncisionConstrain)
                     return true;
 
-                Vector2 deltaPos = GetNextDeltaPos(current);
+                Vector2 deltaPos = GetNextDeltaPos(ref current);
                 float dot = Vector2.Dot(goal.incisionDirection.normalized, deltaPos);
                 
                 if(dot > Random.Range(0.2f, 0.4f))
@@ -308,16 +329,17 @@ public partial class AIController : MonoBehaviour
             // loop
             do
             {
+
                 current = frontier.Top();
                 frontier.Pop();
 
-                if (EarlyExit(current, goal))
+                if (EarlyExit(ref current, ref goal))
                 {
                     break;
                 }
 
 
-                ForeachNeighbour(current, (AStarNode neighbor) => {
+                ForeachNeighbour(ref current, (AStarNode neighbor) => {
 
 
                     float currentCostSoFar = costSoFar.ContainsKey(current) ? costSoFar[current] : current.coste;
@@ -341,6 +363,8 @@ public partial class AIController : MonoBehaviour
 
 
             } while (!frontier.Empty());
+
+
 
 
 

@@ -56,16 +56,16 @@ public class AIDirector : MonoBehaviour
     {
 
         
-        var obj = PrefabUtility.InstantiatePrefab(tilemapGameObject) as GameObject;
+        //var obj = PrefabUtility.InstantiatePrefab(tilemapGameObject) as GameObject;
 
-        obj.transform.SetParent(transform);
+        //obj.transform.SetParent(transform);
 
-        obj.GetComponent<TilemapAIInfo>().PrecalculateGraphNodes();
+        //obj.GetComponent<TilemapAIInfo>().PrecalculateGraphNodes();
 
-        bool success = false;
-        PrefabUtility.SaveAsPrefabAsset(obj, "Assets/Resources/" + obj.name+".prefab", out success);
+        //bool success = false;
+        //PrefabUtility.SaveAsPrefabAsset(obj, "Assets/Resources/" + obj.name+".prefab", out success);
 
-        DestroyImmediate(obj);
+        //DestroyImmediate(obj);
     }
 
 

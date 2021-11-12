@@ -47,7 +47,7 @@ public partial class AIController : MonoBehaviour
     const float DELTA_DEGREE = 360f / (float)DIRECTIONS_COUNT;
     const float PRECALCULATION_DURATION = 1.5f;
     const float PRECALCULATION_DELTATIME = (float)PRECALCULATION_DURATION / (float)NUMBER_OF_PRECALCULATED_POINTS;
-    const float PRECALCULATION_INCREMENT_DELTATIME = PRECALCULATION_DURATION * PRECALCULATED_POINTS_INCREMENT;
+    const float PRECALCULATION_INCREMENT_DELTATIME = PRECALCULATION_DELTATIME * (float)PRECALCULATED_POINTS_INCREMENT;
 
 
 
@@ -221,7 +221,7 @@ public partial class AIController : MonoBehaviour
 
         if (validTargets.Count == 0)
         {
-            Debug.LogError("No valid target found");
+            UnityEngine.Debug.LogError("No valid target found");
             return;
         }
 
@@ -262,28 +262,28 @@ public partial class AIController : MonoBehaviour
 
         if (start && pendingToStart)
         {
-            pendingToStart = false;
-
-            ChooseTarget();
-
-            // Go to the target
-
-            /*
-            Measure.Method(() => { 
-            
-            }).Run();
-            */
-            currentPath = aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
-            executingAstarRoutine = ExecuteAstar(currentPath);
-            StartCoroutine(executingAstarRoutine);
-
+            StartAStarPipeline();
         }
 
 
 
     }
 
-    
+    void StartAStarPipeline()
+    {
+        pendingToStart = false;
+
+        ChooseTarget();
+
+        // Go to the target
+
+        currentPath = aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
+        executingAstarRoutine = ExecuteAstar(currentPath);
+        StartCoroutine(executingAstarRoutine);
+
+    }
+
+
 
     IEnumerator WaitAndRestartAstar(float time)
     {

@@ -11,8 +11,8 @@ public partial class AIController : MonoBehaviour
 
         var color = Color.yellow;
         color.a = 0.4f;
-        Handles.color = color;
-        Handles.DrawWireDisc(transform.position, transform.forward, VALID_TARGET_AREA_RADIUS);
+        //Handles.color = color;
+        //Handles.DrawWireDisc(transform.position, transform.forward, VALID_TARGET_AREA_RADIUS);
 
 
 
@@ -26,7 +26,7 @@ public partial class AIController : MonoBehaviour
             {
 
 
-                Handles.Label(node.position, "" + i++);
+                //Handles.Label(node.position, "" + i++);
 
                 Debug.DrawLine(lastPos, node.position);
 
@@ -38,8 +38,8 @@ public partial class AIController : MonoBehaviour
 
         if (aStarGoal != null)
         {
-            Handles.color = Color.red;
-            Handles.DrawWireDisc(aStarGoal.position, transform.forward, GOAL_MIN_DISTANCE);
+            //Handles.color = Color.red;
+            //Handles.DrawWireDisc(aStarGoal.position, transform.forward, GOAL_MIN_DISTANCE);
         }
     }
 }

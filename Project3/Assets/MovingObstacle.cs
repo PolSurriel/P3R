@@ -88,7 +88,7 @@ public class MovingObstacle : MonoBehaviour
         foreach(var point in points)
         {
 
-            Handles.Label(point.position, "     Point "+(i++));
+            //Handles.Label(point.position, "     Point "+(i++));
             Gizmos.DrawWireSphere(point.position, 0.3f);
 
             if(lastPoint != null)

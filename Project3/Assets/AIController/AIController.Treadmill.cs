@@ -9,7 +9,13 @@ public partial class AIController : MonoBehaviour
 
     void TreadmilleUpdate()
     {
+        var dist = Vector2.Distance(treadMillTarget, transform.position);
 
+        if(dist < 1f)
+        {
+            onATreadmill = false;
+            StartAStarPipeline();
+        }
     }
 
 
@@ -18,8 +24,26 @@ public partial class AIController : MonoBehaviour
 
         onATreadmill = true;
 
+        List<Vector2> candidates = new List<Vector2>(10);
+
+        direction.Normalize();
+
         // if dot pos -> exit, dir is ok, then choose
 
+        foreach(var exit in exits)
+        {
+            Vector2 posToExit = exit.position - transform.position;
+            posToExit.Normalize();
+
+            if (Vector2.Dot(posToExit, direction) < 0.9f)
+            {
+                candidates.Add(exit.position);
+            }
+        }
+
+        treadMillTarget = candidates[Random.Range(0, candidates.Count)];
+        
+        
     }
 
 }

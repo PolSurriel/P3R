@@ -50,8 +50,8 @@ public class PathTarget : MonoBehaviour
 
         const float RADIUS = 1f;
 
-        Handles.color = Color.yellow;
-        Handles.DrawWireDisc(transform.position, transform.forward, RADIUS);
+        //Handles.color = Color.yellow;
+        //Handles.DrawWireDisc(transform.position, transform.forward, RADIUS);
 
         Debug.DrawLine((Vector2)transform.position + Vector2.left* RADIUS, (Vector2)transform.position + Vector2.right* RADIUS);
         Debug.DrawLine((Vector2)transform.position + Vector2.up* RADIUS, (Vector2)transform.position + Vector2.down* RADIUS);
