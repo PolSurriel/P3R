@@ -243,12 +243,14 @@ public partial class AIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.R))
+
+        if (onATreadmill)
         {
-            pendingToStart = true;
-            lastTargetPos = Vector2.zero;
+            TreadmilleUpdate();
+            return;
         }
 
+        
         if(timeToStartCount < timeToStart)
         {
             timeToStartCount += Time.deltaTime;
@@ -258,25 +260,6 @@ public partial class AIController : MonoBehaviour
 
         timeToStartCount += Time.deltaTime;
 
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            start = true;
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    ChooseTarget();
-            //    Debug.DrawLine(transform.position, aStarGoal.position, Color.red, 120f);
-            //    transform.position = aStarGoal.position;
-
-            //    Debug.Log("" + i + ": " + aStarGoal.position.x + ", " + aStarGoal.position.y);
-            //}
-
-
-
-        }
-
-
-
         if (start && pendingToStart)
         {
             pendingToStart = false;
@@ -284,26 +267,16 @@ public partial class AIController : MonoBehaviour
             ChooseTarget();
 
             // Go to the target
+
+            /*
+            Measure.Method(() => { 
             
+            }).Run();
+            */
             currentPath = aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
             executingAstarRoutine = ExecuteAstar(currentPath);
             StartCoroutine(executingAstarRoutine);
 
-            //rb.gravityScale = 0f;
-
-        }
-
-        if(start && !pendingToStart)
-        {
-            //Vector2 direction = (aStarGoal.position - transform.position).normalized;
-            //Vector2 nextP = transform.position;
-            //nextP += direction * Time.deltaTime * 10f;
-
-            //transform.position= nextP;
-
-            if(Vector2.Distance(aStarGoal.position, transform.position) < 0.4f){
-                //pendingToStart = !pendingToStart;
-            }
         }
 
 
@@ -334,7 +307,6 @@ public partial class AIController : MonoBehaviour
         if (collision.collider.tag == "floor")
         {
 
-            
             lastTargetPos = Vector2.down;
             if(executingAstarRoutine != null)
             {

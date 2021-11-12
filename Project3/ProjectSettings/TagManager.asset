@@ -6,6 +6,7 @@ TagManager:
   tags:
   - floor
   - portal
+  - treadmill
   layers:
   - Default
   - TransparentFX
