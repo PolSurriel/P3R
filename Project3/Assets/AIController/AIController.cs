@@ -71,8 +71,13 @@ public partial class AIController : MonoBehaviour
         mapController = FindObjectOfType<MapController>();
     }
 
+    
+
     private void FixedUpdate()
     {
+
+        AstarExecutionFixedUpdate();
+
         jumpPredictor.rb.velocity = rb.velocity;
         jumpPredictor.rb.position = rb.position;
     }
@@ -99,6 +104,11 @@ public partial class AIController : MonoBehaviour
 
     
     IEnumerator executingAstarRoutine;
+
+    void AstarExecutionFixedUpdate()
+    {
+
+    }
 
     IEnumerator ExecuteAstar(List<AStarNode> nodes)
     {

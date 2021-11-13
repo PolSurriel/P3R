@@ -13,6 +13,8 @@ public partial class AIController : MonoBehaviour
         
         public AStarSolver(float predictionPlayerRadius, JobyfablePrecalculatedPredictionSystem jumpPredictor)
         {
+            layerMaskPrediction = (1 << LayerMask.NameToLayer("floor")) | (1 << LayerMask.NameToLayer("Obstacle"));
+
             this.jumpPredictor = jumpPredictor;
             this.predictionPlayerRadius = predictionPlayerRadius;
 
@@ -123,9 +125,10 @@ public partial class AIController : MonoBehaviour
             return false;
         }
 
+        int layerMaskPrediction;
         float CalculateCost(Vector2 from, ref Vector2 to, ref float time, bool checkCollision = true)
         {
-            int layerMaskPrediction = 1 << LayerMask.NameToLayer("floor");
+            
         
             float cost;
 

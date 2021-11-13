@@ -7,8 +7,6 @@ public class CameraController : MonoBehaviour
 {
     public Transform playerTransform;
 
-    float highestY;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +16,13 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        const float speedFactor = 3f;
 
-        if (highestY < playerTransform.position.y)
-            highestY = playerTransform.position.y;
+        var yDif = (playerTransform.position.y + 2.5f) - transform.position.y;
+        Vector2 deltaMove = Vector2.up * yDif;
 
-        transform.position = new Vector3(
-            transform.position.x,
-            Math.Max(playerTransform.position.y, highestY),
-            transform.position.z
-        );
+
+        transform.Translate(deltaMove * Time.deltaTime * speedFactor, Space.World);
+
     }
 }
