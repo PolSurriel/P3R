@@ -8,6 +8,7 @@ public class RotatingObstacle : MonoBehaviour
 
     public bool clockwiseDirection;
     public float rotationSpeed = 100f;
+    public Transform avoidCollider;
 
 
     // Start is called before the first frame update
@@ -17,7 +18,10 @@ public class RotatingObstacle : MonoBehaviour
             rotationSpeed *= -1f;
     }
 
-
+    public void UpdateAvoidAstarInfo(float time)
+    {
+        avoidCollider.position = GetFuturePosition(time);
+    }
 
     private void Update()
     {

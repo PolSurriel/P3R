@@ -11,6 +11,7 @@ public class ObstacleZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         var ai = collision.GetComponent<AIController>();
 
         if (ai != null)

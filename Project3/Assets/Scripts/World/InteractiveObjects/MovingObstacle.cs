@@ -11,6 +11,14 @@ public class MovingObstacle : MonoBehaviour
     public float speed = 6f;
     int currentTargetIndex = 1;
 
+    public Transform avoidCollider;
+
+
+    public void UpdateAvoidAstarInfo(float time)
+    {
+        avoidCollider.position = GetFuturePosition(time);
+    }
+
     private void FixedUpdate()
     {
 
@@ -35,7 +43,7 @@ public class MovingObstacle : MonoBehaviour
 
     public float simT;
 
-    public Vector2 GetFuturePos(float time)
+    public Vector2 GetFuturePosition(float time)
     {
 
         float totalDeltaMove = time * speed;
@@ -75,7 +83,7 @@ public class MovingObstacle : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawLine(transform.position, GetFuturePos(simT));
+        Debug.DrawLine(transform.position, GetFuturePosition(simT));
     }
 
     private void OnDrawGizmos()

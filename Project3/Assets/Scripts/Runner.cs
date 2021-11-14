@@ -30,10 +30,10 @@ public class Runner : MonoBehaviour
 
         jumpDirection = direction;
 
-        Color c = Color.yellow;
-        c.a = 0.4f;
+        //Color c = Color.yellow;
+        //c.a = 0.4f;
 
-        Debug.DrawLine(transform.position, (Vector2)transform.position + direction * 100f, c, 10f);
+        //Debug.DrawLine(transform.position, (Vector2)transform.position + direction * 100f, c, 10f);
 
     }
 

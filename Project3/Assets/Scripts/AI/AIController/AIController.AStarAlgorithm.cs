@@ -10,10 +10,14 @@ public partial class AIController : MonoBehaviour
         Vector2 originPosition;
         float predictionPlayerRadius;
         JobyfablePrecalculatedPredictionSystem jumpPredictor;
-        
+        int layerMaskAvoidImaginary;
+
         public AStarSolver(float predictionPlayerRadius, JobyfablePrecalculatedPredictionSystem jumpPredictor)
         {
-            layerMaskPrediction = (1 << LayerMask.NameToLayer("floor")) | (1 << LayerMask.NameToLayer("Obstacle"));
+            layerMaskPrediction = (1 << LayerMask.NameToLayer("floor")) | 
+                                  (1 << LayerMask.NameToLayer("Obstacle"));
+
+            layerMaskAvoidImaginary = (1 << LayerMask.NameToLayer("ImaginaryAvoid"));
 
             this.jumpPredictor = jumpPredictor;
             this.predictionPlayerRadius = predictionPlayerRadius;
@@ -68,61 +72,27 @@ public partial class AIController : MonoBehaviour
         public List<RotatingObstacle> rotatingObstaclesToHandle = new List<RotatingObstacle>(0);
 
 
-        bool circleCircle( ref Vector2 c1, ref Vector2 c2, ref float r1, ref float r2)
-        {
-
-            // get distance between the circle's centers
-            // use the Pythagorean Theorem to compute the distance
-            float distX = c1.x - c2.x;
-            float distY = c1.y - c2.y;
-            float distance = Mathf.Sqrt((distX * distX) + (distY * distY));
-
-            // if the distance is less than the sum of the circle's
-            // radii, the circles are touching!
-            if (distance <= r1 + r2)
-            {
-                return true;
-            }
-            return false;
-        }
-
-
-        bool LineToCircleCast(ref Vector2 from, ref Vector2 to, Vector2 circlePoint, float radius)
-        {
-
-            //var stepRadius = (from - to).magnitude / 3f;
-
-            var stepRadius = predictionPlayerRadius*1.1f;
-            var one = from * 0.25f + to * 0.75f;
-            var mid = from * 0.5f + to * 0.5f;
-            var end = from * 0.75f + to * 0.25f;
-
-            return circleCircle(ref one, ref circlePoint, ref stepRadius, ref radius) ||
-                    circleCircle(ref mid, ref circlePoint, ref stepRadius, ref radius) ||
-                    circleCircle(ref end, ref circlePoint, ref stepRadius, ref radius) ;
-
-        }
+ 
 
         bool CollidesWithDynamicObstacle(ref Vector2 nextPos, ref Vector2 prevPos, ref float time)
         {
-
             foreach (var obstacle in movingObstaclesToHandle)
             {
-                if (LineToCircleCast(ref prevPos, ref nextPos, obstacle.GetFuturePos(time), 1f))
-                {
-                    return true;
-                }
+                obstacle.UpdateAvoidAstarInfo(time);
             }
 
-            foreach (var obstacle in movingObstaclesToHandle)
+            
+
+            foreach (var obstacle in rotatingObstaclesToHandle)
             {
-                if (LineToCircleCast(ref prevPos, ref nextPos, obstacle.GetFuturePos(time), 1f))
-                {
-                    return true;
-                }
+                obstacle.UpdateAvoidAstarInfo(time);
+
             }
 
-            return false;
+            bool collides = Physics2D.Linecast(prevPos, nextPos, layerMaskAvoidImaginary);
+
+
+            return collides;
         }
 
         int layerMaskPrediction;
