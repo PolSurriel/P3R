@@ -6,12 +6,29 @@ using UnityEngine;
 
 public class PathTarget : MonoBehaviour
 {
+
+    public bool useDotConstrainToChoose = false;
+    public float dotConstrainThreshold;
+    public Vector2 dotConstrain;
+
+    public Transform fakePosition;
+
+    public Vector2 GetEvaluablePosition()
+    {
+
+        if (fakePosition == null)
+            return transform.position;
+
+        return fakePosition.position;
+    }
+
     public bool useIncisionConstrain = true;
 
     [Button("SetLeft")]
     public void SetLeft()
     {
         incisionVector = Vector2.left;
+        dotConstrain.Normalize();
     }
     [Button("SetRight")]
     public void SetRight()

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Stain : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        collision.GetComponent<Runner>().EnterOnStain();
+        var ai = collision.GetComponent<AIController>();
+    
+        if(ai != null)
+        {
+            ai.EnterOnStain();
+        }
+    
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

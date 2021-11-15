@@ -1551,6 +1551,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 8505221155079508422, guid: 214d13b53c87add419e89f5ce9995eb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 214d13b53c87add419e89f5ce9995eb6, type: 3}
 --- !u!4 &8144855737436999340 stripped
@@ -2047,6 +2052,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MovingObstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357901483139243325, guid: da5ac43b27b8a7d48b8710d78b8051bc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5357901483139243327, guid: da5ac43b27b8a7d48b8710d78b8051bc,
         type: 3}

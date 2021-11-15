@@ -103,108 +103,73 @@ public partial class AIController : MonoBehaviour
     AStarNode currentNode;
 
     
-    IEnumerator executingAstarRoutine;
+
+    bool executingAstarSeek = false;
+    float astarSeekTimeCounter = 0f;
+    bool astarSeeklastSecondJumpDone = true;
+    bool astarSeekFirstIteration = true;
+    int astarSeekNodeIndex;
+    List<AStarNode> astarSeekNodes;
 
     void AstarExecutionFixedUpdate()
     {
-
-    }
-
-    IEnumerator ExecuteAstar(List<AStarNode> nodes)
-    {
-
-        bool lastSecondJumpDone = true;
-        bool first = true;
-        foreach(var node in nodes)
+        if (executingAstarSeek)
         {
-            currentNode = node;
+            currentNode = astarSeekNodes[astarSeekNodeIndex];
 
-            if (node.secondJumpDone != lastSecondJumpDone || first)
+            if (currentNode.secondJumpDone != astarSeeklastSecondJumpDone || astarSeekFirstIteration)
             {
 
-                lastSecondJumpDone = !lastSecondJumpDone;
-                first = false;
-                runner.Jump(jumpPredictor.GetForce(node.directionIndex));
+                astarSeeklastSecondJumpDone = !astarSeeklastSecondJumpDone;
+                astarSeekFirstIteration = false;
+                runner.Jump(jumpPredictor.GetForce(currentNode.directionIndex));
+
 
             }
 
-            //do
-            //{
-            //    timeCounter += Time.deltaTime;
-            //    yield return null;
 
-            //} while (timeCounter < node.time);
-            float time = 0f;
-            const float MAX_TIME_SEEKING_NEXTNODE = 1f;
+            astarSeekTimeCounter += Time.fixedDeltaTime;
 
-            float distanceToNext;
-            do
+            if ( ! (astarSeekTimeCounter < currentNode.time))
             {
-                distanceToNext = Vector2.Distance(node.position, transform.position);
-                yield return null;
-                time += Time.deltaTime;
-                if(time > MAX_TIME_SEEKING_NEXTNODE)
+                astarSeekNodeIndex++;
+                if(astarSeekNodeIndex == astarSeekNodes.Count)
                 {
-                    lastTargetPos = Vector2.zero;
-                    StartCoroutine(WaitAndRestartAstar(0f));
-                    StopCoroutine(executingAstarRoutine);
-                    yield return null;
+                    executingAstarSeek = false;
                 }
-              
-
-            } while (distanceToNext > 0.15f);
-
-
-
+            }
         }
-
-        //pendingToStart = true;
-
-
     }
 
 
+    void StartAstartExecution(ref List<AStarNode> nodes)
+    {
+        astarSeekNodes = nodes;
+        executingAstarSeek = true;
+        astarSeeklastSecondJumpDone = true;
+        astarSeekFirstIteration = true;
+        astarSeekNodeIndex = 0;
+        astarSeekTimeCounter = 0f;
+    }
+   
     const float VALID_TARGET_AREA_RADIUS = 7f;
     Vector2 lastTargetPos = Vector2.zero;
-    
-    AINode FindCurrentNode()
+   
+
+    bool DotConstrain(PathTarget target)
     {
+        if (!target.useDotConstrainToChoose)
+            return true;
 
-        float localY = transform.position.y - mapController.nodeZeroPosition.y;
+        Vector2 toTarget = target.GetEvaluablePosition() - (Vector2)transform.position;
+        toTarget.Normalize();
 
-        int myPositioniIndex = (int)(localY / mapController.nodeDistance);
+        float dot = Vector2.Dot(toTarget, target.dotConstrain);
 
-        if(myPositioniIndex > 0)
-            myPositioniIndex--; 
-
-        AINode currenNode = null;
-
-        float shortestDistance = 99999999f;
-
-        for (int i = myPositioniIndex; i < myPositioniIndex + 3; i++)
-        {
-            if (i < mapController.nodesGlobalMatrix.Count && i >= 0)
-            {
-                foreach (var node in mapController.nodesGlobalMatrix[i].list)
-                {
-                    float dist = Vector2.Distance(transform.position, node.GetWorldPosition(node.tilemapWorldPos));
-
-                    if (dist < shortestDistance)
-                    {
-                        shortestDistance = dist;
-                        currenNode = node;
-                    }
-
-                }
-
-            }
-        }
-
-        return currenNode;
-
+        return dot < target.dotConstrainThreshold;
     }
 
-    void ChooseTarget()
+    bool ChooseTarget(bool useDotConstrain = true)
     {
 
         // choose a target
@@ -214,16 +179,24 @@ public partial class AIController : MonoBehaviour
 
         foreach (var target in targets)
         {
-            
-            if(lastTargetPos != (Vector2)target.transform.position)
 
-            if (! (target.transform.position.y < transform.position.y + GOAL_MIN_DISTANCE))
+            if (targetsToIgnore.Contains(target))
+                continue;
+
+            var targetPos = target.GetEvaluablePosition();
+
+            if(lastTargetPos != targetPos)
+
+            if ((!(targetPos.y < transform.position.y + GOAL_MIN_DISTANCE)) || onBackupPlanZone)
             {
 
-                if (Vector2.Distance(target.transform.position, transform.position) < VALID_TARGET_AREA_RADIUS)
+                if (Vector2.Distance(targetPos, transform.position) < VALID_TARGET_AREA_RADIUS)
                 {
-                    validTargets.Add(target);
-                    continue;
+                        if (!useDotConstrain || DotConstrain(target))
+                        {
+                            validTargets.Add(target);
+                            continue;
+                        }
                 }
             }
             
@@ -231,15 +204,24 @@ public partial class AIController : MonoBehaviour
 
         if (validTargets.Count == 0)
         {
-            UnityEngine.Debug.LogError("No valid target found");
-            return;
+            if (useDotConstrain)
+            {
+                return ChooseTarget(false);
+
+            }else
+            {
+                // no valid target found
+                return false;
+            }
         }
 
-        var finalTarget = validTargets[Random.Range(0, validTargets.Count)];
+        currentPathTargetObject = validTargets[Random.Range(0, validTargets.Count)];
 
-        aStarGoal = new AstarGoal(finalTarget.transform.position, finalTarget.incisionVector, finalTarget.useIncisionConstrain);
+        aStarGoal = new AstarGoal(currentPathTargetObject.transform.position, currentPathTargetObject.incisionVector, currentPathTargetObject.useIncisionConstrain);
         lastTargetPos = aStarGoal.position;
 
+        // success!
+        return true;
 
     }
 
@@ -257,6 +239,12 @@ public partial class AIController : MonoBehaviour
         if (onATreadmill)
         {
             TreadmilleUpdate();
+            return;
+        }
+        
+        if (onStain)
+        {
+            StainUpdate();
             return;
         }
 
@@ -279,18 +267,48 @@ public partial class AIController : MonoBehaviour
 
     }
 
+    PathTarget currentPathTargetObject;
+    List<PathTarget> targetsToIgnore = new List<PathTarget>();
+
     void StartAStarPipeline()
     {
+        executingAstarSeek = false;
         pendingToStart = false;
 
-        ChooseTarget();
+        if (ChooseTarget())
+        {
+            // Go to the target
 
-        // Go to the target
+            currentPath = aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
+            if(currentPath == null)
+            {
+                //at next frame, we'll try with another target!
+                targetsToIgnore.Add(currentPathTargetObject);
+                pendingToStart = true;
+                return;
+            
+            }else
+            {
+                StartAstartExecution(ref currentPath);
+                //executingAstarRoutine = ExecuteAstar(currentPath);
+                //StartCoroutine(executingAstarRoutine);
+                targetsToIgnore = new List<PathTarget>();
 
-        currentPath = aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
-        executingAstarRoutine = ExecuteAstar(currentPath);
-        StartCoroutine(executingAstarRoutine);
+            }
 
+
+        }else
+        {
+
+            pendingToStart = true;
+            targetsToIgnore = new List<PathTarget>();
+            //Si el tilemap requiere esperar a un momento del tiempo en
+            //concreto para saltar, el backup plan no debería ser generico.
+            //de algun modo deberiamos tener cuidado con esto. Reiniciar
+            //la busqueda de target en el momento apropiado vs ejecutar 
+            //un comportamientor reactivo
+            Debug.LogError("No valid target found! We need to code some backup plan here.");
+        }
     }
 
 
@@ -316,12 +334,8 @@ public partial class AIController : MonoBehaviour
 
         if (collision.collider.tag == "floor")
         {
-
             lastTargetPos = Vector2.down;
-            if(executingAstarRoutine != null)
-            {
-                StopCoroutine(executingAstarRoutine);
-            }
+            executingAstarSeek = false;
             StartCoroutine(WaitAndRestartAstar(timeBeforeJump));
 
 
@@ -329,8 +343,22 @@ public partial class AIController : MonoBehaviour
     }
 
 
-    
+    bool onBackupPlanZone = false;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "backupPlanZone")
+        {
+            onBackupPlanZone = true;
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "backupPlanZone")
+        {
+            onBackupPlanZone = false;
+        }
+    }
 
 }
 

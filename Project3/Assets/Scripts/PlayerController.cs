@@ -7,10 +7,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public AnimationCurve reduceInputMagnitude;
+
     bool pressingMouse;
     Vector2 mousePressFirstPos;
 
     Runner runner;
+
+    public LineRenderer inputLR;
 
     // Start is called before the first frame update
     void Start()
@@ -18,40 +22,67 @@ public class PlayerController : MonoBehaviour
         runner = GetComponent<Runner>();
     }
 
+    const float MAX_INPUT_LENGHT = 1f;
+
+
+    Vector2 tmpLastInputPos;
+    bool firstDragInputIteration = true;
+
+
+    Vector2 inputVector;
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonUp(0))
         {
-            
+
+            Vector2 worldPosition1 = Camera.main.ScreenToWorldPoint(mousePressFirstPos);
+            Vector2 worldPosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            Vector2 dif = inputVector;
+            float magnitude = Mathf.Min(dif.magnitude, MAX_INPUT_LENGHT);
+
             pressingMouse = false;
-            runner.Jump((Vector2)Input.mousePosition - mousePressFirstPos);
+            runner.Jump(inputVector, magnitude / MAX_INPUT_LENGHT);
+            inputLR.SetPosition(1, Vector2.zero);
+
             
         }
 
         if (!pressingMouse && Input.GetMouseButtonDown(0))
         {
+            firstDragInputIteration = true;
             pressingMouse = true;
             mousePressFirstPos = Input.mousePosition;
+            inputVector = Vector2.zero;
 
         }
 
+        Vector2 currentInput = Input.mousePosition;
 
         if (pressingMouse)
         {
-            Vector2 worldPosition1 = Camera.main.ScreenToWorldPoint(mousePressFirstPos);
-            Vector2 worldPosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (!firstDragInputIteration)
+            {
+                Vector2 deltaMove = currentInput - tmpLastInputPos;
+                inputVector += deltaMove*0.005f;
+            }
 
-            Debug.DrawLine(worldPosition1, worldPosition2, Color.yellow);
+            tmpLastInputPos = Input.mousePosition;
+            firstDragInputIteration = false;
+
+            
+
+
+            if (inputVector.magnitude > MAX_INPUT_LENGHT)
+            {
+                inputVector = inputVector.normalized * MAX_INPUT_LENGHT;
+            }
+
+            inputLR.SetPosition(1, inputVector*2f);
+
+            
         }
-
-
-        int currentIndex = 2;
-        int maxIndex = 12;
-
-        int newIndex = (maxIndex - currentIndex - maxIndex/2) % maxIndex;
-
-        Debug.Log(newIndex);
 
     }
 }

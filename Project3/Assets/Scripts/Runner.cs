@@ -11,6 +11,14 @@ public class Runner : MonoBehaviour
     Vector2 contactToSurfaceDirection;
 
 
+    bool onStain;
+
+    public void EnterOnStain()
+    {
+        stainJumpsCounter = 0;
+        onStain = true;
+    }
+
     private void Start()
     {
         playerRadius = GetComponent<CircleCollider2D>().radius;
@@ -18,13 +26,31 @@ public class Runner : MonoBehaviour
         
     }
 
-    public void Jump(Vector2 direction)
+    const int STAIN_TIMES_TO_JUMP = 2;
+    int stainJumpsCounter;
+
+    void JumpOnStain(Vector2 direction)
     {
+        stainJumpsCounter++;
+
+        if(stainJumpsCounter >= STAIN_TIMES_TO_JUMP)
+        {
+            onStain = false;
+        }
+
+        // TODO
+    }
+
+    public void Jump(Vector2 direction, float forcePercentage = 1f)
+    {
+        if (onStain)
+            JumpOnStain(direction);
+
         direction = direction.normalized;
 
         rb.isKinematic = false;
         rb.velocity = Vector2.zero;
-        rb.AddForce(direction.normalized * jumpMagnitude, ForceMode2D.Impulse);
+        rb.AddForce(direction.normalized * jumpMagnitude * forcePercentage, ForceMode2D.Impulse);
 
         transform.position = transform.position + (Vector3)(contactToSurfaceDirection*0.1f);
 
