@@ -13,6 +13,13 @@ public class Runner : MonoBehaviour
 
     bool onStain;
 
+    bool toExitParent = false;
+    public void SetParent(Transform p)
+    {
+        toExitParent = true;
+        transform.SetParent(p);
+    }
+
     public void EnterOnStain()
     {
         stainJumpsCounter = 0;
@@ -54,8 +61,18 @@ public class Runner : MonoBehaviour
             return;
         }
 
+
         if (onStain)
+        {
             JumpOnStain(direction);
+            return;
+        }
+
+        if (toExitParent)
+        {
+            transform.SetParent(null);
+        }
+
 
         direction = direction.normalized;
 

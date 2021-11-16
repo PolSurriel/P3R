@@ -29,7 +29,6 @@ public class RotatingObstacle : MonoBehaviour
 
         transform.Rotate(Vector3.forward  * deltaRotation);
 
-        Debug.DrawLine(transform.position, GetFuturePosition(1f));
     }
 
 
@@ -50,7 +49,7 @@ public class RotatingObstacle : MonoBehaviour
     private void OnDrawGizmos()
     {
         Debug.DrawLine(transform.position, obstacle.position);
-        Gizmos.DrawWireSphere(obstacle.position, 1.5f);
+        Gizmos.DrawWireSphere(obstacle.position, 0.3f);
 
     }
 }

@@ -258,7 +258,7 @@ public partial class AIController : MonoBehaviour
 
         timeToStartCount += Time.deltaTime;
 
-        if (start && pendingToStart)
+        if (start && pendingToStart && !onAMolino)
         {
             StartAStarPipeline();
         }
