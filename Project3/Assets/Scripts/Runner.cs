@@ -41,8 +41,19 @@ public class Runner : MonoBehaviour
         // TODO
     }
 
+    void CantJumpFeedback()
+    {
+
+    }
+
     public void Jump(Vector2 direction, float forcePercentage = 1f)
     {
+        if( jumpCounter >= 2)
+        {
+            CantJumpFeedback();
+            return;
+        }
+
         if (onStain)
             JumpOnStain(direction);
 
@@ -93,11 +104,24 @@ public class Runner : MonoBehaviour
         StartCoroutine(WaitAndEnableFloorCollision(0.3f));
     }
 
+    
+    [HideInInspector]
+    public int jumpCounter;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "extraJumpZone")
+        {
+            jumpCounter = 0;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (floorCollisionEnabled && collision.collider.CompareTag("floor"))
         {
+            jumpCounter = 0;
             ResetFloorCollision();
             contactToSurfaceDirection = collision.contacts[0].normal.normalized;
             Vector2 contact = collision.contacts[0].point; 
@@ -106,9 +130,10 @@ public class Runner : MonoBehaviour
 
             rb.isKinematic = true;
             rb.velocity = Vector2.zero;
+
         }
 
-        
+
     }
 
 

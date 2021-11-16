@@ -621,6 +621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  jumpCounter: 0
 --- !u!114 &1097087273
 MonoBehaviour:
   m_ObjectHideFlags: 0

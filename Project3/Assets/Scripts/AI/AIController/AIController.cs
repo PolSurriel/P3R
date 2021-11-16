@@ -350,6 +350,11 @@ public partial class AIController : MonoBehaviour
         {
             onBackupPlanZone = true;
         }
+        else if (collision.tag == "extraJumpZone")
+        {
+            executingAstarSeek = false;
+            StartCoroutine(WaitAndRestartAstar(timeBeforeJump));
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
