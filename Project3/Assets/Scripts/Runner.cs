@@ -51,6 +51,8 @@ public class Runner : MonoBehaviour
     void CantJumpFeedback()
     {
 
+
+        
     }
 
     public void Jump(Vector2 direction, float forcePercentage = 1f)
