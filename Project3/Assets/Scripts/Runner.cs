@@ -61,6 +61,7 @@ public class Runner : MonoBehaviour
             return;
         }
 
+        jumpCounter++;
 
         if (onStain)
         {

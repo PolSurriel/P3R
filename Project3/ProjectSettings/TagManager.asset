@@ -8,6 +8,7 @@ TagManager:
   - portal
   - treadmill
   - extraJumpZone
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Trigger
   - Obstacle
   - ImaginaryAvoid
-  - 
+  - Projectile
   - 
   - 
   - 

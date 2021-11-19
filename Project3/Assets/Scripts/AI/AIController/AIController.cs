@@ -11,9 +11,6 @@ public partial class AIController : MonoBehaviour
 
     AstarGoal aStarGoal;
 
-
-
-
     public class AstarGoal
     {
         public bool useIncisionConstrain;
