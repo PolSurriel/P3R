@@ -8,6 +8,9 @@ public class Door : MonoBehaviour
     public Transform leftDoor;
     public Transform rightDoor;
 
+    public BoxCollider2D leftCollider;
+    public BoxCollider2D rightCollider;
+
     Quaternion leftClosedRotation = Quaternion.identity;
     Quaternion rightClosedRotation = Quaternion.identity;
     Quaternion leftOpenedRotation;
@@ -17,17 +20,20 @@ public class Door : MonoBehaviour
     {
         leftOpenedRotation = leftDoor.rotation;
         rightOpenedRotation = rightDoor.rotation;
+        leftCollider.enabled = false;
+        rightCollider.enabled = false;
 
-        Close();
     }
 
-    const float TIME_TO_OPEN_OR_CLOSE = 0.5f;
+    const float TIME_TO_OPEN_OR_CLOSE = 0.2f;
     const float TIME_TO_START_OPENING = 1f;
 
     bool closed = false;
 
     void Open()
     {
+        leftCollider.enabled = false;
+        rightCollider.enabled = false;
         StartCoroutine(OpenRoutine());
 
     }
@@ -73,7 +79,8 @@ public class Door : MonoBehaviour
 
         } while (timeCounter < TIME_TO_OPEN_OR_CLOSE);
 
-
+        leftCollider.enabled = true;
+        rightCollider.enabled = true;
         timeCounter = 0f;
 
         do

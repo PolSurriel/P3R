@@ -6,7 +6,7 @@ public partial class AIController : MonoBehaviour
 {
     public class AStarNode
     {
-
+        public int immidiatPortal;
         public bool secondJumpDone;
         public int directionIndex;
         public int positionIndex;
@@ -26,9 +26,10 @@ public partial class AIController : MonoBehaviour
         public Vector2 portalOffset;
 
 
-        public AStarNode(Vector2 _pos, bool _secondJumpDone, int _directionIndex, int _positionIndex, float _coste, float _time)
+        public AStarNode(Vector2 _pos, bool _secondJumpDone, int _directionIndex, int _positionIndex, float _coste, float _time, int _immidiatPortal)
         {
 
+            immidiatPortal = _immidiatPortal;
             secondJumpDone = _secondJumpDone;
             directionIndex = _directionIndex;
             positionIndex = _positionIndex;

@@ -5,6 +5,8 @@ using UnityEngine;
 public class MolinoFloor : MonoBehaviour
 {
 
+    public Transform molino;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var ai = collision.collider.GetComponent<AIController>();
@@ -15,7 +17,7 @@ public class MolinoFloor : MonoBehaviour
         }
 
         var runner = collision.collider.GetComponent<Runner>();
-        runner.SetParent(transform);
+        runner.SetParent(molino);
 
 
     }

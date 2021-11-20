@@ -11,13 +11,18 @@ public partial class AIController : MonoBehaviour
         float predictionPlayerRadius;
         JobyfablePrecalculatedPredictionSystem jumpPredictor;
         int layerMaskAvoidImaginary;
-
+        int layerMaskRaycastNOT;
+        int layerMaskPortal;
         public AStarSolver(float predictionPlayerRadius, JobyfablePrecalculatedPredictionSystem jumpPredictor)
         {
+
+            layerMaskPortal = 1 << LayerMask.NameToLayer("Portal");
+
             layerMaskPrediction = (1 << LayerMask.NameToLayer("floor")) | 
                                   (1 << LayerMask.NameToLayer("Obstacle"));
 
             layerMaskAvoidImaginary = (1 << LayerMask.NameToLayer("ImaginaryAvoid"));
+            layerMaskRaycastNOT = (1 << LayerMask.NameToLayer("RaycastNOT"));
 
             this.jumpPredictor = jumpPredictor;
             this.predictionPlayerRadius = predictionPlayerRadius;
@@ -28,15 +33,13 @@ public partial class AIController : MonoBehaviour
         void PortalCase(ref AStarNode nextNode,  Vector2 prevPos)
         {
 
-            int layerMaskPortal = 1 << LayerMask.NameToLayer("Portal");
-
             RaycastHit2D portalHit = Physics2D.Linecast(prevPos, nextNode.position, layerMaskPortal);
 
             if (portalHit)
             {
                 var portal = portalHit.collider.GetComponent<Portal>();
 
-
+                nextNode.immidiatPortal = 2;
 
                 if (portal.inverseY)
                 {
@@ -108,15 +111,24 @@ public partial class AIController : MonoBehaviour
 
             if (checkCollision)
             {
-                collides = Physics2D.Linecast(from+perp, to+perp, layerMaskPrediction) || Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction) || CollidesWithDynamicObstacle(ref to, ref from, ref time);
+                bool raycastNot = Physics2D.Linecast(from+perp, to, layerMaskRaycastNOT);
+
+                if (!raycastNot)
+                {
+                    collides = Physics2D.Linecast(from+perp, to+perp, layerMaskPrediction) || Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction) || CollidesWithDynamicObstacle(ref to, ref from, ref time);
+
+                }else
+                {
+                    collides = false;
+                }
+
 
                 
 
             }
-            //bool collides = Physics2D.Linecast(from, to, layerMaskPrediction);
-
+            
             //Color c = collides ? new Color(1f, 0f, 0f, 0.1f) : new Color(0f, 1f, 0f, 0.1f);
-            //Debug.DrawLine(from, to, c, 0.2f);
+            //Debug.DrawLine(from, to, c, 1.2f);
 
 
 
@@ -134,16 +146,7 @@ public partial class AIController : MonoBehaviour
         }
 
 
-        public delegate void DelegationNeighbour(Vector2 node);
-        void ForEachNewJumpNeighbour(ref AStarNode node, DelegationNeighbour method)
-        {
-            for (int i = 0; i < DIRECTIONS_COUNT; i++)
-            {
-                method(node.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, 0) + node.position);
-            }
-
-        }
-
+        
 
         delegate void ASDelegationNeighbour(AStarNode node);
         void ForeachNeighbour(ref AStarNode inNode, ASDelegationNeighbour method)
@@ -163,14 +166,22 @@ public partial class AIController : MonoBehaviour
 
                 if(cost >= 0)
                 {
-                    AStarNode next = new AStarNode(nextPos, inNode.secondJumpDone, inNode.directionIndex, inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT, cost, inNode.time + PRECALCULATION_INCREMENT_DELTATIME);
+                    AStarNode next = new AStarNode(
+                        nextPos, 
+                        inNode.secondJumpDone, 
+                        inNode.directionIndex, 
+                        inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT, 
+                        cost, 
+                        inNode.time + PRECALCULATION_INCREMENT_DELTATIME, 
+                        inNode.immidiatPortal-1
+                    );
                     PortalCase(ref next, inNode.position);
 
                     method(next);
                 }
             }
 
-            if (!inNode.secondJumpDone)
+            if (!inNode.secondJumpDone && inNode.immidiatPortal <= 0)
             {
 
                 int dirIndex = 0;
@@ -181,7 +192,14 @@ public partial class AIController : MonoBehaviour
                     float cost = CalculateCost(inNode.position, ref nextNodePos, ref inNode.time);
                     if (cost >= 0)
                     {
-                        AStarNode next = new AStarNode(nextNodePos, true, dirIndex++, 0, cost, inNode.time + PRECALCULATION_INCREMENT_DELTATIME);
+                        AStarNode next = new AStarNode(
+                            nextNodePos, 
+                            true, 
+                            dirIndex++, 
+                            0, 
+                            cost, 
+                            inNode.time + PRECALCULATION_INCREMENT_DELTATIME,
+                            0);
                         PortalCase(ref next, inNode.position);
 
                         method(next);
@@ -228,7 +246,7 @@ public partial class AIController : MonoBehaviour
 
                 if(cost >= 0)
                 {
-                    var an = new AStarNode(position, false, i, 0, cost, PRECALCULATION_DELTATIME);
+                    var an = new AStarNode(position, false, i, 0, cost, PRECALCULATION_DELTATIME, 0);
                     float priority = cost + an.H(goalPosition);
                     frontier.Insert(an, priority);
                 }

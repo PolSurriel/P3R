@@ -27,7 +27,6 @@ public partial class AIController : MonoBehaviour
 
 
                 //Handles.Label(node.position, "" + i++);
-
                 Debug.DrawLine(lastPos, node.position);
 
                 lastPos = node.position;
@@ -38,8 +37,8 @@ public partial class AIController : MonoBehaviour
 
         if (aStarGoal != null)
         {
-            //Handles.color = Color.red;
-            //Handles.DrawWireDisc(aStarGoal.position, transform.forward, GOAL_MIN_DISTANCE);
+            Gizmos.DrawWireSphere(aStarGoal.position, GOAL_MIN_DISTANCE);
+
         }
     }
 }

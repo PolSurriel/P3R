@@ -84,6 +84,9 @@ public class MovingObstacle : MonoBehaviour
     private void Update()
     {
         Debug.DrawLine(transform.position, GetFuturePosition(simT));
+
+        avoidCollider.transform.position = Vector3.down * 99999f;
+
     }
 
     private void OnDrawGizmos()

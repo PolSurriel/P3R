@@ -18,6 +18,9 @@ public class Runner : MonoBehaviour
     {
         toExitParent = true;
         transform.SetParent(p);
+        transform.localScale = Vector3.one;
+
+
     }
 
     public void EnterOnStain()
@@ -48,12 +51,21 @@ public class Runner : MonoBehaviour
         // TODO
     }
 
+    public bool usingPortal;
+
+    public void EnterOnAPortal()
+    {
+        usingPortal = true;
+    }
+
     void CantJumpFeedback()
     {
 
 
         
     }
+
+    public SpriteRenderer aspect;
 
     public void Jump(Vector2 direction, float forcePercentage = 1f)
     {
@@ -74,6 +86,8 @@ public class Runner : MonoBehaviour
         if (toExitParent)
         {
             transform.SetParent(null);
+
+            transform.localScale = Vector3.one;
         }
 
 
@@ -86,6 +100,7 @@ public class Runner : MonoBehaviour
         transform.position = transform.position + (Vector3)(contactToSurfaceDirection*0.1f);
 
         jumpDirection = direction;
+
 
         //Color c = Color.yellow;
         //c.a = 0.4f;
@@ -139,17 +154,22 @@ public class Runner : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (floorCollisionEnabled && collision.collider.CompareTag("floor"))
+        if (!usingPortal)
         {
-            jumpCounter = 0;
-            ResetFloorCollision();
-            contactToSurfaceDirection = collision.contacts[0].normal.normalized;
-            Vector2 contact = collision.contacts[0].point; 
+            if (floorCollisionEnabled && collision.collider.CompareTag("floor"))
+            {
+                jumpCounter = 0;
+                ResetFloorCollision();
+                contactToSurfaceDirection = collision.contacts[0].normal.normalized;
+                Vector2 contact = collision.contacts[0].point; 
 
-            transform.position = contact + contactToSurfaceDirection * playerRadius;
+                transform.position = contact + contactToSurfaceDirection * playerRadius;
 
-            rb.isKinematic = true;
-            rb.velocity = Vector2.zero;
+                rb.isKinematic = true;
+                rb.velocity = Vector2.zero;
+
+
+            }
 
         }
 

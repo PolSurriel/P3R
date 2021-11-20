@@ -9,6 +9,7 @@ TagManager:
   - treadmill
   - extraJumpZone
   - Projectile
+  - exitMolino
   layers:
   - Default
   - TransparentFX
@@ -25,9 +26,9 @@ TagManager:
   - Obstacle
   - ImaginaryAvoid
   - Projectile
-  - 
-  - 
-  - 
+  - MovingFloor
+  - MovingObstacle
+  - RaycastNOT
   - 
   - 
   - 

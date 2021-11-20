@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 4797132563618431405, guid: d8656c3e9e3ea504ebb4ffac06f19c89,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -219,6 +219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftDoor: {fileID: 4420986589459907311}
   rightDoor: {fileID: 4420986588898164861}
+  leftCollider: {fileID: 4420986590133140323}
+  rightCollider: {fileID: 4420986589183687146}
 --- !u!61 &4420986589591873724
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -318,7 +320,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 4797132563618431405, guid: d8656c3e9e3ea504ebb4ffac06f19c89,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.1768481, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -149,7 +149,7 @@ public partial class AIController : MonoBehaviour
         astarSeekTimeCounter = 0f;
     }
    
-    const float VALID_TARGET_AREA_RADIUS = 7f;
+    const float VALID_TARGET_AREA_RADIUS = 10f;
     Vector2 lastTargetPos = Vector2.zero;
    
 
@@ -351,7 +351,12 @@ public partial class AIController : MonoBehaviour
         {
             executingAstarSeek = false;
             StartCoroutine(WaitAndRestartAstar(timeBeforeJump));
+        }else if (collision.tag == "exitMolino")
+        {
+            Debug.Log("FUNSAINA");
         }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

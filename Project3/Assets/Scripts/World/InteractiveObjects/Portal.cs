@@ -40,10 +40,13 @@ public class Portal : MonoBehaviour
     }
 
 
-    private void OnTriggerStay2D(Collider2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
+
+            //collision.GetComponent<Runner>().EnterOnAPortal();
 
             if (ignoring.Contains(collision.gameObject))
                 return;
@@ -51,7 +54,7 @@ public class Portal : MonoBehaviour
             otherPortal.ignoring.Add(collision.gameObject);
             
             Vector3 localPos = collision.gameObject.transform.position - transform.position; 
-            collision.gameObject.transform.position = otherPortal.transform.position + localPos;
+            Vector2 newPos = otherPortal.transform.position + localPos;
 
             StartCoroutine(StopIgnoringAt(0.5f, collision.gameObject));
 
@@ -71,6 +74,9 @@ public class Portal : MonoBehaviour
             }
 
             rb.velocity = vel;
+
+            collision.gameObject.transform.position = newPos /* + vel.normalized * 0.5f*/;
+
 
 
         }
