@@ -11,7 +11,7 @@ public class Runner : MonoBehaviour
     Vector2 contactToSurfaceDirection;
 
 
-    bool onStain;
+    public bool onStain;
 
     bool toExitParent = false;
     public void SetParent(Transform p)
@@ -21,6 +21,15 @@ public class Runner : MonoBehaviour
         transform.localScale = Vector3.one;
 
 
+    }
+
+
+    bool onATreadmill = false;
+    public void EnterOnATreadmill()
+    {
+        onATreadmill = true;
+        rb.gravityScale = 0f;
+        rb.isKinematic = true;
     }
 
     public void EnterOnStain()
@@ -69,19 +78,28 @@ public class Runner : MonoBehaviour
 
     public void Jump(Vector2 direction, float forcePercentage = 1f)
     {
+
+        if (onATreadmill)
+        {
+            onATreadmill = false;
+            rb.isKinematic = false;
+            rb.gravityScale = 1f;
+        }
+
         if( jumpCounter >= 2)
         {
             CantJumpFeedback();
             return;
         }
 
-        jumpCounter++;
-
         if (onStain)
         {
             JumpOnStain(direction);
             return;
         }
+
+        jumpCounter++;
+
 
         if (toExitParent)
         {

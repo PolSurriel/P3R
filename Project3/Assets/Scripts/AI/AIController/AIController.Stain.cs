@@ -27,7 +27,7 @@ public partial class AIController: MonoBehaviour
             SetNextTimeToJump();
             stainJumpsCounter++;
             
-            if(stainJumpsCounter>= STAIN_TIMES_TO_JUMP)
+            if(stainJumpsCounter >= STAIN_TIMES_TO_JUMP)
             {
                 onStain = false;
             }

@@ -6,6 +6,7 @@ public class Treadmill : MonoBehaviour
 {
     List<Runner> playersIn = new List<Runner>();
     public Vector2 direction = Vector2.up;
+    public Vector2 normal = Vector2.right;
     public float speed = 20f;
     public List<Transform> exits = new List<Transform>();
     float distanceToExit = 0.5f;
@@ -18,24 +19,22 @@ public class Treadmill : MonoBehaviour
 
     private void Update()
     {
-        foreach (var player in playersIn)
-        {
-            player.transform.Translate(direction * speed * Time.deltaTime, Space.World);
-        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var runner = collision.collider.GetComponent<Runner>();
 
-        playersIn.Add(runner);
-    }
+        if (runner == null)
+            return;
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        var runner = collision.collider.GetComponent<Runner>();
+        if (playersIn.Contains(runner))
+            return;
 
-        playersIn.Remove(runner);
+        runner.jumpCounter = 0;
+        runner.EnterOnATreadmill();
+        runner.rb.velocity = direction * speed;
 
         var ai = runner.GetComponent<AIController>();
 
@@ -43,5 +42,29 @@ public class Treadmill : MonoBehaviour
         {
             ai.EnterOnATreadMille(ref exits, direction);
         }
+
+        playersIn.Add(runner);
+    }
+    
+    IEnumerator ExitPlayer(Runner player)
+    {
+        float t = 0f;
+
+        do
+        {
+            yield return null;
+        } while ((t+= Time.deltaTime)<0.3f);
+
+        playersIn.Remove(player);
+
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        var runner = collision.collider.GetComponent<Runner>();
+
+        if (runner != null)
+            StartCoroutine(ExitPlayer(runner));
+
     }
 }

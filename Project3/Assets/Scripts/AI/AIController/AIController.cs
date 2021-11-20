@@ -141,6 +141,7 @@ public partial class AIController : MonoBehaviour
 
     void StartAstartExecution(ref List<AStarNode> nodes)
     {
+
         astarSeekNodes = nodes;
         executingAstarSeek = true;
         astarSeeklastSecondJumpDone = true;
@@ -255,7 +256,7 @@ public partial class AIController : MonoBehaviour
 
         timeToStartCount += Time.deltaTime;
 
-        if (start && pendingToStart && !onAMolino)
+        if (start && pendingToStart && !onAMolino && !onStain)
         {
             StartAStarPipeline();
         }
@@ -269,8 +270,12 @@ public partial class AIController : MonoBehaviour
 
     void StartAStarPipeline()
     {
+
+        
+
         executingAstarSeek = false;
         pendingToStart = false;
+
 
         if (ChooseTarget())
         {
@@ -351,9 +356,6 @@ public partial class AIController : MonoBehaviour
         {
             executingAstarSeek = false;
             StartCoroutine(WaitAndRestartAstar(timeBeforeJump));
-        }else if (collision.tag == "exitMolino")
-        {
-            Debug.Log("FUNSAINA");
         }
 
 

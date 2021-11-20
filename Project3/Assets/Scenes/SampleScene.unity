@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51b2a333f8af554496ab88eca45192c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfTilemaps: 9
+  numberOfTilemaps: 11
   playerTransform: {fileID: 1097087269}
   nodeDistance: 0
   nodeZeroPosition: {x: 0, y: 0}
@@ -550,6 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  onStain: 0
   usingPortal: 0
   aspect: {fileID: 1637875273}
   jumpCounter: 0

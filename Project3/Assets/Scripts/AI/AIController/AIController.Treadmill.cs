@@ -11,8 +11,11 @@ public partial class AIController : MonoBehaviour
     {
         var dist = Vector2.Distance(treadMillTarget, transform.position);
 
-        if(dist < 1f)
+
+        if(dist < 0.5f)
         {
+            
+
             onATreadmill = false;
             StartAStarPipeline();
         }
@@ -30,12 +33,15 @@ public partial class AIController : MonoBehaviour
 
         // if dot pos -> exit, dir is ok, then choose
 
-        foreach(var exit in exits)
+        //treadMillTarget = exits[0].transform.position;
+        //return;
+
+        foreach (var exit in exits)
         {
             Vector2 posToExit = exit.position - transform.position;
             posToExit.Normalize();
 
-            if (Vector2.Dot(posToExit, direction) < 0.9f)
+            if (Vector2.Dot(posToExit, direction.normalized) > 0.9f)
             {
                 candidates.Add(exit.position);
             }
