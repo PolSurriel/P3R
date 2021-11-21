@@ -23,6 +23,29 @@ public class Portal : MonoBehaviour
         otherPortal.inverseY = inverseY;
     }
 
+    AIController[] ais;
+
+    private void Start()
+    {
+        ais = FindObjectsOfType<AIController>();
+
+        foreach(var ai in ais)
+        {
+            float dist = Vector2.Distance(transform.position, ai.transform.position);
+
+            if(dist < ai.closestPortalDistance)
+            {
+                ai.closestPortalDistance = dist;
+                ai.closestPortal = transform.position;
+                if(dist <= AIController.VALID_TARGET_AREA_RADIUS)
+                {
+                    ai.usePortal = true;
+                }
+            }
+            
+
+        }
+    }
 
 
 

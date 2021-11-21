@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3534076871273528058}
   - component: {fileID: 3415899332194937951}
   m_Layer: 8
-  m_Name: Tilemap7
+  m_Name: Tilemap3
   m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1864,10 +1864,10 @@ PrefabInstance:
     - target: {fileID: 279879660, guid: 17bd1fb0602863f489764a2e0baf3245, type: 3}
       propertyPath: avoidCollider
       value: 
-      objectReference: {fileID: 4098944998002073361}
+      objectReference: {fileID: 4098944998002073362}
     - target: {fileID: 1625673382, guid: 17bd1fb0602863f489764a2e0baf3245, type: 3}
       propertyPath: m_Radius
-      value: 0.75
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 7252418042696236682, guid: 17bd1fb0602863f489764a2e0baf3245,
         type: 3}
@@ -1941,9 +1941,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17bd1fb0602863f489764a2e0baf3245, type: 3}
---- !u!4 &4098944998002073361 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1625673381, guid: 17bd1fb0602863f489764a2e0baf3245,
+--- !u!58 &4098944998002073362 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1625673382, guid: 17bd1fb0602863f489764a2e0baf3245,
     type: 3}
   m_PrefabInstance: {fileID: 4098944998528176564}
   m_PrefabAsset: {fileID: 0}
@@ -2067,10 +2067,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3534076871273528057}
     m_Modifications:
+    - target: {fileID: 1713077999, guid: da5ac43b27b8a7d48b8710d78b8051bc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713077999, guid: da5ac43b27b8a7d48b8710d78b8051bc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.91
+      objectReference: {fileID: 0}
     - target: {fileID: 2765094546042990460, guid: da5ac43b27b8a7d48b8710d78b8051bc,
         type: 3}
       propertyPath: m_Radius
-      value: 0.78
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 5357901482282344845, guid: da5ac43b27b8a7d48b8710d78b8051bc,
         type: 3}
@@ -2156,7 +2164,7 @@ PrefabInstance:
         type: 3}
       propertyPath: avoidCollider
       value: 
-      objectReference: {fileID: 4098944997343054189}
+      objectReference: {fileID: 2215197159729862910}
     - target: {fileID: 5357901483306192154, guid: da5ac43b27b8a7d48b8710d78b8051bc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2169,9 +2177,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da5ac43b27b8a7d48b8710d78b8051bc, type: 3}
---- !u!4 &4098944997343054189 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1713077999, guid: da5ac43b27b8a7d48b8710d78b8051bc,
+--- !u!58 &2215197159729862910 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2765094546042990460, guid: da5ac43b27b8a7d48b8710d78b8051bc,
     type: 3}
   m_PrefabInstance: {fileID: 4098944999052556162}
   m_PrefabAsset: {fileID: 0}

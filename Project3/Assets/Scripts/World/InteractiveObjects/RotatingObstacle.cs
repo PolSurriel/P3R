@@ -8,27 +8,23 @@ public class RotatingObstacle : MonoBehaviour
 
     public bool clockwiseDirection;
     public float rotationSpeed = 100f;
-    public Transform avoidCollider;
-    public Transform rotateAvoidCollider;
+    public Collider2D avoidCollider;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        avoidCollider.transform.position = Vector3.down * 10f;
+
         if (clockwiseDirection)
             rotationSpeed *= -1f;
     }
 
     public void UpdateAvoidAstarInfo(float time)
     {
-        avoidCollider.position = GetFuturePosition(time);
+        avoidCollider.offset = GetFuturePosition(time) - (Vector2)avoidCollider.transform.position;
 
-        if(rotateAvoidCollider != null)
-        {
-            rotateAvoidCollider.rotation = transform.rotation;
-            rotateAvoidCollider.Rotate(Vector3.forward * rotationSpeed * time);
-
-        }
+      
     }
 
     private void Update()
@@ -36,10 +32,7 @@ public class RotatingObstacle : MonoBehaviour
         float deltaRotation = rotationSpeed * Time.deltaTime;
 
         transform.Rotate(Vector3.forward  * deltaRotation);
-        avoidCollider.transform.position = Vector3.down * 99999f;
 
-        if(rotateAvoidCollider != null)
-            rotateAvoidCollider.transform.position = Vector3.down * 99999f;
 
         
     }

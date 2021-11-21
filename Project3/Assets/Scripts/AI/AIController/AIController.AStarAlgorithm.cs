@@ -13,6 +13,11 @@ public partial class AIController : MonoBehaviour
         int layerMaskAvoidImaginary;
         int layerMaskRaycastNOT;
         int layerMaskPortal;
+
+
+        public Vector2 portalPosition;
+        public bool usePortal;
+
         public AStarSolver(float predictionPlayerRadius, JobyfablePrecalculatedPredictionSystem jumpPredictor)
         {
 
@@ -81,20 +86,20 @@ public partial class AIController : MonoBehaviour
         {
 
 
+
             const float TIME_OFFSET = PRECALCULATION_INCREMENT_DELTATIME;
 
-            float timeCheck = time;
+            float timeCheck = time - PRECALCULATION_INCREMENT_DELTATIME*2;
 
             bool collides = false;
 
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 4; i++)
             {
 
 
                 foreach (var obstacle in movingObstaclesToHandle)
                 {
                     obstacle.UpdateAvoidAstarInfo(timeCheck);
-                    Debug.DrawLine(obstacle.obstacle.transform.position, obstacle.avoidCollider.transform.position, Color.red, 2f);
                 }
 
             
@@ -102,11 +107,11 @@ public partial class AIController : MonoBehaviour
                 foreach (var obstacle in rotatingObstaclesToHandle)
                 {
                     obstacle.UpdateAvoidAstarInfo(timeCheck);
-                    Debug.DrawLine(obstacle.obstacle.transform.position, obstacle.avoidCollider.transform.position, Color.red, 2f);
-
                 }
 
-                collides = Physics2D.Linecast(prevPos, nextPos, layerMaskAvoidImaginary);
+                Vector2 perp = Vector2.Perpendicular(prevPos - nextPos).normalized * predictionPlayerRadius;
+
+                collides = Physics2D.Linecast(prevPos + perp, nextPos + perp, layerMaskAvoidImaginary) || Physics2D.Linecast(prevPos - perp, nextPos - perp, layerMaskAvoidImaginary);
                 
                 if (collides)
                     break;
@@ -114,11 +119,7 @@ public partial class AIController : MonoBehaviour
                 timeCheck += TIME_OFFSET;
             }
 
-            if (collides)
-            {
-                Debug.Log("COLLIDES");
-            }
-
+            
 
             return collides;
         }
@@ -151,8 +152,8 @@ public partial class AIController : MonoBehaviour
                 
 
             }
-            
-            //Color c = collides ? new Color(1f, 0f, 0f, 0.1f) : new Color(0f, 1f, 0f, 0.1f);
+
+            //Color c = collides ? new Color(1f, 0f, 0f, 0.4f) : new Color(0f, 1f, 0f, 0.4f);
             //Debug.DrawLine(from, to, c, 1.2f);
 
 
@@ -213,24 +214,21 @@ public partial class AIController : MonoBehaviour
 
                 for (int i = 0; i < DIRECTIONS_COUNT; i++)
                 {
-
-
                     bool valid = false;
 
-                    const int increment = PRECALCULATED_POINTS_INCREMENT;
+                    const int INCREMENT = PRECALCULATED_POINTS_INCREMENT;
 
-                    for (int pathIndex = inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT; pathIndex < NUMBER_OF_PRECALCULATED_POINTS; pathIndex+= increment)
+                    for (int pathIndex = inNode.positionIndex; pathIndex < NUMBER_OF_PRECALCULATED_POINTS; pathIndex += INCREMENT)
                     {
                         var nextPosition = inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, pathIndex) + inNode.position;
 
-                        if (Vector2.Distance(nextPosition, goalPosition) <= GOAL_MIN_DISTANCE)
+                        if (Vector2.Distance(nextPosition, goalPosition) <= GOAL_MIN_DISTANCE || (usePortal && Vector2.Distance(nextPosition, portalPosition) <= GOAL_MIN_DISTANCE))
                         {
                             valid = true;
                             break;
                         }
 
                     }
-
 
                     if (!valid)
                         continue;

@@ -95,7 +95,7 @@ MonoBehaviour:
   obstacle: {fileID: 7252418042827167660}
   clockwiseDirection: 1
   rotationSpeed: 100
-  avoidCollider: {fileID: 0}
+  avoidCollider: {fileID: 1625673382}
 --- !u!1 &7252418042827167663
 GameObject:
   m_ObjectHideFlags: 0

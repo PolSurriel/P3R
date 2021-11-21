@@ -190,7 +190,7 @@ MonoBehaviour:
   - {fileID: 5357901483126249527}
   - {fileID: 5357901482282344845}
   speed: 6
-  avoidCollider: {fileID: 0}
+  avoidCollider: {fileID: 2765094546042990460}
   simT: 1.47
 --- !u!1 &5357901483306192155
 GameObject:

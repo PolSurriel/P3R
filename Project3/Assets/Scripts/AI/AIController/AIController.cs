@@ -9,6 +9,17 @@ using UnityEngine;
 public partial class AIController : MonoBehaviour
 {
 
+    public bool usePortal;
+    public Vector2 closestPortal;
+    public float closestPortalDistance;
+
+    private void LateUpdate()
+    {
+        closestPortalDistance = 999999999f;
+        usePortal = false;
+
+    }
+
     AstarGoal aStarGoal;
 
     public class AstarGoal
@@ -116,6 +127,7 @@ public partial class AIController : MonoBehaviour
             if(astarSeekNodes.Count == 0)
             {
                 executingAstarSeek = false;
+                return;
             }
 
             currentNode = astarSeekNodes[astarSeekNodeIndex];
@@ -155,8 +167,10 @@ public partial class AIController : MonoBehaviour
         astarSeekNodeIndex = 0;
         astarSeekTimeCounter = 0f;
     }
+
+    
    
-    const float VALID_TARGET_AREA_RADIUS = 10f;
+    public const float VALID_TARGET_AREA_RADIUS = 10f;
     Vector2 lastTargetPos = Vector2.zero;
    
 
@@ -289,9 +303,15 @@ public partial class AIController : MonoBehaviour
 
             aStarSolver.movingObstaclesToHandle = FindObjectsOfType<MovingObstacle>();
             aStarSolver.rotatingObstaclesToHandle = FindObjectsOfType<RotatingObstacle>();
+
+            aStarSolver.portalPosition = closestPortal;
+            aStarSolver.usePortal = usePortal;
+
             currentPath = aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
             if(currentPath == null)
             {
+                Debug.LogError("No path found");
+
                 //at next frame, we'll try with another target!
                 targetsToIgnore.Add(currentPathTargetObject);
                 pendingToStart = true;

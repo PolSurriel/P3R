@@ -568,6 +568,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stainExitDireciton: {x: 0, y: 0}
+  usePortal: 0
+  closestPortal: {x: 0, y: 0}
+  closestPortalDistance: 0
 --- !u!114 &1097087274
 MonoBehaviour:
   m_ObjectHideFlags: 0
