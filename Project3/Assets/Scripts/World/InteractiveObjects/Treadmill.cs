@@ -9,7 +9,6 @@ public class Treadmill : MonoBehaviour
     public Vector2 normal = Vector2.right;
     public float speed = 20f;
     public List<Transform> exits = new List<Transform>();
-    float distanceToExit = 0.5f;
 
 
     private void Start()

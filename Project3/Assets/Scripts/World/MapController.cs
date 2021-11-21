@@ -23,7 +23,6 @@ public class MapController : MonoBehaviour
 
     public float nodeDistance;
 
-    bool connectionsGenerated = false;
 
     public Vector2 nodeZeroPosition;
 

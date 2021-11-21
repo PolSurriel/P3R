@@ -20,7 +20,6 @@ public partial class AIController : MonoBehaviour
         if (currentPath != null && aStarGoal != null && currentPath.Count != 0)
         {
 
-            int i = 0;
             Vector2 lastPos = currentPath[0].position - jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(currentPath[0].directionIndex, 0);
             foreach (var node in currentPath)
             {

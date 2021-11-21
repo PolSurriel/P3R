@@ -14,9 +14,6 @@ public class PlayerController : MonoBehaviour
 
     Runner runner;
 
-   
-
-
     public LineRenderer inputLR;
 
     // Start is called before the first frame update

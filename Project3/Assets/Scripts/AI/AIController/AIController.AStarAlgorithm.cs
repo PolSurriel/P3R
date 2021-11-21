@@ -79,22 +79,45 @@ public partial class AIController : MonoBehaviour
 
         bool CollidesWithDynamicObstacle(ref Vector2 nextPos, ref Vector2 prevPos, ref float time)
         {
-            foreach (var obstacle in movingObstaclesToHandle)
+
+
+            const float TIME_OFFSET = PRECALCULATION_INCREMENT_DELTATIME;
+
+            float timeCheck = time;
+
+            bool collides = false;
+
+            for (int i = 0; i < 1; i++)
             {
-                obstacle.UpdateAvoidAstarInfo(time);
-                Debug.DrawLine(obstacle.obstacle.transform.position, obstacle.avoidCollider.transform.position, Color.red, 2f);
-            }
+
+
+                foreach (var obstacle in movingObstaclesToHandle)
+                {
+                    obstacle.UpdateAvoidAstarInfo(timeCheck);
+                    Debug.DrawLine(obstacle.obstacle.transform.position, obstacle.avoidCollider.transform.position, Color.red, 2f);
+                }
 
             
 
-            foreach (var obstacle in rotatingObstaclesToHandle)
-            {
-                obstacle.UpdateAvoidAstarInfo(time);
-                Debug.DrawLine(obstacle.obstacle.transform.position, obstacle.avoidCollider.transform.position, Color.red, 2f);
+                foreach (var obstacle in rotatingObstaclesToHandle)
+                {
+                    obstacle.UpdateAvoidAstarInfo(timeCheck);
+                    Debug.DrawLine(obstacle.obstacle.transform.position, obstacle.avoidCollider.transform.position, Color.red, 2f);
 
+                }
+
+                collides = Physics2D.Linecast(prevPos, nextPos, layerMaskAvoidImaginary);
+                
+                if (collides)
+                    break;
+
+                timeCheck += TIME_OFFSET;
             }
 
-            bool collides = Physics2D.Linecast(prevPos, nextPos, layerMaskAvoidImaginary);
+            if (collides)
+            {
+                Debug.Log("COLLIDES");
+            }
 
 
             return collides;
@@ -113,7 +136,7 @@ public partial class AIController : MonoBehaviour
 
             if (checkCollision)
             {
-                bool raycastNot = Physics2D.Linecast(from+perp, to, layerMaskRaycastNOT);
+                bool raycastNot = Physics2D.Linecast(from, to, layerMaskRaycastNOT);
 
                 if (!raycastNot)
                 {
@@ -190,7 +213,30 @@ public partial class AIController : MonoBehaviour
 
                 for (int i = 0; i < DIRECTIONS_COUNT; i++)
                 {
+
+
+                    bool valid = false;
+
+                    const int increment = PRECALCULATED_POINTS_INCREMENT;
+
+                    for (int pathIndex = inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT; pathIndex < NUMBER_OF_PRECALCULATED_POINTS; pathIndex+= increment)
+                    {
+                        var nextPosition = inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, pathIndex) + inNode.position;
+
+                        if (Vector2.Distance(nextPosition, goalPosition) <= GOAL_MIN_DISTANCE)
+                        {
+                            valid = true;
+                            break;
+                        }
+
+                    }
+
+
+                    if (!valid)
+                        continue;
+
                     var nextNodePos = inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, 0) + inNode.position;
+
                     float cost = CalculateCost(inNode.position, ref nextNodePos, ref inNode.time);
                     if (cost >= 0)
                     {
@@ -228,9 +274,9 @@ public partial class AIController : MonoBehaviour
         }
 
 
-        
 
 
+        Vector2 goalPosition;
         PriorityQueue<AStarNode, float> SetUpFrontierAstar(Vector2 goalPosition, float timeToStart)
         {
 
@@ -304,7 +350,8 @@ public partial class AIController : MonoBehaviour
         {
             originPosition = startPosition;
 
-            
+            this.goalPosition = goal.position;
+
             var frontier = SetUpFrontierAstar(goal.position, timeToStart);
 
 
