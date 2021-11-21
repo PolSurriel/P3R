@@ -15,7 +15,7 @@ public class CannonProjectile : MonoBehaviour
 
         if(tCount >= TIME_TO_BE_DESTROYED)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 

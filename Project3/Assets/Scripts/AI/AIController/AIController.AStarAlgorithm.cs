@@ -218,26 +218,31 @@ public partial class AIController : MonoBehaviour
 
                     const int INCREMENT = PRECALCULATED_POINTS_INCREMENT;
 
-                    for (int pathIndex = inNode.positionIndex; pathIndex < NUMBER_OF_PRECALCULATED_POINTS; pathIndex += INCREMENT)
+                    for (int pathIndex = 0; pathIndex < NUMBER_OF_PRECALCULATED_POINTS; pathIndex += INCREMENT)
                     {
-                        var nextPosition = inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, pathIndex) + inNode.position;
+                        var nextPosition = inNode.position + inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, pathIndex);
 
                         if (Vector2.Distance(nextPosition, goalPosition) <= GOAL_MIN_DISTANCE || (usePortal && Vector2.Distance(nextPosition, portalPosition) <= GOAL_MIN_DISTANCE))
                         {
+
                             valid = true;
                             break;
                         }
 
                     }
 
+                    valid = true;
+
                     if (!valid)
                         continue;
+
 
                     var nextNodePos = inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, 0) + inNode.position;
 
                     float cost = CalculateCost(inNode.position, ref nextNodePos, ref inNode.time);
                     if (cost >= 0)
                     {
+
                         AStarNode next = new AStarNode(
                             nextNodePos, 
                             true, 
@@ -348,7 +353,7 @@ public partial class AIController : MonoBehaviour
         {
             originPosition = startPosition;
 
-            this.goalPosition = goal.position;
+            goalPosition = goal.position;
 
             var frontier = SetUpFrontierAstar(goal.position, timeToStart);
 

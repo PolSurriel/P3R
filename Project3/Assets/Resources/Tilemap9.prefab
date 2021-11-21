@@ -2119,6 +2119,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3822899963274555761, guid: 5064484a6e405f741879d0fab6b8a66c,
+        type: 3}
+      propertyPath: incisionVector.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3822899963274555766, guid: 5064484a6e405f741879d0fab6b8a66c,
         type: 3}
       propertyPath: m_LocalPosition.x

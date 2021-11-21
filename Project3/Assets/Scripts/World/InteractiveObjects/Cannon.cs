@@ -6,7 +6,7 @@ public class Cannon : MonoBehaviour
 {
 
     public GameObject projectilePrefab;     
-    public float frecuency;
+    float frecuency = 3f;
     public Vector2 shootDirection;
     public float forceMagnitude;
 
