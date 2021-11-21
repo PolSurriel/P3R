@@ -16,8 +16,8 @@ public class ObstacleZone : MonoBehaviour
 
         if (ai != null)
         {
-            ai.aStarSolver.movingObstaclesToHandle = movingObstacles;
-            ai.aStarSolver.rotatingObstaclesToHandle = rotatingObstacles;
+            //ai.aStarSolver.movingObstaclesToHandle = movingObstacles;
+            //ai.aStarSolver.rotatingObstaclesToHandle = rotatingObstacles;
         }
         
     }
@@ -28,8 +28,8 @@ public class ObstacleZone : MonoBehaviour
 
         if (ai != null)
         {
-            ai.aStarSolver.movingObstaclesToHandle = new List<MovingObstacle>(0);
-            ai.aStarSolver.rotatingObstaclesToHandle = new List<RotatingObstacle>(0);
+            //ai.aStarSolver.movingObstaclesToHandle = new List<MovingObstacle>(0);
+            //ai.aStarSolver.rotatingObstaclesToHandle = new List<RotatingObstacle>(0);
         }
 
     }

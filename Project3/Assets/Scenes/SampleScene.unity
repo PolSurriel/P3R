@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51b2a333f8af554496ab88eca45192c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfTilemaps: 11
+  numberOfTilemaps: 3
   playerTransform: {fileID: 1097087269}
   nodeDistance: 0
   nodeZeroPosition: {x: 0, y: 0}
@@ -553,6 +553,7 @@ MonoBehaviour:
   onStain: 0
   usingPortal: 0
   aspect: {fileID: 1637875273}
+  ignoreTreadmill: 0
   jumpCounter: 0
 --- !u!114 &1097087273
 MonoBehaviour:
@@ -794,7 +795,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 21300000, guid: d424c1b3b7f81e048817ecd51d474c1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 22.20723, y: 10.8}
   m_AdaptiveModeThreshold: 0.5

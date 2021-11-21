@@ -76,11 +76,23 @@ public class Runner : MonoBehaviour
 
     public SpriteRenderer aspect;
 
+    public bool ignoreTreadmill = false;
+
+    IEnumerator IgnoreTreadmill()
+    {
+        float t = 0f;
+        do { yield return null; } while ((t += Time.deltaTime) < 0.3f);
+        ignoreTreadmill = false;
+
+    }
+
     public void Jump(Vector2 direction, float forcePercentage = 1f)
     {
 
         if (onATreadmill)
         {
+            ignoreTreadmill = true;
+            StartCoroutine(IgnoreTreadmill());
             onATreadmill = false;
             rb.isKinematic = false;
             rb.gravityScale = 1f;

@@ -71,8 +71,8 @@ public partial class AIController : MonoBehaviour
             
         }
 
-        public List<MovingObstacle> movingObstaclesToHandle = new List<MovingObstacle>(0);
-        public List<RotatingObstacle> rotatingObstaclesToHandle = new List<RotatingObstacle>(0);
+        public MovingObstacle[] movingObstaclesToHandle;
+        public RotatingObstacle[] rotatingObstaclesToHandle;
 
 
  
@@ -82,6 +82,7 @@ public partial class AIController : MonoBehaviour
             foreach (var obstacle in movingObstaclesToHandle)
             {
                 obstacle.UpdateAvoidAstarInfo(time);
+                Debug.DrawLine(obstacle.obstacle.transform.position, obstacle.avoidCollider.transform.position, Color.red, 2f);
             }
 
             
@@ -89,6 +90,7 @@ public partial class AIController : MonoBehaviour
             foreach (var obstacle in rotatingObstaclesToHandle)
             {
                 obstacle.UpdateAvoidAstarInfo(time);
+                Debug.DrawLine(obstacle.obstacle.transform.position, obstacle.avoidCollider.transform.position, Color.red, 2f);
 
             }
 
@@ -302,8 +304,7 @@ public partial class AIController : MonoBehaviour
         {
             originPosition = startPosition;
 
-
-
+            
             var frontier = SetUpFrontierAstar(goal.position, timeToStart);
 
 

@@ -26,7 +26,7 @@ public class Treadmill : MonoBehaviour
     {
         var runner = collision.collider.GetComponent<Runner>();
 
-        if (runner == null)
+        if (runner == null || runner.ignoreTreadmill)
             return;
 
         if (playersIn.Contains(runner))

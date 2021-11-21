@@ -112,6 +112,12 @@ public partial class AIController : MonoBehaviour
     {
         if (executingAstarSeek)
         {
+
+            if(astarSeekNodes.Count == 0)
+            {
+                executingAstarSeek = false;
+            }
+
             currentNode = astarSeekNodes[astarSeekNodeIndex];
 
             if (currentNode.secondJumpDone != astarSeeklastSecondJumpDone || astarSeekFirstIteration)
@@ -281,6 +287,8 @@ public partial class AIController : MonoBehaviour
         {
             // Go to the target
 
+            aStarSolver.movingObstaclesToHandle = FindObjectsOfType<MovingObstacle>();
+            aStarSolver.rotatingObstaclesToHandle = FindObjectsOfType<RotatingObstacle>();
             currentPath = aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
             if(currentPath == null)
             {
