@@ -445,14 +445,17 @@ public partial class AIController : MonoBehaviour
 
                 Vector2 deltaPos = GetNextDeltaPos(ref current);
                 float dot = Vector2.Dot(goal.incisionDirection.normalized, deltaPos.normalized);
-                //Debug.DrawLine(current.position, current.position + deltaPos.normalized*1f, Color.green, 1f);
+                //Debug.DrawLine(current.position, current.position + deltaPos.normalized * 1f, testColor, 1f);
                 //Debug.DrawLine(current.position + deltaPos.normalized * 1f + Vector2.right * 0.1f, current.position + deltaPos.normalized * 1f + Vector2.left * 0.1f, Color.yellow, 1f);
                 //Debug.DrawLine(current.position + deltaPos.normalized * 1f + Vector2.up * 0.1f, current.position + deltaPos.normalized * 1f + Vector2.down * 0.1f, Color.yellow, 1f);
+                //Vector2 origin = current.position - current.portalSense * jumpPredictor.precalculatedDirections[current.directionIndex][current.positionIndex];
+                //DebugDrawJumpFromOrigin(ref current, origin, testColor);
+
 
                 // IMPORTANTE: Usamos un random para la comprobación para dar un comportamiento más humano.
                 // De no ser por el random, todos los saltos de un nodo A al nodo B usarían la misma inclinación.
                 // NO TOCAR
-                if(dot > Random.Range(0.2f, 0.4f))
+                if (dot > Random.Range(0.2f, 0.28f))
                 {
                     return true;
                 }
@@ -471,6 +474,8 @@ public partial class AIController : MonoBehaviour
          Preguntar por ellas a Pol Surriel.
          
          */
+
+        Color testColor;
         public List<AStarNode> AStar(Vector2 startPosition, AstarGoal goal, float timeToStart)
         {
 
@@ -492,7 +497,7 @@ public partial class AIController : MonoBehaviour
             AStarNode current = null;
             do
             {
-
+                
                 current = frontier.Top();
                 frontier.Pop();
                 if (EarlyExit(ref current, ref goal))
@@ -518,11 +523,10 @@ public partial class AIController : MonoBehaviour
                         // Insertar en frontera neighbor con su weight actualizado.
                         frontier.Insert(neighbor, priority);
 
-
-                        //if (neighbor.secondJumpDone)
+                        //if (neighbor.secondJumpDone && EarlyExit(ref neighbor, ref goal))
                         //{
-                        //    Vector2 origin = neighbor.position - neighbor.portalSense * jumpPredictor.precalculatedDirections[neighbor.directionIndex][neighbor.positionIndex];
-                        //    DebugDrawJumpFromOrigin(ref neighbor, origin, Color.red);
+                        //    //Vector2 origin = neighbor.position - neighbor.portalSense * jumpPredictor.precalculatedDirections[neighbor.directionIndex][neighbor.positionIndex];
+                        //    //DebugDrawJumpFromOrigin(ref neighbor, origin, Color.red);
                         //}
 
                     }
