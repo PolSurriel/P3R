@@ -18,7 +18,7 @@ public partial class AIController : MonoBehaviour
 
             onATreadmill = false;
             executingAstarSeek = false;
-            pendingToStart = false;
+            pendingToStartAStarPipeline = false;
             StartAStarPipeline();
         }
     }

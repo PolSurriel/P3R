@@ -6,14 +6,13 @@ public partial class AIController : MonoBehaviour
 {
     public class AStarNode
     {
-        public int immidiatPortal;
+        public int iterationsSincePortalCrossed;
         public bool secondJumpDone;
         public int directionIndex;
         public int positionIndex;
-
-        private Vector2 m_position;
         public Vector2 portalSense = Vector2.one;
 
+        private Vector2 m_position;
         public Vector2 position
         {
             get { return m_position + portalOffset; }
@@ -22,14 +21,14 @@ public partial class AIController : MonoBehaviour
 
         public float coste;
         public float time;
-
         public Vector2 portalOffset;
 
+        public float H(Vector2 goalPosition) { return (position - goalPosition).magnitude;}
 
+        public AStarNode() {}
         public AStarNode(Vector2 _pos, bool _secondJumpDone, int _directionIndex, int _positionIndex, float _coste, float _time, int _immidiatPortal)
         {
-
-            immidiatPortal = _immidiatPortal;
+            iterationsSincePortalCrossed = _immidiatPortal;
             secondJumpDone = _secondJumpDone;
             directionIndex = _directionIndex;
             positionIndex = _positionIndex;
@@ -38,24 +37,7 @@ public partial class AIController : MonoBehaviour
             coste = _coste;
             time = _time;
 
-
         }
-
-
-        public float H(Vector2 goalPosition)
-        {
-
-
-            return (position - goalPosition).magnitude;
-        }
-
-
-        public AStarNode()
-        {
-
-        }
-
-
 
     }
 
