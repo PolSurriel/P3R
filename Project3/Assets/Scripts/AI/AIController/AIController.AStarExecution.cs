@@ -135,9 +135,9 @@ public partial class AIController : MonoBehaviour
                 targetsToIgnore.Add(currentPathTargetObject);
 
                 //TMP RESTAURAR:
-                //pendingToStartAStarPipeline = true;
+                pendingToStartAStarPipeline = true;
                 // TMP:
-                StartCoroutine(WaitAndRestartAstar(1f));
+                //StartCoroutine(WaitAndRestartAstar(1f));
 
                 
                 return;
@@ -159,10 +159,10 @@ public partial class AIController : MonoBehaviour
             // en el siguiente frame.
 
             // TMP RESTAURAR
-            //pendingToStartAStarPipeline = true;
+            pendingToStartAStarPipeline = true;
 
             // TMP
-            StartCoroutine(WaitAndRestartAstar(1f));
+            //StartCoroutine(WaitAndRestartAstar(1f));
 
 
             targetsToIgnore = new List<PathTarget>();
