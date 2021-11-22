@@ -133,7 +133,13 @@ public partial class AIController : MonoBehaviour
                 // PERO:
                 //at next frame, we'll try with another target!
                 targetsToIgnore.Add(currentPathTargetObject);
-                pendingToStartAStarPipeline = true;
+
+                //TMP RESTAURAR:
+                //pendingToStartAStarPipeline = true;
+                // TMP:
+                StartCoroutine(WaitAndRestartAstar(1f));
+
+                
                 return;
 
             }
@@ -151,7 +157,14 @@ public partial class AIController : MonoBehaviour
 
             // Indicamos al controlador que queremos reiniciar proceso de búsqueda de target
             // en el siguiente frame.
-            pendingToStartAStarPipeline = true;
+
+            // TMP RESTAURAR
+            //pendingToStartAStarPipeline = true;
+
+            // TMP
+            StartCoroutine(WaitAndRestartAstar(1f));
+
+
             targetsToIgnore = new List<PathTarget>();
             
             //Si el tilemap requiere esperar a un momento del tiempo en

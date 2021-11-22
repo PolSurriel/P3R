@@ -213,12 +213,14 @@ public partial class AIController : MonoBehaviour
             for (int pathIndex = 0; pathIndex < NUMBER_OF_PRECALCULATED_POINTS; pathIndex += INCREMENT)
             {
                 // calculo su posicion
-                var nextPosition = inNode.position + inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(directionIndex, pathIndex);
+                var nextPosition = inNode.position + inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex][pathIndex];
 
+                
                 // Si pasa cerca del goal o un portal, lo valido.
                 if (Vector2.Distance(nextPosition, goalPosition) <= GOAL_MIN_DISTANCE || (usePortal && Vector2.Distance(nextPosition, portalPosition) <= GOAL_MIN_DISTANCE))
                 {
                     valid = true;
+                    //DebugDrawJump(ref inNode, directionIndex, pathIndex);
                     break;
                 }
 
@@ -227,7 +229,30 @@ public partial class AIController : MonoBehaviour
             return valid;
         }
 
-        
+        void DebugDrawJump(ref AStarNode inNode, int directionIndex, int endIndex, float duration = 1f)
+        {
+            Color c = Color.red;
+            c.a = 0.3f;
+            
+            const int INCREMENT = PRECALCULATED_POINTS_INCREMENT;
+
+            // por cada punto del salto
+            for (int pathIndex = 0; pathIndex < NUMBER_OF_PRECALCULATED_POINTS && pathIndex < endIndex; pathIndex += INCREMENT)
+            {
+                // calculo su posicion
+                var nextPosition = inNode.position + inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex][pathIndex];
+                var lastPos = inNode.position + inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex][pathIndex>0 ? pathIndex-INCREMENT : 0];
+
+                Debug.DrawLine(nextPosition, lastPos, c, duration);
+
+
+            }
+
+
+
+        }
+
+
         /*
          Éste método es el núcleo del Astar. Es el iterador de nodos vecinos.
          
@@ -248,8 +273,8 @@ public partial class AIController : MonoBehaviour
             if (inNode.positionIndex < NUMBER_OF_PRECALCULATED_POINTS - PRECALCULATED_POINTS_INCREMENT)
             {
                 // Calculamos la posición inmediatamente siguiente en la trayectoria actual
-                Vector2 origin = inNode.position - inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex);
-                Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT);
+                Vector2 origin = inNode.position - inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex];
+                Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT];
 
                 //extraemos su coste.
                 float cost = CalculateCost(inNode.position, ref nextPos, ref inNode.time);
@@ -283,8 +308,6 @@ public partial class AIController : MonoBehaviour
             if (!inNode.secondJumpDone && inNode.iterationsSincePortalCrossed <= 0)
             {
 
-                int dirIndex = 0;
-
                 // Por cada posible dirección hacia la que podriamos saltar
                 for (int i = 0; i < DIRECTIONS_COUNT; i++)
                 {
@@ -295,7 +318,7 @@ public partial class AIController : MonoBehaviour
                         continue;
 
                     // Calculamos la primera posición del salto.
-                    var nextNodePos = inNode.portalSense * jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, 0) + inNode.position;
+                    var nextNodePos = inNode.portalSense * jumpPredictor.precalculatedDirections[i][0] + inNode.position;
 
                     // Evaluamos el coste del nodo
                     float cost = CalculateCost(inNode.position, ref nextNodePos, ref inNode.time);
@@ -307,7 +330,7 @@ public partial class AIController : MonoBehaviour
                         AStarNode next = new AStarNode(
                             nextNodePos, 
                             true, 
-                            dirIndex++, 
+                            i, 
                             0, 
                             cost, 
                             inNode.time + PRECALCULATION_INCREMENT_DELTATIME,
@@ -338,7 +361,7 @@ public partial class AIController : MonoBehaviour
             for (int i = 2; i < DIRECTIONS_COUNT-1; i++)
             {
                 // Genero la la primera posición de la trayectoria. 
-                Vector2 position = originPosition + jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(i, 0);
+                Vector2 position = originPosition + jumpPredictor.precalculatedDirections[i][0];
 
                 // Genero información de nodo
                 var time = PRECALCULATION_DELTATIME + timeToStart;
@@ -359,24 +382,44 @@ public partial class AIController : MonoBehaviour
 
         }
 
+        void DebugDrawJumpFromOrigin(ref AStarNode inNode, Vector2 origin, Color c)
+        {
+            var currentPos = origin;
+            for (int i = 0; i < inNode.positionIndex; i += PRECALCULATED_POINTS_INCREMENT)
+            {
+                var nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][i + PRECALCULATED_POINTS_INCREMENT];
+                Debug.DrawLine(currentPos, nextPos, c, 1f);
+                currentPos = nextPos;
+            }
+        }
+
         /*
          Devuelve el delta position respecto a la anterior posición.
          */
         Vector2 GetNextDeltaPos(ref AStarNode inNode)
         {
+
+            Vector2 origin = inNode.position - inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex];
+
+            //DebugDrawJumpFromOrigin(ref inNode, origin, Color.green);
+
             if (inNode.positionIndex < NUMBER_OF_PRECALCULATED_POINTS - PRECALCULATED_POINTS_INCREMENT)
             {
                 // Calculamos la posición inmediatamente siguiente en la trayectoria actual
-                Vector2 origin = inNode.position - jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex);
-                Vector2 nextPos = origin + jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT);
-
+                Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT];
+                //if (inNode.secondJumpDone)
+                //{
+                //    Debug.DrawLine(inNode.position, nextPos, Color.magenta, 1f);
+                //}
                 return nextPos - inNode.position;
 
             }else
             {
-                Vector2 origin = inNode.position - jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex);
-                Vector2 lastPos = origin + jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(inNode.directionIndex, inNode.positionIndex - PRECALCULATED_POINTS_INCREMENT);
-
+                Vector2 lastPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex - PRECALCULATED_POINTS_INCREMENT];
+                //if (inNode.secondJumpDone)
+                //{ 
+                //    Debug.DrawLine(inNode.position, lastPos, Color.magenta, 1f);
+                //}
                 return inNode.position - lastPos;
             }
         }
@@ -395,12 +438,17 @@ public partial class AIController : MonoBehaviour
             float distanceToGoal = (goal.position - current.position).magnitude;
             if (distanceToGoal <= GOAL_MIN_DISTANCE)
             {
+
+                
                 if (!goal.useIncisionConstrain)
                     return true;
 
                 Vector2 deltaPos = GetNextDeltaPos(ref current);
-                float dot = Vector2.Dot(goal.incisionDirection.normalized, deltaPos);
-                
+                float dot = Vector2.Dot(goal.incisionDirection.normalized, deltaPos.normalized);
+                //Debug.DrawLine(current.position, current.position + deltaPos.normalized*1f, Color.green, 1f);
+                //Debug.DrawLine(current.position + deltaPos.normalized * 1f + Vector2.right * 0.1f, current.position + deltaPos.normalized * 1f + Vector2.left * 0.1f, Color.yellow, 1f);
+                //Debug.DrawLine(current.position + deltaPos.normalized * 1f + Vector2.up * 0.1f, current.position + deltaPos.normalized * 1f + Vector2.down * 0.1f, Color.yellow, 1f);
+
                 // IMPORTANTE: Usamos un random para la comprobación para dar un comportamiento más humano.
                 // De no ser por el random, todos los saltos de un nodo A al nodo B usarían la misma inclinación.
                 // NO TOCAR
@@ -426,6 +474,7 @@ public partial class AIController : MonoBehaviour
         public List<AStarNode> AStar(Vector2 startPosition, AstarGoal goal, float timeToStart)
         {
 
+
             // SETUP
             originPosition = startPosition;
             goalPosition = goal.position;
@@ -446,7 +495,6 @@ public partial class AIController : MonoBehaviour
 
                 current = frontier.Top();
                 frontier.Pop();
-
                 if (EarlyExit(ref current, ref goal))
                 {
                     break;
@@ -455,7 +503,7 @@ public partial class AIController : MonoBehaviour
 
                 ForeachNeighbour(ref current, (AStarNode neighbor) => {
 
-                    float currentCostSoFar = costSoFar.ContainsKey(current) ? costSoFar[current] : current.coste;
+                    float currentCostSoFar = costSoFar.ContainsKey(current) ? costSoFar[current] : 0f;
                     float newCost = currentCostSoFar + neighbor.coste;
 
                     // Si el coste current --> neighbor no está contemplado o es menor al ya contemplado
@@ -469,6 +517,14 @@ public partial class AIController : MonoBehaviour
                         float priority = newCost + neighbor.H(goal.position);
                         // Insertar en frontera neighbor con su weight actualizado.
                         frontier.Insert(neighbor, priority);
+
+
+                        //if (neighbor.secondJumpDone)
+                        //{
+                        //    Vector2 origin = neighbor.position - neighbor.portalSense * jumpPredictor.precalculatedDirections[neighbor.directionIndex][neighbor.positionIndex];
+                        //    DebugDrawJumpFromOrigin(ref neighbor, origin, Color.red);
+                        //}
+
                     }
 
 

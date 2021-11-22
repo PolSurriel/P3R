@@ -302,7 +302,7 @@ public class JobyfablePrecalculatedPredictionSystem
 {
     /*rb information must be updated every FixedUpdate*/
     public Rigidbody2DInfo rb;
-    private List<List<Vector2>> precalculatedDirections;
+    public List<List<Vector2>> precalculatedDirections;
     private List<Vector2> impulseForces;
     private float deltaAnglePerIndex;
     private float simulationDeltaTime;
