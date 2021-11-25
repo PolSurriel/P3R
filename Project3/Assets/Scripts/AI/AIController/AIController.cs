@@ -58,7 +58,7 @@ public partial class AIController : MonoBehaviour
 
     float timeToStartCount;
     const float TIME_TO_START_CONTROLLING_PLAYER = 1f;
-    float timeBeforeJump = 0.1f;
+    float timeBeforeJump = 0.15f;
 
     void Update()
     {
@@ -102,7 +102,7 @@ public partial class AIController : MonoBehaviour
         {
             lastTargetPos = Vector2.down;
             executingAstarSeek = false;
-            StartCoroutine(WaitAndRestartAstar(timeBeforeJump));
+            StartAStarPipeline();
 
 
         }
@@ -119,7 +119,7 @@ public partial class AIController : MonoBehaviour
         else if (collision.tag == "extraJumpZone")
         {
             executingAstarSeek = false;
-            StartCoroutine(WaitAndRestartAstar(timeBeforeJump));
+            StartAStarPipeline();
         }
 
 
@@ -135,8 +135,12 @@ public partial class AIController : MonoBehaviour
 
     private void LateUpdate()
     {
-        closestPortalDistance = 999999999f;
-        usePortal = false;
+
+        if (closestPortalDistance <= AIController.VALID_TARGET_AREA_RADIUS)
+        {
+            usePortal = true;
+        }
+        closestPortalDistance = 999999f;
 
     }
 

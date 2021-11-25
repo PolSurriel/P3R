@@ -24,7 +24,6 @@ using UnityEngine;
 public partial class AIController : MonoBehaviour
 {
 
-    List<AStarNode> currentPath;
     AStarNode currentNode;
 
     const float GOAL_MIN_DISTANCE = 0.9f;
@@ -103,8 +102,12 @@ public partial class AIController : MonoBehaviour
     }
 
 
-
     void StartAStarPipeline()
+    {
+        StartCoroutine(AStarRoutine());
+    }
+
+    IEnumerator AStarRoutine()
     {
 
         executingAstarSeek = false;
@@ -117,14 +120,21 @@ public partial class AIController : MonoBehaviour
             aStarSolver.movingObstaclesToHandle = FindObjectsOfType<MovingObstacle>();
             aStarSolver.rotatingObstaclesToHandle = FindObjectsOfType<RotatingObstacle>();
 
+
             aStarSolver.portalPosition = closestPortal;
             aStarSolver.usePortal = usePortal;
 
             // Calculamos el camino
-            currentPath = aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
+            yield return aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
+
+            while(aStarSolver.timeSinceCalculationStarded < timeBeforeJump)
+            {
+                yield return null;
+                aStarSolver.timeSinceCalculationStarded += Time.deltaTime;
+            }
             
             // Si el caminno no fue encontrado
-            if (currentPath == null)
+            if (aStarSolver.output == null)
             {
 
                 // Avisamos a los logs
@@ -140,13 +150,12 @@ public partial class AIController : MonoBehaviour
                 //StartCoroutine(WaitAndRestartAstar(1f));
 
                 
-                return;
 
             }
             else // Si el camino es válido
             {
                 // Iniciamos el seek al resultado del AStar
-                StartAStartSeekPathResult(ref currentPath);
+                StartAStartSeekPathResult(ref aStarSolver.output);
                 targetsToIgnore = new List<PathTarget>();
 
             }
@@ -179,6 +188,7 @@ public partial class AIController : MonoBehaviour
             // De momento no tocamos nada.
             Debug.LogError("No valid target found! We need to code some backup plan here.");
         }
+
     }
 
     

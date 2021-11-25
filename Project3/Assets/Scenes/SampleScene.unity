@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51b2a333f8af554496ab88eca45192c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfTilemaps: 11
+  numberOfTilemaps: 3
   playerTransform: {fileID: 1097087269}
   nodeDistance: 0
   nodeZeroPosition: {x: 0, y: 0}
@@ -416,7 +416,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.7557
+  orthographic size: 5.8704314
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
 
+    public bool aiIgnore;
     public Portal otherPortal;
 
     [OnValueChanged("OnInverseXChanged")]
@@ -27,22 +28,28 @@ public class Portal : MonoBehaviour
 
     private void Start()
     {
+        
+      
+    }
+    private void Update()
+    {
         ais = FindObjectsOfType<AIController>();
 
-        foreach(var ai in ais)
+
+        if (aiIgnore)
+            return;
+
+        foreach (var ai in ais)
         {
             float dist = Vector2.Distance(transform.position, ai.transform.position);
 
-            if(dist < ai.closestPortalDistance)
+
+            if (dist < ai.closestPortalDistance)
             {
                 ai.closestPortalDistance = dist;
                 ai.closestPortal = transform.position;
-                if(dist <= AIController.VALID_TARGET_AREA_RADIUS)
-                {
-                    ai.usePortal = true;
-                }
+               
             }
-            
 
         }
     }

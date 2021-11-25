@@ -15,13 +15,15 @@ public partial class AIController : MonoBehaviour
         //Handles.DrawWireDisc(transform.position, transform.forward, VALID_TARGET_AREA_RADIUS);
 
 
+        if (aStarSolver == null)
+            return;
 
 
-        if (currentPath != null && aStarGoal != null && currentPath.Count != 0)
+        if (aStarSolver.output != null && aStarGoal != null && aStarSolver.output.Count != 0)
         {
 
-            Vector2 lastPos = currentPath[0].position - jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(currentPath[0].directionIndex, 0);
-            foreach (var node in currentPath)
+            Vector2 lastPos = aStarSolver.output[0].position - jumpPredictor.ReadLocalSimulationPositionIgnoringVelocity(aStarSolver.output[0].directionIndex, 0);
+            foreach (var node in aStarSolver.output)
             {
 
 

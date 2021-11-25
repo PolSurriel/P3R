@@ -109,8 +109,10 @@ public partial class AIController : MonoBehaviour
          (Por eso hay un for que incrementa el tiempo)
 
          */
-        bool CollidesWithDynamicObstacle(ref Vector2 nextPos, ref Vector2 prevPos, ref float time)
+        bool CollidesWithDynamicObstacle(ref Vector2 nextPos, ref Vector2 prevPos, float time)
         {
+
+            time += timeBeforeJump - timeSinceCalculationStarded;
 
             const float TIME_INCREMENT = PRECALCULATION_INCREMENT_DELTATIME;
             float timeCheck = time - PRECALCULATION_INCREMENT_DELTATIME*2;
@@ -172,7 +174,7 @@ public partial class AIController : MonoBehaviour
                 {
                     // Realizamos el cast teniendo en cuenta el radio del player
                     Vector2 perp = Vector2.Perpendicular(from-to).normalized * predictionPlayerRadius;
-                    collides = Physics2D.Linecast(from+perp, to+perp, layerMaskPrediction) || Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction) || CollidesWithDynamicObstacle(ref to, ref from, ref time);
+                    collides = Physics2D.Linecast(from+perp, to+perp, layerMaskPrediction) || Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction) || CollidesWithDynamicObstacle(ref to, ref from, time);
                 }
             }
 
@@ -267,6 +269,8 @@ public partial class AIController : MonoBehaviour
         delegate void ASDelegationNeighbour(AStarNode node);
         void ForeachNeighbour(ref AStarNode inNode, ASDelegationNeighbour method)
         {
+
+            
             // CASO A: CONTINUAR LA TRAYECTORIA
 
             // Si quedan puntos por explorar en la trayectoria:
@@ -352,7 +356,7 @@ public partial class AIController : MonoBehaviour
        
          
          */
-        PriorityQueue<AStarNode, float> SetUpFrontierAstar(Vector2 goalPosition, float timeToStart)
+        PriorityQueue<AStarNode, float> SetUpFrontierAstar(Vector2 goalPosition)
         {
 
             var frontier = new PriorityQueue<AStarNode, float>(0f);
@@ -364,7 +368,7 @@ public partial class AIController : MonoBehaviour
                 Vector2 position = originPosition + jumpPredictor.precalculatedDirections[i][0];
 
                 // Genero información de nodo
-                var time = PRECALCULATION_DELTATIME + timeToStart;
+                var time = PRECALCULATION_DELTATIME;
                 float cost = CalculateCost(originPosition, ref position, ref time, false);
 
                 // Si el coste nos indica que no colisiona con pared/obstaculos
@@ -466,6 +470,10 @@ public partial class AIController : MonoBehaviour
 
 
 
+        const int MAX_FRAME_ITERATIONS = 43;
+        public float timeBeforeJump = 0f;
+        public float timeSinceCalculationStarded = 0f;
+
         /*
          
          Ejecuta el algoritmo de AStar de manera literal a la definición academécia del algoritmo.
@@ -475,90 +483,101 @@ public partial class AIController : MonoBehaviour
          
          */
 
-        Color testColor;
-        public List<AStarNode> AStar(Vector2 startPosition, AstarGoal goal, float timeToStart)
+        public List<AStarNode> output;
+
+        public IEnumerator AStar(Vector2 startPosition, AstarGoal goal, float timeToStart)
         {
 
-
             // SETUP
+            timeBeforeJump = timeToStart;
+            timeSinceCalculationStarded = 0f;
             originPosition = startPosition;
             goalPosition = goal.position;
-            var frontier = SetUpFrontierAstar(goal.position, timeToStart);
+            var frontier = SetUpFrontierAstar(goal.position);
             Dictionary<AStarNode, AStarNode> cameFrom = new Dictionary<AStarNode, AStarNode>();
             Dictionary<AStarNode, float> costSoFar = new Dictionary<AStarNode, float>();
 
 
             // Si no podemos saltar, devolvemos path not found
             if (frontier.Empty())
-                return null;
-
-
-            // Iniciamos algoritmo AStar
-            AStarNode current = null;
-            do
             {
-                
-                current = frontier.Top();
-                frontier.Pop();
-                if (EarlyExit(ref current, ref goal))
+                output = null;
+
+            }
+            else
+            {
+                int iterationsCount = 0;
+
+                // Iniciamos algoritmo AStar
+                AStarNode current = null;
+                do
                 {
-                    break;
-                }
 
-
-                ForeachNeighbour(ref current, (AStarNode neighbor) => {
-
-                    float currentCostSoFar = costSoFar.ContainsKey(current) ? costSoFar[current] : 0f;
-                    float newCost = currentCostSoFar + neighbor.coste;
-
-                    // Si el coste current --> neighbor no está contemplado o es menor al ya contemplado
-                    if (!costSoFar.ContainsKey(neighbor) || costSoFar[neighbor] > newCost)
+                    if (iterationsCount++ >= MAX_FRAME_ITERATIONS)
                     {
-                        // Sobreescribir coste cotemplado en current --> neighbor
-                        costSoFar[neighbor] = newCost;
-                        // Actualizar el came from de next para setearlo en current
-                        cameFrom[neighbor] = current;
+                        yield return null;
+                        iterationsCount = 0;
+                        timeSinceCalculationStarded += Time.deltaTime;
+                    }
 
-                        float priority = newCost + neighbor.H(goal.position);
-                        // Insertar en frontera neighbor con su weight actualizado.
-                        frontier.Insert(neighbor, priority);
-
-                        //if (neighbor.secondJumpDone && EarlyExit(ref neighbor, ref goal))
-                        //{
-                        //    //Vector2 origin = neighbor.position - neighbor.portalSense * jumpPredictor.precalculatedDirections[neighbor.directionIndex][neighbor.positionIndex];
-                        //    //DebugDrawJumpFromOrigin(ref neighbor, origin, Color.red);
-                        //}
-
+                    current = frontier.Top();
+                    frontier.Pop();
+                    if (EarlyExit(ref current, ref goal))
+                    {
+                        break;
                     }
 
 
-                });
+                    ForeachNeighbour(ref current, (AStarNode neighbor) =>
+                    {
+
+                        float currentCostSoFar = costSoFar.ContainsKey(current) ? costSoFar[current] : 0f;
+                        float newCost = currentCostSoFar + neighbor.coste;
+
+                        // Si el coste current --> neighbor no está contemplado o es menor al ya contemplado
+                        if (!costSoFar.ContainsKey(neighbor) || costSoFar[neighbor] > newCost)
+                        {
+                            // Sobreescribir coste cotemplado en current --> neighbor
+                            costSoFar[neighbor] = newCost;
+                            // Actualizar el came from de next para setearlo en current
+                            cameFrom[neighbor] = current;
+
+                            float priority = newCost + neighbor.H(goal.position);
+                            // Insertar en frontera neighbor con su weight actualizado.
+                            frontier.Insert(neighbor, priority);
+
+                            //if (neighbor.secondJumpDone && EarlyExit(ref neighbor, ref goal))
+                            //{
+                            //    //Vector2 origin = neighbor.position - neighbor.portalSense * jumpPredictor.precalculatedDirections[neighbor.directionIndex][neighbor.positionIndex];
+                            //    //DebugDrawJumpFromOrigin(ref neighbor, origin, Color.red);
+                            //}
+
+                        }
 
 
-            } while (!frontier.Empty());
+                    });
+
+
+                } while (!frontier.Empty());
 
 
 
-            // BACKTRACKING
+                // BACKTRACKING
 
-            List<AStarNode> result = new List<AStarNode>();
-            if (frontier.Empty())
-            {
-                //PATH NOT FOUND
-                return null;
+                if (!frontier.Empty())
+                {
+                    output = new List<AStarNode>(40);
+                    // full backtrack
+                    while (cameFrom.ContainsKey(current))
+                    {
+                        if (cameFrom[current].secondJumpDone == current.secondJumpDone)
+                            output.Insert(0, current);
+                        current = cameFrom[current];
+
+                    }
+                }
+
             }
-
-            // full backtrack
-            while (cameFrom.ContainsKey(current))
-            {
-                if (cameFrom[current].secondJumpDone == current.secondJumpDone)
-                    result.Insert(0, current);
-                current = cameFrom[current];
-
-            }
-
-            return result;
-
 
         }
 
