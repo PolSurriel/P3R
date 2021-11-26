@@ -112,40 +112,38 @@ public partial class AIController : MonoBehaviour
         bool CollidesWithDynamicObstacle(ref Vector2 nextPos, ref Vector2 prevPos, float time)
         {
 
-            time += timeBeforeJump - timeSinceCalculationStarded;
+            time += timeBeforeJump - timeSinceCalculationStarded + PRECALCULATION_INCREMENT_DELTATIME;
 
             const float TIME_INCREMENT = PRECALCULATION_INCREMENT_DELTATIME;
-            float timeCheck = time - PRECALCULATION_INCREMENT_DELTATIME*2;
+            float timeCheck = time;
 
             bool collides = false;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
 
                 // Actualizamos la info de los colliders para que correspondan
                 // al momento del tiempo simulado
                 foreach (var obstacle in movingObstaclesToHandle)
-                    obstacle.UpdateAvoidAstarInfo(timeCheck);
+                {
+                    collides = SurrealBoost.Utils.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
+                    if (collides)
+                        return true;
+
+                }
 
                 foreach (var obstacle in rotatingObstaclesToHandle)
-                    obstacle.UpdateAvoidAstarInfo(timeCheck);
+                {
+                    collides = SurrealBoost.Utils.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
+                    if (collides)
+                        return true;
+                }
 
-
-                // Hacemos el raycast teniendo en consideración el radio del player
-                Vector2 perp = Vector2.Perpendicular(prevPos - nextPos).normalized * predictionPlayerRadius;
-                collides = Physics2D.Linecast(prevPos + perp, nextPos + perp, layerMaskAvoidImaginary) || Physics2D.Linecast(prevPos - perp, nextPos - perp, layerMaskAvoidImaginary);
-                
-
-                //Early exit
-                if (collides)
-                    break;
 
                 timeCheck += TIME_INCREMENT;
             }
 
-            
-
-            return collides;
+            return false;
         }
 
         /*
@@ -157,7 +155,7 @@ public partial class AIController : MonoBehaviour
         El cast se hace teniendo en consideracion el radio del player.
 
          */
-        float CalculateCost(Vector2 from, ref Vector2 to, ref float time, bool checkCollision = true)
+        float CalculateCost(Vector2 from, ref Vector2 to, float time, bool checkCollision = true)
         {
             
         
@@ -281,7 +279,7 @@ public partial class AIController : MonoBehaviour
                 Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT];
 
                 //extraemos su coste.
-                float cost = CalculateCost(inNode.position, ref nextPos, ref inNode.time);
+                float cost = CalculateCost(inNode.position, ref nextPos, inNode.time);
 
                 // Si el coste nos indica que el nodo no colisiona:
                 if(cost >= 0)
@@ -325,7 +323,7 @@ public partial class AIController : MonoBehaviour
                     var nextNodePos = inNode.portalSense * jumpPredictor.precalculatedDirections[i][0] + inNode.position;
 
                     // Evaluamos el coste del nodo
-                    float cost = CalculateCost(inNode.position, ref nextNodePos, ref inNode.time);
+                    float cost = CalculateCost(inNode.position, ref nextNodePos, inNode.time);
                     
                     // Si el coste nos indica que no colisiona con ninguna pared ni obstáculo
                     if (cost >= 0)
@@ -337,7 +335,7 @@ public partial class AIController : MonoBehaviour
                             i, 
                             0, 
                             cost, 
-                            inNode.time + PRECALCULATION_INCREMENT_DELTATIME,
+                            inNode.time,
                             0);
                         // Modificamos la información en el caso de que pase por algún portal
                         PortalCase(ref next, inNode.position);
@@ -369,7 +367,7 @@ public partial class AIController : MonoBehaviour
 
                 // Genero información de nodo
                 var time = PRECALCULATION_DELTATIME;
-                float cost = CalculateCost(originPosition, ref position, ref time, false);
+                float cost = CalculateCost(originPosition, ref position, time, false);
 
                 // Si el coste nos indica que no colisiona con pared/obstaculos
                 if(cost >= 0)

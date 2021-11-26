@@ -13,10 +13,13 @@ public class MovingObstacle : MonoBehaviour
 
     public Collider2D avoidCollider;
 
+    [HideInInspector]
+    public float colliderRadius;
 
     private void Start()
     {
         avoidCollider.transform.position = Vector3.down * 10f;
+        colliderRadius = ((CircleCollider2D)avoidCollider).radius;
     }
 
     public void UpdateAvoidAstarInfo(float time)

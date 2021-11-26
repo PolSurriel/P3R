@@ -43,12 +43,16 @@ public partial class AIController : MonoBehaviour
     Vector2 lastTargetPos = Vector2.zero;
 
 
+
+    float timeExecuting;
+    float suposedTimeNow;
     void AstarExecutionFixedUpdate()
     {
         // Si estoy siguiendo un camino
         if (executingAstarSeek)
         {
 
+            timeExecuting += Time.fixedDeltaTime;
             // Si el camino no es válido aborto
             if (astarSeekNodes.Count == 0)
             {
@@ -73,12 +77,21 @@ public partial class AIController : MonoBehaviour
             // ya que paso de un nodo al siguiente en función del tiempo.
             astarSeekTimeCounter += Time.fixedDeltaTime;
 
+
+            float tdtimeExecuting = Mathf.Round(timeExecuting * 100f) / 100f;
+            float tdsuposedTimeNow = Mathf.Round(suposedTimeNow * 100f) / 100f;
+
+            //Debug.Log("" + tdtimeExecuting + " / " + tdsuposedTimeNow);
+
             // Compruebo si ya me toca pasar al siguiente nodo
             if (!(astarSeekTimeCounter < currentNode.time))
             {
+                suposedTimeNow = currentNode.time;
                 astarSeekNodeIndex++;
                 if (astarSeekNodeIndex == astarSeekNodes.Count)
                 {
+                    suposedTimeNow = 0f;
+                    timeExecuting = 0f;
                     executingAstarSeek = false;
                 }
             }
@@ -99,6 +112,9 @@ public partial class AIController : MonoBehaviour
         astarSeekFirstIteration = true;
         astarSeekNodeIndex = 0;
         astarSeekTimeCounter = 0f;
+
+
+
     }
 
 

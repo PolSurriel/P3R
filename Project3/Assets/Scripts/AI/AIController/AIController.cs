@@ -63,6 +63,12 @@ public partial class AIController : MonoBehaviour
     void Update()
     {
 
+
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            Time.timeScale = Time.timeScale == 1f ? 0.2f : 1f;
+        }
+
         if (onATreadmill)
         {
             TreadmilleUpdate();

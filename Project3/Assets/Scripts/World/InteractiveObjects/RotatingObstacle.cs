@@ -10,11 +10,15 @@ public class RotatingObstacle : MonoBehaviour
     public float rotationSpeed = 100f;
     public Collider2D avoidCollider;
 
+    [HideInInspector]
+    public float colliderRadius;
 
     // Start is called before the first frame update
     void Start()
     {
         avoidCollider.transform.position = Vector3.down * 10f;
+
+        colliderRadius = ((CircleCollider2D)avoidCollider).radius;
 
         if (clockwiseDirection)
             rotationSpeed *= -1f;
