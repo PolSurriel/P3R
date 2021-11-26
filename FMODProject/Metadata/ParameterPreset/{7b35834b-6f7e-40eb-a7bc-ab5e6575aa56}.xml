@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.10.00">
-    <object class="ParameterPreset" id="{dc1710f1-f36e-4b80-aa77-0755aeba6b6f}">
+    <object class="ParameterPreset" id="{7b35834b-6f7e-40eb-a7bc-ab5e6575aa56}">
         <property name="name">
-            <value>layering</value>
+            <value>volume</value>
         </property>
         <relationship name="folder">
             <destination>{79ead1d4-ce4e-4339-ac37-35e59849edc9}</destination>
         </relationship>
         <relationship name="parameter">
-            <destination>{08cf129e-3438-4c28-a78f-5aed7b83dd79}</destination>
+            <destination>{054300a4-cb42-4cfb-a5c2-3b9fcf9dd7a0}</destination>
         </relationship>
     </object>
-    <object class="GameParameter" id="{08cf129e-3438-4c28-a78f-5aed7b83dd79}">
+    <object class="GameParameter" id="{054300a4-cb42-4cfb-a5c2-3b9fcf9dd7a0}">
         <property name="maximum">
-            <value>4</value>
+            <value>100</value>
         </property>
         <property name="initialValue">
             <value>0</value>
