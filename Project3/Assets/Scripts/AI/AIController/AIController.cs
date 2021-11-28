@@ -62,6 +62,8 @@ public partial class AIController : MonoBehaviour
 
     void Update()
     {
+        aStarSolver.movingObstaclesToHandle = FindObjectsOfType<MovingObstacle>();
+        aStarSolver.rotatingObstaclesToHandle = FindObjectsOfType<RotatingObstacle>();
 
 
         if (Input.GetKeyUp(KeyCode.T))
@@ -107,7 +109,18 @@ public partial class AIController : MonoBehaviour
         if (collision.collider.tag == "floor")
         {
             lastTargetPos = Vector2.down;
+
+            if (executingAstarSeek)
+            {
+                if(Vector2.Distance(lastTargetPos, transform.position) > MIN_DIST_TO_CHOOSE_TARGET)
+                {
+                    lastTargetPos = Vector2.zero;
+                }
+            }
+
             executingAstarSeek = false;
+
+
             StartAStarPipeline();
 
 
@@ -125,6 +138,7 @@ public partial class AIController : MonoBehaviour
         else if (collision.tag == "extraJumpZone")
         {
             executingAstarSeek = false;
+            aStarSolver.output = null;
             StartAStarPipeline();
         }
 

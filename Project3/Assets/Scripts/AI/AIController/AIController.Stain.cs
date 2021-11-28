@@ -30,6 +30,7 @@ public partial class AIController: MonoBehaviour
             if(stainJumpsCounter >= STAIN_TIMES_TO_JUMP)
             {
                 onStain = false;
+                StartAStarPipeline();
             }
         }
 

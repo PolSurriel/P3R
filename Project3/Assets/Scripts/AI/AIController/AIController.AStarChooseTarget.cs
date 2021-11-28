@@ -55,6 +55,9 @@ public partial class AIController : MonoBehaviour
         return dot < target.dotConstrainThreshold;
     }
 
+    const float MIN_DIST_TO_CHOOSE_TARGET = GOAL_MIN_DISTANCE * 1.2f;
+
+
     /*Entre todos los targets cercanos, decide a cual ir mediante el Astar
      
     Devuelve:
@@ -95,10 +98,13 @@ public partial class AIController : MonoBehaviour
                 // * puede elegir targets por debajo de él.
                 // * El nombre NO es descriptivo tipo "canChoosDownTarget" porque se planea desarrollar más
                 // * backup plans en el futuro mediante comportamientos reactivos.
+
+            
                 if ((!(targetPos.y < transform.position.y + GOAL_MIN_DISTANCE)) || onBackupPlanZone)
                 {
                     // El target está los suficientemente cerca
-                    if (Vector2.Distance(targetPos, transform.position) < VALID_TARGET_AREA_RADIUS)
+                    float dist = Vector2.Distance(targetPos, transform.position);
+                    if (dist < VALID_TARGET_AREA_RADIUS && dist > MIN_DIST_TO_CHOOSE_TARGET)
                     {
                         // Si cumple con el dot constrain (revisar el comentario de la función DotConstraint para entender)
                         if (!useDotConstraint || DotConstraint(target))

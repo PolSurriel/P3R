@@ -41,16 +41,37 @@ public partial class AIController : MonoBehaviour
     List<AStarNode> astarSeekNodes;
 
     Vector2 lastTargetPos = Vector2.zero;
+    
 
+    void FixVelocityToCurrentNode(Vector2 currentNodePosition)
+    {
+
+        Vector2 targetVelocity = (currentNodePosition - (Vector2)transform.position).normalized * rb.velocity.magnitude;
+
+        const float CHANGE_SPEED = 2f;
+        float scalar = 1f- Mathf.Min((CHANGE_SPEED * Time.deltaTime), 1f);
+
+
+
+        rb.velocity = rb.velocity * scalar + (1f-scalar) * targetVelocity;
+
+    }
 
 
     float timeExecuting;
     float suposedTimeNow;
     void AstarExecutionFixedUpdate()
     {
+
+
         // Si estoy siguiendo un camino
         if (executingAstarSeek)
         {
+            if (onStain)
+            {
+                executingAstarSeek = false;
+                return;
+            }
 
             timeExecuting += Time.fixedDeltaTime;
             // Si el camino no es válido aborto
@@ -62,6 +83,9 @@ public partial class AIController : MonoBehaviour
 
             // obtengo la información del tramo actual
             currentNode = astarSeekNodes[astarSeekNodeIndex];
+
+            FixVelocityToCurrentNode(currentNode.position);
+
 
             // Compruebo si debo saltar
             if (currentNode.secondJumpDone != astarSeeklastSecondJumpDone || astarSeekFirstIteration)
@@ -120,6 +144,8 @@ public partial class AIController : MonoBehaviour
 
     void StartAStarPipeline()
     {
+        if (onStain)
+            return;
         StartCoroutine(AStarRoutine());
     }
 
@@ -133,10 +159,6 @@ public partial class AIController : MonoBehaviour
         if (ChooseTarget())
         {
             // Generamos infomración para ejecutar el Astar a hacia ese target
-            aStarSolver.movingObstaclesToHandle = FindObjectsOfType<MovingObstacle>();
-            aStarSolver.rotatingObstaclesToHandle = FindObjectsOfType<RotatingObstacle>();
-
-
             aStarSolver.portalPosition = closestPortal;
             aStarSolver.usePortal = usePortal;
 

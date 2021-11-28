@@ -30,7 +30,6 @@ public partial class AIController : MonoBehaviour
         Vector2 originPosition;
         float predictionPlayerRadius;
         JobyfablePrecalculatedPredictionSystem jumpPredictor;
-        int layerMaskAvoidImaginary;
         int layerMaskRaycastNOT;
         int layerMaskPortal;
         int layerMaskPrediction;
@@ -42,8 +41,7 @@ public partial class AIController : MonoBehaviour
 
             layerMaskPortal = 1 << LayerMask.NameToLayer("Portal");
             layerMaskPrediction = (1 << LayerMask.NameToLayer("floor")) | 
-                                  (1 << LayerMask.NameToLayer("Obstacle"));
-            layerMaskAvoidImaginary = (1 << LayerMask.NameToLayer("ImaginaryAvoid"));
+                                  (1 << LayerMask.NameToLayer("Obstacle")) | (1 << LayerMask.NameToLayer("ImaginaryAvoid"));
             layerMaskRaycastNOT = (1 << LayerMask.NameToLayer("RaycastNOT"));
 
             this.jumpPredictor = jumpPredictor;
@@ -457,7 +455,7 @@ public partial class AIController : MonoBehaviour
                 // IMPORTANTE: Usamos un random para la comprobación para dar un comportamiento más humano.
                 // De no ser por el random, todos los saltos de un nodo A al nodo B usarían la misma inclinación.
                 // NO TOCAR
-                if (dot > Random.Range(0.2f, 0.28f))
+                if (dot > Random.Range(0.2f, 0.4f))
                 {
                     return true;
                 }

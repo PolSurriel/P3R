@@ -66,7 +66,6 @@ public class Obstacle : MonoBehaviour
 
             runner.rb.velocity = dir * 10f;
             transform.localScale = new Vector3(scaleStart + deltaScale, scaleStart + deltaScale, scaleStart + deltaScale);
-            Debug.LogError("alert");
         }
     }
 
