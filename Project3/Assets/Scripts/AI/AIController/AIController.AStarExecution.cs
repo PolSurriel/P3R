@@ -149,9 +149,11 @@ public partial class AIController : MonoBehaviour
         StartCoroutine(AStarRoutine());
     }
 
+
     IEnumerator AStarRoutine()
     {
 
+        aStarSolver.output = null;
         executingAstarSeek = false;
         pendingToStartAStarPipeline = false;
 

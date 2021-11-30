@@ -7,6 +7,7 @@ using UnityEngine;
 public class PathTarget : MonoBehaviour
 {
 
+    public bool forceDotConstraint;
     public bool useDotConstrainToChoose = false;
     public float dotConstrainThreshold;
     public Vector2 dotConstrain;

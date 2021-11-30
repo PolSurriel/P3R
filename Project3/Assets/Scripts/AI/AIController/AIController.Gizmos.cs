@@ -26,7 +26,7 @@ public partial class AIController : MonoBehaviour
             int i = 0;
             foreach (var node in aStarSolver.output)
             {
-                Handles.Label(node.position, "" + i);
+                //Handles.Label(node.position, "" + i);
                 Debug.DrawLine(lastPos, node.position);
 
                 lastPos = node.position;
@@ -40,13 +40,13 @@ public partial class AIController : MonoBehaviour
                     foreach (var obj in aStarSolver.movingObstaclesToHandle)
                     {
                         var futurePos = obj.GetFuturePosition(node.time - astarSeekTimeCounter);
-                        Handles.Label(futurePos, "" + i, style);
+                        //Handles.Label(futurePos, "" + i, style);
                     }
 
                     foreach (var obj in aStarSolver.rotatingObstaclesToHandle)
                     {
                         var futurePos = obj.GetFuturePosition(node.time-astarSeekTimeCounter);
-                        Handles.Label(futurePos, "" + i, style);
+                        //Handles.Label(futurePos, "" + i, style);
                     }
                 }catch(MissingReferenceException e)
                 {

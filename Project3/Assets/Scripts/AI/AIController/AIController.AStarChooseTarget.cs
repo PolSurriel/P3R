@@ -7,7 +7,7 @@ public partial class AIController : MonoBehaviour
 
     AstarGoal aStarGoal;
     public const float VALID_TARGET_AREA_RADIUS = 10f;
-
+    Vector2 lastTargetLandedPosition;
 
     /*
      En ocasiones nos puede interesar que un target sea escogido 
@@ -88,7 +88,7 @@ public partial class AIController : MonoBehaviour
             var targetPos = target.GetEvaluablePosition();
 
             // comprobamos que no es el target anterior
-            if (lastTargetPos != targetPos)
+            if (lastTargetPos != targetPos && lastTargetLandedPosition != targetPos)
 
                 // si está por encima del player O estamos en un backupPlanZone
                 // * backupPlanZone: En ocasiones puede interesarnos tener un plan de emergencia.
@@ -106,8 +106,10 @@ public partial class AIController : MonoBehaviour
                     float dist = Vector2.Distance(targetPos, transform.position);
                     if (dist < VALID_TARGET_AREA_RADIUS && dist > MIN_DIST_TO_CHOOSE_TARGET)
                     {
+                        bool mustUseDotConstraint = useDotConstraint || target.forceDotConstraint;
+
                         // Si cumple con el dot constrain (revisar el comentario de la función DotConstraint para entender)
-                        if (!useDotConstraint || DotConstraint(target))
+                        if (!mustUseDotConstraint || DotConstraint(target))
                         {
                             // entonces lo consideramos como valido
                             validTargets.Add(target);

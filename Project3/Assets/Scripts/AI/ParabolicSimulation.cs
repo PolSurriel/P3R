@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -298,26 +299,41 @@ public class PrecalculatedPredictionSystem : ClassicPredictionSystem
 }
 
 
-public class JobyfablePrecalculatedPredictionSystem
+public struct JobyfablePrecalculatedPredictionSystem
 {
     /*rb information must be updated every FixedUpdate*/
     public Rigidbody2DInfo rb;
-    public List<List<Vector2>> precalculatedDirections;
+    public NativeArray<Vector2> precalculatedDirections;
     private List<Vector2> impulseForces;
     private float deltaAnglePerIndex;
     private float simulationDeltaTime;
 
+    public int iterationsCount;
+
 
     public int GetPrecalculationDirectionsCount()
     {
-        return precalculatedDirections.Count;
+        return precalculatedDirections.Length;
     }
 
     public JobyfablePrecalculatedPredictionSystem (Rigidbody2DInfo rb, List<List<Vector2>> precalculatedDirections, List<Vector2> impulseForces, float deltaAnglePerIndex, float simulationDeltaTime)
     {
 
         this.rb = rb;
-        this.precalculatedDirections = precalculatedDirections;
+
+        this.iterationsCount = precalculatedDirections[0].Count;
+        this.precalculatedDirections = new NativeArray<Vector2>(precalculatedDirections.Count * iterationsCount, Allocator.Persistent);
+
+        for (int i = 0; i < precalculatedDirections.Count; ++i)
+        {
+            for (int j = 0; j < iterationsCount; ++j)
+            {
+                // i * lenght gives the offset of each array because they are the same lenght
+                this.precalculatedDirections[i * iterationsCount  + j] = precalculatedDirections[i][j];
+            }
+        }
+
+
         this.impulseForces = impulseForces;
         this.deltaAnglePerIndex = deltaAnglePerIndex;
         this.simulationDeltaTime = simulationDeltaTime;
@@ -336,20 +352,20 @@ public Vector2 GetForce(int simulationIndex)
 
     public Vector2 ReadSimulationPosition(int simulationIndex, int index)
     {
-        return precalculatedDirections[simulationIndex][index] + (rb.velocity * index * simulationDeltaTime) + rb.position;
+        return precalculatedDirections[simulationIndex * iterationsCount + index] + (rb.velocity * index * simulationDeltaTime) + rb.position;
     }
     public Vector2 ReadSimulationPositionIgnoringVelocity(int simulationIndex, int index)
     {
-        return precalculatedDirections[simulationIndex][index] + rb.position;
+        return precalculatedDirections[simulationIndex* iterationsCount  +index] + rb.position;
     }
 
     public Vector2 ReadLocalSimulationPosition(int simulationIndex, int index)
     {
-        return precalculatedDirections[simulationIndex][index] + (rb.velocity * index * simulationDeltaTime);
+        return precalculatedDirections[simulationIndex* iterationsCount  +index] + (rb.velocity * index * simulationDeltaTime);
     }
     public Vector2 ReadLocalSimulationPositionIgnoringVelocity(int simulationIndex, int index)
     {
-        return precalculatedDirections[simulationIndex][index];
+        return precalculatedDirections[simulationIndex* iterationsCount  +index];
     }
 
 

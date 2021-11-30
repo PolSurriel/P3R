@@ -1,6 +1,8 @@
 ﻿using DataStructures.PriorityQueue;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
+using Unity.Jobs;
 using UnityEngine;
 
 
@@ -47,7 +49,17 @@ public partial class AIController : MonoBehaviour
             this.jumpPredictor = jumpPredictor;
             this.predictionPlayerRadius = predictionPlayerRadius;
 
+            SetupIterationDiscarder();
+
         }
+
+        void SetupIterationDiscarder()
+        {
+
+            AStarIterationsDiscarder.m_precalculatedDirections = jumpPredictor.precalculatedDirections;
+
+        }
+
 
 
         /* Este metodo modifica la información de un nodo si este cruza un portal.
@@ -211,7 +223,7 @@ public partial class AIController : MonoBehaviour
             for (int pathIndex = 0; pathIndex < NUMBER_OF_PRECALCULATED_POINTS; pathIndex += INCREMENT)
             {
                 // calculo su posicion
-                var nextPosition = inNode.position + inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex][pathIndex];
+                var nextPosition = inNode.position + inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex* jumpPredictor.iterationsCount + pathIndex];
 
                 
                 // Si pasa cerca del goal o un portal, lo valido.
@@ -238,8 +250,8 @@ public partial class AIController : MonoBehaviour
             for (int pathIndex = 0; pathIndex < NUMBER_OF_PRECALCULATED_POINTS && pathIndex < endIndex; pathIndex += INCREMENT)
             {
                 // calculo su posicion
-                var nextPosition = inNode.position + inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex][pathIndex];
-                var lastPos = inNode.position + inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex][pathIndex>0 ? pathIndex-INCREMENT : 0];
+                var nextPosition = inNode.position + inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex* jumpPredictor.iterationsCount + pathIndex];
+                var lastPos = inNode.position + inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex* jumpPredictor.iterationsCount + pathIndex>0 ? pathIndex-INCREMENT : 0];
 
                 Debug.DrawLine(nextPosition, lastPos, c, duration);
 
@@ -273,8 +285,8 @@ public partial class AIController : MonoBehaviour
             if (inNode.positionIndex < NUMBER_OF_PRECALCULATED_POINTS - PRECALCULATED_POINTS_INCREMENT)
             {
                 // Calculamos la posición inmediatamente siguiente en la trayectoria actual
-                Vector2 origin = inNode.position - inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex];
-                Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT];
+                Vector2 origin = inNode.position - inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex * jumpPredictor.iterationsCount + inNode.positionIndex];
+                Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex * jumpPredictor.iterationsCount + inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT];
 
                 //extraemos su coste.
                 float cost = CalculateCost(inNode.position, ref nextPos, inNode.time);
@@ -300,13 +312,33 @@ public partial class AIController : MonoBehaviour
                 }
             }
 
+            
+            
 
             // CASO B: SALTAR EN MITAD DE LA TRAYECTORIA
-            
+
             // Si el segundo salto todavía no ha sido dado
             // Y no acabamos de cruzar un portal 
             if (!inNode.secondJumpDone && inNode.iterationsSincePortalCrossed <= 0)
             {
+
+                var directionValidation = new Unity.Collections.NativeArray<bool>(DIRECTIONS_COUNT, Unity.Collections.Allocator.Persistent);
+
+                AStarIterationsDiscarder iterationDiscarder = new AStarIterationsDiscarder()
+                {
+                    m_result = directionValidation,
+                    nodePosition = inNode.position,
+                    m_goalPosition = goalPosition,
+                    portalSense = inNode.portalSense,
+                    m_iterationsCount = jumpPredictor.iterationsCount,
+                    m_portalPosition = portalPosition,
+                    m_usePortal = usePortal,
+
+                };
+
+                JobHandle jobHandle = iterationDiscarder.Schedule(DIRECTIONS_COUNT, ITERATION_DISCARDER_BATCH);
+                jobHandle.Complete();
+                
 
                 // Por cada posible dirección hacia la que podriamos saltar
                 for (int i = 0; i < DIRECTIONS_COUNT; i++)
@@ -314,11 +346,11 @@ public partial class AIController : MonoBehaviour
                     // Descartamos los nodos vecinos que no sean válidos.
                     // Ésto reduce las iteraciones en 10x.
                     // Es mucho más barato predecir si una iteración es válida que ejecutarla.
-                    if (!JumpIsValid(ref inNode, i))
+                    if (!directionValidation[i])
                         continue;
 
                     // Calculamos la primera posición del salto.
-                    var nextNodePos = inNode.portalSense * jumpPredictor.precalculatedDirections[i][0] + inNode.position;
+                    var nextNodePos = inNode.portalSense * jumpPredictor.precalculatedDirections[i * jumpPredictor.iterationsCount + 0] + inNode.position;
 
                     // Evaluamos el coste del nodo
                     float cost = CalculateCost(inNode.position, ref nextNodePos, inNode.time);
@@ -332,7 +364,7 @@ public partial class AIController : MonoBehaviour
                             true, 
                             i, 
                             0, 
-                            cost, 
+                            cost * jumpCostScalar, 
                             inNode.time,
                             0);
                         // Modificamos la información en el caso de que pase por algún portal
@@ -342,6 +374,9 @@ public partial class AIController : MonoBehaviour
                         method(next);
                     }
                 }
+
+                directionValidation.Dispose();
+
             }
         }
 
@@ -361,7 +396,7 @@ public partial class AIController : MonoBehaviour
             for (int i = 2; i < DIRECTIONS_COUNT-1; i++)
             {
                 // Genero la la primera posición de la trayectoria. 
-                Vector2 position = originPosition + jumpPredictor.precalculatedDirections[i][0];
+                Vector2 position = originPosition + jumpPredictor.precalculatedDirections[i * jumpPredictor.iterationsCount + 0];
 
                 // Genero información de nodo
                 var time = PRECALCULATION_DELTATIME;
@@ -387,7 +422,7 @@ public partial class AIController : MonoBehaviour
             var currentPos = origin;
             for (int i = 0; i < inNode.positionIndex; i += PRECALCULATED_POINTS_INCREMENT)
             {
-                var nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][i + PRECALCULATED_POINTS_INCREMENT];
+                var nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex* jumpPredictor.iterationsCount + i + PRECALCULATED_POINTS_INCREMENT];
                 Debug.DrawLine(currentPos, nextPos, c, 1f);
                 currentPos = nextPos;
             }
@@ -399,14 +434,14 @@ public partial class AIController : MonoBehaviour
         Vector2 GetNextDeltaPos(ref AStarNode inNode)
         {
 
-            Vector2 origin = inNode.position - inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex];
+            Vector2 origin = inNode.position - inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex* jumpPredictor.iterationsCount + inNode.positionIndex];
 
             //DebugDrawJumpFromOrigin(ref inNode, origin, Color.green);
 
             if (inNode.positionIndex < NUMBER_OF_PRECALCULATED_POINTS - PRECALCULATED_POINTS_INCREMENT)
             {
                 // Calculamos la posición inmediatamente siguiente en la trayectoria actual
-                Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT];
+                Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex* jumpPredictor.iterationsCount + inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT];
                 //if (inNode.secondJumpDone)
                 //{
                 //    Debug.DrawLine(inNode.position, nextPos, Color.magenta, 1f);
@@ -415,7 +450,7 @@ public partial class AIController : MonoBehaviour
 
             }else
             {
-                Vector2 lastPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex][inNode.positionIndex - PRECALCULATED_POINTS_INCREMENT];
+                Vector2 lastPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex* jumpPredictor.iterationsCount + inNode.positionIndex - PRECALCULATED_POINTS_INCREMENT];
                 //if (inNode.secondJumpDone)
                 //{ 
                 //    Debug.DrawLine(inNode.position, lastPos, Color.magenta, 1f);
@@ -448,7 +483,7 @@ public partial class AIController : MonoBehaviour
                 //Debug.DrawLine(current.position, current.position + deltaPos.normalized * 1f, testColor, 1f);
                 //Debug.DrawLine(current.position + deltaPos.normalized * 1f + Vector2.right * 0.1f, current.position + deltaPos.normalized * 1f + Vector2.left * 0.1f, Color.yellow, 1f);
                 //Debug.DrawLine(current.position + deltaPos.normalized * 1f + Vector2.up * 0.1f, current.position + deltaPos.normalized * 1f + Vector2.down * 0.1f, Color.yellow, 1f);
-                //Vector2 origin = current.position - current.portalSense * jumpPredictor.precalculatedDirections[current.directionIndex][current.positionIndex];
+                //Vector2 origin = current.position - current.portalSense * jumpPredictor.precalculatedDirections[current.directionIndex* jumpPredictor.iterationsCount + current.positionIndex];
                 //DebugDrawJumpFromOrigin(ref current, origin, testColor);
 
 
@@ -481,8 +516,12 @@ public partial class AIController : MonoBehaviour
 
         public List<AStarNode> output;
 
+        float jumpCostScalar;
+
         public IEnumerator AStar(Vector2 startPosition, AstarGoal goal, float timeToStart)
         {
+
+            jumpCostScalar = Random.Range(1f, 2.5f);
 
             // SETUP
             timeBeforeJump = timeToStart;
@@ -544,7 +583,7 @@ public partial class AIController : MonoBehaviour
 
                             //if (neighbor.secondJumpDone && EarlyExit(ref neighbor, ref goal))
                             //{
-                            //    //Vector2 origin = neighbor.position - neighbor.portalSense * jumpPredictor.precalculatedDirections[neighbor.directionIndex][neighbor.positionIndex];
+                            //    //Vector2 origin = neighbor.position - neighbor.portalSense * jumpPredictor.precalculatedDirections[neighbor.directionIndex* jumpPredictor.iterationsCount + neighbor.positionIndex];
                             //    //DebugDrawJumpFromOrigin(ref neighbor, origin, Color.red);
                             //}
 

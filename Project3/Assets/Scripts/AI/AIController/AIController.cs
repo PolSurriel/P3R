@@ -108,16 +108,21 @@ public partial class AIController : MonoBehaviour
 
         if (collision.collider.tag == "floor")
         {
-            lastTargetPos = Vector2.down;
 
             if (executingAstarSeek)
             {
                 if(Vector2.Distance(lastTargetPos, transform.position) > MIN_DIST_TO_CHOOSE_TARGET)
                 {
                     lastTargetPos = Vector2.zero;
+                    lastTargetLandedPosition = Vector2.zero;
+                }
+                else
+                {
+                    lastTargetLandedPosition = lastTargetPos;
                 }
             }
 
+            lastTargetPos = Vector2.down;
             executingAstarSeek = false;
 
 
