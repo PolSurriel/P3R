@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
+using SurrealBoost.Utils;
 
 
 /*
@@ -136,7 +137,7 @@ public partial class AIController : MonoBehaviour
                 // al momento del tiempo simulado
                 foreach (var obstacle in movingObstaclesToHandle)
                 {
-                    collides = SurrealBoost.Utils.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
+                    collides = Intersection.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
                     if (collides)
                         return true;
 
@@ -144,7 +145,7 @@ public partial class AIController : MonoBehaviour
 
                 foreach (var obstacle in rotatingObstaclesToHandle)
                 {
-                    collides = SurrealBoost.Utils.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
+                    collides = Intersection.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
                     if (collides)
                         return true;
                 }
@@ -202,6 +203,9 @@ public partial class AIController : MonoBehaviour
         }
 
         /*
+         * 
+         * IMPORTANTE: Éste método es obsoleto. Ahora la validación de altos se hace desde AIController.AStarIterationsDiscarder.cs
+         * 
          Determina si un salto a partir de un nodo es válido para encontrar el camino.
 
          Un salto es válido si:
@@ -322,6 +326,7 @@ public partial class AIController : MonoBehaviour
             if (!inNode.secondJumpDone && inNode.iterationsSincePortalCrossed <= 0)
             {
 
+                // VALIDACION DIRECCIONES - Descartamos iteraciones no-necesarias
                 var directionValidation = new Unity.Collections.NativeArray<bool>(DIRECTIONS_COUNT, Unity.Collections.Allocator.Persistent);
 
                 AStarIterationsDiscarder iterationDiscarder = new AStarIterationsDiscarder()
@@ -329,7 +334,7 @@ public partial class AIController : MonoBehaviour
                     m_result = directionValidation,
                     nodePosition = inNode.position,
                     m_goalPosition = goalPosition,
-                    portalSense = inNode.portalSense,
+                    m_portalSense = inNode.portalSense,
                     m_iterationsCount = jumpPredictor.iterationsCount,
                     m_portalPosition = portalPosition,
                     m_usePortal = usePortal,

@@ -416,7 +416,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.24581
+  orthographic size: 5.8704314
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -550,6 +550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   onStain: 0
+  lastVelocity: {x: 0, y: 0}
   usingPortal: 0
   aspect: {fileID: 1637875273}
   ignoreTreadmill: 0
@@ -630,7 +631,7 @@ GameObject:
   - component: {fileID: 1517571727}
   m_Layer: 8
   m_Name: Elevator
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

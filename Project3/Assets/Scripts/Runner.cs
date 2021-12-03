@@ -14,6 +14,7 @@ public class Runner : MonoBehaviour
     public bool onStain;
 
     bool toExitParent = false;
+    public Vector2 lastVelocity;
     public void SetParent(Transform p)
     {
         toExitParent = true;
@@ -23,6 +24,10 @@ public class Runner : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        lastVelocity = rb.velocity;
+    }
 
     bool onATreadmill = false;
     public void EnterOnATreadmill()

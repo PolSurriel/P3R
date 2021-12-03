@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent(typeof(MapController))]
 public class AIDirector : MonoBehaviour
@@ -17,7 +19,7 @@ public class AIDirector : MonoBehaviour
         float min = instance.minWaitTimeBeforeJump.Evaluate(humanityFactor);
         float max = instance.maxWaitTimeBeforeJump.Evaluate(humanityFactor);
 
-        return Random.Range(min, max);
+        return UnityEngine.Random.Range(min, max);
     }
 
     public static float GetVectorBeforeJump(float humanityFactor)
@@ -25,16 +27,18 @@ public class AIDirector : MonoBehaviour
         float min = instance.minJumpVectorDeviation.Evaluate(humanityFactor);
         float max = instance.maxJumpVectorDeviation.Evaluate(humanityFactor);
 
-        float deviationDegrees = Random.Range(min, max);
+        float deviationDegrees = UnityEngine.Random.Range(min, max);
 
         return deviationDegrees;
     }
 
     private void Awake()
     {
+        AIController.AStarIterationsDiscarder.m_reboundWalls = new Unity.Collections.NativeArray<AIController.ReboundWallInfo>(100, Unity.Collections.Allocator.Persistent);
         instance = this;
     }
 
+    
 
     void Start()
     {
@@ -49,5 +53,49 @@ public class AIDirector : MonoBehaviour
             mapController = GetComponent<MapController>();
 
     }
+
+    public static void AddReboundSurface(ReboundSurface toAdd)
+    {
+        reboundSurfaces.Add(toAdd);
+
+        AIController.AStarIterationsDiscarder.m_reboundWallsLenght = reboundSurfaces.Count;
+        for (int i = 0; i < AIController.AStarIterationsDiscarder.m_reboundWallsLenght; i++)
+        {
+
+            AIController.ReboundWallInfo wallInfo = new AIController.ReboundWallInfo()
+            {
+                inverseX = reboundSurfaces[i].inverseX,
+                inverseY = reboundSurfaces[i].inverseY,
+                collisionInfo = reboundSurfaces[i].collisionInfo
+
+            };
+            AIController.AStarIterationsDiscarder.m_reboundWalls[i] = wallInfo;
+
+        }
+
+    }
+
+    public static void RemoveReboundSurface(ReboundSurface toRemove)
+    {
+        reboundSurfaces.Remove(toRemove);
+
+
+        AIController.AStarIterationsDiscarder.m_reboundWallsLenght = reboundSurfaces.Count;
+        for (int i = 0; i < AIController.AStarIterationsDiscarder.m_reboundWallsLenght; i++)
+        {
+            AIController.ReboundWallInfo wallInfo = new AIController.ReboundWallInfo()
+            {
+                inverseX = reboundSurfaces[i].inverseX,
+                inverseY = reboundSurfaces[i].inverseY,
+                collisionInfo = reboundSurfaces[i].collisionInfo
+
+            };
+            AIController.AStarIterationsDiscarder.m_reboundWalls[i] = wallInfo;
+
+        }
+
+    }
+
+    static List<ReboundSurface> reboundSurfaces = new List<ReboundSurface>();
 
 }
