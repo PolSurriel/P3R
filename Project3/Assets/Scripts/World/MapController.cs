@@ -16,6 +16,8 @@ public class MapController : MonoBehaviour
     const int MAX_DONOTREPEAT_ITEMS = 1;
     const int MAX_CONCURRENT_TILEMAPS = 5;
 
+    const int INITIAL_TILEMAP_Y = -3;
+
     GameObject[] tilemaps;
     float totalHeightAcumulated;
     float gridSize;
@@ -79,8 +81,6 @@ public class MapController : MonoBehaviour
         }
     }
 
-    
-
     void InstantiateTilemap(int index)
     {
         if (doNotRepeat.Contains(index))
@@ -89,23 +89,16 @@ public class MapController : MonoBehaviour
         doNotRepeat.Enqueue(index);
         enqueuedCount++;
 
-        var obj = Instantiate(tilemaps[index]);
+        var tilemapObj = Instantiate(tilemaps[index]);
 
-        tilemapInstances.Enqueue(obj);
+        tilemapInstances.Enqueue(tilemapObj);
 
-        if(index == 1)
-        {
+        var tilemapComponent = tilemapObj.GetComponent<Tilemap>();
+        tilemapObj.transform.position = Vector3.up * (totalHeightAcumulated + INITIAL_TILEMAP_Y - tilemapComponent.origin.y);
 
-            obj.transform.position = Vector3.up * (totalHeightAcumulated+2f);
-        }
-        else
-        {
-            obj.transform.position = Vector3.up * totalHeightAcumulated;
+        tilemapObj.transform.SetParent(transform);
 
-        }
-        obj.transform.SetParent(this.transform);
-
-        totalHeightAcumulated += obj.GetComponent<Tilemap>().size.y * gridSize;
+        totalHeightAcumulated += tilemapComponent.size.y * gridSize;
 
         if(enqueuedCount > MAX_DONOTREPEAT_ITEMS)
         {
@@ -117,20 +110,11 @@ public class MapController : MonoBehaviour
             Destroy(tilemapInstances.Peek());
             tilemapInstances.Dequeue();
         }
-
-
-
-
-
     }
-
-
 
     // Update is called once per frame
     void Update()
     {
-        
-
         if (playerTransform.position.y > totalHeightAcumulated - Camera.main.orthographicSize * 2)
         {
             InstantiateTilemap(GetRandomTilemapIndex());
