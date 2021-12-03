@@ -41,7 +41,11 @@ public partial class AIController : MonoBehaviour
 
     }
 
-    
+    private void OnDestroy()
+    {
+        jumpPredictor.precalculatedDirections.Dispose();
+        aStarSolver.OnDestroy();
+    }
 
     private void FixedUpdate()
     {

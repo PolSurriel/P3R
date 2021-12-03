@@ -54,6 +54,11 @@ public partial class AIController : MonoBehaviour
 
         }
 
+        public void OnDestroy()
+        {
+            jumpPredictor.precalculatedDirections.Dispose();
+        }
+
         void SetupIterationDiscarder()
         {
 
