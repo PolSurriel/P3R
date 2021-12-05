@@ -107,6 +107,13 @@ public class Runner : MonoBehaviour
         {
             CantJumpFeedback();
             return;
+        }else if(jumpCounter == 0)
+        {
+            AudioController.instance.sounds.jump.Play();
+        }else
+        {
+            AudioController.instance.sounds.doubleJump.Play();
+
         }
 
         if (onStain)

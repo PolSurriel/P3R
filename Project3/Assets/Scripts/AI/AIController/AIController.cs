@@ -39,12 +39,19 @@ public partial class AIController : MonoBehaviour
 
         aStarSolver = new AStarSolver(predictionPlayerRadius, jumpPredictor);
 
+
     }
 
     private void OnDestroy()
     {
-        jumpPredictor.precalculatedDirections.Dispose();
-        aStarSolver.OnDestroy();
+        try
+        {
+            jumpPredictor.precalculatedDirections.Dispose();
+            
+        }catch(System.InvalidOperationException e) { }
+
+        if(aStarSolver != null)
+            aStarSolver.OnDestroy();
     }
 
     private void FixedUpdate()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SurrealBoost.Types;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,11 +35,17 @@ public class AIDirector : MonoBehaviour
 
     private void Awake()
     {
-        AIController.AStarIterationsDiscarder.m_reboundWalls = new Unity.Collections.NativeArray<AIController.ReboundWallInfo>(100, Unity.Collections.Allocator.Persistent);
+        AIController.AStarIterationsDiscarder.m_reboundWalls = new NativeFIFO<AIController.ReboundWallInfo>();
+        AIController.AStarIterationsDiscarder.m_reboundWalls.Init(100);
         instance = this;
     }
 
-    
+
+    private void OnDestroy()
+    {
+        AIController.AStarIterationsDiscarder.m_reboundWalls.Dispose();
+    }
+
 
     void Start()
     {
@@ -69,7 +76,8 @@ public class AIDirector : MonoBehaviour
                 collisionInfo = reboundSurfaces[i].collisionInfo
 
             };
-            AIController.AStarIterationsDiscarder.m_reboundWalls[i] = wallInfo;
+
+            AIController.AStarIterationsDiscarder.m_reboundWalls.Add(wallInfo);
 
         }
 
@@ -90,7 +98,7 @@ public class AIDirector : MonoBehaviour
                 collisionInfo = reboundSurfaces[i].collisionInfo
 
             };
-            AIController.AStarIterationsDiscarder.m_reboundWalls[i] = wallInfo;
+            AIController.AStarIterationsDiscarder.m_reboundWalls.Add(wallInfo);
 
         }
 

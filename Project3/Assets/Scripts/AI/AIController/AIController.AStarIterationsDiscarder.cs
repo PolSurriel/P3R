@@ -36,7 +36,7 @@ public partial class AIController : MonoBehaviour
 
         [ReadOnly]
         [NativeDisableParallelForRestriction]
-        public static NativeArray<ReboundWallInfo> m_reboundWalls;
+        public static NativeFIFO<ReboundWallInfo> m_reboundWalls;
         [ReadOnly]
         public static int m_reboundWallsLenght;
 

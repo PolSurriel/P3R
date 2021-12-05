@@ -56,7 +56,11 @@ public partial class AIController : MonoBehaviour
 
         public void OnDestroy()
         {
-            jumpPredictor.precalculatedDirections.Dispose();
+            try
+            {
+                jumpPredictor.precalculatedDirections.Dispose();
+
+            }catch(System.InvalidOperationException e) { }
         }
 
         void SetupIterationDiscarder()
