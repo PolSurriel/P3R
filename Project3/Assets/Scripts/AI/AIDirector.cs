@@ -30,9 +30,7 @@ public class AIDirector : MonoBehaviour
         float min = instance.minJumpVectorDeviation.Evaluate(humanityFactor);
         float max = instance.maxJumpVectorDeviation.Evaluate(humanityFactor);
 
-        float deviationDegrees = UnityEngine.Random.Range(min, max);
-
-        return deviationDegrees;
+        return UnityEngine.Random.Range(min, max);
     }
 
     private void Awake()

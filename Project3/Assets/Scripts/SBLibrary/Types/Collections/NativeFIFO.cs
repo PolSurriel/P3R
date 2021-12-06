@@ -36,17 +36,18 @@ namespace SurrealBoost
             public void Add(T element)
             {
                 data[lastIndex] = element;
-                lastIndex = (lastIndex + 1) % data.Length;
+                if(_length != 0)
+                    lastIndex = (lastIndex + 1) % _length;
+                else
+                    lastIndex = (lastIndex + 1);
+
                 _length++;
             }
 
             public void Pop()
             {
-                if (Empty())
-                {
-                    Debug.LogError("The NativeFIFO is empty. You cannot use .Pop().");
-                }
-                firstIndex = (firstIndex + 1) % data.Length;
+                
+                firstIndex = (firstIndex + 1) % _length;
                 _length--;
 
 
@@ -55,7 +56,7 @@ namespace SurrealBoost
 
             public bool Empty()
             {
-                return firstIndex == lastIndex;
+                return _length == 0;
             }
 
             public T this[int i]

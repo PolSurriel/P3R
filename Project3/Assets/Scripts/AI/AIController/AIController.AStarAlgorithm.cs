@@ -243,46 +243,6 @@ public partial class AIController : MonoBehaviour
             return cost;
         }
 
-        /*
-         * 
-         * IMPORTANTE: Éste método es obsoleto. Ahora la validación de altos se hace desde AIController.AStarIterationsDiscarder.cs
-         * 
-         Determina si un salto a partir de un nodo es válido para encontrar el camino.
-
-         Un salto es válido si:
-           A) pasa cerca del astarGoal
-           B) pasa cerca del portal más cercano
-
-        IMPORTANTE: El objetivo de esta función es descartar casos de manera eficiente.
-        NO debe usarse ningún raycast aquí.
-         
-         */
-
-        bool JumpIsValid(ref AStarNode inNode, int directionIndex)
-        {
-
-            bool valid = false;
-            const int INCREMENT = PRECALCULATED_POINTS_INCREMENT;
-
-            // por cada punto del salto
-            for (int pathIndex = 0; pathIndex < NUMBER_OF_PRECALCULATED_POINTS; pathIndex += INCREMENT)
-            {
-                // calculo su posicion
-                var nextPosition = inNode.position + inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex* jumpPredictor.iterationsCount + pathIndex];
-
-                
-                // Si pasa cerca del goal o un portal, lo valido.
-                if (Vector2.Distance(nextPosition, goalPosition) <= GOAL_MIN_DISTANCE /*|| (usePortal && Vector2.Distance(nextPosition, portalPosition) <= GOAL_MIN_DISTANCE)*/)
-                {
-                    valid = true;
-                    //DebugDrawJump(ref inNode, directionIndex, pathIndex);
-                    break;
-                }
-
-            }
-
-            return valid;
-        }
 
         void DebugDrawJump(ref AStarNode inNode, int directionIndex, int endIndex, float duration = 1f)
         {
