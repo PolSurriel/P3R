@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(MapController))]
 public class AIDirector : MonoBehaviour
 {
+    public Transform maxX;
+    public Transform minX;
 
     public AnimationCurve minWaitTimeBeforeJump;
     public AnimationCurve maxWaitTimeBeforeJump;
@@ -35,6 +37,9 @@ public class AIDirector : MonoBehaviour
 
     private void Awake()
     {
+        AIController.AStarIterationsDiscarder.maxX = maxX.position.x;
+        AIController.AStarIterationsDiscarder.minX = minX.position.x;
+
         AIController.AStarIterationsDiscarder.m_reboundWalls = new NativeFIFO<AIController.ReboundWallInfo>();
         AIController.AStarIterationsDiscarder.m_reboundWalls.Init(100);
         instance = this;

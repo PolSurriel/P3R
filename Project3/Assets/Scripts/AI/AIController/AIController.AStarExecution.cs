@@ -51,8 +51,6 @@ public partial class AIController : MonoBehaviour
         const float CHANGE_SPEED = 2f;
         float scalar = 1f- Mathf.Min((CHANGE_SPEED * Time.deltaTime), 1f);
 
-
-
         rb.velocity = rb.velocity * scalar + (1f-scalar) * targetVelocity;
 
     }

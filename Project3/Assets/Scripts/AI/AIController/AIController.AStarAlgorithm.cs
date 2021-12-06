@@ -22,7 +22,7 @@ using SurrealBoost.Utils;
 public partial class AIController : MonoBehaviour
 {
     float predictionPlayerRadius;
-
+    const int MIN_FIRST_ITERATIONS_TO_USE_SECONDJUMP = 3;
     public class AStarSolver
     {
         public MovingObstacle[] movingObstaclesToHandle;
@@ -76,13 +76,11 @@ public partial class AIController : MonoBehaviour
            Modifica el sentido de su x/y si es necesario y añade un offset a su
            posicion.
          */
-        void PortalCase(ref AStarNode nextNode,  Vector2 prevPos)
+        void PortalCase(ref AStarNode nextNode,  Vector2 prevPos, ref RaycastHit2D portalHit)
         {
 
             if (!usePortal)
                 return;
-
-            RaycastHit2D portalHit = Physics2D.Linecast(prevPos, nextNode.position, layerMaskPortal);
 
             if (portalHit)
             {
@@ -100,7 +98,7 @@ public partial class AIController : MonoBehaviour
                 {
                     nextNode.portalSense.x *= -1;
                 }
-
+                
 
                 // Change nextPos
                 Vector2 deltaMove = nextNode.position - prevPos;
@@ -146,7 +144,7 @@ public partial class AIController : MonoBehaviour
                 // al momento del tiempo simulado
                 foreach (var obstacle in movingObstaclesToHandle)
                 {
-                    collides = Intersection.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
+                    collides = Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
                     if (collides)
                         return true;
 
@@ -154,7 +152,7 @@ public partial class AIController : MonoBehaviour
 
                 foreach (var obstacle in rotatingObstaclesToHandle)
                 {
-                    collides = Intersection.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
+                    collides = Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
                     if (collides)
                         return true;
                 }
@@ -175,7 +173,7 @@ public partial class AIController : MonoBehaviour
         El cast se hace teniendo en consideracion el radio del player.
 
          */
-        float CalculateCost(Vector2 from, ref Vector2 to, float time, bool checkCollision = true)
+        float CalculateCost(Vector2 from, ref Vector2 to, float time, ref RaycastHit2D portalHit, bool checkCollision = true)
         {
             
         
@@ -192,7 +190,48 @@ public partial class AIController : MonoBehaviour
                 {
                     // Realizamos el cast teniendo en cuenta el radio del player
                     Vector2 perp = Vector2.Perpendicular(from-to).normalized * predictionPlayerRadius;
-                    collides = Physics2D.Linecast(from+perp, to+perp, layerMaskPrediction) || Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction) || CollidesWithDynamicObstacle(ref to, ref from, time);
+
+                    RaycastHit2D wallCast1 = Physics2D.Linecast(from + perp, to + perp, layerMaskPrediction);
+                    RaycastHit2D wallCast2 = Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction);
+                    collides = wallCast1 || wallCast2 || CollidesWithDynamicObstacle(ref to, ref from, time);
+
+
+                    /*
+                     Si hay cast positivo con la pared, PERO también hay cast positivo con el goalPosition o un portal,
+                    Y el punto de intersección está más cerca del inicio de la línea, significa que el player llega antes
+                    al portal/goal que a la pared y el cast debe ser anulado.
+                     */
+                    if (collides)
+                    {
+                        var closestWall = wallCast1 ? wallCast1.point : wallCast2.point;
+                        var wallDist = Vector2.Distance(from, closestWall);
+                        
+                        // revisamos si hay que anular pq llega primero a portal
+                        if (portalHit)
+                        {
+                            var closestPortal = portalHit.point;
+                            var portalDist = Vector2.Distance(from, closestPortal);
+
+                            if(portalDist < wallDist)
+                            {
+                                collides = false;
+                            }
+                        }
+
+                        // revisamos si hay que anular pq llega primero a goal
+                        float distanceToGoal = (goalPosition - to).magnitude;
+                        if (distanceToGoal <= GOAL_MIN_DISTANCE)
+                        {
+                            var closestGoal = SurrealBoost.Utils.Intersection2D.ClosestLineCircle(from, to,goalPosition, GOAL_MIN_DISTANCE);
+                            var goalDist = Vector2.Distance(from, closestGoal);
+                            if(goalDist < wallDist)
+                            {
+                                collides = false;
+                            }
+                        }
+
+                    }
+                
                 }
             }
 
@@ -302,7 +341,8 @@ public partial class AIController : MonoBehaviour
                 Vector2 nextPos = origin + inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex * jumpPredictor.iterationsCount + inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT];
 
                 //extraemos su coste.
-                float cost = CalculateCost(inNode.position, ref nextPos, inNode.time);
+                RaycastHit2D portalHit = Physics2D.Linecast(inNode.position, nextPos, layerMaskPortal);
+                float cost = CalculateCost(inNode.position, ref nextPos, inNode.time, ref portalHit);
 
                 // Si el coste nos indica que el nodo no colisiona:
                 if(cost >= 0)
@@ -318,7 +358,7 @@ public partial class AIController : MonoBehaviour
                         inNode.iterationsSincePortalCrossed-1
                     );
                     // Corregimos su infomración si pasa por un portal
-                    PortalCase(ref next, inNode.position);
+                    PortalCase(ref next, inNode.position, ref portalHit);
 
                     // Iteramos con el nodo resultante
                     method(next);
@@ -367,7 +407,8 @@ public partial class AIController : MonoBehaviour
                     var nextNodePos = inNode.portalSense * jumpPredictor.precalculatedDirections[i * jumpPredictor.iterationsCount + 0] + inNode.position;
 
                     // Evaluamos el coste del nodo
-                    float cost = CalculateCost(inNode.position, ref nextNodePos, inNode.time);
+                    RaycastHit2D portalHit = Physics2D.Linecast(inNode.position, nextNodePos, layerMaskPortal);
+                    float cost = CalculateCost(inNode.position, ref nextNodePos, inNode.time, ref portalHit);
                     
                     // Si el coste nos indica que no colisiona con ninguna pared ni obstáculo
                     if (cost >= 0)
@@ -382,7 +423,7 @@ public partial class AIController : MonoBehaviour
                             inNode.time,
                             0);
                         // Modificamos la información en el caso de que pase por algún portal
-                        PortalCase(ref next, inNode.position);
+                        PortalCase(ref next, inNode.position, ref portalHit);
 
                         // iteramos con el nodo creado
                         method(next);
@@ -414,13 +455,15 @@ public partial class AIController : MonoBehaviour
 
                 // Genero información de nodo
                 var time = PRECALCULATION_DELTATIME;
-                float cost = CalculateCost(originPosition, ref position, time, false);
+                RaycastHit2D portalHit = Physics2D.Linecast(originPosition, position, layerMaskPortal);
+                float cost = CalculateCost(originPosition, ref position, time, ref portalHit, false);
 
                 // Si el coste nos indica que no colisiona con pared/obstaculos
                 if(cost >= 0)
                 {
                     // termino de generar el nodo y lo añado a la frontera
-                    var an = new AStarNode(position, false, i, 0, cost, PRECALCULATION_DELTATIME, 0);
+                    var an = new AStarNode(position, false, i, 0, cost, PRECALCULATION_DELTATIME, MIN_FIRST_ITERATIONS_TO_USE_SECONDJUMP);
+                    
                     float priority = cost + an.H(goalPosition);
                     frontier.Insert(an, priority);
                 }

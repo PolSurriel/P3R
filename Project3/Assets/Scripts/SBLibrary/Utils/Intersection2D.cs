@@ -6,98 +6,10 @@ using UnityEngine;
 
 namespace SurrealBoost
 {
-
-    namespace Types
-    {
-
-        public struct NativeFIFO<T> where T : struct
-        {
-            public NativeArray<T> data;
-
-            private int firstIndex;
-            private int lastIndex;
-
-            private int _length;
-            public int Length
-            {
-                get { return _length; }
-            }
-
-            public void Init(int maxCapacity, Allocator allocator = Allocator.Persistent)
-            {
-                firstIndex = 0;
-                lastIndex = 0;
-                data = new NativeArray<T>(maxCapacity, allocator);
-            }
-
-            public void Dispose()
-            {
-                data.Dispose();
-            }
-
-            public void Add(T element)
-            {
-                data[lastIndex++] = element;
-                lastIndex = (lastIndex + 1) % data.Length;
-                _length++;
-            }
-
-            public void Pop()
-            {
-                if(Empty())
-                {
-                    Debug.LogError("The NativeFIFO is empty. You cannot use .Pop().");
-                }
-                firstIndex = (firstIndex +1) % data.Length;
-                _length--;
-
-
-
-            }
-
-            public bool Empty()
-            {
-                return firstIndex == lastIndex;
-            }
-
-            public T this[int i]
-            {
-                get {
-
-                    int index = (firstIndex + i) % data.Length;
-
-                    return data[index];
-                }
-
-                set
-                {
-                    int index = (firstIndex + i) % data.Length;
-                    data[index] = value;
-
-                }
-            }
-
-            
-
-
-        }
-
-        public struct Line
-        {
-            public Vector2 pointA;
-            public Vector2 pointB;
-        }
-    }
-
     namespace Utils
     {
-
-        public class Intersection
+        public class Intersection2D
         {
-
-
-
-            
 
             public struct IntersectionResult
             {
@@ -125,6 +37,26 @@ namespace SurrealBoost
 
                 }
                 return new IntersectionResult()  { result = false };
+            }
+
+
+            // LINE/CIRCLE
+            public static Vector2 ClosestLineCircle(Vector2 point1, Vector2 point2, Vector2 circlePosition, float radius)
+            {
+
+                // get length of the line
+                float distX = point1.x - point2.x;
+                float distY = point1.y - point2.y;
+                float len = Mathf.Sqrt((distX * distX) + (distY * distY));
+
+                // get dot product of the line and circle
+                float dot = (((circlePosition.x - point1.x) * (point2.x - point1.x)) + ((circlePosition.y - point1.y) * (point2.y - point1.y))) / Mathf.Pow(len, 2);
+
+                // find the closest point on the line
+                float closestX = point1.x + (dot * (point2.x - point1.x));
+                float closestY = point1.y + (dot * (point2.y - point1.y));
+
+                return new Vector2(closestX, closestY);
             }
 
             // LINE/CIRCLE

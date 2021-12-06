@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Jobs;
 using Unity.Collections;
 using SurrealBoost.Types;
+using Unity.Burst;
 
 
 /*
@@ -18,6 +19,8 @@ La clave de ésta optimización está en descartar las iteraciones
 SIN raycast y de la manera más eficiente posible.
  
  */
+
+[BurstCompile]
 public partial class AIController : MonoBehaviour
 {
     public struct ReboundWallInfo
@@ -30,6 +33,9 @@ public partial class AIController : MonoBehaviour
     public const int ITERATION_DISCARDER_BATCH = 3;
     public struct AStarIterationsDiscarder : IJobParallelFor
     {
+        public static float maxX;
+        public static float minX;
+
         [ReadOnly]
         [NativeDisableParallelForRestriction]
         public static NativeArray<Vector2> m_precalculatedDirections;
@@ -55,14 +61,13 @@ public partial class AIController : MonoBehaviour
 
         public NativeArray<bool> m_result;
 
-
         void ReboundWallCase(ref Vector2 portalSense, ref Vector2 from, ref Vector2 to, ref Vector2 origin)
         {
 
             for (int i = 0; i < m_reboundWallsLenght; i++)
             {
                 var wall = m_reboundWalls[i];
-                var cast = SurrealBoost.Utils.Intersection.lineLine(wall.collisionInfo, new Line() { pointA = from, pointB = to });
+                var cast = SurrealBoost.Utils.Intersection2D.lineLine(wall.collisionInfo, new Line() { pointA = from, pointB = to });
 
                 if (cast.result)
                 {
@@ -103,6 +108,12 @@ public partial class AIController : MonoBehaviour
                 if (distToGoal <= GOAL_MIN_DISTANCE || (m_usePortal && Vector2.Distance(nextPosition, m_portalPosition) <= GOAL_MIN_DISTANCE))
                 {
                     m_result[directionIndex] = true;
+                    return;
+                }
+
+                // Descartamos la iteracion si se sale de los bounds del mapa
+                else if (nextPosition.x > maxX || nextPosition.x < minX)
+                {
                     return;
                 }
 
