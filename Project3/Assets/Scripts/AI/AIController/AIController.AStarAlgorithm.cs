@@ -138,19 +138,18 @@ public partial class AIController : MonoBehaviour
 
                 // Actualizamos la info de los colliders para que correspondan
                 // al momento del tiempo simulado
-                foreach (var obstacle in movingObstaclesToHandle)
-                {
-                    if(Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius));
-                        return true;
-
-                }
-
                 foreach (var obstacle in rotatingObstaclesToHandle)
                 {
-                    if(Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius));
+                    if(Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius))
                         return true;
                 }
 
+                foreach (var obstacle in movingObstaclesToHandle)
+                {
+                    if(Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius))
+                        return true;
+
+                }
 
                 timeCheck += TIME_INCREMENT;
             }
