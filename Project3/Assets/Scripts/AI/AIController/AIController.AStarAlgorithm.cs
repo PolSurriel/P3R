@@ -27,8 +27,6 @@ public partial class AIController : MonoBehaviour
     {
         public MovingObstacle[] movingObstaclesToHandle;
         public RotatingObstacle[] rotatingObstaclesToHandle;
-        public Vector2 portalPosition;
-        public bool usePortal;
 
         Vector2 originPosition;
         float predictionPlayerRadius;
@@ -78,9 +76,6 @@ public partial class AIController : MonoBehaviour
          */
         void PortalCase(ref AStarNode nextNode,  Vector2 prevPos, ref RaycastHit2D portalHit)
         {
-
-            if (!usePortal)
-                return;
 
             if (portalHit)
             {
@@ -281,7 +276,7 @@ public partial class AIController : MonoBehaviour
 
                 
                 // Si pasa cerca del goal o un portal, lo valido.
-                if (Vector2.Distance(nextPosition, goalPosition) <= GOAL_MIN_DISTANCE || (usePortal && Vector2.Distance(nextPosition, portalPosition) <= GOAL_MIN_DISTANCE))
+                if (Vector2.Distance(nextPosition, goalPosition) <= GOAL_MIN_DISTANCE /*|| (usePortal && Vector2.Distance(nextPosition, portalPosition) <= GOAL_MIN_DISTANCE)*/)
                 {
                     valid = true;
                     //DebugDrawJump(ref inNode, directionIndex, pathIndex);
@@ -388,8 +383,6 @@ public partial class AIController : MonoBehaviour
                     m_goalPosition = goalPosition,
                     m_portalSense = inNode.portalSense,
                     m_iterationsCount = jumpPredictor.iterationsCount,
-                    m_portalPosition = portalPosition,
-                    m_usePortal = usePortal,
 
                 };
 

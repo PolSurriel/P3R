@@ -159,8 +159,6 @@ public partial class AIController : MonoBehaviour
         if (ChooseTarget())
         {
             // Generamos infomración para ejecutar el Astar a hacia ese target
-            aStarSolver.portalPosition = closestPortal;
-            aStarSolver.usePortal = usePortal;
 
             // Calculamos el camino
             yield return aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);

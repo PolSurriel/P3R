@@ -69,8 +69,6 @@ public partial class AIController : MonoBehaviour
 
         public int m_iterationsCount;
         public Vector2 m_goalPosition;
-        public Vector2 m_portalPosition;
-        public bool m_usePortal;
 
         public NativeArray<bool> m_result;
 
@@ -100,6 +98,12 @@ public partial class AIController : MonoBehaviour
             for (int i = 0; i < m_portals.Length; i++)
             {
                 var portal = m_portals[i];
+
+                if(Vector2.Distance(nextNodePos, portal.collisionInfo.pointB) > VALID_TARGET_AREA_RADIUS)
+                {
+                    continue;
+                }
+
                 var cast = SurrealBoost.Utils.Intersection2D.lineLine(portal.collisionInfo, new Line() { pointA = lastNodePos, pointB = nextNodePos });
 
                 if (cast.result)
