@@ -22,9 +22,9 @@ using SurrealBoost.Utils;
 public partial class AIController : MonoBehaviour
 {
     float predictionPlayerRadius;
-    const int MIN_FIRST_ITERATIONS_TO_USE_SECONDJUMP = 3;
     public class AStarSolver
     {
+        const int MIN_FIRST_ITERATIONS_TO_USE_SECONDJUMP = 3;
         public MovingObstacle[] movingObstaclesToHandle;
         public RotatingObstacle[] rotatingObstaclesToHandle;
 
@@ -132,7 +132,6 @@ public partial class AIController : MonoBehaviour
             const float TIME_INCREMENT = PRECALCULATION_INCREMENT_DELTATIME;
             float timeCheck = time;
 
-            bool collides = false;
 
             for (int i = 0; i < 2; i++)
             {
@@ -141,16 +140,14 @@ public partial class AIController : MonoBehaviour
                 // al momento del tiempo simulado
                 foreach (var obstacle in movingObstaclesToHandle)
                 {
-                    collides = Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
-                    if (collides)
+                    if(Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius));
                         return true;
 
                 }
 
                 foreach (var obstacle in rotatingObstaclesToHandle)
                 {
-                    collides = Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius);
-                    if (collides)
+                    if(Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius));
                         return true;
                 }
 
