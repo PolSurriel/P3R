@@ -458,7 +458,7 @@ public partial class AIController : MonoBehaviour
                 Vector2 position = originPosition + jumpPredictor.precalculatedDirections[i * jumpPredictor.iterationsCount + 0];
 
                 // Genero información de nodo
-                var time = PRECALCULATION_DELTATIME;
+                var time = 0f;
                 RaycastHit2D portalHit = Physics2D.Linecast(originPosition, position, layerMaskPortal);
                 float cost = CalculateCost(originPosition, ref position, time, ref portalHit, false);
 
@@ -466,7 +466,7 @@ public partial class AIController : MonoBehaviour
                 if(cost >= 0)
                 {
                     // termino de generar el nodo y lo añado a la frontera
-                    var an = new AStarNode(position, false, i, 0, cost, PRECALCULATION_DELTATIME, MIN_FIRST_ITERATIONS_TO_USE_SECONDJUMP);
+                    var an = new AStarNode(position, false, i, 0, cost, time, MIN_FIRST_ITERATIONS_TO_USE_SECONDJUMP);
                     an.origin = originPosition;
 
                     float priority = cost + an.H(goalPosition);
