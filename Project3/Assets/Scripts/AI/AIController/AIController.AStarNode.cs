@@ -11,6 +11,7 @@ public partial class AIController : MonoBehaviour
         public int directionIndex;
         public int positionIndex;
         public Vector2 portalSense = Vector2.one;
+        public Vector2 origin;
 
         private Vector2 m_position;
         public Vector2 position
