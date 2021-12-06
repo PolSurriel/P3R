@@ -176,7 +176,7 @@ public partial class AIController : MonoBehaviour
             {
 
                 // Avisamos a los logs
-                Debug.LogError("No path found.");
+                //Debug.LogError("No path found.");
 
                 // PERO:
                 //at next frame, we'll try with another target!
@@ -224,7 +224,7 @@ public partial class AIController : MonoBehaviour
             // y la ia debe esperar para saltar. Nos intersa estar calculando todo el tiempo
             // el camino entre los diferentes targets hasta que sea posible saltar.
             // De momento no tocamos nada.
-            Debug.LogError("No valid target found! We need to code some backup plan here.");
+            //Debug.LogError("No valid target found! We need to code some backup plan here.");
         }
 
     }

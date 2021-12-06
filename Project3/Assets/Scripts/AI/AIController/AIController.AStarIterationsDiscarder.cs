@@ -23,11 +23,21 @@ SIN raycast y de la manera más eficiente posible.
 [BurstCompile]
 public partial class AIController : MonoBehaviour
 {
-    public struct ReboundWallInfo
+    public struct NativeReboundWallInfo
     {
         public Line collisionInfo;
         public bool inverseX;
         public bool inverseY;
+    }
+
+
+    public struct NativePortalInfo
+    {
+        public Line collisionInfo;
+        public bool inverseX;
+        public bool inverseY;
+        public Vector2 otherPortalPosition;
+        public Vector2 portalPosition;
     }
 
     public const int ITERATION_DISCARDER_BATCH = 3;
@@ -42,9 +52,12 @@ public partial class AIController : MonoBehaviour
 
         [ReadOnly]
         [NativeDisableParallelForRestriction]
-        public static NativeFIFO<ReboundWallInfo> m_reboundWalls;
+        public static NativeFIFO<NativeReboundWallInfo> m_reboundWalls;
+
         [ReadOnly]
-        public static int m_reboundWallsLenght;
+        [NativeDisableParallelForRestriction]
+        public static NativeFIFO<NativePortalInfo> m_portals;
+
 
 
 
@@ -64,7 +77,7 @@ public partial class AIController : MonoBehaviour
         void ReboundWallCase(ref Vector2 portalSense, ref Vector2 from, ref Vector2 to, ref Vector2 origin)
         {
 
-            for (int i = 0; i < m_reboundWallsLenght; i++)
+            for (int i = 0; i < m_reboundWalls.Length; i++)
             {
                 var wall = m_reboundWalls[i];
                 var cast = SurrealBoost.Utils.Intersection2D.lineLine(wall.collisionInfo, new Line() { pointA = from, pointB = to });
@@ -82,6 +95,40 @@ public partial class AIController : MonoBehaviour
             }
         }
 
+        void PortalCase(ref Vector2 portalSense, ref Vector2 lastNodePos, ref Vector2 nextNodePos, ref Vector2 origin, ref Vector2 portalOffset, ref int directionIndex, ref int positionIndex)
+        {
+            for (int i = 0; i < m_portals.Length; i++)
+            {
+                var portal = m_portals[i];
+                var cast = SurrealBoost.Utils.Intersection2D.lineLine(portal.collisionInfo, new Line() { pointA = lastNodePos, pointB = nextNodePos });
+
+                if (cast.result)
+                {
+                    if (portal.inverseY)
+                        portalSense.y *= -1;
+
+                     if (portal.inverseX)
+                        portalSense.x *= -1;
+
+                    // Change nextPos
+                    Vector2 deltaMove = nextNodePos - lastNodePos;
+                    deltaMove *= portalSense;
+                    nextNodePos = lastNodePos + deltaMove;
+
+
+                    // Calculate offset
+                    Vector2 portalPos = portal.portalPosition;
+                    Vector2 otherPortalpos = portal.otherPortalPosition;
+                    portalOffset += (otherPortalpos - portalPos);
+
+                    origin = nextNodePos - portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + positionIndex];
+
+
+                }
+            }
+
+        }
+
         public void Execute(int directionIndex)
         {
 
@@ -91,6 +138,7 @@ public partial class AIController : MonoBehaviour
 
 
             Vector2 portalSense = m_portalSense;
+            Vector2 portalOffset = Vector2.zero;
 
             Vector2 origin = nodePosition;
             Vector2 lastPosition = nodePosition;
@@ -99,13 +147,14 @@ public partial class AIController : MonoBehaviour
             for (int pathIndex = 0; pathIndex < NUMBER_OF_PRECALCULATED_POINTS; pathIndex += INCREMENT)
             {
                 // calculo su posicion
-                var nextPosition = origin + portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + pathIndex];
+                var nextPosition = portalOffset + origin + portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + pathIndex];
+                PortalCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin, ref portalOffset, ref directionIndex, ref pathIndex);
 
                 float distToGoal = Vector2.Distance(nextPosition, m_goalPosition);
-                ReboundWallCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin);
+                //ReboundWallCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin);
 
                 // Si pasa cerca del goal o un portal, lo valido.
-                if (distToGoal <= GOAL_MIN_DISTANCE || (m_usePortal && Vector2.Distance(nextPosition, m_portalPosition) <= GOAL_MIN_DISTANCE))
+                if (distToGoal <= GOAL_MIN_DISTANCE) //(m_usePortal && Vector2.Distance(nextPosition, m_portalPosition) <= GOAL_MIN_DISTANCE))
                 {
                     m_result[directionIndex] = true;
                     return;

@@ -35,7 +35,7 @@ namespace SurrealBoost
 
             public void Add(T element)
             {
-                data[lastIndex++] = element;
+                data[lastIndex] = element;
                 lastIndex = (lastIndex + 1) % data.Length;
                 _length++;
             }

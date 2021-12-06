@@ -1529,6 +1529,11 @@ PrefabInstance:
       propertyPath: inverseX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7933926629593723902, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
+        type: 3}
+      propertyPath: normal.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7933926629695877552, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: m_TagString
@@ -1592,6 +1597,11 @@ PrefabInstance:
     - target: {fileID: 7933926629695877558, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: aiIgnore
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933926629695877558, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
+        type: 3}
+      propertyPath: normal.x
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

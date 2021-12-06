@@ -31,7 +31,7 @@ namespace SurrealBoost
                     float intersectionY = line1.pointA.y + (uA * (line1.pointB.y - line1.pointA.y));
 
                     return new IntersectionResult() { 
-                        result = false,
+                        result = true,
                         intersectionPoint = new Vector2(intersectionX, intersectionY)
                     };
 

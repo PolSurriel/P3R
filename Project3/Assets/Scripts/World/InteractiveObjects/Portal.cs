@@ -6,6 +6,7 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
 
+
     public bool aiIgnore;
     public Portal otherPortal;
 
@@ -13,6 +14,8 @@ public class Portal : MonoBehaviour
     public bool inverseX;
     [OnValueChanged("OnInverseYChanged")]
     public bool inverseY;
+
+    public Vector2 normal;
 
     void OnInverseXChanged()
     {
@@ -26,10 +29,78 @@ public class Portal : MonoBehaviour
 
     AIController[] ais;
 
+    
+
+    public AIController.NativePortalInfo GeneratePortalNativeInfo() {
+
+        AIController.NativePortalInfo result = new AIController.NativePortalInfo() {
+            collisionInfo = CalculateLineCollisionInfo(),
+            inverseX = inverseX,
+            inverseY = inverseY,
+            otherPortalPosition = otherPortal.transform.position,
+            portalPosition = transform.position
+
+        };
+
+        return result;
+    }
+
+    SurrealBoost.Types.Line CalculateLineCollisionInfo()
+    {
+
+        var collider = GetComponent<BoxCollider2D>();
+
+        var halfSize = collider.bounds.size * 0.5f;
+        Vector2 offset = transform.position;
+
+        if (normal == Vector2.left)
+        {
+            return new SurrealBoost.Types.Line()
+            {
+                pointA = new Vector2(-halfSize.x, halfSize.y)+offset,
+                pointB = new Vector2(-halfSize.x, -halfSize.y) + offset
+            };
+
+        }
+        else if (normal == Vector2.right)
+        {
+            return new SurrealBoost.Types.Line()
+            {
+                pointA = new Vector2(halfSize.x, halfSize.y) + offset,
+                pointB = new Vector2(halfSize.x, -halfSize.y) + offset
+            };
+        }
+        else if (normal == Vector2.down)
+        {
+            return new SurrealBoost.Types.Line()
+            {
+                pointA = new Vector2(-halfSize.x, -halfSize.y) + offset,
+                pointB = new Vector2(halfSize.x, -halfSize.y) + offset
+            };
+        }
+        else if (normal == Vector2.up)
+        {
+            return new SurrealBoost.Types.Line()
+            {
+                pointA = new Vector2(-halfSize.x, halfSize.y) + offset,
+                pointB = new Vector2(halfSize.x, halfSize.y) + offset
+            };
+        }
+
+        return new SurrealBoost.Types.Line();
+    }
+
     private void Start()
     {
-        
-      
+        if(!aiIgnore)
+            AIDirector.AddPortal(this);
+
+    }
+
+    private void OnDestroy()
+    {
+        if (!aiIgnore)
+            AIDirector.RemovePortal(this);
     }
     private void Update()
     {

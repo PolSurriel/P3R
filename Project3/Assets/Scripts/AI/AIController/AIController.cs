@@ -1,4 +1,5 @@
 ﻿using DataStructures.PriorityQueue;
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -11,6 +12,15 @@ public partial class AIController : MonoBehaviour
     public Vector2 closestPortal;
     public float closestPortalDistance;
 
+
+    [Button]
+    void DebugStartAstarPipeline()
+    {
+        lastTargetPos = Vector2.zero;
+        executingAstarSeek = false;
+        aStarSolver.output = null;
+        StartAStarPipeline();
+    }
 
     Runner runner;
     Rigidbody2D rb;
