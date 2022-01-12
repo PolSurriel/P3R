@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Plugins/UI Kit Pro - Kawaii/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 3abac8ea1eaf51f4582cc6be70133fbb
   m_configObjects: {}
