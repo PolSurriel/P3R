@@ -45,6 +45,7 @@ public partial class AIController : MonoBehaviour
 
     void FixVelocityToCurrentNode(Vector2 currentNodePosition)
     {
+        // Posiblemente calcular aquí la desviación de la trayectoria
 
         Vector2 targetVelocity = (currentNodePosition - (Vector2)transform.position).normalized * rb.velocity.magnitude;
 
@@ -150,6 +151,7 @@ public partial class AIController : MonoBehaviour
 
     IEnumerator AStarRoutine()
     {
+        // Aquí es donde se calcula el timeBeforeJump
 
         aStarSolver.output = null;
         executingAstarSeek = false;

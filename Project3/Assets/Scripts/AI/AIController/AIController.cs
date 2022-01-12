@@ -12,6 +12,16 @@ public partial class AIController : MonoBehaviour
     public Vector2 closestPortal;
     public float closestPortalDistance;
 
+    //Variables
+    private float angleVariationAI;
+    private float timeVariationAI;
+    public float ErrorFactor
+    {
+        get 
+        {
+            return Random.Range(0,1);
+        }
+    }
 
     [Button]
     void DebugStartAstarPipeline()
@@ -188,6 +198,13 @@ public partial class AIController : MonoBehaviour
         }
         closestPortalDistance = 999999f;
 
+    }
+
+    public void SetErrorTriggerVariables(float _angle, float _time )
+    {
+        angleVariationAI = _angle;
+        timeVariationAI = _time;
+        Debug.Log("Angle: " + angleVariationAI + ", Time: " + timeVariationAI);
     }
 
 }
