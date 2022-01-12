@@ -21,6 +21,7 @@ public class AIDirector : MonoBehaviour
     {
         float min = instance.minWaitTimeBeforeJump.Evaluate(humanityFactor);
         float max = instance.maxWaitTimeBeforeJump.Evaluate(humanityFactor);
+        
 
         return UnityEngine.Random.Range(min, max);
     }

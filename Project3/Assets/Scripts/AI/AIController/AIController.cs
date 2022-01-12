@@ -15,11 +15,11 @@ public partial class AIController : MonoBehaviour
     //Variables
     private float angleVariationAI;
     private float timeVariationAI;
-    public float ErrorFactor
+    public float HumanizationVariationFactor
     {
         get 
         {
-            return Random.Range(0,1);
+            return Random.Range(0.0f,1.0f);
         }
     }
 
@@ -204,7 +204,7 @@ public partial class AIController : MonoBehaviour
     {
         angleVariationAI = _angle;
         timeVariationAI = _time;
-        Debug.Log("Angle: " + angleVariationAI + ", Time: " + timeVariationAI);
+        //Debug.Log("Angle: " + angleVariationAI + ", Time: " + timeVariationAI);
     }
 
 }

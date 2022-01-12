@@ -152,6 +152,8 @@ public partial class AIController : MonoBehaviour
     IEnumerator AStarRoutine()
     {
         // Aquí es donde se calcula el timeBeforeJump
+        timeBeforeJump = AIDirector.GetTimeBeforeJump(HumanizationVariationFactor) * timeVariationAI;
+        Debug.Log("Time: " + timeBeforeJump);
 
         aStarSolver.output = null;
         executingAstarSeek = false;
