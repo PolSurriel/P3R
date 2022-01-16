@@ -16,8 +16,30 @@ public class PlayerController : MonoBehaviour
 
     public LineRenderer inputLR;
 
+    public bool ignoreLevel = false;
+    
+    private void Awake()
+    {
+        // cutre pero es para la alpha
 
+       
+        
+        if(GameInfo.instance != null)
+        {
+            if(GameInfo.instance.levelID == 2)
+            {
+                this.enabled = false;
+                Destroy(this);
+            }
 
+            else if (!ignoreLevel && GameInfo.instance.levelID == 3)
+            {
+                this.enabled = false;
+                Destroy(this);
+
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

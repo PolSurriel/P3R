@@ -28,6 +28,8 @@ public class MapController : MonoBehaviour
 
     public List<NodeListWrapper> nodesGlobalMatrix;
 
+    bool closedLevel = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +44,36 @@ public class MapController : MonoBehaviour
 
 
 
-        int numberOfTilemaps = 3;
-        InstantiateTilemap(0);
-        for (int i = 0; i < numberOfTilemaps; i++)
+
+        if(GameInfo.instance == null || GameInfo.instance.levelID == 0 || GameInfo.instance.levelID == 3)
         {
-            InstantiateTilemap(GetRandomTilemapIndex());
+
+            int numberOfTilemaps = 3;
+            InstantiateTilemap(0);
+            for (int i = 0; i < numberOfTilemaps; i++)
+            {
+                InstantiateTilemap(GetRandomTilemapIndex());
+            }
+
+        }else
+        {
+            closedLevel = true;
+            // es cutre pero como el juego final usa randoms es temporal, despues de la entrega lo borramos.
+            int[] level = null;
+
+            if (GameInfo.instance.levelID == 1) {
+                level = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+            }
+            else if (GameInfo.instance.levelID == 2) {
+
+                level = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+            }
+            
+            foreach(var tilemapIndex in level)
+            {
+                InstantiateTilemap(tilemapIndex);
+            }
+
         }
 
 
@@ -83,7 +110,7 @@ public class MapController : MonoBehaviour
 
     void InstantiateTilemap(int index)
     {
-        if (doNotRepeat.Contains(index))
+        if (doNotRepeat.Contains(index) && !closedLevel)
             throw new System.Exception("Tilemap repeated. You cannot instantiate a repeated tilemap until "+MAX_DONOTREPEAT_ITEMS+" (at least) new tilemaps have been instanced since it's last instantiation.)");
 
         doNotRepeat.Enqueue(index);
@@ -106,6 +133,9 @@ public class MapController : MonoBehaviour
         obj.transform.SetParent(this.transform);
 
         totalHeightAcumulated += obj.GetComponent<Tilemap>().size.y * gridSize;
+
+        if (closedLevel)
+            return;
 
         if(enqueuedCount > MAX_DONOTREPEAT_ITEMS)
         {
@@ -133,7 +163,8 @@ public class MapController : MonoBehaviour
 
         if (playerTransform.position.y > totalHeightAcumulated - Camera.main.orthographicSize * 2)
         {
-            InstantiateTilemap(GetRandomTilemapIndex());
+            if(!closedLevel)
+                InstantiateTilemap(GetRandomTilemapIndex());
 
         }
     }

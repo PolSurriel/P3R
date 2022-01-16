@@ -23,6 +23,7 @@ public partial class AIController : MonoBehaviour
         }
     }
 
+    
     [Button]
     void DebugStartAstarPipeline()
     {
@@ -47,9 +48,25 @@ public partial class AIController : MonoBehaviour
 
     public AStarSolver aStarSolver;
 
+
+    private void Awake()
+    {
+        if (GameInfo.instance != null)
+        {
+            if (GameInfo.instance.levelID == 1)
+            {
+                this.enabled = false;
+                Destroy(this);
+                
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        if (!this.enabled)
+            return;
 
         predictionPlayerRadius = GetComponent<CircleCollider2D>().radius * 1.15f;
         runner = GetComponent<Runner>();
@@ -91,8 +108,38 @@ public partial class AIController : MonoBehaviour
     const float TIME_TO_START_CONTROLLING_PLAYER = 1f;
     float timeBeforeJump = 0.15f;
 
+    float timeStuckedCount = 0f;
+    const float MAX_TIME_STUCKED = 4f;
+    Vector2 lastStuckedPosition;
+
     void Update()
     {
+
+        if(timeStuckedCount > MAX_TIME_STUCKED)
+        {
+            Debug.Log("stucked!");
+            runner.jumpCounter = 0;
+            timeStuckedCount = 0f;
+            executingAstarSeek = false;
+            aStarSolver.output = null;
+            StartAStarPipeline();
+        }
+
+        
+        if(lastStuckedPosition == (Vector2)transform.position || (onATreadmill && lastStuckedPosition.x == transform.position.x))
+        {
+            if(onStain)
+                timeStuckedCount += Time.deltaTime*0.5f;
+            else
+                timeStuckedCount += Time.deltaTime;
+        }else
+        {
+            lastStuckedPosition = transform.position;
+            timeStuckedCount = 0f;
+        }
+
+
+
         aStarSolver.movingObstaclesToHandle = FindObjectsOfType<MovingObstacle>();
         aStarSolver.rotatingObstaclesToHandle = FindObjectsOfType<RotatingObstacle>();
 

@@ -10,7 +10,9 @@ public class VariablesTilemap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        var ai = other.GetComponent<AIController>();
+
+        if (ai != null)
             other.GetComponent<AIController>().SetErrorTriggerVariables(angleVariationTrigger, timeVariationTrigger);
     }
 

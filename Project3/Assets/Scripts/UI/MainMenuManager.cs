@@ -9,14 +9,18 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadLevel1()
     {
+        GameInfo.instance.levelID = 1;
         SceneManager.LoadScene(level1);
     }
     public void LoadLevel2()
     {
+        GameInfo.instance.levelID = 2;
         SceneManager.LoadScene(level2);
     }
     public void LoadLevel3()
     {
+
+        GameInfo.instance.levelID = 3;
         SceneManager.LoadScene(level3);
     }
     public void QuitGame()
