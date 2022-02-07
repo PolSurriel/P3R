@@ -68,7 +68,6 @@ public partial class AIController : MonoBehaviour
     void AstarExecutionFixedUpdate()
     {
 
-
         // Si estoy siguiendo un camino
         if (executingAstarSeek)
         {

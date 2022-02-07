@@ -136,7 +136,7 @@ public partial class AIController : MonoBehaviour
             time += timeBeforeJump - timeSinceCalculationStarded + PRECALCULATION_INCREMENT_DELTATIME;
 
             const int steps = 2;
-            const float TIME_INCREMENT = PRECALCULATION_INCREMENT_DELTATIME / (float) steps;
+            const float TIME_INCREMENT = PRECALCULATION_INCREMENT_DELTATIME;
             float timeCheck = time;
 
             var dbprevPos = prevPos;
@@ -144,7 +144,7 @@ public partial class AIController : MonoBehaviour
 
 #if UNITY_EDITOR
             node.ifChoosenDoOnGizmos.Add(()=> {
-                //Debug.DrawLine(dbprevPos, dbnextPos, Color.red);
+                Debug.DrawLine(dbprevPos, dbnextPos, Color.red);
             });
 #endif
 
@@ -401,7 +401,7 @@ public partial class AIController : MonoBehaviour
                         continue;
 
                     // Calculamos la primera posición del salto.
-                    var nextNodePos = inNode.portalSense * jumpPredictor.precalculatedDirections[i * jumpPredictor.iterationsCount + 0] + inNode.position;
+                    var nextNodePos = inNode.portalSense * jumpPredictor.precalculatedDirections[i * jumpPredictor.iterationsCount + PRECALCULATED_POINTS_INCREMENT] + inNode.position;
 
                     // Evaluamos el coste del nodo
                     RaycastHit2D portalHit = Physics2D.Linecast(inNode.position, nextNodePos, layerMaskPortal);
@@ -413,13 +413,6 @@ public partial class AIController : MonoBehaviour
 #endif
                     );
 
-#if UNITY_EDITOR
-                    var copyInNode = inNode;
-                    inNode.ifChoosenDoOnGizmos.Add(() => {
-
-                        Debug.DrawLine(nextNodePos, copyInNode.position, Color.blue);
-                    });
-#endif
 
                     // Si el coste nos indica que no colisiona con ninguna pared ni obstáculo
                     if (cost >= 0)
