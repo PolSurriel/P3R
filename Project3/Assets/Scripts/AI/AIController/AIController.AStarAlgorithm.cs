@@ -5,6 +5,7 @@ using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 using SurrealBoost.Utils;
+using UnityEditor;
 
 
 /*
@@ -77,6 +78,7 @@ public partial class AIController : MonoBehaviour
         void PortalCase(ref AStarNode nextNode,  Vector2 prevPos, ref RaycastHit2D portalHit)
         {
 
+
             if (portalHit)
             {
                 var portal = portalHit.collider.GetComponent<Portal>();
@@ -124,30 +126,54 @@ public partial class AIController : MonoBehaviour
          (Por eso hay un for que incrementa el tiempo)
 
          */
-        bool CollidesWithDynamicObstacle(ref Vector2 nextPos, ref Vector2 prevPos, float time)
+        bool CollidesWithDynamicObstacle(ref Vector2 nextPos, ref Vector2 prevPos, float time
+#if UNITY_EDITOR
+, AStarNode node
+#endif
+        )
         {
 
             time += timeBeforeJump - timeSinceCalculationStarded + PRECALCULATION_INCREMENT_DELTATIME;
 
-            const float TIME_INCREMENT = PRECALCULATION_INCREMENT_DELTATIME;
+            const int steps = 2;
+            const float TIME_INCREMENT = PRECALCULATION_INCREMENT_DELTATIME / (float) steps;
             float timeCheck = time;
 
+            var dbprevPos = prevPos;
+            var dbnextPos = nextPos;
 
-            for (int i = 0; i < 2; i++)
+#if UNITY_EDITOR
+            node.ifChoosenDoOnGizmos.Add(()=> {
+                //Debug.DrawLine(dbprevPos, dbnextPos, Color.red);
+            });
+#endif
+
+            for (int i = 0; i < steps; i++)
             {
 
                 // Actualizamos la info de los colliders para que correspondan
                 // al momento del tiempo simulado
                 foreach (var obstacle in rotatingObstaclesToHandle)
                 {
-                    if(Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius))
+                    var opos = obstacle.GetFuturePosition(timeCheck);
+                    node.ifChoosenDoOnGizmos.Add(() => {
+                        Debug.DrawLine(opos, opos + Vector2.up * 0.2f, Color.green);
+
+
+                    });
+
+                    if (Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius))
+                    {
                         return true;
+                    }
                 }
 
                 foreach (var obstacle in movingObstaclesToHandle)
                 {
                     if(Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius))
+                    {
                         return true;
+                    }
 
                 }
 
@@ -166,7 +192,11 @@ public partial class AIController : MonoBehaviour
         El cast se hace teniendo en consideracion el radio del player.
 
          */
-        float CalculateCost(Vector2 from, ref Vector2 to, float time, ref RaycastHit2D portalHit, bool checkCollision = true)
+        float CalculateCost(Vector2 from, ref Vector2 to, float time, ref RaycastHit2D portalHit,
+#if UNITY_EDITOR
+            AStarNode node,
+#endif
+            bool checkCollision = true)
         {
             
         
@@ -186,7 +216,13 @@ public partial class AIController : MonoBehaviour
 
                     RaycastHit2D wallCast1 = Physics2D.Linecast(from + perp, to + perp, layerMaskPrediction);
                     RaycastHit2D wallCast2 = Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction);
-                    collides = wallCast1 || wallCast2 || CollidesWithDynamicObstacle(ref to, ref from, time);
+                    collides = wallCast1 || wallCast2 || CollidesWithDynamicObstacle(ref to, ref from, time
+
+                    #if UNITY_EDITOR
+                        , node
+                    #endif
+                        );
+
 
 
                     /*
@@ -295,7 +331,14 @@ public partial class AIController : MonoBehaviour
 
                 //extraemos su coste.
                 RaycastHit2D portalHit = Physics2D.Linecast(inNode.position, nextPos, layerMaskPortal);
-                float cost = CalculateCost(inNode.position, ref nextPos, inNode.time, ref portalHit);
+
+
+
+                float cost = CalculateCost(inNode.position, ref nextPos, inNode.time, ref portalHit
+                        #if UNITY_EDITOR
+                            ,inNode
+                        #endif
+                    );
 
                 // Si el coste nos indica que el nodo no colisiona:
                 if(cost >= 0)
@@ -314,6 +357,8 @@ public partial class AIController : MonoBehaviour
                     // Corregimos su infomración si pasa por un portal
                     PortalCase(ref next, inNode.position, ref portalHit);
 
+                   
+                    
                     // Iteramos con el nodo resultante
                     method(next);
                 }
@@ -360,8 +405,22 @@ public partial class AIController : MonoBehaviour
 
                     // Evaluamos el coste del nodo
                     RaycastHit2D portalHit = Physics2D.Linecast(inNode.position, nextNodePos, layerMaskPortal);
-                    float cost = CalculateCost(inNode.position, ref nextNodePos, inNode.time, ref portalHit);
-                    
+
+
+                    float cost = CalculateCost(inNode.position, ref nextNodePos, inNode.time, ref portalHit
+#if UNITY_EDITOR
+                            , inNode
+#endif
+                    );
+
+#if UNITY_EDITOR
+                    var copyInNode = inNode;
+                    inNode.ifChoosenDoOnGizmos.Add(() => {
+
+                        Debug.DrawLine(nextNodePos, copyInNode.position, Color.blue);
+                    });
+#endif
+
                     // Si el coste nos indica que no colisiona con ninguna pared ni obstáculo
                     if (cost >= 0)
                     {
@@ -409,7 +468,12 @@ public partial class AIController : MonoBehaviour
                 // Genero información de nodo
                 var time = 0f;
                 RaycastHit2D portalHit = Physics2D.Linecast(originPosition, position, layerMaskPortal);
-                float cost = CalculateCost(originPosition, ref position, time, ref portalHit, false);
+                float cost = CalculateCost(originPosition, ref position, time, ref portalHit,
+                    #if UNITY_EDITOR
+                        null, // ONLY NULL IF IS FIRST NODE
+                    #endif
+                        false
+                    );
 
                 // Si el coste nos indica que no colisiona con pared/obstaculos
                 if(cost >= 0)

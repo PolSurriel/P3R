@@ -9,12 +9,13 @@ public partial class AIController : MonoBehaviour
     {
 
 
+
         //var color = Color.black;
         //color.a = 0.4f;
         //Handles.color = color;
         //Handles.DrawWireDisc(transform.position, transform.forward, VALID_TARGET_AREA_RADIUS);
 
-        
+
         if (aStarSolver == null)
             return;
 
@@ -26,7 +27,9 @@ public partial class AIController : MonoBehaviour
             int i = 0;
             foreach (var node in aStarSolver.output)
             {
+#if UNITY_EDITOR
                 Handles.Label(node.position, "" + i);
+#endif
                 Debug.DrawLine(lastPos, node.position);
 
                 lastPos = node.position;
@@ -40,13 +43,17 @@ public partial class AIController : MonoBehaviour
                     foreach (var obj in aStarSolver.movingObstaclesToHandle)
                     {
                         var futurePos = obj.GetFuturePosition(node.time - astarSeekTimeCounter);
+#if UNITY_EDITOR
                         Handles.Label(futurePos, "" + i, style);
+#endif
                     }
 
                     foreach (var obj in aStarSolver.rotatingObstaclesToHandle)
                     {
                         var futurePos = obj.GetFuturePosition(node.time-astarSeekTimeCounter);
+#if UNITY_EDITOR
                         Handles.Label(futurePos, "" + i, style);
+#endif
                     }
                 }catch(MissingReferenceException e)
                 {
@@ -63,5 +70,23 @@ public partial class AIController : MonoBehaviour
             Gizmos.DrawWireSphere(aStarGoal.position, GOAL_MIN_DISTANCE);
 
         }
+
+
+#if UNITY_EDITOR
+        if (aStarSolver.output != null)
+            foreach (var node in aStarSolver.output)
+            {
+                foreach (var callback in node.ifChoosenDoOnGizmos)
+                {
+                    callback();
+                }
+            }
+
+        if (currentNode != null)
+            foreach (var callback in currentNode.ifChoosenAndCurrentDoOnGizmos)
+            {
+                callback();
+            }
+#endif
     }
 }

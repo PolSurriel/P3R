@@ -40,6 +40,13 @@ public partial class AIController : MonoBehaviour
 
         }
 
+
+#if UNITY_EDITOR
+        public delegate void IfChoosenDoONGizmos();
+        public List<IfChoosenDoONGizmos> ifChoosenDoOnGizmos = new List<IfChoosenDoONGizmos>();
+        public List<IfChoosenDoONGizmos> ifChoosenAndCurrentDoOnGizmos = new List<IfChoosenDoONGizmos>();
+#endif
+
     }
 
 
