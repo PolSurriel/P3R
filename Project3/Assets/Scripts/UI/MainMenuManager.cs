@@ -7,6 +7,11 @@ public class MainMenuManager : MonoBehaviour
 {
     public SceneReference level1, level2, level3;
 
+    private void Awake()
+    {
+        AudioController.instance.sounds.jump.Play();
+    }
+
     public void LoadLevel1()
     {
         GameInfo.instance.levelID = 1;
