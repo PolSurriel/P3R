@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - floor
+  - portal
+  - treadmill
+  - extraJumpZone
+  - Projectile
+  - exitMolino
   layers:
   - Default
   - TransparentFX
@@ -15,16 +20,16 @@ TagManager:
   - 
   - 
   - floor
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Portal
+  - Player
+  - Trigger
+  - Obstacle
+  - ImaginaryAvoid
+  - Projectile
+  - MovingFloor
+  - MovingObstacle
+  - RaycastNOT
+  - ReboundWall
   - 
   - 
   - 

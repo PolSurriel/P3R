@@ -1,0 +1,4 @@
+{ce1078d7-b5b6-400f-b9e3-2b718c3d67b8} event:/ingame music
+{abfc4582-a0a7-4c6c-96a7-a1c887919264} bus:/
+{b109ea3d-4b4e-4f1b-9109-e6096b3628ef} bus:/Reverb
+{e8f5e093-d329-489a-a4a9-5c58604e8fbf} bank:/Master Bank
