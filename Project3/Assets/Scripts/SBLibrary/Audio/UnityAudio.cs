@@ -74,3 +74,6 @@ public class UnityAudio : SurrealBoost.Audio
         yield break;
     }
 }
+
+
+// Ahora mi volumen es de 0.5, quero pasar a 0.7 de manera smooth
