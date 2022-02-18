@@ -8,7 +8,7 @@ public class UnityAudio : SurrealBoost.Audio
 
     public UnityAudio(string path)
     {
-        audio.clip = Resources.Load<AudioClip>(path);
+        //audio.clip = Resources.Load<AudioClip>(path);
     }
     public override void Clean()
     {

@@ -12,7 +12,7 @@ public class AudioController : MonoBehaviour
         public SurrealBoost.Audio jump = new FMODAudio("event:/FOLEY/jump");
         public SurrealBoost.Audio doubleJump = new FMODAudio("event:/FOLEY/doublejump");
         public SurrealBoost.Audio gameplaySoundtrack = new FMODAudio("event:/MUSIC/ingame music");
-        public SurrealBoost.Audio intro = new UnityAudio("Assets/Resources/Audios/buttonSound.wav");
+        //public SurrealBoost.Audio intro = new UnityAudio("Audios/buttonSound.wav");
     }
 
     public Sounds sounds;

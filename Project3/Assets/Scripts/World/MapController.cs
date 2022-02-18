@@ -4,17 +4,22 @@ using Unity.Jobs;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System;
 
 [RequireComponent(typeof(Grid))]
 public class MapController : MonoBehaviour
 {
     public int numberOfTilemaps;
     public Transform playerTransform;
+    public List<int>[] tilemapsDifficulties;
+    public static int MaxtilemapDifficulty = 6;
+    public static int actualDifficulty = 0;
 
     Queue<int> doNotRepeat;
     Queue<GameObject> tilemapInstances;
     const int MAX_DONOTREPEAT_ITEMS = 1;
     const int MAX_CONCURRENT_TILEMAPS = 5;
+    
 
     GameObject[] tilemaps;
     float totalHeightAcumulated;
@@ -39,10 +44,8 @@ public class MapController : MonoBehaviour
 
         nodeDistance = gridSize / 3f;
 
-
+        InitializeArrayTilemaps();
         LoadTilemaps();
-
-
 
 
         if(GameInfo.instance == null || GameInfo.instance.levelID == 0 || GameInfo.instance.levelID == 3)
@@ -52,7 +55,7 @@ public class MapController : MonoBehaviour
             InstantiateTilemap(0);
             for (int i = 0; i < numberOfTilemaps; i++)
             {
-                InstantiateTilemap(GetRandomTilemapIndex());
+                InstantiateTilemap(GetRandomTilemapIndex(actualDifficulty));
             }
 
         }else
@@ -79,18 +82,18 @@ public class MapController : MonoBehaviour
 
     }
 
-    
 
 
-    int GetRandomTilemapIndex()
+
+    int GetRandomTilemapIndex(int difficulty)
     {
         int result;
-
         do
         {
-            result = Random.Range(1, numberOfTilemaps);
+            // Gets an index from List tilemapsDifficulties
+            result = UnityEngine.Random.Range(0, tilemapsDifficulties[difficulty].Count);
 
-        } while (doNotRepeat.Contains(result));
+        } while (doNotRepeat.Contains(tilemapsDifficulties[difficulty][result]));
 
         return result;
     }
@@ -101,12 +104,18 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < numberOfTilemaps; i++)
         {
             ProjectUtils.LoadTilemap(i);
-
             tilemaps[i] = ProjectUtils.LoadTilemap(i);
+
+            //Lee la array de que dificultades se tiene que poner este tilemap
+            int[] aux = tilemaps[i].GetComponentInChildren<VariablesTilemap>().GetDifficulties();
+            for (int j = 0; j < aux.Length; j++)
+            {
+                // i =  num. tilemap aux[j] = dificultad
+                tilemapsDifficulties[aux[j]].Add(i);
+            }
         }
     }
 
-    
 
     void InstantiateTilemap(int index)
     {
@@ -155,7 +164,6 @@ public class MapController : MonoBehaviour
     }
 
 
-
     // Update is called once per frame
     void Update()
     {
@@ -164,8 +172,17 @@ public class MapController : MonoBehaviour
         if (playerTransform.position.y > totalHeightAcumulated - Camera.main.orthographicSize * 2)
         {
             if(!closedLevel)
-                InstantiateTilemap(GetRandomTilemapIndex());
+                InstantiateTilemap(GetRandomTilemapIndex(actualDifficulty));
 
+        }
+    }
+
+    void InitializeArrayTilemaps()
+    {
+        tilemapsDifficulties = new List<int>[MaxtilemapDifficulty];
+        for(int i=0; i<tilemapsDifficulties.Length; i++)
+        {
+            tilemapsDifficulties[i] = new List<int>();
         }
     }
 }

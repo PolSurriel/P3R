@@ -6,6 +6,7 @@ public class VariablesTilemap : MonoBehaviour
 {
     [SerializeField] private float angleVariationTrigger;
     [SerializeField] private float timeVariationTrigger;
+    [SerializeField] private int[] difficulties = { 0 };
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -15,5 +16,8 @@ public class VariablesTilemap : MonoBehaviour
         if (ai != null)
             other.GetComponent<AIController>().SetErrorTriggerVariables(angleVariationTrigger, timeVariationTrigger);
     }
-
+    public int[] GetDifficulties()
+    {
+        return difficulties;
+    }
 }
