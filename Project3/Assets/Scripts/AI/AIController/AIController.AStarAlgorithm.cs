@@ -139,14 +139,42 @@ public partial class AIController : MonoBehaviour
             const float TIME_INCREMENT = PRECALCULATION_INCREMENT_DELTATIME;
             float timeCheck = time;
 
-            var dbprevPos = prevPos;
-            var dbnextPos = nextPos;
 
 #if UNITY_EDITOR
+
+            var dbprevPos = prevPos;
+            var dbnextPos = nextPos;
             node.ifChoosenDoOnGizmos.Add(()=> {
                 Debug.DrawLine(dbprevPos, dbnextPos, Color.red);
+
             });
 #endif
+
+            Vector2 deltaPos = nextPos - prevPos;
+            var deltaMovementLine = new SurrealBoost.Types.Line() { pointA = prevPos, pointB = nextPos };
+
+            if (deltaPos.y < 0f)
+            {
+                foreach (var transitionline in TransitionLine.lines)
+                {
+                    if (transitionline.fillsAllXAxis)
+                    {
+                        if (transitionline.pointA.y > nextPos.y)
+                        {
+                            return true;
+                        }
+
+                    }else
+                    {
+                        if (Intersection2D.lineLine(transitionline.line, deltaMovementLine).result)
+                        {
+                            return true;
+                        }
+
+                    }
+
+                }
+            }
 
             for (int i = 0; i < steps; i++)
             {
@@ -167,6 +195,7 @@ public partial class AIController : MonoBehaviour
                         return true;
                     }
                 }
+
 
                 foreach (var obstacle in movingObstaclesToHandle)
                 {

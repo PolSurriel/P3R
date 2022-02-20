@@ -10,6 +10,7 @@ TagManager:
   - extraJumpZone
   - Projectile
   - exitMolino
+  - transitionLine
   layers:
   - Default
   - TransparentFX

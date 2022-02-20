@@ -191,6 +191,48 @@ public class Runner : MonoBehaviour
         {
             jumpCounter = 0;
         }
+
+        if (!usingPortal)
+        {
+            if (floorCollisionEnabled && collision.CompareTag("transitionLine"))
+            {
+                if(rb.velocity.y < 0f)
+                    CollideWithFloorTransition(collision);
+            }
+
+        }
+
+
+    }
+
+
+    void CollideWithFloorTransition(Collider2D collider)
+    {
+        jumpCounter = 0;
+        ResetFloorCollision();
+        Vector2 contact = collider.ClosestPoint(transform.position);
+        contactToSurfaceDirection = ((Vector2)transform.position-contact).normalized;
+        
+        transform.position = contact + contactToSurfaceDirection * playerRadius;
+
+        rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
+
+    }
+
+
+    void CollideWithFloor(Collision2D collision)
+    {
+        jumpCounter = 0;
+        ResetFloorCollision();
+        contactToSurfaceDirection = collision.contacts[0].normal.normalized;
+        Vector2 contact = collision.contacts[0].point;
+
+        transform.position = contact + contactToSurfaceDirection * playerRadius;
+
+        rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -200,17 +242,7 @@ public class Runner : MonoBehaviour
         {
             if (floorCollisionEnabled && collision.collider.CompareTag("floor"))
             {
-                jumpCounter = 0;
-                ResetFloorCollision();
-                contactToSurfaceDirection = collision.contacts[0].normal.normalized;
-                Vector2 contact = collision.contacts[0].point; 
-
-                transform.position = contact + contactToSurfaceDirection * playerRadius;
-
-                rb.isKinematic = true;
-                rb.velocity = Vector2.zero;
-
-
+                CollideWithFloor(collision);
             }
 
         }
