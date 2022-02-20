@@ -13,7 +13,8 @@ Una vez la ia llega a ese punto, saltará.
 
 public partial class AIController : MonoBehaviour
 {
-    bool onATreadmill = false;
+    [HideInInspector]
+    public bool onATreadmill = false;
     Vector2 treadMillTarget;
 
     void TreadmilleUpdate()

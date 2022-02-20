@@ -7,8 +7,12 @@ public class Runner : MonoBehaviour
     public Rigidbody2D rb;
     float jumpMagnitude = 10f;
 
-    float playerRadius; 
-    Vector2 contactToSurfaceDirection;
+    float playerRadius;
+    [HideInInspector]
+    public Vector2 contactToSurfaceDirection;
+    [HideInInspector]
+
+    public Treadmill treadmill;
 
 
     public bool onStain;
@@ -29,7 +33,8 @@ public class Runner : MonoBehaviour
         lastVelocity = rb.velocity;
     }
 
-    bool onATreadmill = false;
+    [HideInInspector]
+    public bool onATreadmill = false;
     public void EnterOnATreadmill()
     {
         onATreadmill = true;
@@ -47,7 +52,7 @@ public class Runner : MonoBehaviour
     {
         playerRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
-        
+
     }
 
     const int STAIN_TIMES_TO_JUMP = 2;
@@ -57,7 +62,7 @@ public class Runner : MonoBehaviour
     {
         stainJumpsCounter++;
 
-        if(stainJumpsCounter >= STAIN_TIMES_TO_JUMP)
+        if (stainJumpsCounter >= STAIN_TIMES_TO_JUMP)
         {
             onStain = false;
         }
@@ -76,7 +81,7 @@ public class Runner : MonoBehaviour
     {
 
 
-        
+
     }
 
     public SpriteRenderer aspect;
@@ -96,6 +101,7 @@ public class Runner : MonoBehaviour
 
         if (onATreadmill)
         {
+            treadmill.playersIn.Remove(this);
             ignoreTreadmill = true;
             StartCoroutine(IgnoreTreadmill());
             onATreadmill = false;
@@ -103,14 +109,14 @@ public class Runner : MonoBehaviour
             rb.gravityScale = 1f;
         }
 
-        if( jumpCounter >= 2)
+        if (jumpCounter >= 2)
         {
             CantJumpFeedback();
             return;
-        }else if(jumpCounter == 0)
+        } else if (jumpCounter == 0)
         {
             AudioController.instance.sounds.jump.Play();
-        }else
+        } else
         {
             AudioController.instance.sounds.doubleJump.Play();
 
@@ -139,7 +145,7 @@ public class Runner : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.AddForce(direction.normalized * jumpMagnitude * forcePercentage, ForceMode2D.Impulse);
 
-        transform.position = transform.position + (Vector3)(contactToSurfaceDirection*0.1f);
+        transform.position = transform.position + (Vector3)(contactToSurfaceDirection * 0.1f);
 
         jumpDirection = direction;
 
@@ -168,7 +174,7 @@ public class Runner : MonoBehaviour
     IEnumerator WaitAndEnableFloorCollision(float time)
     {
         float tc = 0f;
-        do { yield return null; } 
+        do { yield return null; }
         while ((tc += Time.deltaTime) < time);
 
         floorCollisionEnabled = true;
@@ -181,7 +187,7 @@ public class Runner : MonoBehaviour
         StartCoroutine(WaitAndEnableFloorCollision(0.3f));
     }
 
-    
+
     [HideInInspector]
     public int jumpCounter;
 
@@ -196,7 +202,7 @@ public class Runner : MonoBehaviour
         {
             if (floorCollisionEnabled && collision.CompareTag("transitionLine"))
             {
-                if(rb.velocity.y < 0f)
+                if (rb.velocity.y < 0f)
                     CollideWithFloorTransition(collision);
             }
 
@@ -205,6 +211,8 @@ public class Runner : MonoBehaviour
 
     }
 
+
+    
 
     void CollideWithFloorTransition(Collider2D collider)
     {
@@ -244,6 +252,8 @@ public class Runner : MonoBehaviour
             {
                 CollideWithFloor(collision);
             }
+
+            
 
         }
 
