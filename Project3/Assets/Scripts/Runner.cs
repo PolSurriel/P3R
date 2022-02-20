@@ -219,12 +219,17 @@ public class Runner : MonoBehaviour
         jumpCounter = 0;
         ResetFloorCollision();
         Vector2 contact = collider.ClosestPoint(transform.position);
-        contactToSurfaceDirection = ((Vector2)transform.position-contact).normalized;
-        
-        transform.position = contact + contactToSurfaceDirection * playerRadius;
+        if (contact.y < collider.bounds.max.y)
+            contact.y = collider.bounds.max.y;
 
+        contactToSurfaceDirection = Vector2.up;
         rb.isKinematic = true;
         rb.velocity = Vector2.zero;
+        
+
+
+        transform.position = contact + Vector2.up * playerRadius;
+
 
     }
 
