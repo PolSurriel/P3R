@@ -57,7 +57,7 @@ public class PlayerAspect : MonoBehaviour
     {
         if(state == State.JUMP)
         {
-            transform.up = rb.velocity;
+            transform.up = ((Vector2)transform.up + rb.velocity * Time.deltaTime).normalized;
             sr.flipX = rb.velocity.x > 0f;
         }else
         {
