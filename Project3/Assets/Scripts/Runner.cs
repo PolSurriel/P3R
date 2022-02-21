@@ -13,7 +13,7 @@ public class Runner : MonoBehaviour
     [HideInInspector]
 
     public Treadmill treadmill;
-
+    public PlayerAspect aspect;
 
     public bool onStain;
 
@@ -40,6 +40,8 @@ public class Runner : MonoBehaviour
         onATreadmill = true;
         rb.gravityScale = 0f;
         rb.isKinematic = true;
+        aspect.SetAnimation(PlayerAspect.State.WALL);
+        aspect.SetFlipX(rb.velocity.x < 0f);
     }
 
     public void EnterOnStain()
@@ -52,6 +54,7 @@ public class Runner : MonoBehaviour
     {
         playerRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
+        aspect.rb = rb;
 
     }
 
@@ -84,7 +87,6 @@ public class Runner : MonoBehaviour
 
     }
 
-    public SpriteRenderer aspect;
 
     public bool ignoreTreadmill = false;
 
@@ -98,6 +100,9 @@ public class Runner : MonoBehaviour
 
     public void Jump(Vector2 direction, float forcePercentage = 1f)
     {
+
+
+        aspect.SetAnimation(PlayerAspect.State.JUMP);
 
         if (onATreadmill)
         {
@@ -216,6 +221,7 @@ public class Runner : MonoBehaviour
 
     void CollideWithFloorTransition(Collider2D collider)
     {
+        aspect.SetAnimation(PlayerAspect.State.FLOOR);
         jumpCounter = 0;
         ResetFloorCollision();
         Vector2 contact = collider.ClosestPoint(transform.position);
@@ -236,10 +242,24 @@ public class Runner : MonoBehaviour
 
     void CollideWithFloor(Collision2D collision)
     {
+
+        
         jumpCounter = 0;
         ResetFloorCollision();
         contactToSurfaceDirection = collision.contacts[0].normal.normalized;
         Vector2 contact = collision.contacts[0].point;
+
+
+        if (contactToSurfaceDirection.y == 1f)
+        {
+            aspect.SetAnimation(PlayerAspect.State.FLOOR);
+
+        }else
+        {
+            aspect.SetAnimation(PlayerAspect.State.WALL);
+            aspect.SetFlipX(contactToSurfaceDirection.x > 0f);
+
+        }
 
         transform.position = contact + contactToSurfaceDirection * playerRadius;
 
@@ -257,8 +277,9 @@ public class Runner : MonoBehaviour
             {
                 CollideWithFloor(collision);
             }
-
             
+
+
 
         }
 
