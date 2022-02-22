@@ -1321,7 +1321,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.9228187
+  orthographic size: 3.5618374
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2307,7 +2307,7 @@ PrefabInstance:
     - target: {fileID: 5743855340870037602, guid: 90f43b26cc9e941c09c29ef9ab1f0ad1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -28.360046
+      value: -28.360107
       objectReference: {fileID: 0}
     - target: {fileID: 5743855340870037602, guid: 90f43b26cc9e941c09c29ef9ab1f0ad1,
         type: 3}
@@ -2481,7 +2481,7 @@ Transform:
   m_GameObject: {fileID: 1637875271}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1097087269}
   m_RootOrder: 1
@@ -2531,7 +2531,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.98, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2570,8 +2570,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   floor: {fileID: -9197134654715703934, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
-  jump: {fileID: -3245826588181596406, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
-  wall: {fileID: 8818229234267686252, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
+  floor2: {fileID: -3245826588181596406, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
+  jump: {fileID: -5991360266443149873, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
+  jump2: {fileID: 8818498191572356106, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
+  jump3: {fileID: -8025230655740070909, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
+  wall: {fileID: 6572534960254962694, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
 --- !u!224 &1847601566 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5743855340870037602, guid: 90f43b26cc9e941c09c29ef9ab1f0ad1,
