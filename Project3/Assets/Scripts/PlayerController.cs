@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
 
+            GetComponent<AIController>().enabled = false;
+
             Vector2 worldPosition1 = Camera.main.ScreenToWorldPoint(mousePressFirstPos);
             Vector2 worldPosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

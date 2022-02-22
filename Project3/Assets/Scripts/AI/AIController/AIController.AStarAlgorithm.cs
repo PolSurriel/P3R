@@ -184,11 +184,12 @@ public partial class AIController : MonoBehaviour
                 foreach (var obstacle in rotatingObstaclesToHandle)
                 {
                     var opos = obstacle.GetFuturePosition(timeCheck);
+#if UNITY_EDITOR
                     node.ifChoosenDoOnGizmos.Add(() => {
                         Debug.DrawLine(opos, opos + Vector2.up * 0.2f, Color.green);
-
-
                     });
+#endif
+
 
                     if (Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius))
                     {
@@ -247,9 +248,9 @@ public partial class AIController : MonoBehaviour
                     RaycastHit2D wallCast2 = Physics2D.Linecast(from - perp, to - perp, layerMaskPrediction);
                     collides = wallCast1 || wallCast2 || CollidesWithDynamicObstacle(ref to, ref from, time
 
-                    #if UNITY_EDITOR
+#if UNITY_EDITOR
                         , node
-                    #endif
+#endif
                         );
 
 
@@ -364,9 +365,9 @@ public partial class AIController : MonoBehaviour
 
 
                 float cost = CalculateCost(inNode.position, ref nextPos, inNode.time, ref portalHit
-                        #if UNITY_EDITOR
+#if UNITY_EDITOR
                             ,inNode
-                        #endif
+#endif
                     );
 
                 // Si el coste nos indica que el nodo no colisiona:
@@ -491,9 +492,9 @@ public partial class AIController : MonoBehaviour
                 var time = 0f;
                 RaycastHit2D portalHit = Physics2D.Linecast(originPosition, position, layerMaskPortal);
                 float cost = CalculateCost(originPosition, ref position, time, ref portalHit,
-                    #if UNITY_EDITOR
+#if UNITY_EDITOR
                         null, // ONLY NULL IF IS FIRST NODE
-                    #endif
+#endif
                         false
                     );
 
