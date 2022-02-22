@@ -60,7 +60,14 @@ public class PlayerAspect : MonoBehaviour
                 break;
             case State.JUMP:
 
-                jumpSelected = Random.Range(0,3);
+                if (Mathf.Abs(lastFrameVelocity.x) > Mathf.Abs(lastFrameVelocity.y))
+                {
+                    jumpSelected = Random.Range(0,3);
+
+                }else
+                {
+                    jumpSelected = Random.Range(0, 2);
+                }
 
                 switch (jumpSelected)
                 {
