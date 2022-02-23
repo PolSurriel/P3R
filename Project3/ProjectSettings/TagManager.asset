@@ -10,6 +10,7 @@ TagManager:
   - extraJumpZone
   - Projectile
   - exitMolino
+  - AI_Player
   layers:
   - Default
   - TransparentFX

@@ -16,18 +16,23 @@ public class MainMenuManager : MonoBehaviour
     {
         GameInfo.instance.levelID = 1;
         SceneManager.LoadScene(level1);
+
+        GameInfo.instance.InitPlayers();
     }
     public void LoadLevel2()
     {
         GameInfo.instance.levelID = 2;
         SceneManager.LoadScene(level2);
+
+        GameInfo.instance.InitPlayers();
     }
     public void LoadLevel3()
     {
-
         // TODO: to debug has changed levelID to 2 instead of 3
-        GameInfo.instance.levelID = 2;
+        GameInfo.instance.levelID = 4;
         SceneManager.LoadScene(level3);
+
+        GameInfo.instance.InitPlayers();
     }
     public void QuitGame()
     {

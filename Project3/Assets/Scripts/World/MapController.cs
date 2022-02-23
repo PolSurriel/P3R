@@ -47,8 +47,10 @@ public class MapController : MonoBehaviour
         InitializeArrayTilemaps();
         LoadTilemaps();
 
+        playerTransform = GameInfo.instance.player.transform;
 
-        if(GameInfo.instance == null || GameInfo.instance.levelID == 0 || GameInfo.instance.levelID == 3)
+
+        if (GameInfo.instance == null || GameInfo.instance.levelID == 0 || GameInfo.instance.levelID == 3)
         {
 
             int numberOfTilemaps = 3;
@@ -67,7 +69,7 @@ public class MapController : MonoBehaviour
             if (GameInfo.instance.levelID == 1) {
                 level = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
             }
-            else if (GameInfo.instance.levelID == 2) {
+            else if (GameInfo.instance.levelID == 2 || GameInfo.instance.levelID == 4) {
 
                 level = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
             }
