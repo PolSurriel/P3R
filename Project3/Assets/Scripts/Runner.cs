@@ -1,5 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 
 public class Runner : MonoBehaviour
@@ -51,6 +55,7 @@ public class Runner : MonoBehaviour
         stainJumpsCounter = 0;
         onStain = true;
     }
+
 
     private void Start()
     {
@@ -169,9 +174,17 @@ public class Runner : MonoBehaviour
         return jumpMagnitude;
     }
 
+
+
     Vector2 jumpDirection;
     private void OnDrawGizmos()
     {
+
+#if UNITY_EDITOR
+            //Debug.DrawLine(transform.position, (Vector2)transform.position + contactToSurfaceDirection.normalized * 0.5f);
+            //Handles.Label((Vector2)transform.position + Vector2.one * 0.5f, "" + jumpCounter);
+
+#endif
         //Debug.DrawLine(transform.position, transform.position + (Vector3) jumpDirection * 100f, new Color(0f, 1f, 0f, 0.3f));
         //Debug.DrawLine(transform.position, transform.position + (Vector3) GetComponent<Rigidbody2D>().velocity, new Color(1f, 0f, 0f, 0.3f));
     }
@@ -197,6 +210,14 @@ public class Runner : MonoBehaviour
 
     [HideInInspector]
     public int jumpCounter;
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("transitionLine") || collision.collider.CompareTag("floor"))
+        {
+            jumpCounter = 0;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [HideInInspector]
-    public bool usingPrecalculatedUI = true;
+    bool usingPrecalculatedUI = true;
 
     public AnimationCurve reduceInputMagnitude;
 
@@ -45,9 +45,33 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
 
+    void SetupInitialInputVector()
+    {
+        initialInputVector = Vector2.zero;
+
+        if (usingPrecalculatedUI)
+        {
+            int its = 0;
+            while (Vector2.Distance(FindEndPosWiht(initialInputVector), transform.position) > 0.1f)
+            {
+                if (its++ > 99999)
+                {
+                    Debug.LogError("infiniteLoop");
+                    break;
+                }
+
+                initialInputVector += Vector2.up * 0.1f;
+            }
+
+        }
+    }
+
+    Vector2 initialInputVector;
+
     // Start is called before the first frame update
     void Start()
     {
+        
 
         rb = GetComponent<Rigidbody2D>();
         //precalculator = new ClassicPredictionSystem(rb, true);
@@ -89,23 +113,30 @@ public class PlayerController : MonoBehaviour
 
         Vector2 currentPos = transform.position;
 
-        float totalTime = uiSimulationTime;
+        float totalTime = usingPrecalculatedUI ? uiSimulationTime : 0.2f;
         float dt = totalTime / (float)uipoints.Count;
         float itdt = itdt = dt / 10f;
 
         float magnitude = Mathf.Min(inputVector.magnitude, MAX_INPUT_LENGHT) / MAX_INPUT_LENGHT;
         magnitude = runner.jumpMagnitude * magnitude;
         Vector2 currentVelocity = inputVector.normalized * magnitude;
-      
-        foreach(var point in uipoints)
+
+        float inputmag = (inputVector - initialInputVector).magnitude;
+        float alpha = Mathf.Min(inputmag * 3f, 0.7f);
+
+        foreach (var point in uipoints)
         {
             for (int i = 0; i < 10; i++)
             {
-                currentVelocity += (Vector2)Physics.gravity * itdt;
+                if (usingPrecalculatedUI)
+                {
+                    currentVelocity += (Vector2)Physics.gravity * itdt;
+                }
                 currentPos += currentVelocity * itdt;
             }
             point.transform.position = currentPos;
 
+            point.color = new Color(1f, 1f, 1f, alpha);
             point.enabled = true;
         }
     }
@@ -116,6 +147,35 @@ public class PlayerController : MonoBehaviour
         {
             point.enabled = false;
         }
+    }
+
+    Vector2 FindEndPosWiht(Vector2 inputVector)
+    {
+
+        Vector2 currentPos = transform.position;
+
+        float totalTime = usingPrecalculatedUI ? uiSimulationTime : 0.2f;
+        float dt = totalTime / (float)uipoints.Count;
+        float itdt = itdt = dt / 10f;
+
+        float magnitude = Mathf.Min(inputVector.magnitude, MAX_INPUT_LENGHT) / MAX_INPUT_LENGHT;
+        magnitude = runner.jumpMagnitude * magnitude;
+        Vector2 currentVelocity = inputVector.normalized * magnitude;
+
+        foreach (var point in uipoints)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (usingPrecalculatedUI)
+                {
+                    currentVelocity += (Vector2)Physics.gravity * itdt;
+                }
+                currentPos += currentVelocity * itdt;
+            }
+
+        }
+
+        return currentPos;
     }
 
     // Update is called once per frame
@@ -137,7 +197,7 @@ public class PlayerController : MonoBehaviour
 
             pressingMouse = false;
             runner.Jump(inputVector, magnitude / MAX_INPUT_LENGHT);
-            inputLR.SetPosition(1, Vector2.zero);
+
 
             HideCurveUI();
         }
@@ -147,16 +207,16 @@ public class PlayerController : MonoBehaviour
             firstDragInputIteration = true;
             pressingMouse = true;
             mousePressFirstPos = Input.mousePosition;
-            inputVector = Vector2.zero;
-            
+            inputVector = initialInputVector;
+            tmpLastInputPos = Vector2.zero;
+
         }
 
         Vector2 currentInput = Input.mousePosition;
 
         if (pressingMouse)
         {
-            if(usingPrecalculatedUI)
-                UpdateCurveUI();
+            UpdateCurveUI();
 
             if (!firstDragInputIteration)
             {
@@ -166,7 +226,7 @@ public class PlayerController : MonoBehaviour
             }
 
             tmpLastInputPos = Input.mousePosition;
-            firstDragInputIteration = false;
+            
 
             
 
@@ -176,10 +236,14 @@ public class PlayerController : MonoBehaviour
                 inputVector = inputVector.normalized * MAX_INPUT_LENGHT;
             }
 
-            if(!usingPrecalculatedUI)
-                inputLR.SetPosition(1, inputVector*2f);
+            if (firstDragInputIteration)
+            {
+                SetupInitialInputVector();
+                inputVector = initialInputVector;
+            }
 
-            
+            firstDragInputIteration = false;
+
         }
 
     }
