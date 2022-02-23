@@ -82,12 +82,14 @@ public class PlayerController : MonoBehaviour
 
     ClassicPredictionSystem precalculator;
 
+    [HideInInspector]
+    public float uiSimulationTime = 0.8f;
     void UpdateCurveUI()
     {
 
         Vector2 currentPos = transform.position;
 
-        const float totalTime = 1f;
+        float totalTime = uiSimulationTime;
         float dt = totalTime / (float)uipoints.Count;
         float itdt = itdt = dt / 10f;
 
@@ -99,7 +101,7 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                currentVelocity += (Vector2)Physics.gravity * itdt * rb.gravityScale;
+                currentVelocity += (Vector2)Physics.gravity * itdt;
                 currentPos += currentVelocity * itdt;
             }
             point.transform.position = currentPos;
@@ -159,7 +161,8 @@ public class PlayerController : MonoBehaviour
             if (!firstDragInputIteration)
             {
                 Vector2 deltaMove = currentInput - tmpLastInputPos;
-                inputVector += deltaMove*0.005f;
+                inputVector += deltaMove*0.003f;
+                //inputVector += deltaMove*0.005f;
             }
 
             tmpLastInputPos = Input.mousePosition;
