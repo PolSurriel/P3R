@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Runner))]
 public class PlayerController : MonoBehaviour
 {
+    [HideInInspector]
+    public bool usingPrecalculatedUI = true;
 
     public AnimationCurve reduceInputMagnitude;
 
@@ -41,9 +43,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        rb = GetComponent<Rigidbody2D>();
+        //precalculator = new ClassicPredictionSystem(rb, true);
+
+        float scale = 0.07f;
+
+        for (int i = 0; i < inputLR.transform.childCount; i++)
+        {
+            var toAdd = inputLR.transform.GetChild(i).GetComponent<SpriteRenderer>();
+
+            toAdd.enabled = false;
+            toAdd.transform.localScale = new Vector3(scale, scale, 1f);
+            scale -= 0.005f;
+            uipoints.Add(toAdd);
+        }
+
+        uipoints.Reverse();
 
         runner = GetComponent<Runner>();
     }
@@ -57,6 +78,43 @@ public class PlayerController : MonoBehaviour
 
     Vector2 inputVector;
 
+    List<SpriteRenderer> uipoints = new List<SpriteRenderer>();
+
+    ClassicPredictionSystem precalculator;
+
+    void UpdateCurveUI()
+    {
+
+        Vector2 currentPos = transform.position;
+
+        const float totalTime = 1f;
+        float dt = totalTime / (float)uipoints.Count;
+        float itdt = itdt = dt / 10f;
+
+        float magnitude = Mathf.Min(inputVector.magnitude, MAX_INPUT_LENGHT) / MAX_INPUT_LENGHT;
+        magnitude = runner.jumpMagnitude * magnitude;
+        Vector2 currentVelocity = inputVector.normalized * magnitude;
+      
+        foreach(var point in uipoints)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                currentVelocity += (Vector2)Physics.gravity * itdt * rb.gravityScale;
+                currentPos += currentVelocity * itdt;
+            }
+            point.transform.position = currentPos;
+
+            point.enabled = true;
+        }
+    }
+
+    void HideCurveUI()
+    {
+        foreach (var point in uipoints)
+        {
+            point.enabled = false;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -79,7 +137,7 @@ public class PlayerController : MonoBehaviour
             runner.Jump(inputVector, magnitude / MAX_INPUT_LENGHT);
             inputLR.SetPosition(1, Vector2.zero);
 
-            
+            HideCurveUI();
         }
 
         if (!pressingMouse && Input.GetMouseButtonDown(0))
@@ -88,13 +146,16 @@ public class PlayerController : MonoBehaviour
             pressingMouse = true;
             mousePressFirstPos = Input.mousePosition;
             inputVector = Vector2.zero;
-
+            
         }
 
         Vector2 currentInput = Input.mousePosition;
 
         if (pressingMouse)
         {
+            if(usingPrecalculatedUI)
+                UpdateCurveUI();
+
             if (!firstDragInputIteration)
             {
                 Vector2 deltaMove = currentInput - tmpLastInputPos;
@@ -112,7 +173,8 @@ public class PlayerController : MonoBehaviour
                 inputVector = inputVector.normalized * MAX_INPUT_LENGHT;
             }
 
-            inputLR.SetPosition(1, inputVector*2f);
+            if(!usingPrecalculatedUI)
+                inputLR.SetPosition(1, inputVector*2f);
 
             
         }

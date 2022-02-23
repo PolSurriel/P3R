@@ -5,7 +5,9 @@ using UnityEngine;
 public class Runner : MonoBehaviour
 {
     public Rigidbody2D rb;
-    float jumpMagnitude = 10f;
+    
+    [HideInInspector]
+    public float jumpMagnitude = 10f;
 
     float playerRadius;
     [HideInInspector]

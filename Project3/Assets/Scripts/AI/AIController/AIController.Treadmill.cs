@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,7 +58,14 @@ public partial class AIController : MonoBehaviour
             }
         }
 
-        treadMillTarget = candidates[Random.Range(0, candidates.Count)];
+        try
+        {
+            treadMillTarget = candidates[UnityEngine.Random.Range(0, candidates.Count)];
+
+        }catch(ArgumentOutOfRangeException e)
+        {
+
+        }
         
         
     }

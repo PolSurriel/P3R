@@ -11,19 +11,38 @@ public class ClassicPredictionSystem
     protected Rigidbody2D rbCopy;
     static int lastID = 0;
 
-    public ClassicPredictionSystem(Rigidbody2D _rb)
+    public class SelfCreationCheck : MonoBehaviour { }
+
+    public ClassicPredictionSystem(Rigidbody2D _rb, bool selfCreatonLoopCheck = false)
     {
         rb = _rb;
+
+        SelfCreationCheck sfcc;
+        if (selfCreatonLoopCheck)
+        {
+            sfcc = rb.GetComponent<SelfCreationCheck>();
+
+            if(sfcc != null)
+            {
+                return; // we don't want to replicate the object again!
+            }
+
+            rb.gameObject.AddComponent<SelfCreationCheck>();
+
+        }
+
 
         Physics.autoSimulation = false;
 
         CreateSceneParameters sceneParameters = new CreateSceneParameters(LocalPhysicsMode.Physics2D);
         predictionScene = SceneManager.CreateScene("PredictionTest" + lastID++, sceneParameters);
         predictionPhysicsScene = predictionScene.GetPhysicsScene2D();
-
+        
         rbCopy = GameObject.Instantiate(rb.gameObject).GetComponent<Rigidbody2D>();
+
         SceneManager.MoveGameObjectToScene(rbCopy.gameObject, predictionScene);
 
+        
     }
 
     public void CloseSimulation()
@@ -32,8 +51,15 @@ public class ClassicPredictionSystem
 
     }
 
+    public bool IsDuplicated()
+    {
+        return rbCopy == null;
+    }
+
     public List<Vector2> SimulateImpulse(Vector2 force, float time, int iterations, bool resetVelocity = false)
     {
+      
+
         rbCopy.transform.position = rb.transform.position;
         if (resetVelocity)
             rbCopy.velocity = Vector2.zero;
