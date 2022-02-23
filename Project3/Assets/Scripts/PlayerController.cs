@@ -22,8 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         // cutre pero es para la alpha
 
-       
-        
+        return;
         if(GameInfo.instance != null)
         {
             if(GameInfo.instance.levelID == 2)

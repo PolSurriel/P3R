@@ -156,11 +156,14 @@ public partial class AIController : MonoBehaviour
                 foreach (var obstacle in rotatingObstaclesToHandle)
                 {
                     var opos = obstacle.GetFuturePosition(timeCheck);
+#if UNITY_EDITOR
                     node.ifChoosenDoOnGizmos.Add(() => {
                         Debug.DrawLine(opos, opos + Vector2.up * 0.2f, Color.green);
 
 
                     });
+#endif
+
 
                     if (Intersection2D.LineCircle(prevPos, nextPos, obstacle.GetFuturePosition(timeCheck), obstacle.colliderRadius))
                     {

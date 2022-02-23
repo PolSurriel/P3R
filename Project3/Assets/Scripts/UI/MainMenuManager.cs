@@ -9,7 +9,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
-        AudioController.instance.sounds.jump.Play();
+        //AudioController.instance.sounds.jump.Play();
     }
 
     public void LoadLevel1()
@@ -25,7 +25,8 @@ public class MainMenuManager : MonoBehaviour
     public void LoadLevel3()
     {
 
-        GameInfo.instance.levelID = 3;
+        // TODO: to debug has changed levelID to 2 instead of 3
+        GameInfo.instance.levelID = 2;
         SceneManager.LoadScene(level3);
     }
     public void QuitGame()
