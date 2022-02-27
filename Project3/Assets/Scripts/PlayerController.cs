@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         initialInputVector = Vector2.zero;
 
-        if (usingPrecalculatedUI)
+        if (usingPrecalculatedUI && !runner.wallup)
         {
             int its = 0;
             while (Vector2.Distance(FindEndPosWiht(initialInputVector), transform.position) > 0.1f)
@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 currentPos = transform.position;
 
-        float totalTime = usingPrecalculatedUI ? uiSimulationTime : 0.2f;
+        float totalTime = usingPrecalculatedUI && !runner.wallup ? uiSimulationTime : 0.6f;
         float dt = totalTime / (float)uipoints.Count;
         float itdt = itdt = dt / 10f;
 
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                if (usingPrecalculatedUI)
+                if (usingPrecalculatedUI && !runner.wallup)
                 {
                     currentVelocity += (Vector2)Physics.gravity * itdt;
                 }
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 currentPos = transform.position;
 
-        float totalTime = usingPrecalculatedUI ? uiSimulationTime : 0.2f;
+        float totalTime = usingPrecalculatedUI && !runner.wallup ? uiSimulationTime : 0.6f;
         float dt = totalTime / (float)uipoints.Count;
         float itdt = itdt = dt / 10f;
 
@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                if (usingPrecalculatedUI)
+                if (usingPrecalculatedUI && !runner.wallup)
                 {
                     currentVelocity += (Vector2)Physics.gravity * itdt;
                 }
@@ -207,7 +207,10 @@ public class PlayerController : MonoBehaviour
             firstDragInputIteration = true;
             pressingMouse = true;
             mousePressFirstPos = Input.mousePosition;
+
             inputVector = initialInputVector;
+
+
             tmpLastInputPos = Vector2.zero;
 
         }
@@ -240,6 +243,7 @@ public class PlayerController : MonoBehaviour
             {
                 SetupInitialInputVector();
                 inputVector = initialInputVector;
+                
             }
 
             firstDragInputIteration = false;

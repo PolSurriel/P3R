@@ -269,17 +269,23 @@ public class Runner : MonoBehaviour
     [HideInInspector]
     public bool edgeWallDown = false;
 
+    [HideInInspector]
+    public bool wallup;
     void CollideWithFloor(Collision2D collision)
     {
-        
-        
+
+        wallup = false;
         jumpCounter = 0;
         ResetFloorCollision();
         contactToSurfaceDirection = collision.contacts[0].normal.normalized;
         Vector2 contact = collision.contacts[0].point;
 
+        if(contactToSurfaceDirection.y == -1f)
+        {
+            wallup = true;
+            aspect.SetAnimation(PlayerAspect.State.WALLUP);
 
-        if (contactToSurfaceDirection.y == 1f)
+        } else if (contactToSurfaceDirection.y == 1f)
         {
             aspect.SetAnimation(PlayerAspect.State.FLOOR);
 

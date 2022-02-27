@@ -41,6 +41,7 @@ public class PlayerAnimationController : MonoBehaviour
         public SpriteAnimationManager.SpriteAnimation jump2;
         public SpriteAnimationManager.SpriteAnimation jump3;
         public SpriteAnimationManager.SpriteAnimation wall;
+        public SpriteAnimationManager.SpriteAnimation wallup;
         public SpriteAnimationManager.SpriteAnimation wall_edge;
         public SpriteAnimationManager.SpriteAnimation wall_edge_eye_moved;
         public SpriteAnimationManager.SpriteAnimation wall_eye_moved;
@@ -101,7 +102,9 @@ public class PlayerAnimationController : MonoBehaviour
     const float wall_edgeScale = wallScale;
     const float wall_edge_eye_movedScale = wallScale;
     const float wall_eye_movedScale = wallScale;
+    const float wall_upScale = defaultScale;
 
+    public void Play_wallup              () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(wall_upScale, wall_upScale, 1f);                              accessory1SR.transform.localScale = new Vector3(wall_upScale, wall_upScale, 1f);                               baseSR.transform.localScale = new Vector3(wall_upScale, wall_upScale, 1f);                              suitSR.transform.localScale = new Vector3(wall_upScale, wall_upScale, 1f);                              previousBaseAnimationPlaying = baseAnimations.wallup.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.wallup.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.wallup.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.wallup.RestartPlay(this); }
     public void Play_floor1              () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f);                                accessory1SR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f);                                 baseSR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f);                                suitSR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f);                                previousBaseAnimationPlaying = baseAnimations.floor1.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor1.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor1.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor1.RestartPlay(this); }
     public void Play_floor2              () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f);                                accessory1SR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f);                                 baseSR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f);                                suitSR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f);                                previousBaseAnimationPlaying = baseAnimations.floor2.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor2.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor2.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor2.RestartPlay(this);}
     public void Play_floor3              () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f);                                accessory1SR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f);                                 baseSR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f);                                suitSR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f);                                previousBaseAnimationPlaying = baseAnimations.floor3.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor3.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor3.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor3.RestartPlay(this);}
@@ -185,6 +188,7 @@ public class PlayerAnimationController : MonoBehaviour
         slot.jump2 = SpriteAnimationManager.Load(target, path + "ch3rig-jump2");
         slot.jump3 = SpriteAnimationManager.Load(target, path + "ch3rig-jump3");
         slot.wall = SpriteAnimationManager.Load(target, path + "ch3rig-wall");
+        slot.wallup = SpriteAnimationManager.Load(target, path + "ch3rig-wallup");
         slot.wall_edge = SpriteAnimationManager.Load(target, path + "ch3rig-wall-edge");
         slot.wall_edge_eye_moved = SpriteAnimationManager.Load(target, path + "ch3rig-wall-edge-eye-moved");
         slot.wall_eye_moved = SpriteAnimationManager.Load(target, path + "ch3rig-wall-eye-moved");
@@ -192,6 +196,7 @@ public class PlayerAnimationController : MonoBehaviour
 
 
         slot.floor1.speed = 1f;
+        slot.wallup.speed = 1f;
         slot.floor2.speed = 1f;
         slot.floor3.speed = 1f;
         slot.floor4.speed = 1f;

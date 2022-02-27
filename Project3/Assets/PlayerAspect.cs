@@ -22,7 +22,8 @@ public class PlayerAspect : MonoBehaviour
     {
         FLOOR,
         JUMP,
-        WALL
+        WALL,
+        WALLUP
     }
 
     public void SetFlipX(bool flip)
@@ -59,9 +60,15 @@ public class PlayerAspect : MonoBehaviour
 
         switch (state)
         {
+
+            case State.WALLUP:
+                animationController.Play_wallup();
+                break;
+
             case State.FLOOR:
 
 
+                
                 // RIGHT
                 if (Vector2.Dot(transform.up, Vector2.right) >= 0.25f)
                 {
@@ -145,6 +152,8 @@ public class PlayerAspect : MonoBehaviour
                 }
                 break;
             case State.WALL:
+
+                
                 if (runner.edgeWallUp)
                 {
                     animationController.Play_wall_edge();
