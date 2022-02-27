@@ -17,6 +17,24 @@ MonoBehaviour:
   Max: 100
   Default: 0
   Exists: 0
+--- !u!114 &-8652023114927296890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/Build/Desktop/Master Bank.bank
+  SubDir: 
+  lastModified: 637812220554626332
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-8551193381489490426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,7 +68,7 @@ MonoBehaviour:
   Path: event:/FOLEY/jump
   guid: 087463e226302745840513e6b635f884
   Banks:
-  - {fileID: -1551453351309065961}
+  - {fileID: -8652023114927296890}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -112,13 +130,13 @@ MonoBehaviour:
   Path: event:/MUSIC/ingame music
   guid: d77810ceb6b50f40b9e32b718c3d67b8
   Banks:
-  - {fileID: -1551453351309065961}
+  - {fileID: -8652023114927296890}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -712613822125508327}
-  - {fileID: 1241328934520636020}
+  - {fileID: 4078717122309848150}
+  - {fileID: 7255641125142251221}
   MinDistance: 0
   MaxDistance: 0
   Length: 96052
@@ -323,7 +341,7 @@ MonoBehaviour:
   lastModified: 637812215526683726
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-937143640398654004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,7 +393,7 @@ MonoBehaviour:
   Min: 0
   Max: 4
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-159174927473832734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,17 +443,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 4582147371547256262}
-  - {fileID: -1551453351309065961}
+  - {fileID: -8652023114927296890}
   EditorEvents:
   - {fileID: -8030967594325107587}
   - {fileID: 4105637892671684049}
   - {fileID: -6192160620797420149}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -1551453351309065961}
+  - {fileID: -8652023114927296890}
   StringsBanks:
   - {fileID: 4582147371547256262}
-  stringsBankWriteTime: 637812215526693734
+  stringsBankWriteTime: 637812220554626332
   cacheVersion: 3
 --- !u!114 &1241328934520636020
 MonoBehaviour:
@@ -453,7 +471,7 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &2427867126255365778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +506,23 @@ MonoBehaviour:
   Max: 4
   Default: 0
   Exists: 1
+--- !u!114 &4078717122309848150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/layering
+  m_EditorClassIdentifier: 
+  Name: layering
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 1
 --- !u!114 &4105637892671684049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,7 +538,7 @@ MonoBehaviour:
   Path: event:/FOLEY/doublejump
   guid: 38f07885e377964bb8b87630b420996e
   Banks:
-  - {fileID: -1551453351309065961}
+  - {fileID: -8652023114927296890}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -525,7 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../FMODProject/Build/Desktop/Master Bank.strings.bank
   SubDir: 
-  lastModified: 637812215526693734
+  lastModified: 637812220554626332
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -644,6 +679,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &7255641125142251221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/volume
+  m_EditorClassIdentifier: 
+  Name: volume
+  Min: 0
+  Max: 100
+  Default: 0
+  Exists: 1
 --- !u!114 &7481502933384699986
 MonoBehaviour:
   m_ObjectHideFlags: 0

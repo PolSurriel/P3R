@@ -7,6 +7,9 @@ public class PlayerAspect : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rb;
 
+    [HideInInspector]
+    public Runner runner;
+
     public Sprite floor;
     public Sprite floor2;
     public Sprite jump;
@@ -29,9 +32,20 @@ public class PlayerAspect : MonoBehaviour
 
     SpriteRenderer sr;
 
+    PlayerAnimationController animationController;
+
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        animationController = GetComponent<PlayerAnimationController>();
+
+        animationController.baseSkin = "Yellow";
+        animationController.suitSkin = "Default";
+        animationController.accessory1Skin = "Default";
+        animationController.accessory2Skin = "Default";
+        animationController.LoadAnimations();
+
+
     }
 
     State state;
@@ -42,21 +56,64 @@ public class PlayerAspect : MonoBehaviour
     {
         this.state = state;
 
+
         switch (state)
         {
             case State.FLOOR:
 
-                if(transform.up.y < 0f && lastFrameVelocity.normalized.y < -0.5f)
-                {
-                    sr.sprite = floor2;
 
-                }else
+                // RIGHT
+                if (Vector2.Dot(transform.up, Vector2.right) >= 0.25f)
                 {
-                    sr.sprite = floor;
+                    if (sr.flipX)
+                    {
+                        animationController.Play_floor4();
+
+                    }
+                    else
+                    {
+                        animationController.Play_floor5();
+
+                    }
+
+                }
+                // UP
+                else if(Vector2.Dot(transform.up, Vector2.up) >= 0.25f)
+                {
+                    if(Random.RandomRange(0f, 1f)< 0.5f)
+                    {
+                        animationController.Play_floor1();
+
+                    }else
+                    {
+                        animationController.Play_floor3();
+                    }
+                }
+
+                // DONW
+                else if(Vector2.Dot(transform.up, Vector2.down) >= 0.25f)
+                {
+                    animationController.Play_floor2();
 
                 }
 
                 
+                else
+                {
+                    if (!sr.flipX)
+                    {
+                        animationController.Play_floor4();
+
+                    }
+                    else
+                    {
+                        animationController.Play_floor5();
+
+                    }
+
+                }
+
+
                 break;
             case State.JUMP:
 
@@ -69,22 +126,35 @@ public class PlayerAspect : MonoBehaviour
                     jumpSelected = Random.Range(0, 2);
                 }
 
+
                 switch (jumpSelected)
                 {
                     case 0:
-                        sr.sprite = jump;
+                        animationController.Play_jump1();
+                        //sr.sprite = jump;
                         break;
                     case 1:
-                        sr.sprite = jump2;
+                        animationController.Play_jump2();
+                        //sr.sprite = jump2;
                         transform.up = rb.velocity.normalized;
                         break;
                     case 2:
-                        sr.sprite = jump3;
+                        animationController.Play_jump3();
+                        //sr.sprite = jump3;
                         break;
                 }
                 break;
             case State.WALL:
-                sr.sprite = wall;
+                if (runner.edgeWallUp)
+                {
+                    animationController.Play_wall_edge();
+                }
+                else
+                {
+                    animationController.Play_wall();
+
+                }
+                //sr.sprite = wall;
                 break;
             default:
                 break;
@@ -109,6 +179,31 @@ public class PlayerAspect : MonoBehaviour
                 case 0:
                     transform.up = ((Vector2)transform.up + rb.velocity * Time.deltaTime).normalized;
                     sr.flipX = rb.velocity.x > 0f;
+
+                    float speed = rb.velocity.magnitude;
+
+                    if(speed > 2f)
+                    {
+                        animationController.SetJump1Speed(1f);
+                    }else
+                    {
+                        animationController.SetJump1Speed(speed* (1f/2f));
+                    }
+
+                    float dot = Vector2.Dot(rb.velocity.normalized, transform.up);
+                    if (dot < 0.1f)
+                    {
+                        var prev = transform.up;
+                        // Rotate faster
+                        transform.up = ((Vector2)transform.up + rb.velocity*3f * Time.deltaTime).normalized;
+                        
+                        if(prev == transform.up)
+                        {
+                            transform.up = ((Vector2)transform.up + (sr.flipX ? Vector2.right: Vector2.left) * 3f * Time.deltaTime).normalized;
+                        }
+
+                    }
+
                     break;
                 case 1:
                     float sense = rb.velocity.x > 0f ? -1f : 1f;
@@ -125,6 +220,7 @@ public class PlayerAspect : MonoBehaviour
         {
             transform.right = Vector3.right;
         }
+
     }
 
 }

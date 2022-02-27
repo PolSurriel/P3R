@@ -62,6 +62,7 @@ public class Runner : MonoBehaviour
         playerRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
         aspect.rb = rb;
+        aspect.runner = this;
 
     }
 
@@ -262,10 +263,15 @@ public class Runner : MonoBehaviour
 
     }
 
+    [HideInInspector]
+    public bool edgeWallUp = false;
+
+    [HideInInspector]
+    public bool edgeWallDown = false;
 
     void CollideWithFloor(Collision2D collision)
     {
-
+        
         
         jumpCounter = 0;
         ResetFloorCollision();
@@ -279,6 +285,14 @@ public class Runner : MonoBehaviour
 
         }else
         {
+            float offset = 0.3f;
+
+            Vector2 posUp = (Vector2)transform.position + Vector2.up * 0.1f;
+            edgeWallUp = !Physics2D.Linecast(posUp + Vector2.left * offset, posUp + Vector2.right * offset, LayerMask.GetMask("floor"));
+
+            Vector2 posDown = (Vector2)transform.position + Vector2.down * 0.1f;
+            edgeWallDown = !Physics2D.Linecast(posDown + Vector2.left * offset, posDown + Vector2.right * offset, LayerMask.GetMask("floor"));
+
             aspect.SetAnimation(PlayerAspect.State.WALL);
             aspect.SetFlipX(contactToSurfaceDirection.x > 0f);
 
