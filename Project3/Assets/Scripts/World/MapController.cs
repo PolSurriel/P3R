@@ -85,7 +85,7 @@ public class MapController : MonoBehaviour
    
     
 
-    int GetRandomTilemapIndex()
+    int GetRandomTilemapIndex(int difficulty)
     {
         int result;
         do
