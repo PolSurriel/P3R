@@ -105,11 +105,11 @@ public class BackgroundController : MonoBehaviour
     {
         foreach(Transform child in backgrounds.transform)
         {
-            float maxDistance = camera.transform.position.y - camLength - 2* child.GetComponent<SpriteRenderer>().bounds.size.y;
+            float maxDistance = camera.transform.position.y - camLength - 2f* child.GetComponent<SpriteRenderer>().bounds.size.y;
             if(child.position.y < maxDistance)
             {
                 // Cambiar Sprite y recolocarlo
-                child.GetComponent<SpriteRenderer>().sprite = allFrontsSprites[doNotRepeat.Peek()];
+                child.GetComponent<SpriteRenderer>().sprite = allBackgroundsSprites[doNotRepeat.Peek()];
                 doNotRepeat.Dequeue();
                 child.transform.position = lastBackgroundChanged.transform.position + new Vector3(0,lastBackgroundChanged.GetComponent<SpriteRenderer>().bounds.size.y / 2 + child.GetComponent<SpriteRenderer>().bounds.size.y /2,0);
                 lastBackgroundChanged = child.gameObject;
@@ -117,13 +117,13 @@ public class BackgroundController : MonoBehaviour
         }
         foreach(Transform child in mids.transform)
         {
-            float maxDistance = camera.transform.position.y - camLength - 2* child.GetComponent<SpriteRenderer>().bounds.size.y;
+            float maxDistance = camera.transform.position.y - camLength - 2f* child.GetComponent<SpriteRenderer>().bounds.size.y;
             if(child.position.y < maxDistance)
             {
                 // Cambiar Sprite y recolocarlo
-                child.GetComponent<SpriteRenderer>().sprite = allFrontsSprites[doNotRepeat.Peek()];
+                child.GetComponent<SpriteRenderer>().sprite = allMidsSprites[doNotRepeat.Peek()];
                 doNotRepeat.Dequeue();
-                child.transform.position = lastMidChanged.transform.position + new Vector3(0,lastBackgroundChanged.GetComponent<SpriteRenderer>().bounds.size.y / 2 + child.GetComponent<SpriteRenderer>().bounds.size.y / 2,0);
+                child.transform.position = lastMidChanged.transform.position + new Vector3(0,lastMidChanged.GetComponent<SpriteRenderer>().bounds.size.y / 2 + child.GetComponent<SpriteRenderer>().bounds.size.y / 2,0);
                 lastMidChanged = child.gameObject;
             }
         }
@@ -135,7 +135,7 @@ public class BackgroundController : MonoBehaviour
                 // Cambiar Sprite y recolocarlo
                 child.GetComponent<SpriteRenderer>().sprite = allFrontsSprites[doNotRepeat.Peek()];
                 doNotRepeat.Dequeue();
-                child.transform.position = lastFrontChanged.transform.position + new Vector3(0,(lastBackgroundChanged.GetComponent<SpriteRenderer>().bounds.size.y / 2) + (child.GetComponent<SpriteRenderer>().bounds.size.y / 2) ,0);
+                child.transform.position = lastFrontChanged.transform.position + new Vector3(0,(lastFrontChanged.GetComponent<SpriteRenderer>().bounds.size.y / 2) + (child.GetComponent<SpriteRenderer>().bounds.size.y / 2) ,0);
                 lastFrontChanged = child.gameObject;
             }
         }
