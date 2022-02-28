@@ -44,7 +44,19 @@ public class SpriteAnimationManager
 
         if(result.sprites.Count == 0)
         {
-            Debug.LogError("Animation not found for: "+path);
+
+            if (path.Contains("/Default/"))
+            {
+                //load empty sprite
+                var sprite = (Resources.Load("Animation/SUIT/Default/ch3rig-floor1_000", typeof(Sprite)) as Sprite);
+                result.sprites.Add(sprite);
+            }
+            else
+            {
+                Debug.LogError("Animation not found for: "+path);
+
+            }
+
         }
 
 

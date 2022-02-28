@@ -1,0 +1,13 @@
+
+wall.png
+size: 381,502
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ch3rig-wall_0
+  rotate: false
+  xy: 2, 2
+  size: 377, 498
+  orig: 500, 500
+  offset: 58, 1
+  index: -1

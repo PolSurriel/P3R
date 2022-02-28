@@ -1,0 +1,60 @@
+{ "skeleton": { "images": "C:/Users/psurr/Downloads/images/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "Capa 5", "bone": "root" },
+	{ "name": "Arm-B", "bone": "root", "attachment": "Arm-B" },
+	{ "name": "Leg-B", "bone": "root", "attachment": "Leg-B" },
+	{ "name": "Capa 7", "bone": "root", "attachment": "Capa 7" },
+	{ "name": "Leg-A", "bone": "root", "attachment": "Leg-A" },
+	{ "name": "Ponytail", "bone": "root", "attachment": "Ponytail" },
+	{ "name": "Arm-A", "bone": "root", "attachment": "Arm-A" },
+	{ "name": "Eye", "bone": "root", "attachment": "Eye" },
+	{ "name": "Pupil", "bone": "root", "attachment": "Pupil" },
+	{ "name": "Eye detail", "bone": "root", "attachment": "Eye detail" },
+	{ "name": "Bottom Eyelid", "bone": "root", "attachment": "Bottom Eyelid" },
+	{ "name": "Capa 4", "bone": "root", "attachment": "Capa 4" }
+],
+"skins": {
+	"default": {
+		"Capa 5": {
+			"Capa 5": { "x": 2657.5, "y": -2657.5, "width": 5317, "height": 5317 }
+		},
+		"Capa 3": {
+			"Capa 3": { "x": 1110, "y": -2966.5, "width": 1872, "height": 2007 }
+		},
+		"Leg-B": {
+			"Leg-B": { "x": 1802, "y": -4518, "width": 866, "height": 1276 }
+		},
+		"Capa 7": {
+			"Capa 7": { "x": 2821, "y": -2840, "width": 4774, "height": 4536 }
+		},
+		"Leg-A": {
+			"Leg-A": { "x": 2868, "y": -4518.5, "width": 1100, "height": 1263 }
+		},
+		"Ponytail": {
+			"Ponytail": { "x": 3492.5, "y": -1016.5, "width": 3439, "height": 879 }
+		},
+		"Arm-A": {
+			"Arm-A": { "x": 4006, "y": -2822.5, "width": 1908, "height": 2093 }
+		},
+		"Eye": {
+			"Eye": { "x": 1406.5, "y": -1935, "width": 1891, "height": 1488 }
+		},
+		"Pupil": {
+			"Pupil": { "x": 1751.5, "y": -1823, "width": 277, "height": 518 }
+		},
+		"Eye detail": {
+			"Eye detail": { "x": 1783, "y": -1727, "width": 98, "height": 98 }
+		},
+		"Bottom Eyelid": {
+			"Bottom Eyelid": { "x": 1378.5, "y": -2485.5, "width": 1581, "height": 387 }
+		},
+		"Capa 4": {
+			"Capa 4": { "x": 1438, "y": -1955.5, "width": 1828, "height": 1415 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

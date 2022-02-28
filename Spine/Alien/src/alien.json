@@ -1,0 +1,40 @@
+{ "skeleton": { "images": "C:/Users/psurr/Creative Cloud Files/images/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "Body", "bone": "root", "attachment": "Body" },
+	{ "name": "Leg-A", "bone": "root", "attachment": "Leg-A" },
+	{ "name": "Leg-B", "bone": "root", "attachment": "Leg-B" },
+	{ "name": "Ponytail", "bone": "root", "attachment": "Ponytail" },
+	{ "name": "Arm-A", "bone": "root", "attachment": "Arm-A" },
+	{ "name": "Eye", "bone": "root", "attachment": "Eye" },
+	{ "name": "Pupil", "bone": "root", "attachment": "Pupil" }
+],
+"skins": {
+	"default": {
+		"Body": {
+			"Body": { "x": 2338, "y": -2678, "width": 3726, "height": 3534 }
+		},
+		"Leg-A": {
+			"Leg-A": { "x": 2979, "y": -4445.5, "width": 940, "height": 1259 }
+		},
+		"Leg-B": {
+			"Leg-B": { "x": 1811.5, "y": -4353, "width": 825, "height": 1240 }
+		},
+		"Ponytail": {
+			"Ponytail": { "x": 3233, "y": -1075.5, "width": 3014, "height": 899 }
+		},
+		"Arm-A": {
+			"Arm-A": { "x": 3276, "y": -2790.5, "width": 1380, "height": 2067 }
+		},
+		"Eye": {
+			"Eye": { "x": 1413.5, "y": -1963.5, "width": 1877, "height": 1431 }
+		},
+		"Pupil": {
+			"Pupil": { "x": 1123.5, "y": -1692, "width": 335, "height": 510 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

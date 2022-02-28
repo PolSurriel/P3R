@@ -182,7 +182,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-      
+
+
 
         if (Input.GetMouseButtonUp(0))
         {

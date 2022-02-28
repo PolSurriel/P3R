@@ -27,6 +27,11 @@ public class PlayerAnimationController : MonoBehaviour
 
     struct SkinAnimation
     {
+        public SpriteAnimationManager.SpriteAnimation floor1_transition;
+        public SpriteAnimationManager.SpriteAnimation floor2_transition;
+        public SpriteAnimationManager.SpriteAnimation floor3_transition;
+        public SpriteAnimationManager.SpriteAnimation floor4_transition;
+        public SpriteAnimationManager.SpriteAnimation floor5_transition;
         public SpriteAnimationManager.SpriteAnimation floor1;
         public SpriteAnimationManager.SpriteAnimation floor2;
         public SpriteAnimationManager.SpriteAnimation floor3;
@@ -63,7 +68,7 @@ public class PlayerAnimationController : MonoBehaviour
     
     void StopPrevious()
     {
-        pendingToExecuteWall = false;
+        nextAnimationCallbackID = (nextAnimationCallbackID + 1) % int.MaxValue;
         try
         {
             StopCoroutine(previousBaseAnimationPlaying);
@@ -80,15 +85,21 @@ public class PlayerAnimationController : MonoBehaviour
         previousAccessory2AnimationPlaying = null;
     }
 
-    bool pendingToExecuteWall = false;
 
 
     const float defaultScale = 0.6f;
-    const float floor1Scale = 0.48f;
+    const float floor1Scale = 0.50f;
     const float floor2Scale = 0.62f;
-    const float floor3Scale = 0.53f;
-    const float floor4Scale = 0.67f;
-    const float floor5Scale = 0.74f;
+    const float floor3Scale = 0.57f;
+    const float floor4Scale = 0.70f;
+    const float floor5Scale = 0.58f;
+
+
+    const float floor1TScale = 0.57f;
+    const float floor2TScale = 0.715f;
+    const float floor3TScale = 0.57f;
+    const float floor4TScale = 0.88f;
+    const float floor5TScale = 0.59f;
     const float floor1_eye_movedScaleScale = floor1Scale;
     const float floor2_eye_movedScaleScale = floor2Scale;
     const float floor3_eye_movedScaleScale = floor3Scale;
@@ -104,12 +115,14 @@ public class PlayerAnimationController : MonoBehaviour
     const float wall_eye_movedScale = wallScale;
     const float wall_upScale = defaultScale;
 
+
+    // THIS CODE IS AUTO GENERATED, DO NOT TRY TO UNDERSTAND IT. READ SCRIPTER CODE INSTED.
+    public void Play_floor1() { StopPrevious(); int callbackID = GetCallbackID(); baseSR.transform.localScale = new Vector3(floor1TScale, floor1TScale, 1f); suitSR.transform.localScale = new Vector3(floor1TScale, floor1TScale, 1f); accessory1SR.transform.localScale = new Vector3(floor1TScale, floor1TScale, 1f); accessory2SR.transform.localScale = new Vector3(floor1TScale, floor1TScale, 1f); previousBaseAnimationPlaying = baseAnimations.floor1_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { baseSR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f); previousBaseAnimationPlaying = baseAnimations.floor1.RestartPlay(this); } }); previousSuiteAnimationPlaying = suitAnimations.wall_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { suitSR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f); previousSuiteAnimationPlaying = suitAnimations.floor1.RestartPlay(this); } }); previousAccessory1AnimationPlaying = accessory1Animations.floor1_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { accessory1SR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f); previousAccessory1AnimationPlaying = accessory1Animations.floor1.RestartPlay(this); } }); previousAccessory2AnimationPlaying = accessory2Animations.floor1_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { accessory2SR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f); previousAccessory2AnimationPlaying = accessory2Animations.floor1.RestartPlay(this); } }); }
+    public void Play_floor2() { StopPrevious(); int callbackID = GetCallbackID(); baseSR.transform.localScale = new Vector3(floor2TScale, floor2TScale, 1f); suitSR.transform.localScale = new Vector3(floor2TScale, floor2TScale, 1f); accessory1SR.transform.localScale = new Vector3(floor2TScale, floor2TScale, 1f); accessory2SR.transform.localScale = new Vector3(floor2TScale, floor2TScale, 1f); previousBaseAnimationPlaying = baseAnimations.floor2_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { baseSR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f); previousBaseAnimationPlaying = baseAnimations.floor2.RestartPlay(this); } }); previousSuiteAnimationPlaying = suitAnimations.wall_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { suitSR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f); previousSuiteAnimationPlaying = suitAnimations.floor2.RestartPlay(this); } }); previousAccessory1AnimationPlaying = accessory1Animations.floor2_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { accessory1SR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f); previousAccessory1AnimationPlaying = accessory1Animations.floor2.RestartPlay(this); } }); previousAccessory2AnimationPlaying = accessory2Animations.floor2_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { accessory2SR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f); previousAccessory2AnimationPlaying = accessory2Animations.floor2.RestartPlay(this); } }); }
+    public void Play_floor3() { StopPrevious(); int callbackID = GetCallbackID(); baseSR.transform.localScale = new Vector3(floor3TScale, floor3TScale, 1f); suitSR.transform.localScale = new Vector3(floor3TScale, floor3TScale, 1f); accessory1SR.transform.localScale = new Vector3(floor3TScale, floor3TScale, 1f); accessory2SR.transform.localScale = new Vector3(floor3TScale, floor3TScale, 1f); previousBaseAnimationPlaying = baseAnimations.floor3_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { baseSR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f); previousBaseAnimationPlaying = baseAnimations.floor3.RestartPlay(this); } }); previousSuiteAnimationPlaying = suitAnimations.wall_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { suitSR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f); previousSuiteAnimationPlaying = suitAnimations.floor3.RestartPlay(this); } }); previousAccessory1AnimationPlaying = accessory1Animations.floor3_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { accessory1SR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f); previousAccessory1AnimationPlaying = accessory1Animations.floor3.RestartPlay(this); } }); previousAccessory2AnimationPlaying = accessory2Animations.floor3_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { accessory2SR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f); previousAccessory2AnimationPlaying = accessory2Animations.floor3.RestartPlay(this); } }); }
+    public void Play_floor4() { StopPrevious(); int callbackID = GetCallbackID(); baseSR.transform.localScale = new Vector3(floor4TScale, floor4TScale, 1f); suitSR.transform.localScale = new Vector3(floor4TScale, floor4TScale, 1f); accessory1SR.transform.localScale = new Vector3(floor4TScale, floor4TScale, 1f); accessory2SR.transform.localScale = new Vector3(floor4TScale, floor4TScale, 1f); previousBaseAnimationPlaying = baseAnimations.floor4_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { baseSR.transform.localScale = new Vector3(floor4Scale, floor4Scale, 1f); previousBaseAnimationPlaying = baseAnimations.floor4.RestartPlay(this); } }); previousSuiteAnimationPlaying = suitAnimations.wall_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { suitSR.transform.localScale = new Vector3(floor4Scale, floor4Scale, 1f); previousSuiteAnimationPlaying = suitAnimations.floor4.RestartPlay(this); } }); previousAccessory1AnimationPlaying = accessory1Animations.floor4_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { accessory1SR.transform.localScale = new Vector3(floor4Scale, floor4Scale, 1f); previousAccessory1AnimationPlaying = accessory1Animations.floor4.RestartPlay(this); } }); previousAccessory2AnimationPlaying = accessory2Animations.floor4_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { accessory2SR.transform.localScale = new Vector3(floor4Scale, floor4Scale, 1f); previousAccessory2AnimationPlaying = accessory2Animations.floor4.RestartPlay(this); } }); }
+    public void Play_floor5() { StopPrevious(); int callbackID = GetCallbackID(); baseSR.transform.localScale = new Vector3(floor5TScale, floor5TScale, 1f); suitSR.transform.localScale = new Vector3(floor5TScale, floor5TScale, 1f); accessory1SR.transform.localScale = new Vector3(floor5TScale, floor5TScale, 1f); accessory2SR.transform.localScale = new Vector3(floor5TScale, floor5TScale, 1f); previousBaseAnimationPlaying = baseAnimations.floor5_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { baseSR.transform.localScale = new Vector3(floor5Scale, floor5Scale, 1f); previousBaseAnimationPlaying = baseAnimations.floor5.RestartPlay(this); } }); previousSuiteAnimationPlaying = suitAnimations.wall_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { suitSR.transform.localScale = new Vector3(floor5Scale, floor5Scale, 1f); previousSuiteAnimationPlaying = suitAnimations.floor5.RestartPlay(this); } }); previousAccessory1AnimationPlaying = accessory1Animations.floor5_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { accessory1SR.transform.localScale = new Vector3(floor5Scale, floor5Scale, 1f); previousAccessory1AnimationPlaying = accessory1Animations.floor5.RestartPlay(this); } }); previousAccessory2AnimationPlaying = accessory2Animations.floor5_transition.PlayOnce(this, () => { if (nextAnimationCallbackID == callbackID) { accessory2SR.transform.localScale = new Vector3(floor5Scale, floor5Scale, 1f); previousAccessory2AnimationPlaying = accessory2Animations.floor5.RestartPlay(this); } }); }
     public void Play_wallup              () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(wall_upScale, wall_upScale, 1f);                              accessory1SR.transform.localScale = new Vector3(wall_upScale, wall_upScale, 1f);                               baseSR.transform.localScale = new Vector3(wall_upScale, wall_upScale, 1f);                              suitSR.transform.localScale = new Vector3(wall_upScale, wall_upScale, 1f);                              previousBaseAnimationPlaying = baseAnimations.wallup.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.wallup.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.wallup.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.wallup.RestartPlay(this); }
-    public void Play_floor1              () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f);                                accessory1SR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f);                                 baseSR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f);                                suitSR.transform.localScale = new Vector3(floor1Scale, floor1Scale, 1f);                                previousBaseAnimationPlaying = baseAnimations.floor1.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor1.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor1.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor1.RestartPlay(this); }
-    public void Play_floor2              () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f);                                accessory1SR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f);                                 baseSR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f);                                suitSR.transform.localScale = new Vector3(floor2Scale, floor2Scale, 1f);                                previousBaseAnimationPlaying = baseAnimations.floor2.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor2.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor2.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor2.RestartPlay(this);}
-    public void Play_floor3              () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f);                                accessory1SR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f);                                 baseSR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f);                                suitSR.transform.localScale = new Vector3(floor3Scale, floor3Scale, 1f);                                previousBaseAnimationPlaying = baseAnimations.floor3.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor3.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor3.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor3.RestartPlay(this);}
-    public void Play_floor4              () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor4Scale, floor4Scale, 1f);                                accessory1SR.transform.localScale = new Vector3(floor4Scale, floor4Scale, 1f);                                 baseSR.transform.localScale = new Vector3(floor4Scale, floor4Scale, 1f);                                suitSR.transform.localScale = new Vector3(floor4Scale, floor4Scale, 1f);                                previousBaseAnimationPlaying = baseAnimations.floor4.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor4.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor4.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor4.RestartPlay(this);}
-    public void Play_floor5              () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor5Scale, floor5Scale, 1f);                                accessory1SR.transform.localScale = new Vector3(floor5Scale, floor5Scale, 1f);                                 baseSR.transform.localScale = new Vector3(floor5Scale, floor5Scale, 1f);                                suitSR.transform.localScale = new Vector3(floor5Scale, floor5Scale, 1f);                                previousBaseAnimationPlaying = baseAnimations.floor5.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor5.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor5.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor5.RestartPlay(this);}
     public void Play_floor1_eye_moved    () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor1_eye_movedScaleScale, floor1_eye_movedScaleScale, 1f);  accessory1SR.transform.localScale = new Vector3(floor1_eye_movedScaleScale, floor1_eye_movedScaleScale, 1f);   baseSR.transform.localScale = new Vector3(floor1_eye_movedScaleScale, floor1_eye_movedScaleScale, 1f);  suitSR.transform.localScale = new Vector3(floor1_eye_movedScaleScale, floor1_eye_movedScaleScale, 1f);  previousBaseAnimationPlaying = baseAnimations.floor1_eye_moved.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor1_eye_moved.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor1_eye_moved.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor1_eye_moved.RestartPlay(this);}
     public void Play_floor2_eye_moved    () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor2_eye_movedScaleScale, floor2_eye_movedScaleScale, 1f);  accessory1SR.transform.localScale = new Vector3(floor2_eye_movedScaleScale, floor2_eye_movedScaleScale, 1f);   baseSR.transform.localScale = new Vector3(floor2_eye_movedScaleScale, floor2_eye_movedScaleScale, 1f);  suitSR.transform.localScale = new Vector3(floor2_eye_movedScaleScale, floor2_eye_movedScaleScale, 1f);  previousBaseAnimationPlaying = baseAnimations.floor2_eye_moved.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor2_eye_moved.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor2_eye_moved.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor2_eye_moved.RestartPlay(this);}
     public void Play_floor3_eye_moved    () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(floor3_eye_movedScaleScale, floor3_eye_movedScaleScale, 1f);  accessory1SR.transform.localScale = new Vector3(floor3_eye_movedScaleScale, floor3_eye_movedScaleScale, 1f);   baseSR.transform.localScale = new Vector3(floor3_eye_movedScaleScale, floor3_eye_movedScaleScale, 1f);  suitSR.transform.localScale = new Vector3(floor3_eye_movedScaleScale, floor3_eye_movedScaleScale, 1f);  previousBaseAnimationPlaying = baseAnimations.floor3_eye_moved.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.floor3_eye_moved.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.floor3_eye_moved.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.floor3_eye_moved.RestartPlay(this);}
@@ -121,9 +134,23 @@ public class PlayerAnimationController : MonoBehaviour
     public void Play_wall_edge           () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(wall_edgeScale, wall_edgeScale, 1f);                          accessory1SR.transform.localScale = new Vector3(wall_edgeScale, wall_edgeScale, 1f);                           baseSR.transform.localScale = new Vector3(wall_edgeScale, wall_edgeScale, 1f);                          suitSR.transform.localScale = new Vector3(wall_edgeScale, wall_edgeScale, 1f);                          previousBaseAnimationPlaying = baseAnimations.wall_edge.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.wall_edge.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.wall_edge.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.wall_edge.RestartPlay(this);}
     public void Play_wall_edge_eye_moved () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(wall_edge_eye_movedScale, wall_edge_eye_movedScale, 1f);      accessory1SR.transform.localScale = new Vector3(wall_edge_eye_movedScale, wall_edge_eye_movedScale, 1f);       baseSR.transform.localScale = new Vector3(wall_edge_eye_movedScale, wall_edge_eye_movedScale, 1f);      suitSR.transform.localScale = new Vector3(wall_edge_eye_movedScale, wall_edge_eye_movedScale, 1f);      previousBaseAnimationPlaying = baseAnimations.wall_edge_eye_moved.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.wall_edge_eye_moved.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.wall_edge_eye_moved.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.wall_edge_eye_moved.RestartPlay(this);}
     public void Play_wall_eye_moved      () {StopPrevious(); accessory2SR.transform.localScale = new Vector3(wall_eye_movedScale, wall_eye_movedScale, 1f);                accessory1SR.transform.localScale = new Vector3(wall_eye_movedScale, wall_eye_movedScale, 1f);                 baseSR.transform.localScale = new Vector3(wall_eye_movedScale, wall_eye_movedScale, 1f);                suitSR.transform.localScale = new Vector3(wall_eye_movedScale, wall_eye_movedScale, 1f);                previousBaseAnimationPlaying = baseAnimations.wall_eye_moved.RestartPlay(this); previousSuiteAnimationPlaying = suitAnimations.wall_eye_moved.RestartPlay(this); previousAccessory1AnimationPlaying = accessory1Animations.wall_eye_moved.RestartPlay(this); previousAccessory2AnimationPlaying = accessory2Animations.wall_eye_moved.RestartPlay(this);}
+    
+
+    int nextAnimationCallbackID = 0;
+    int GetCallbackID()
+    {
+        nextAnimationCallbackID = (nextAnimationCallbackID + 1) % int.MaxValue;
+        return nextAnimationCallbackID;
+    }
+
+
+
+
     public void Play_wall () {
         StopPrevious();
-        pendingToExecuteWall = true;
+        int callbackID = GetCallbackID();
+        
+
         baseSR.transform.localScale = new Vector3(wallTransitionScale, wallTransitionScale, 1f);
         suitSR.transform.localScale = new Vector3(wallTransitionScale, wallTransitionScale, 1f);
         accessory1SR.transform.localScale = new Vector3(wallTransitionScale, wallTransitionScale, 1f);
@@ -131,28 +158,28 @@ public class PlayerAnimationController : MonoBehaviour
 
 
         previousBaseAnimationPlaying = baseAnimations.wall_transition.PlayOnce(this, ()=> {
-            if (pendingToExecuteWall)
+            if (nextAnimationCallbackID == callbackID)
             {
                 baseSR.transform.localScale = new Vector3(wallScale, wallScale, 1f);
                 previousBaseAnimationPlaying = baseAnimations.wall.RestartPlay(this); 
             }
         });
         previousSuiteAnimationPlaying = suitAnimations.wall_transition.PlayOnce(this, () => {
-            if (pendingToExecuteWall)
+            if (nextAnimationCallbackID == callbackID)
             {
                 suitSR.transform.localScale = new Vector3(wallScale, wallScale, 1f);
                 previousSuiteAnimationPlaying = suitAnimations.wall.RestartPlay(this); 
             }
         });
         previousAccessory1AnimationPlaying = accessory1Animations.wall_transition.PlayOnce(this, () => {
-            if (pendingToExecuteWall)
+            if (nextAnimationCallbackID == callbackID)
             {
                 accessory1SR.transform.localScale = new Vector3(wallScale, wallScale, 1f);
                 previousAccessory1AnimationPlaying = accessory1Animations.wall.RestartPlay(this); 
             }
         });
         previousAccessory2AnimationPlaying = accessory2Animations.wall_transition.PlayOnce(this, () => {
-            if (pendingToExecuteWall)
+            if (nextAnimationCallbackID == callbackID)
             {
                 accessory2SR.transform.localScale = new Vector3(wallScale, wallScale, 1f);
                 previousAccessory2AnimationPlaying = accessory2Animations.wall.RestartPlay(this);
@@ -160,6 +187,8 @@ public class PlayerAnimationController : MonoBehaviour
         });
 
     }
+
+    
 
     public void SetJump1Speed(float speed)
     {
@@ -174,6 +203,12 @@ public class PlayerAnimationController : MonoBehaviour
 
     void LoadSlot(ref SkinAnimation slot, SpriteRenderer target, string path)
     {
+
+        slot.floor1_transition = SpriteAnimationManager.Load(target, path + "ch3rig-floor1-transition");
+        slot.floor2_transition = SpriteAnimationManager.Load(target, path + "ch3rig-floor2-transition");
+        slot.floor3_transition = SpriteAnimationManager.Load(target, path + "ch3rig-floor3-transition");
+        slot.floor4_transition = SpriteAnimationManager.Load(target, path + "ch3rig-floor4-transition");
+        slot.floor5_transition = SpriteAnimationManager.Load(target, path + "ch3rig-floor5-transition");
         slot.floor1 = SpriteAnimationManager.Load(target, path + "ch3rig-floor1");
         slot.floor2 = SpriteAnimationManager.Load(target, path + "ch3rig-floor2");
         slot.floor3 = SpriteAnimationManager.Load(target, path + "ch3rig-floor3");
@@ -195,8 +230,13 @@ public class PlayerAnimationController : MonoBehaviour
         slot.wall_transition = SpriteAnimationManager.Load(target, path + "ch3rig-wall-transition");
 
 
-        slot.floor1.speed = 1f;
+        slot.floor1_transition.speed = 1f;
+        slot.floor2_transition.speed = 1f;
+        slot.floor3_transition.speed = 1f;
+        slot.floor4_transition.speed = 1f;
+        slot.floor5_transition.speed = 1f;
         slot.wallup.speed = 1f;
+        slot.floor1.speed = 1f;
         slot.floor2.speed = 1f;
         slot.floor3.speed = 1f;
         slot.floor4.speed = 1f;

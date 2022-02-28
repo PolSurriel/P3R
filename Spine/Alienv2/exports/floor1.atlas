@@ -1,0 +1,13 @@
+
+floor1.png
+size: 483,501
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ch3rig-floor1_0
+  rotate: false
+  xy: 2, 2
+  size: 479, 497
+  orig: 500, 500
+  offset: 9, 1
+  index: -1
