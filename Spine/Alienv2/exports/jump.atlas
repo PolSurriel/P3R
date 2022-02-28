@@ -1,0 +1,20 @@
+
+jump.png
+size: 888,497
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ch3rig-jump1_0
+  rotate: true
+  xy: 447, 2
+  size: 493, 439
+  orig: 500, 500
+  offset: 4, 9
+  index: -1
+ch3rig-jump1_1
+  rotate: true
+  xy: 2, 4
+  size: 491, 443
+  orig: 500, 500
+  offset: 5, 4
+  index: -1

@@ -1,15 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 
 public class Runner : MonoBehaviour
 {
     public Rigidbody2D rb;
-    float jumpMagnitude = 10f;
+    
+    [HideInInspector]
+    public float jumpMagnitude = 10f;
 
-    float playerRadius; 
-    Vector2 contactToSurfaceDirection;
+    float playerRadius;
+    [HideInInspector]
+    public Vector2 contactToSurfaceDirection;
+    [HideInInspector]
 
+    public Treadmill treadmill;
+    public PlayerAspect aspect;
 
     public bool onStain;
 
@@ -29,12 +39,15 @@ public class Runner : MonoBehaviour
         lastVelocity = rb.velocity;
     }
 
-    bool onATreadmill = false;
+    [HideInInspector]
+    public bool onATreadmill = false;
     public void EnterOnATreadmill()
     {
         onATreadmill = true;
         rb.gravityScale = 0f;
         rb.isKinematic = true;
+        aspect.SetAnimation(PlayerAspect.State.WALL);
+        aspect.SetFlipX(rb.velocity.x < 0f);
     }
 
     public void EnterOnStain()
@@ -43,11 +56,14 @@ public class Runner : MonoBehaviour
         onStain = true;
     }
 
+
     private void Start()
     {
         playerRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
-        
+        aspect.rb = rb;
+        aspect.runner = this;
+
     }
 
     const int STAIN_TIMES_TO_JUMP = 2;
@@ -57,7 +73,7 @@ public class Runner : MonoBehaviour
     {
         stainJumpsCounter++;
 
-        if(stainJumpsCounter >= STAIN_TIMES_TO_JUMP)
+        if (stainJumpsCounter >= STAIN_TIMES_TO_JUMP)
         {
             onStain = false;
         }
@@ -76,10 +92,9 @@ public class Runner : MonoBehaviour
     {
 
 
-        
+
     }
 
-    public SpriteRenderer aspect;
 
     public bool ignoreTreadmill = false;
 
@@ -94,8 +109,12 @@ public class Runner : MonoBehaviour
     public void Jump(Vector2 direction, float forcePercentage = 1f)
     {
 
+
+        aspect.SetAnimation(PlayerAspect.State.JUMP);
+
         if (onATreadmill)
         {
+            treadmill.playersIn.Remove(this);
             ignoreTreadmill = true;
             StartCoroutine(IgnoreTreadmill());
             onATreadmill = false;
@@ -103,14 +122,14 @@ public class Runner : MonoBehaviour
             rb.gravityScale = 1f;
         }
 
-        if( jumpCounter >= 2)
+        if (jumpCounter >= 2)
         {
             CantJumpFeedback();
             return;
-        }else if(jumpCounter == 0)
+        } else if (jumpCounter == 0)
         {
             AudioController.instance.sounds.jump.Play();
-        }else
+        } else
         {
             AudioController.instance.sounds.doubleJump.Play();
 
@@ -139,7 +158,7 @@ public class Runner : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.AddForce(direction.normalized * jumpMagnitude * forcePercentage, ForceMode2D.Impulse);
 
-        transform.position = transform.position + (Vector3)(contactToSurfaceDirection*0.1f);
+        transform.position = transform.position + (Vector3)(contactToSurfaceDirection * 0.1f);
 
         jumpDirection = direction;
 
@@ -156,9 +175,17 @@ public class Runner : MonoBehaviour
         return jumpMagnitude;
     }
 
+
+
     Vector2 jumpDirection;
     private void OnDrawGizmos()
     {
+
+#if UNITY_EDITOR
+            //Debug.DrawLine(transform.position, (Vector2)transform.position + contactToSurfaceDirection.normalized * 0.5f);
+            //Handles.Label((Vector2)transform.position + Vector2.one * 0.5f, "" + jumpCounter);
+
+#endif
         //Debug.DrawLine(transform.position, transform.position + (Vector3) jumpDirection * 100f, new Color(0f, 1f, 0f, 0.3f));
         //Debug.DrawLine(transform.position, transform.position + (Vector3) GetComponent<Rigidbody2D>().velocity, new Color(1f, 0f, 0f, 0.3f));
     }
@@ -168,7 +195,7 @@ public class Runner : MonoBehaviour
     IEnumerator WaitAndEnableFloorCollision(float time)
     {
         float tc = 0f;
-        do { yield return null; } 
+        do { yield return null; }
         while ((tc += Time.deltaTime) < time);
 
         floorCollisionEnabled = true;
@@ -181,9 +208,17 @@ public class Runner : MonoBehaviour
         StartCoroutine(WaitAndEnableFloorCollision(0.3f));
     }
 
-    
+
     [HideInInspector]
     public int jumpCounter;
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("transitionLine") || collision.collider.CompareTag("floor"))
+        {
+            jumpCounter = 0;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -191,6 +226,89 @@ public class Runner : MonoBehaviour
         {
             jumpCounter = 0;
         }
+
+        if (!usingPortal)
+        {
+            if (floorCollisionEnabled && collision.CompareTag("transitionLine"))
+            {
+                if (rb.velocity.y < 0f)
+                    CollideWithFloorTransition(collision);
+            }
+
+        }
+
+
+    }
+
+
+    
+
+    void CollideWithFloorTransition(Collider2D collider)
+    {
+        aspect.SetAnimation(PlayerAspect.State.FLOOR);
+        jumpCounter = 0;
+        ResetFloorCollision();
+        Vector2 contact = collider.ClosestPoint(transform.position);
+        if (contact.y < collider.bounds.max.y)
+            contact.y = collider.bounds.max.y;
+
+        contactToSurfaceDirection = Vector2.up;
+        rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
+        
+
+
+        transform.position = contact + Vector2.up * playerRadius;
+
+
+    }
+
+    [HideInInspector]
+    public bool edgeWallUp = false;
+
+    [HideInInspector]
+    public bool edgeWallDown = false;
+
+    [HideInInspector]
+    public bool wallup;
+    void CollideWithFloor(Collision2D collision)
+    {
+
+        wallup = false;
+        jumpCounter = 0;
+        ResetFloorCollision();
+        contactToSurfaceDirection = collision.contacts[0].normal.normalized;
+        Vector2 contact = collision.contacts[0].point;
+
+        if(contactToSurfaceDirection.y == -1f)
+        {
+            wallup = true;
+            aspect.SetAnimation(PlayerAspect.State.WALLUP);
+
+        } else if (contactToSurfaceDirection.y == 1f)
+        {
+            aspect.SetAnimation(PlayerAspect.State.FLOOR);
+
+        }else
+        {
+            float offset = 0.3f;
+
+            Vector2 posUp = (Vector2)transform.position + Vector2.up * 0.1f;
+            edgeWallUp = !Physics2D.Linecast(posUp + Vector2.left * offset, posUp + Vector2.right * offset, LayerMask.GetMask("floor"));
+
+            Vector2 posDown = (Vector2)transform.position + Vector2.down * 0.1f;
+            edgeWallDown = !Physics2D.Linecast(posDown + Vector2.left * offset, posDown + Vector2.right * offset, LayerMask.GetMask("floor"));
+
+            aspect.SetAnimation(PlayerAspect.State.WALL);
+            aspect.SetFlipX(contactToSurfaceDirection.x > 0f);
+
+        }
+
+        transform.position = contact + contactToSurfaceDirection * playerRadius;
+
+        rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -200,18 +318,11 @@ public class Runner : MonoBehaviour
         {
             if (floorCollisionEnabled && collision.collider.CompareTag("floor"))
             {
-                jumpCounter = 0;
-                ResetFloorCollision();
-                contactToSurfaceDirection = collision.contacts[0].normal.normalized;
-                Vector2 contact = collision.contacts[0].point; 
-
-                transform.position = contact + contactToSurfaceDirection * playerRadius;
-
-                rb.isKinematic = true;
-                rb.velocity = Vector2.zero;
-
-
+                CollideWithFloor(collision);
             }
+            
+
+
 
         }
 

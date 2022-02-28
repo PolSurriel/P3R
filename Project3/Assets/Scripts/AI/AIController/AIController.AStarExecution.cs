@@ -141,7 +141,7 @@ public partial class AIController : MonoBehaviour
         astarSeekNodeIndex = 0;
         astarSeekTimeCounter = 0f;
 
-
+        
 
     }
 

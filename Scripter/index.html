@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p id="txt"></p>
+<script>
+
+
+    
+    for(let i = 1;  i < 6; i++){
+        transitionAnimation("floor"+i+"", "floor"+i+"TScale", "floor"+i+"Scale")
+    }
+
+
+    function transitionAnimation(codeName, scaleName, scale2Name){
+        var str = `
+
+
+
+        public void Play_${codeName} () {
+            StopPrevious();
+            int callbackID = GetCallbackID();
+            
+
+            baseSR.transform.localScale = new Vector3(${scaleName}, ${scaleName}, 1f);
+            suitSR.transform.localScale = new Vector3(${scaleName}, ${scaleName}, 1f);
+            accessory1SR.transform.localScale = new Vector3(${scaleName}, ${scaleName}, 1f);
+            accessory2SR.transform.localScale = new Vector3(${scaleName}, ${scaleName}, 1f);
+
+
+            previousBaseAnimationPlaying = baseAnimations.${codeName}_transition.PlayOnce(this, ()=> {
+                if (nextAnimationCallbackID == callbackID)
+                {
+                    baseSR.transform.localScale = new Vector3(${scale2Name}, ${scale2Name}, 1f);
+                    previousBaseAnimationPlaying = baseAnimations.${codeName}.RestartPlay(this); 
+                }
+            });
+            previousSuiteAnimationPlaying = suitAnimations.wall_transition.PlayOnce(this, () => {
+                if (nextAnimationCallbackID == callbackID)
+                {
+                    suitSR.transform.localScale = new Vector3(${scale2Name}, ${scale2Name}, 1f);
+                    previousSuiteAnimationPlaying = suitAnimations.${codeName}.RestartPlay(this); 
+                }
+            });
+            previousAccessory1AnimationPlaying = accessory1Animations.${codeName}_transition.PlayOnce(this, () => {
+                if (nextAnimationCallbackID == callbackID)
+                {
+                    accessory1SR.transform.localScale = new Vector3(${scale2Name}, ${scale2Name}, 1f);
+                    previousAccessory1AnimationPlaying = accessory1Animations.${codeName}.RestartPlay(this); 
+                }
+            });
+            previousAccessory2AnimationPlaying = accessory2Animations.${codeName}_transition.PlayOnce(this, () => {
+                if (nextAnimationCallbackID == callbackID)
+                {
+                    accessory2SR.transform.localScale = new Vector3(${scale2Name}, ${scale2Name}, 1f);
+                    previousAccessory2AnimationPlaying = accessory2Animations.${codeName}.RestartPlay(this);
+                }
+            });
+
+        }
+        `;
+
+        document.getElementById("txt").innerHTML += str;
+        console.log(str);
+    }
+
+
+</script>
+
+</body>
+</html>
