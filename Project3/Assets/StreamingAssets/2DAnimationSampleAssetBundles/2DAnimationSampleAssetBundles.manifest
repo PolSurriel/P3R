@@ -3,8 +3,8 @@ CRC: 981110321
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: rikrpoison
+      Name: rikrrage
       Dependencies: {}
     Info_1:
-      Name: rikrrage
+      Name: rikrpoison
       Dependencies: {}

@@ -24,8 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         // cutre pero es para la alpha
 
-       
-        
+        return;
         if(GameInfo.instance != null)
         {
             if(GameInfo.instance.levelID == 2)
@@ -187,8 +186,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-
-            GetComponent<AIController>().enabled = false;
 
             Vector2 worldPosition1 = Camera.main.ScreenToWorldPoint(mousePressFirstPos);
             Vector2 worldPosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);

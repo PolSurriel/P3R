@@ -685,6 +685,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c9a9b3095d76143b1f76551ee9772e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 328328316266981640, guid: 22ffd39eb4a48de4bb4bee3a14b0c483,
+    type: 3}
+  ai_playerPrefab: {fileID: 328328316266981640, guid: 268dd82e0e7e5a746ae80ce002825672,
+    type: 3}
+  player: {fileID: 0}
+  ai_players: []
   levelID: 0
 --- !u!1001 &870426238
 PrefabInstance:
@@ -1510,7 +1516,7 @@ PrefabInstance:
     - target: {fileID: 3871014487046406137, guid: 726812c7d124541538a054c722c888f4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -951
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3871014487046406137, guid: 726812c7d124541538a054c722c888f4,
         type: 3}

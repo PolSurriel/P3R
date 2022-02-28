@@ -61,6 +61,9 @@ public class Runner : MonoBehaviour
     {
         playerRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
+
+
+
         aspect.rb = rb;
         aspect.runner = this;
 
