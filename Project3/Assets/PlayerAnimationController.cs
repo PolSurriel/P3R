@@ -96,7 +96,7 @@ public class PlayerAnimationController : MonoBehaviour
 
 
     const float floor1TScale = 0.57f;
-    const float floor2TScale = 0.715f;
+    const float floor2TScale = 0.69f;
     const float floor3TScale = 0.57f;
     const float floor4TScale = 0.88f;
     const float floor5TScale = 0.59f;
