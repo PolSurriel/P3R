@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c023a7e80a188438a612d68e87c68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aspectContainer: {fileID: 328328317137754686}
   baseSR: {fileID: 328328315719937634}
   suitSR: {fileID: 328328316791916015}
   accessory1SR: {fileID: 328328316791916015}
