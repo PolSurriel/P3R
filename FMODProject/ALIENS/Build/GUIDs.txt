@@ -1,0 +1,16 @@
+{8369cc2c-bc85-4512-bb5e-8a20962fad30} event:/FOLEY/character actions/doublejump
+{8578f038-77e3-4b96-b8b8-7630b420996e} event:/FOLEY/character actions/jump
+{e2637408-3026-4527-8405-13e6b635f884} event:/FOLEY/interactive objects/bumper
+{4db5d38c-5ae7-401b-91bc-a49a117e9576} event:/FOLEY/interactive objects/doors
+{a3574d58-2a72-42ad-946e-c9afe6465126} event:/FOLEY/interactive objects/impact sound 1
+{5619baa8-62ee-43ec-b881-220c3bde3c38} event:/FOLEY/interactive objects/impact sound 2
+{f8b7057f-5723-45bd-b301-f933f9e017ba} event:/FOLEY/interactive objects/portal
+{e7e4054d-c930-42b2-ab79-6ba52fb01689} event:/FOLEY/interactive objects/stain
+{c8147a97-d236-47c0-9b65-540c38046ffd} event:/FOLEY/interactive objects/third jump zone
+{9ff7912f-4326-488b-a8ee-df7068cbaac4} event:/FOLEY/interactive objects/treadmill
+{ce1078d7-b5b6-400f-b9e3-2b718c3d67b8} event:/MUSIC/ingame music
+{2f6aa5b6-1808-4e54-82b5-9ae571514fba} event:/MUSIC/menu music 1
+{ab3b1c34-0fe9-4d76-943e-8d32f868868f} event:/MUSIC/menu music 2
+{abfc4582-a0a7-4c6c-96a7-a1c887919264} bus:/
+{b109ea3d-4b4e-4f1b-9109-e6096b3628ef} bus:/Reverb
+{e8f5e093-d329-489a-a4a9-5c58604e8fbf} bank:/Master Bank

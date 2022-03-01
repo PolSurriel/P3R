@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{d4124c11-621e-4a9d-a47f-881402f6cca3}">
+		<property name="name">
+			<value>stain</value>
+		</property>
+		<relationship name="folder">
+			<destination>{79ead1d4-ce4e-4339-ac37-35e59849edc9}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{1c9315fe-8f7d-4e66-85e2-a5425691ef82}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{1c9315fe-8f7d-4e66-85e2-a5425691ef82}">
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

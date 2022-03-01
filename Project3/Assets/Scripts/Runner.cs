@@ -111,6 +111,9 @@ public class Runner : MonoBehaviour
 
     }
 
+    [HideInInspector]
+    public bool isPlayer = false;
+
     public void Jump(Vector2 direction, float forcePercentage = 1f)
     {
 
@@ -133,10 +136,27 @@ public class Runner : MonoBehaviour
             return;
         } else if (jumpCounter == 0)
         {
-            AudioController.instance.sounds.jump.Play();
+            if (isPlayer)
+            {
+                AudioController.instance.sounds.player_jump.Play();
+
+            }else
+            {
+                AudioController.instance.sounds.runner_jump.Play();
+
+            }
         } else
         {
-            AudioController.instance.sounds.doubleJump.Play();
+            if (isPlayer)
+            {
+                AudioController.instance.sounds.player_doubleJump.Play();
+
+            }
+            else
+            {
+                AudioController.instance.sounds.runner_doubleJump.Play();
+
+            }
 
         }
 
@@ -306,7 +326,15 @@ public class Runner : MonoBehaviour
             Vector2 posDown = (Vector2)transform.position + Vector2.down * 0.1f;
             edgeWallDown = !Physics2D.Linecast(posDown + Vector2.left * offset, posDown + Vector2.right * offset, LayerMask.GetMask("floor"));
 
-            aspect.SetAnimation(PlayerAspect.State.WALL);
+            if (edgeWallDown)
+            {
+                aspect.SetAnimation(PlayerAspect.State.WALLUP);
+                
+            }else
+            {
+                aspect.SetAnimation(PlayerAspect.State.WALL);
+            }
+
             aspect.SetFlipX(contactToSurfaceDirection.x > 0f);
 
         }
