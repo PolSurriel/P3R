@@ -542,6 +542,7 @@ GameObject:
   - component: {fileID: 328328316266981644}
   - component: {fileID: 328328316266981635}
   - component: {fileID: 328328316266981633}
+  - component: {fileID: 8899124944630039838}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -676,6 +677,20 @@ MonoBehaviour:
   inputLR: {fileID: 328328317467772853}
   ignoreLevel: 0
   uiSimulationTime: 0.8
+--- !u!114 &8899124944630039838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328328316266981640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0998377dd7cecf74babe96cd2ae8ac86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallCollisionParticle: {fileID: 187952, guid: e9963d9e65ae9524791b583c40e885cd,
+    type: 3}
 --- !u!1 &328328316767540306
 GameObject:
   m_ObjectHideFlags: 0

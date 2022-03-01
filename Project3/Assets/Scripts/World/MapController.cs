@@ -47,7 +47,17 @@ public class MapController : MonoBehaviour
         InitializeArrayTilemaps();
         LoadTilemaps();
 
-        playerTransform = GameInfo.instance.player.transform;
+        try
+        {
+
+            playerTransform = GameInfo.instance.player.transform;
+        }catch(NullReferenceException e)
+        {
+            // THEN, WE ARE IN EDIT MODE
+            playerTransform = FindObjectOfType<PlayerController>().transform;
+        }
+
+
 
 
         if (GameInfo.instance == null || GameInfo.instance.levelID == 0 || GameInfo.instance.levelID == 3)

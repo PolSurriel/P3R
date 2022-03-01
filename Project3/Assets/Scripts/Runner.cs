@@ -9,6 +9,7 @@ using UnityEngine;
 public class Runner : MonoBehaviour
 {
     public Rigidbody2D rb;
+    RunnerVFXController vfx;
     
     [HideInInspector]
     public float jumpMagnitude = 10f;
@@ -61,6 +62,7 @@ public class Runner : MonoBehaviour
     {
         playerRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
+        vfx = GetComponent<RunnerVFXController>();
 
 
 
@@ -248,10 +250,12 @@ public class Runner : MonoBehaviour
 
     void CollideWithFloorTransition(Collider2D collider)
     {
+
         aspect.SetAnimation(PlayerAspect.State.FLOOR);
         jumpCounter = 0;
         ResetFloorCollision();
         Vector2 contact = collider.ClosestPoint(transform.position);
+        vfx.OnCollisionWithWall(contact);
         if (contact.y < collider.bounds.max.y)
             contact.y = collider.bounds.max.y;
 
@@ -276,7 +280,7 @@ public class Runner : MonoBehaviour
     public bool wallup;
     void CollideWithFloor(Collision2D collision)
     {
-
+        vfx.OnCollisionWithWall(collision.contacts[0].point);
         wallup = false;
         jumpCounter = 0;
         ResetFloorCollision();

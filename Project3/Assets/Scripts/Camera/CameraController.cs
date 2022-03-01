@@ -10,7 +10,15 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerTransform = GameInfo.instance.player.transform;
+        try
+        {
+            playerTransform = GameInfo.instance.player.transform;
+        }
+        catch (NullReferenceException e)
+        {
+            // THEN, WE ARE IN EDIT MODE
+            playerTransform = FindObjectOfType<PlayerController>().transform;
+        }
     }
 
     // Update is called once per frame
