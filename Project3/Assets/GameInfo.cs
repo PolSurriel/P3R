@@ -7,6 +7,24 @@ public class GameInfo : MonoBehaviour
 {
     private const int AI_PLAYERS_COUNT = 3;
 
+
+    public class RunnerSkinInfo
+    {
+        public string baseSkinName;
+        public string accessory1SkinName;
+        public string accessory2SkinName;
+        public string suitSkinName;
+    }
+
+    
+    public static RunnerSkinInfo playerSkin = new RunnerSkinInfo (){
+        baseSkinName = "Yellow",
+        suitSkinName = "Default",
+        accessory1SkinName = "Default",
+        accessory2SkinName = "Default"
+    };
+
+
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject ai_playerPrefab;
 
@@ -46,8 +64,20 @@ public class GameInfo : MonoBehaviour
                 break;
             case 2:
 
-                player = Instantiate(ai_playerPrefab);
+                player = Instantiate(playerPrefab);
                 DontDestroyOnLoad(player);
+
+                var ai = player.AddComponent<AIController>();
+
+                // TODO: Set a based-in-something value
+                ai.erraticBehaviourFactor = 0.5f;
+
+                // TODO: Set selected skins
+                var playerAnimController = player.GetComponent<Runner>().aspect.GetComponent<PlayerAnimationController>();
+                playerAnimController.baseSkin = "Yellow";
+                playerAnimController.suitSkin = "Default";
+                playerAnimController.accessory1Skin = "Default";
+                playerAnimController.accessory2Skin = "Default";
 
                 break;
             case 4:
@@ -56,6 +86,13 @@ public class GameInfo : MonoBehaviour
                 {
                     GameObject ai_player = Instantiate(ai_playerPrefab);
                     DontDestroyOnLoad(ai_player);
+                    
+                    // TODO: Randomize skins
+                    var animController = ai_player.GetComponent<PlayerAnimationController>();
+                    animController.baseSkin = "Yellow";
+                    animController.suitSkin = "Default";
+                    animController.accessory1Skin = "Default";
+                    animController.accessory2Skin = "Default";
 
                     ai_players[i] = ai_player;
                 }

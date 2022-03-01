@@ -4,40 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MapController))]
-public class AIDirector : MonoBehaviour
+public partial class AIDirector : MonoBehaviour
 {
-    public Transform maxX;
-    public Transform minX;
-
-    public AnimationCurve minWaitTimeBeforeJump;
-    public AnimationCurve maxWaitTimeBeforeJump;
-    
-    public AnimationCurve minJumpVectorDeviation;
-    public AnimationCurve maxJumpVectorDeviation;
+    [HideInInspector]
+    public Transform astarMaxX;
+    [HideInInspector]
+    public Transform astarMinX;
 
     static AIDirector instance;
 
-    public static float GetTimeBeforeJump(float humanityFactor)
-    {
-        float min = instance.minWaitTimeBeforeJump.Evaluate(humanityFactor);
-        float max = instance.maxWaitTimeBeforeJump.Evaluate(humanityFactor);
-        
-
-        return UnityEngine.Random.Range(min, max);
-    }
-
-    public static float GetVectorBeforeJump(float humanityFactor)
-    {
-        float min = instance.minJumpVectorDeviation.Evaluate(humanityFactor);
-        float max = instance.maxJumpVectorDeviation.Evaluate(humanityFactor);
-
-        return UnityEngine.Random.Range(min, max);
-    }
+    
 
     private void Awake()
     {
-        AIController.AStarIterationsDiscarder.maxX = maxX.position.x;
-        AIController.AStarIterationsDiscarder.minX = minX.position.x;
+        AIController.AStarIterationsDiscarder.maxX = astarMaxX.position.x;
+        AIController.AStarIterationsDiscarder.minX = astarMinX.position.x;
 
         AIController.AStarIterationsDiscarder.m_reboundWalls = new NativeFIFO<AIController.NativeReboundWallInfo>();
         AIController.AStarIterationsDiscarder.m_reboundWalls.Init(100);

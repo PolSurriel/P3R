@@ -40,10 +40,13 @@ public class PlayerAspect : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         animationController = GetComponent<PlayerAnimationController>();
 
-        animationController.baseSkin = "Yellow";
-        animationController.suitSkin = "Default";
-        animationController.accessory1Skin = "Default";
-        animationController.accessory2Skin = "Default";
+        if(animationController.baseSkin == "")
+        {
+            animationController.baseSkin = "Yellow";
+            animationController.suitSkin = "Default";
+            animationController.accessory1Skin = "Default";
+            animationController.accessory2Skin = "Default";
+        }
         animationController.LoadAnimations();
 
 

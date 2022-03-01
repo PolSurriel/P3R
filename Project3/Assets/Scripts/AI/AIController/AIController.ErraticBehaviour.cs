@@ -1,0 +1,12 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public partial class AIController: MonoBehaviour
+{
+
+    [HideInInspector]
+    public float erraticBehaviourFactor;
+
+
+}

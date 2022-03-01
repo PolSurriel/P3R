@@ -12,13 +12,13 @@ public class PlayerAnimationController : MonoBehaviour
     public SpriteRenderer accessory2SR;
 
     [HideInInspector]
-    public string baseSkin;
+    public string baseSkin = "Yellow";
     [HideInInspector]
-    public string suitSkin;
+    public string suitSkin = "Default";
     [HideInInspector]
-    public string accessory1Skin;
+    public string accessory1Skin = "Default";
     [HideInInspector]
-    public string accessory2Skin;
+    public string accessory2Skin = "Default";
 
     const string ROOT_PATH = "Animation/";
     const string BASE_PATH = ROOT_PATH + "Base/";

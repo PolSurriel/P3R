@@ -626,6 +626,7 @@ MonoBehaviour:
   onATreadmill: 0
   usingPortal: 0
   ignoreTreadmill: 0
+  isPlayer: 0
   jumpCounter: 0
   edgeWallUp: 0
   edgeWallDown: 0
