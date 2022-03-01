@@ -12,15 +12,34 @@
 <script>
 
 
-    
+
+
+    transitionedEyeMovedAnimation("wall", "wallTScale", "wallScale", "Wall")
     for(let i = 1;  i < 6; i++){
-        transitionAnimation("floor"+i+"", "floor"+i+"TScale", "floor"+i+"Scale")
+        transitionedEyeMovedAnimation("floor"+i+"", "floor"+i+"TScale", "floor"+i+"Scale", "Floor"+i)
     }
 
-
-    function transitionAnimation(codeName, scaleName, scale2Name){
+    function transitionedEyeMovedAnimation(codeName, scaleName, scale2Name, nameCamelCase){
         var str = `
 
+        void ${nameCamelCase}CallBack()
+        {
+            if (nextAnimationCallbackID != eyeMoved_callBackID)
+                return;
+
+            var anim = baseAnimations.${codeName};
+
+            if (!lastAnimationWasEyeMoved && UnityEngine.Random.Range(0f, 10f) < eachInOnehundredpEyeMovedProbability)
+            {
+                lastAnimationWasEyeMoved = true;
+                anim = baseAnimations.${codeName}_eye_moved;
+            }else
+            {
+                lastAnimationWasEyeMoved = false;
+            }
+
+            anim.PlayOnce(this, ${nameCamelCase}CallBack);
+        }
 
 
         public void Play_${codeName} () {
@@ -37,8 +56,9 @@
             previousBaseAnimationPlaying = baseAnimations.${codeName}_transition.PlayOnce(this, ()=> {
                 if (nextAnimationCallbackID == callbackID)
                 {
+                    eyeMoved_callBackID = GetCallbackID();
                     baseSR.transform.localScale = new Vector3(${scale2Name}, ${scale2Name}, 1f);
-                    previousBaseAnimationPlaying = baseAnimations.${codeName}.RestartPlay(this); 
+                    previousBaseAnimationPlaying = baseAnimations.${codeName}.PlayOnce(this, ${nameCamelCase}CallBack); 
                 }
             });
             previousSuiteAnimationPlaying = suitAnimations.wall_transition.PlayOnce(this, () => {
