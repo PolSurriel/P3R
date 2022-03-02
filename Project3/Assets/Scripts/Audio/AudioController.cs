@@ -6,13 +6,14 @@ using UnityEngine;
 public class AudioController : MonoBehaviour
 {
     public static AudioController instance;
+    public static AudioSource myAudioSource;
 
     public class Sounds
     {
         public SurrealBoost.Audio jump = new FMODAudio("event:/FOLEY/jump");
         public SurrealBoost.Audio doubleJump = new FMODAudio("event:/FOLEY/doublejump");
         public SurrealBoost.Audio gameplaySoundtrack = new FMODAudio("event:/MUSIC/ingame music");
-        //public SurrealBoost.Audio intro = new UnityAudio("Audios/buttonSound.wav");
+        public SurrealBoost.Audio buttonSound = new UnityAudio("Audios/buttonSound");
     }
 
     public Sounds sounds;
@@ -31,7 +32,9 @@ public class AudioController : MonoBehaviour
 
     private void Start()
     {
-        
+        myAudioSource = this.GetComponent<AudioSource>();
+        if (myAudioSource == null)
+            myAudioSource = this.gameObject.AddComponent<AudioSource>();
     }
 
    

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UnityAudio : SurrealBoost.Audio
 {
-    private AudioSource audio;
+    public AudioClip audioclip;
 
     public UnityAudio(string path)
     {
-        //audio.clip = Resources.Load<AudioClip>(path);
+        audioclip = Resources.Load<AudioClip>(path);
     }
     public override void Clean()
     {
@@ -17,7 +17,8 @@ public class UnityAudio : SurrealBoost.Audio
 
     public override void Play()
     {
-        audio.Play();
+        
+        AudioController.myAudioSource.PlayOneShot(audioclip);
     }
 
     public override void Set(string parameterName, float value)
@@ -25,22 +26,22 @@ public class UnityAudio : SurrealBoost.Audio
         switch (parameterName)
         {
             case "volume":
-                audio.volume = value;
+                AudioController.myAudioSource.volume = value;
                 break;
             case "pitch":
-                audio.pitch = value;
+                AudioController.myAudioSource.pitch = value;
                 break;
             case "pan":
-                audio.panStereo = value;
+                AudioController.myAudioSource.panStereo = value;
                 break;
             case "spatialBlend":
-                audio.spatialBlend = value;
+                AudioController.myAudioSource.spatialBlend = value;
                 break;
             case "reverb":
-                audio.reverbZoneMix = value;
+                AudioController.myAudioSource.reverbZoneMix = value;
                 break;
             case "loop":
-                audio.loop = (value != 0);
+                AudioController.myAudioSource.loop = (value != 0);
                 break;
             default:
                 Debug.LogWarning("Audio Set parameter not recognized");
@@ -51,13 +52,13 @@ public class UnityAudio : SurrealBoost.Audio
 
     public override void Stop()
     {
-        audio.Stop();
+        AudioController.myAudioSource.Stop();
     }
 
     public override void StopFadeout()
     {
         float duration = 2.0f;
-        AudioController.instance.StartCoroutine(StartFade(audio, duration));
+        AudioController.instance.StartCoroutine(StartFade(AudioController.myAudioSource, duration));
     }
 
     public static IEnumerator StartFade(AudioSource audioSource, float duration)
