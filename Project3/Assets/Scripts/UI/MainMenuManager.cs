@@ -7,6 +7,15 @@ public class MainMenuManager : MonoBehaviour
 {
     public SceneReference level1, level2, level3;
 
+    private LevelType levelType;
+
+    private enum LevelType
+    {
+        PLAYER,
+        AI,
+        VERSUS
+    }
+
     private void Awake()
     {
         //AudioController.instance.sounds.jump.Play();
@@ -37,6 +46,42 @@ public class MainMenuManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void PreviousLevel()
+    {
+        switch (levelType)
+        {
+            case LevelType.PLAYER:
+                levelType = LevelType.VERSUS;
+                break;
+            case LevelType.AI:
+                levelType = LevelType.PLAYER;
+                break;
+            case LevelType.VERSUS:
+                levelType = LevelType.AI;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void NextLevel()
+    {
+        switch (levelType)
+        {
+            case LevelType.PLAYER:
+                levelType = LevelType.AI;
+                break;
+            case LevelType.AI:
+                levelType = LevelType.VERSUS;
+                break;
+            case LevelType.VERSUS:
+                levelType = LevelType.PLAYER;
+                break;
+            default:
+                break;
+        }
     }
 
 }
