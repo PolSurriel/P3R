@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
     public SceneReference level1, level2, level3;
 
-    private LevelType levelType;
+    private ModeType modeType;
 
-    private enum LevelType
+    [SerializeField] private Text raceText;
+
+    private enum ModeType
     {
         PLAYER,
         AI,
@@ -19,6 +22,12 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {
         //AudioController.instance.sounds.jump.Play();
+    }
+
+    private void Start()
+    {
+        modeType = ModeType.PLAYER;
+        raceText.text = modeType.ToString();
     }
 
     public void LoadLevel1()
@@ -43,45 +52,68 @@ public class MainMenuManager : MonoBehaviour
 
         GameInfo.instance.InitPlayers();
     }
+
+    public void PlayMode()
+    {
+        switch (modeType)
+        {
+            case ModeType.PLAYER:
+                LoadLevel1();
+                break;
+            case ModeType.AI:
+                LoadLevel2();
+                break;
+            case ModeType.VERSUS:
+                LoadLevel3();
+                break;
+            default:
+                break;
+        }
+    }
+
     public void QuitGame()
     {
         Application.Quit();
     }
 
-    public void PreviousLevel()
+    public void PreviousMode()
     {
-        switch (levelType)
+        switch (modeType)
         {
-            case LevelType.PLAYER:
-                levelType = LevelType.VERSUS;
+            case ModeType.PLAYER:
+                modeType = ModeType.VERSUS;
                 break;
-            case LevelType.AI:
-                levelType = LevelType.PLAYER;
+            case ModeType.AI:
+                modeType = ModeType.PLAYER;
                 break;
-            case LevelType.VERSUS:
-                levelType = LevelType.AI;
+            case ModeType.VERSUS:
+                modeType = ModeType.AI;
                 break;
             default:
                 break;
         }
+
+        raceText.text = modeType.ToString();
     }
 
-    public void NextLevel()
+    public void NextMode()
     {
-        switch (levelType)
+        switch (modeType)
         {
-            case LevelType.PLAYER:
-                levelType = LevelType.AI;
+            case ModeType.PLAYER:
+                modeType = ModeType.AI;
                 break;
-            case LevelType.AI:
-                levelType = LevelType.VERSUS;
+            case ModeType.AI:
+                modeType = ModeType.VERSUS;
                 break;
-            case LevelType.VERSUS:
-                levelType = LevelType.PLAYER;
+            case ModeType.VERSUS:
+                modeType = ModeType.PLAYER;
                 break;
             default:
                 break;
         }
+
+        raceText.text = modeType.ToString();
     }
 
 }
