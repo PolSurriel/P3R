@@ -42,10 +42,9 @@ public class GameInfo : MonoBehaviour
         {
             Destroy(this.gameObject);
             return;
-
         }
-
         instance = this;
+        LoadData();
         DontDestroyOnLoad(instance.gameObject);
 
         ai_players = new GameObject[AI_PLAYERS_COUNT];
@@ -108,6 +107,33 @@ public class GameInfo : MonoBehaviour
         
     }
 
+    public void SaveData()
+    {
+        SaveSys.SaveMenuData(this);
+    }
+
+    public void LoadData()
+    {
+        MenuData data = SaveSys.LoadMenuData();
+        if(data != null)
+        {
+            playerSkin.baseSkinName = data.baseSkin;
+            playerSkin.suitSkinName = data.suitSkin;
+            playerSkin.accessory1SkinName = data.accessory1;
+            playerSkin.accessory2SkinName = data.accessory2;
+
+            Debug.Log(playerSkin.baseSkinName + " " + playerSkin.suitSkinName + " " + playerSkin.accessory1SkinName + " " + playerSkin.accessory2SkinName);
+        }
+    }
 
 
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+            SaveData();
+    }
+    private void OnApplicationQuit()
+    {
+        SaveData();
+    }
 }

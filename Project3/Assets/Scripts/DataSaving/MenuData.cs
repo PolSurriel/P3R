@@ -13,5 +13,9 @@ public class MenuData
     public MenuData(GameInfo gameInfo)
     {
         // Coger las variables de gameInfo y asignarlas a las de MenuData
+        baseSkin = GameInfo.playerSkin.baseSkinName;
+        suitSkin = GameInfo.playerSkin.suitSkinName;
+        accessory1 = GameInfo.playerSkin.accessory1SkinName;
+        accessory2 = GameInfo.playerSkin.accessory2SkinName;
     }
 }

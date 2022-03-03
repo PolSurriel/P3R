@@ -69,7 +69,7 @@ MonoBehaviour:
   lastModified: 637806022441754598
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-8551193381489490426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,6 +883,26 @@ MonoBehaviour:
   Max: 100
   Default: 0
   Exists: 0
+--- !u!114 &-631969948804404880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.strings.bank
+  SubDir: 
+  lastModified: 637818698750938036
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1608
+  Exists: 1
 --- !u!114 &-577298081322115476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,26 +1004,29 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 4582147371547256262}
   - {fileID: -8578441247164644752}
+  - {fileID: -631969948804404880}
+  - {fileID: 3331498118471632074}
   EditorEvents:
   - {fileID: -6192160620797420149}
   - {fileID: 8219567203053585725}
   - {fileID: -3125400438433707824}
   - {fileID: -3139846688903070779}
   - {fileID: 7140789039348988195}
-  - {fileID: 1966971053923001762}
+  - {fileID: 0}
   - {fileID: 7319361224051403338}
   - {fileID: 2473890613289371705}
   - {fileID: -7451069377538548059}
   - {fileID: -2475376186061735596}
   - {fileID: 8991547995149412418}
   - {fileID: 4135511394908483265}
-  - {fileID: 2232650332509713050}
+  - {fileID: 0}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8578441247164644752}
   StringsBanks:
   - {fileID: 4582147371547256262}
-  stringsBankWriteTime: 637741245680912145
+  - {fileID: -631969948804404880}
+  stringsBankWriteTime: 637818698750938036
   cacheVersion: 3
 --- !u!114 &555697075189408772
 MonoBehaviour:
@@ -1167,6 +1190,24 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1608
+  Exists: 1
+--- !u!114 &3331498118471632074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
+  SubDir: 
+  lastModified: 637818698751328398
+  LoadResult: 0
+  FileSizes: []
   Exists: 1
 --- !u!114 &3759121313639506434
 MonoBehaviour:
