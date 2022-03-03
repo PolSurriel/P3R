@@ -75,7 +75,7 @@ public class GameInfo : MonoBehaviour
                 // TODO: Set selected skins
                 var playerAnimController = player.GetComponent<Runner>().aspect.GetComponent<PlayerAnimationController>();
                 playerAnimController.baseSkin = "Yellow";
-                playerAnimController.suitSkin = "chDefault";
+                playerAnimController.suitSkin = "MIBred";
                 playerAnimController.accessory1Skin = "Default";
                 playerAnimController.accessory2Skin = "Default";
 
@@ -90,7 +90,7 @@ public class GameInfo : MonoBehaviour
                     // TODO: Randomize skins
                     var animController = ai_player.GetComponent<PlayerAnimationController>();
                     animController.baseSkin = "Yellow";
-                    animController.suitSkin = "Default";
+                    animController.suitSkin = "MIBred";
                     animController.accessory1Skin = "Default";
                     animController.accessory2Skin = "Default";
 

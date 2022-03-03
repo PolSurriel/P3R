@@ -10,14 +10,8 @@ public class PlayerAspect : MonoBehaviour
     [HideInInspector]
     public Runner runner;
 
-    public Sprite floor;
-    public Sprite floor2;
-    public Sprite jump;
-    public Sprite jump2;
-    public Sprite jump3;
-    public Sprite wall;
 
-   
+
     public enum State
     {
         FLOOR,
@@ -26,9 +20,16 @@ public class PlayerAspect : MonoBehaviour
         WALLUP
     }
 
+
     public void SetFlipX(bool flip)
     {
         sr.flipX = flip;
+        animationController.suitSR.flipX = flip;
+        animationController.accessory1SR.flipX = flip;
+        animationController.accessory2SR.flipX = flip;
+        animationController.baseSR.flipX = flip;
+
+
     }
 
     SpriteRenderer sr;
@@ -43,7 +44,7 @@ public class PlayerAspect : MonoBehaviour
         if(animationController.baseSkin == "")
         {
             animationController.baseSkin = "Yellow";
-            animationController.suitSkin = "Default";
+            animationController.suitSkin = "MIBred";
             animationController.accessory1Skin = "Default";
             animationController.accessory2Skin = "Default";
         }
@@ -55,6 +56,8 @@ public class PlayerAspect : MonoBehaviour
     State state;
 
     int jumpSelected;
+
+
 
     public void SetAnimation(State state)
     {
@@ -70,10 +73,10 @@ public class PlayerAspect : MonoBehaviour
 
             case State.FLOOR:
 
-
+                
                 
                 // RIGHT
-                if (Vector2.Dot(transform.up, Vector2.right) >= 0.25f)
+                if (Vector2.Dot(animationController.aspectContainer.up, Vector2.right) >= 0.25f)
                 {
                     if (sr.flipX)
                     {
@@ -88,7 +91,7 @@ public class PlayerAspect : MonoBehaviour
 
                 }
                 // UP
-                else if(Vector2.Dot(transform.up, Vector2.up) >= 0.25f)
+                else if(Vector2.Dot(animationController.aspectContainer.up, Vector2.up) >= 0.25f)
                 {
                     if(Random.RandomRange(0f, 1f)< 0.5f)
                     {
@@ -101,7 +104,7 @@ public class PlayerAspect : MonoBehaviour
                 }
 
                 // DONW
-                else if(Vector2.Dot(transform.up, Vector2.down) >= 0.25f)
+                else if(Vector2.Dot(animationController.aspectContainer.up, Vector2.down) >= 0.25f)
                 {
                     animationController.Play_floor2();
 
@@ -146,7 +149,7 @@ public class PlayerAspect : MonoBehaviour
                     case 1:
                         animationController.Play_jump2();
                         //sr.sprite = jump2;
-                        transform.up = rb.velocity.normalized;
+                        animationController.aspectContainer.up = rb.velocity.normalized;
                         break;
                     case 2:
                         animationController.Play_jump3();
@@ -178,6 +181,7 @@ public class PlayerAspect : MonoBehaviour
     private void LateUpdate()
     {
         lastFrameVelocity = rb.velocity;
+        transform.localRotation = Quaternion.identity;
     }
 
     private void Update()
@@ -189,8 +193,8 @@ public class PlayerAspect : MonoBehaviour
             switch (jumpSelected)
             {
                 case 0:
-                    transform.up = ((Vector2)transform.up + rb.velocity * Time.deltaTime).normalized;
-                    sr.flipX = rb.velocity.x > 0f;
+                    animationController.aspectContainer.up = ((Vector2)animationController.aspectContainer.up + rb.velocity * Time.deltaTime).normalized;
+                    SetFlipX(rb.velocity.x > 0f);
 
                     float speed = rb.velocity.magnitude;
 
@@ -202,16 +206,16 @@ public class PlayerAspect : MonoBehaviour
                         animationController.SetJump1Speed(speed* (1f/2f));
                     }
 
-                    float dot = Vector2.Dot(rb.velocity.normalized, transform.up);
+                    float dot = Vector2.Dot(rb.velocity.normalized, animationController.aspectContainer.up);
                     if (dot < 0.1f)
                     {
-                        var prev = transform.up;
+                        var prev = animationController.aspectContainer.up;
                         // Rotate faster
-                        transform.up = ((Vector2)transform.up + rb.velocity*3f * Time.deltaTime).normalized;
+                        animationController.aspectContainer.up = ((Vector2)animationController.aspectContainer.up + rb.velocity*3f * Time.deltaTime).normalized;
                         
-                        if(prev == transform.up)
+                        if(prev == animationController.aspectContainer.up)
                         {
-                            transform.up = ((Vector2)transform.up + (sr.flipX ? Vector2.right: Vector2.left) * 3f * Time.deltaTime).normalized;
+                            animationController.aspectContainer.up = ((Vector2)animationController.aspectContainer.up + (sr.flipX ? Vector2.right: Vector2.left) * 3f * Time.deltaTime).normalized;
                         }
 
                     }
@@ -219,18 +223,18 @@ public class PlayerAspect : MonoBehaviour
                     break;
                 case 1:
                     float sense = rb.velocity.x > 0f ? -1f : 1f;
-                    transform.Rotate(Vector3.forward * Time.deltaTime * rb.velocity.magnitude * 40f * sense);
-                    sr.flipX = rb.velocity.x > 0f;
+                    animationController.aspectContainer.Rotate(Vector3.forward * Time.deltaTime * rb.velocity.magnitude * 40f * sense);
+                    SetFlipX(rb.velocity.x > 0f);
                     break;
                 case 2:
-                    transform.up = ((Vector2)transform.up + rb.velocity * Time.deltaTime * 2f).normalized;
-                    sr.flipX = rb.velocity.x < 0f;
+                    animationController.aspectContainer.up = ((Vector2)animationController.aspectContainer.up + rb.velocity * Time.deltaTime * 2f).normalized;
+                    SetFlipX(rb.velocity.x < 0f);
                     break;
             }
 
         }else
         {
-            transform.right = Vector3.right;
+            animationController.aspectContainer.right = Vector3.right;
         }
 
     }

@@ -6,7 +6,6 @@ public class DebugGame : MonoBehaviour
 {
 
     public GameObject playerPrefab;
-#if UNITY_EDITOR
     void Start()
     {
         if(FindObjectOfType<Runner>() == null)
@@ -16,6 +15,7 @@ public class DebugGame : MonoBehaviour
             FindObjectOfType<CameraController>().playerTransform = p.transform;
         }      
     }
+#if UNITY_EDITOR
 
 #endif
 
