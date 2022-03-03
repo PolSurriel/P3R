@@ -72,10 +72,13 @@ public class ReboundSurface : MonoBehaviour
         AIDirector.RemoveReboundSurface(this);
     }
 
+    float maxUpMagnitude = 6f;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var runner = collision.collider.GetComponent<Runner>();
-        runner.rb.velocity = runner.lastVelocity * senseVector;
+        Debug.Log(runner.lastVelocity.magnitude * 2f);
+        runner.rb.velocity = runner.lastVelocity * senseVector + Vector2.up* Mathf.Min(runner.lastVelocity.magnitude*2f, maxUpMagnitude);
     }
 
 }

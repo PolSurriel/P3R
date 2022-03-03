@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
     {
 
 
-
+        runner.isPlayer = true;
 
         if (Input.GetMouseButtonUp(0))
         {

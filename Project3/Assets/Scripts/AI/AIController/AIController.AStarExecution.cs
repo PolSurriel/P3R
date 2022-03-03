@@ -52,10 +52,12 @@ public partial class AIController : MonoBehaviour
         const float CHANGE_SPEED = 2f;
         float scalar = 1f- Mathf.Min((CHANGE_SPEED * Time.deltaTime), 1f);
 
-        // Add humanization angle variation
-        // Disabled for pre-alpha
-        //float angleVariation = AIDirector.GetVectorBeforeJump(HumanizationVariationFactor) * angleVariationAI;
-        //targetVelocity = targetVelocity.Rotate(angleVariation);
+        if (AIDirector.ApplyVectorDeviation(erraticBehaviourFactor))
+        {
+            // Add humanization angle variation
+            float angleVariation = AIDirector.GetJumpAngleDeviation(erraticBehaviourFactor) * angleVariationAI;
+            targetVelocity = targetVelocity.Rotate(angleVariation);
+        }
 
         // apply
         rb.velocity = rb.velocity * scalar + (1f-scalar) * targetVelocity;
@@ -158,7 +160,7 @@ public partial class AIController : MonoBehaviour
     {
 
         // Aquí es donde se calcula el timeBeforeJump
-        timeBeforeJump = AIDirector.GetTimeBeforeJump(HumanizationVariationFactor) * timeVariationAI;
+        timeBeforeJump = AIDirector.GetTimeBeforeJump(erraticBehaviourFactor) * timeVariationAI;
 
         aStarSolver.output = null;
         executingAstarSeek = false;
