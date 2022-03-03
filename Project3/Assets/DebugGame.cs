@@ -11,7 +11,9 @@ public class DebugGame : MonoBehaviour
     {
         if(FindObjectOfType<Runner>() == null)
         {
-            Instantiate(playerPrefab);
+            var p = Instantiate(playerPrefab);
+            FindObjectOfType<MapController>().playerTransform = p.transform;
+            FindObjectOfType<CameraController>().playerTransform = p.transform;
         }      
     }
 

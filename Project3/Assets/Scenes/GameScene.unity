@@ -699,8 +699,16 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   probabilityToApplyJumpDeviation: 20
-  astarMaxX: {fileID: 0}
-  astarMinX: {fileID: 0}
+  clampMaxWaitTime: 0
+  maxWaitTimeClamp: 0
+  clampMinWaitTime: 0
+  minWaitTimeClamp: 0
+  clampMaxAngleDeviation: 0
+  maxAngleDeviationClamp: 0
+  clampMinAngleDeviation: 0
+  minAngleDeviationClamp: 0
+  astarMaxX: {fileID: 571218955}
+  astarMinX: {fileID: 987735034}
 --- !u!114 &127046073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,7 +1331,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.673913
+  orthographic size: 5.4659686
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

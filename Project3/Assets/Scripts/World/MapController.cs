@@ -53,8 +53,7 @@ public class MapController : MonoBehaviour
             playerTransform = GameInfo.instance.player.transform;
         }catch(NullReferenceException e)
         {
-            // THEN, WE ARE IN EDIT MODE
-            playerTransform = FindObjectOfType<PlayerController>().transform;
+            // THEN, WE ARE IN EDIT MODE AND DEBUGGAME WILL SET THE PROPERTY FOR US
         }
 
 

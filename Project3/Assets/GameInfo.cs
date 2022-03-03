@@ -75,7 +75,7 @@ public class GameInfo : MonoBehaviour
                 // TODO: Set selected skins
                 var playerAnimController = player.GetComponent<Runner>().aspect.GetComponent<PlayerAnimationController>();
                 playerAnimController.baseSkin = "Yellow";
-                playerAnimController.suitSkin = "Default";
+                playerAnimController.suitSkin = "chDefault";
                 playerAnimController.accessory1Skin = "Default";
                 playerAnimController.accessory2Skin = "Default";
 

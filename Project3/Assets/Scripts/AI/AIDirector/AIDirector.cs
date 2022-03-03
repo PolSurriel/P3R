@@ -6,9 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(MapController))]
 public partial class AIDirector : MonoBehaviour
 {
-    [HideInInspector]
     public Transform astarMaxX;
-    [HideInInspector]
     public Transform astarMinX;
 
     static AIDirector instance;
