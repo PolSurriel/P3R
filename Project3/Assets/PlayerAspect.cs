@@ -44,7 +44,7 @@ public class PlayerAspect : MonoBehaviour
         if(animationController.baseSkin == "")
         {
             animationController.baseSkin = "Yellow";
-            animationController.suitSkin = "MIBred";
+            animationController.suitSkin = "Default";
             animationController.accessory1Skin = "Default";
             animationController.accessory2Skin = "Default";
         }

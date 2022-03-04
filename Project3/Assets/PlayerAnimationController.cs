@@ -14,7 +14,7 @@ public class PlayerAnimationController : MonoBehaviour
     [HideInInspector]
     public string baseSkin = "Yellow";
     [HideInInspector]
-    public string suitSkin = "MIBred";
+    public string suitSkin = "Default";
     [HideInInspector]
     public string accessory1Skin = "Default";
     [HideInInspector]

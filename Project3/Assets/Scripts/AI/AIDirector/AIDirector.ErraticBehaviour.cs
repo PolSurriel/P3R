@@ -40,6 +40,19 @@ public partial class AIDirector: MonoBehaviour
 
     }
 
+    
+
+    void UpdateErraticBehaviour()
+    {
+
+        foreach (var ai in GameInfo.instance.ai_players)
+        {
+
+
+
+        }
+    }
+
 
 
     public static float GetTimeBeforeJump(float erraticBehaviourFactor)
