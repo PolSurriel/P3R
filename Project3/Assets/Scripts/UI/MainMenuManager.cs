@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class MainMenuManager : MonoBehaviour
 {
+    const int PIXELS_BETWEEN_MENUS = -1471;
+
     public SceneReference level1, level2, level3;
+    public RectTransform allMenusContainer;
 
     private ModeType modeType;
 
@@ -17,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
         PLAYER,
         AI,
         VERSUS
+
     }
 
     private void Awake()
@@ -28,6 +33,30 @@ public class MainMenuManager : MonoBehaviour
     {
         modeType = ModeType.PLAYER;
         raceText.text = modeType.ToString();
+    }
+
+    public void SwipeToShop()
+    {
+        allMenusContainer.DOAnchorPos(new Vector2(0, 0), 0.25f);
+    }
+    public void SwipeToSkins()
+    {
+        allMenusContainer.DOAnchorPos(new Vector2(PIXELS_BETWEEN_MENUS * 1, 0), 0.25f);
+    }
+    public void SwipeToMain()
+    {
+        allMenusContainer.DOAnchorPos(new Vector2(PIXELS_BETWEEN_MENUS * 2, 0), 0.25f);
+    }
+    public void SwipeToSkills()
+    {
+        SkillsEquippedManager aux = GameObject.FindObjectOfType<SkillsEquippedManager>();
+        if (aux != null)
+            aux.CheckPerks();
+        allMenusContainer.DOAnchorPos(new Vector2(PIXELS_BETWEEN_MENUS * 3, 0), 0.25f);
+    }
+    public void SwipeToSettings()
+    {
+        allMenusContainer.DOAnchorPos(new Vector2(PIXELS_BETWEEN_MENUS * 4, 0), 0.25f);
     }
 
     public void LoadLevel1()
@@ -78,6 +107,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void PreviousMode()
     {
+        modeType = (ModeType)(((int)modeType - 1) % 3);
         switch (modeType)
         {
             case ModeType.PLAYER:
@@ -98,6 +128,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void NextMode()
     {
+        modeType = (ModeType)(((int)modeType + 1) % 3);
         switch (modeType)
         {
             case ModeType.PLAYER:
@@ -114,6 +145,12 @@ public class MainMenuManager : MonoBehaviour
         }
 
         raceText.text = modeType.ToString();
+    }
+
+    public void SelectSkin(string _name)
+    {
+        GameInfo.playerSkin.baseSkinName = _name;
+        Debug.Log(_name + " Skin selected");
     }
 
 }

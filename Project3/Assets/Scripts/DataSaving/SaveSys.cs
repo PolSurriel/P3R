@@ -6,20 +6,19 @@ public static class SaveSys
 {
 
     // Saves data in a bin file
-    public static void SaveMenuData(GameInfo gameInfo)
+    public static void SaveData(SaveData data)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/saves.bin";    // path where its saved
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        MenuData data = new MenuData(gameInfo);
-
         formatter.Serialize(stream, data);
         stream.Close();
+        Debug.Log("Saved Files");
     }
 
     // Load data from a bin file
-    public static MenuData LoadMenuData()
+    public static SaveData LoadMenuData()
     {
         string path = Application.persistentDataPath + "/saves.bin";    // path from where its loaded
         if (File.Exists(path))
@@ -27,7 +26,7 @@ public static class SaveSys
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            MenuData data = formatter.Deserialize(stream) as MenuData;
+            SaveData data = formatter.Deserialize(stream) as SaveData;
             stream.Close();
 
             return data;
