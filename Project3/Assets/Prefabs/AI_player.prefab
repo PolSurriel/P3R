@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c023a7e80a188438a612d68e87c68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aspectContainer: {fileID: 328328317137754686}
   baseSR: {fileID: 328328315719937634}
   suitSR: {fileID: 328328316791916015}
   accessory1SR: {fileID: 328328316791916015}
@@ -542,8 +543,9 @@ GameObject:
   - component: {fileID: 328328316266981644}
   - component: {fileID: 328328316266981635}
   - component: {fileID: 328328316266981634}
+  - component: {fileID: 6321585681854649387}
   m_Layer: 10
-  m_Name: AI_Player
+  m_Name: AI_player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -645,6 +647,20 @@ MonoBehaviour:
   usePortal: 0
   closestPortal: {x: 0, y: 0}
   closestPortalDistance: 0
+--- !u!114 &6321585681854649387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328328316266981640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0998377dd7cecf74babe96cd2ae8ac86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallCollisionParticle: {fileID: 187952, guid: e9963d9e65ae9524791b583c40e885cd,
+    type: 3}
 --- !u!1 &328328316767540306
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class CameraController : MonoBehaviour
         catch (NullReferenceException e)
         {
             // THEN, WE ARE IN EDIT MODE
+            //playerTransform = FindObjectOfType<AIController>().transform;
             playerTransform = FindObjectOfType<PlayerController>().transform;
         }
     }
