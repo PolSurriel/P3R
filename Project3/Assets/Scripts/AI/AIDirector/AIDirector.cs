@@ -37,6 +37,7 @@ public partial class AIDirector : MonoBehaviour
     void Start()
     {
         SetMapController();
+        SetupBehaviourData();
     }
 
     MapController mapController;
@@ -72,7 +73,11 @@ public partial class AIDirector : MonoBehaviour
 
     }
 
-    
+
+    private void Update()
+    {
+        UpdateBehaviourParameters();
+    }
 
     public static void RemoveReboundSurface(ReboundSurface toRemove)
     {

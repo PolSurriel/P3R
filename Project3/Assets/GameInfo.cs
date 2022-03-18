@@ -48,6 +48,8 @@ public class GameInfo : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(instance.gameObject);
 
+
+
         ai_players = new GameObject[AI_PLAYERS_COUNT];
 
     }
@@ -82,10 +84,17 @@ public class GameInfo : MonoBehaviour
                 break;
             case 4:
 
+                //TMP hardcoded desired
+                float[] targetEBFOffsets = new float[] { -.1f, 0, .1f, -.05f }; 
+                float[] initialEBFs = new float[] { .5f, .5f, .5f, .5f }; 
+
                 for (int i = 0; i < AI_PLAYERS_COUNT; i++)
                 {
                     GameObject ai_player = Instantiate(ai_playerPrefab);
                     DontDestroyOnLoad(ai_player);
+                    ai_player.GetComponent<AIController>().desiredPlayerEBFOffset = targetEBFOffsets[i];
+                    ai_player.GetComponent<AIController>().erraticBehaviourFactor = initialEBFs[i];
+                    
                     
                     // TODO: Randomize skins
                     var animController = ai_player.GetComponent<PlayerAnimationController>();
