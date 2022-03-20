@@ -84,6 +84,12 @@ public class GameInfo : MonoBehaviour
                 break;
             case 4:
 
+
+                /*
+                    Doc:
+                https://media.discordapp.net/attachments/905760062293811221/954412884895617044/unknown.png?width=1467&height=1467
+
+                 */
                 //TMP hardcoded desired
                 float[] targetEBFOffsets = new float[] { -.1f, 0, .1f, -.05f }; 
                 float[] initialEBFs = new float[] { .5f, .5f, .5f, .5f }; 

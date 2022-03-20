@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEditor;
 
 public partial class AIDirector: MonoBehaviour
 {
+
+
+    /*
+        Doc:
+    https://media.discordapp.net/attachments/905760062293811221/954412884895617044/unknown.png?width=1467&height=1467
+
+     */
 
     public AnimationCurve minWaitTimeBeforeJump;
     public AnimationCurve maxWaitTimeBeforeJump;
@@ -28,6 +36,8 @@ public partial class AIDirector: MonoBehaviour
 
     public bool clampMinAngleDeviation;
     public float minAngleDeviationClamp;
+
+    float playerEBF;
 
     [HideInInspector]
     public float desiredEBFDifference;
@@ -74,7 +84,7 @@ public partial class AIDirector: MonoBehaviour
     {
         UpdatePerformanceMeasurementData();
 
-        float playerEBF = CalculatePlayerErraticBehaviourFactor();
+        playerEBF = CalculatePlayerErraticBehaviourFactor();
 
         foreach(var ai in ais)
         {
@@ -159,5 +169,19 @@ public partial class AIDirector: MonoBehaviour
         float max = instance.maxJumpVectorDeviation.Evaluate(erraticBehaviourFactor)*0.1f;
 
         return UnityEngine.Random.Range(min, max);
+    }
+
+    public void EBFGizmos()
+    {
+#if UNITY_EDITOR
+        Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(10, Screen.height, 0));
+        
+        Handles.Label(stageDimensions, 
+            $@"Player EBF: {playerEBF} PM: {playerCumulativeTimeWithoutProgressInLastLapse}
+            AI1 EBF: {ais[0].erraticBehaviourFactor} TBF: {ais[0].desiredPlayerEBFOffset+playerEBF} PM: {aisCumulativeTimeWithoutProgressInLastLapse[0]}
+            AI2 EBF: {ais[1].erraticBehaviourFactor} TBF: {ais[1].desiredPlayerEBFOffset+playerEBF} PM: {aisCumulativeTimeWithoutProgressInLastLapse[1]}
+            AI3 EBF: {ais[2].erraticBehaviourFactor} TBF: {ais[2].desiredPlayerEBFOffset+playerEBF} PM: {aisCumulativeTimeWithoutProgressInLastLapse[2]}
+        ");
+#endif
     }
 }

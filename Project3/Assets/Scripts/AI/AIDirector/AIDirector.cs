@@ -11,7 +11,12 @@ public partial class AIDirector : MonoBehaviour
 
     static AIDirector instance;
 
-    
+
+
+    private void OnDrawGizmos()
+    {
+        EBFGizmos();
+    }
 
     private void Awake()
     {
