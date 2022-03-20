@@ -187,17 +187,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
 
-            Vector2 worldPosition1 = Camera.main.ScreenToWorldPoint(mousePressFirstPos);
-            Vector2 worldPosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
             Vector2 dif = inputVector;
             float magnitude = Mathf.Min(dif.magnitude, MAX_INPUT_LENGHT);
 
             pressingMouse = false;
+            HideCurveUI();
+            
+            if (!StartMatchCountDown.matchStarted) return;
+            
             runner.Jump(inputVector, magnitude / MAX_INPUT_LENGHT);
 
 
-            HideCurveUI();
         }
 
         if (!pressingMouse && Input.GetMouseButtonDown(0))

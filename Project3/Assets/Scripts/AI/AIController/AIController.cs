@@ -86,6 +86,8 @@ public partial class AIController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!StartMatchCountDown.matchStarted) return;
+
 
         AstarExecutionFixedUpdate();
 
@@ -104,9 +106,11 @@ public partial class AIController : MonoBehaviour
     float timeStuckedCount = 0f;
     const float MAX_TIME_STUCKED = 4f;
     Vector2 lastStuckedPosition;
+    
 
     void Update()
     {
+        if (!StartMatchCountDown.matchStarted) return;
 
         if(timeStuckedCount > MAX_TIME_STUCKED)
         {

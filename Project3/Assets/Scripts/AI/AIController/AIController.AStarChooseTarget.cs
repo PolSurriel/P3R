@@ -141,6 +141,20 @@ public partial class AIController : MonoBehaviour
 
         currentPathTargetObject = validTargets[Random.Range(0, validTargets.Count)];
 
+        var goalPosition = currentPathTargetObject.transform.position;
+
+        if (currentPathTargetObject.useRandomVerticalOffset)
+        {
+            goalPosition.y += Random.Range(currentPathTargetObject.maxVerticalOffset * -0.5f, currentPathTargetObject.maxVerticalOffset * 0.5f);
+        }else
+        {
+            if (currentPathTargetObject.useRandomHorizontalOffset)
+            {
+                goalPosition.y += Random.Range(currentPathTargetObject.maxHorizontalOffset * -0.5f, currentPathTargetObject.maxHorizontalOffset * 0.5f);
+            }
+        }
+
+
         aStarGoal = new AstarGoal(currentPathTargetObject.transform.position, currentPathTargetObject.incisionVector, currentPathTargetObject.useIncisionConstrain);
         lastTargetPos = aStarGoal.position;
 
