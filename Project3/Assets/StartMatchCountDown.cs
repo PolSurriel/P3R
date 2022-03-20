@@ -10,7 +10,7 @@ public class StartMatchCountDown : MonoBehaviour
     TextMeshPro text;
     
     float timeCounter = 0f;
-    float duration = 5;
+    float duration = 4;
 
 
     private void OnDestroy()
@@ -40,6 +40,14 @@ public class StartMatchCountDown : MonoBehaviour
             text.fontSize = 25f;
             text.text = "GO!";
             matchStarted = true;
+
+            if (GameInfo.instance == null || GameInfo.instance.ai_players == null)
+                return;
+
+            foreach (var ai in GameInfo.instance.ai_players)
+            {
+                ai.GetComponent<AIController>().OnMatchStarts();
+            }
 
         }
     }

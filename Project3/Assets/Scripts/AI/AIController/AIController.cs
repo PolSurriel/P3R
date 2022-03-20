@@ -84,6 +84,11 @@ public partial class AIController : MonoBehaviour
             aStarSolver.OnDestroy();
     }
 
+    public void OnMatchStarts()
+    {
+        //StartAStarPipeline();
+    }
+
     private void FixedUpdate()
     {
         if (!StartMatchCountDown.matchStarted) return;
@@ -159,17 +164,7 @@ public partial class AIController : MonoBehaviour
         }
 
 
-        if (timeToStartCount < TIME_TO_START_CONTROLLING_PLAYER)
-        {
-            timeToStartCount += Time.deltaTime;
-        }
-        else
-        {
-            controllingPlayer = true;
-        }
-
-
-        if (controllingPlayer && pendingToStartAStarPipeline && !onAMolino && !onStain)
+        if (pendingToStartAStarPipeline && !onAMolino && !onStain)
         {
             StartAStarPipeline();
         }
@@ -180,6 +175,8 @@ public partial class AIController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!StartMatchCountDown.matchStarted)
+            return;
 
         if (collision.collider.tag == "floor")
         {
@@ -211,7 +208,11 @@ public partial class AIController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "backupPlanZone")
+        if (!StartMatchCountDown.matchStarted)
+            return;
+
+
+        if (collision.tag == "backupPlanZone")
         {
             onBackupPlanZone = true;
         }
