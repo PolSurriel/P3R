@@ -8,6 +8,8 @@ public class GameInfo : MonoBehaviour
     private const int AI_PLAYERS_COUNT = 3;
 
 
+   
+
     public class RunnerSkinInfo
     {
         public string baseSkinName;
@@ -24,9 +26,7 @@ public class GameInfo : MonoBehaviour
         accessory2SkinName = "Default"
     };
 
-
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private GameObject ai_playerPrefab;
 
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject[] ai_players;
@@ -96,16 +96,17 @@ public class GameInfo : MonoBehaviour
 
                 for (int i = 0; i < AI_PLAYERS_COUNT; i++)
                 {
-                    GameObject ai_player = Instantiate(ai_playerPrefab);
+                    GameObject ai_player = Instantiate(playerPrefab);
+                    var aiController = ai_player.AddComponent<AIController>();
                     DontDestroyOnLoad(ai_player);
-                    ai_player.GetComponent<AIController>().desiredPlayerEBFOffset = targetEBFOffsets[i];
-                    ai_player.GetComponent<AIController>().erraticBehaviourFactor = initialEBFs[i];
+                    aiController.desiredPlayerEBFOffset = targetEBFOffsets[i];
+                    aiController.erraticBehaviourFactor = initialEBFs[i];
                     
                     
                     // TODO: Randomize skins
-                    var animController = ai_player.GetComponent<PlayerAnimationController>();
+                    var animController = ai_player.transform.GetChild(1).GetChild(0).GetComponent<PlayerAnimationController>();
                     animController.baseSkin = "Yellow";
-                    animController.suitSkin = "Default";
+                    animController.suitSkin = "MIBred";
                     animController.accessory1Skin = "Default";
                     animController.accessory2Skin = "Default";
 

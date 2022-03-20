@@ -15,6 +15,9 @@ public partial class AIDirector : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (GameInfo.instance == null)
+            return;
+            
         EBFGizmos();
     }
 

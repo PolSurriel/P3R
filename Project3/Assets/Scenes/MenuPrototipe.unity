@@ -687,8 +687,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 328328316266981640, guid: 22ffd39eb4a48de4bb4bee3a14b0c483,
     type: 3}
-  ai_playerPrefab: {fileID: 328328316266981640, guid: 268dd82e0e7e5a746ae80ce002825672,
-    type: 3}
   player: {fileID: 0}
   ai_players: []
   levelID: 0

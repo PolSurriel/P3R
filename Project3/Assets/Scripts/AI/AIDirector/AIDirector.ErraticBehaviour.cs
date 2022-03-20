@@ -65,6 +65,9 @@ public partial class AIDirector: MonoBehaviour
 
     void SetupBehaviourData()
     {
+        if (GameInfo.instance == null)
+            return;
+
         ais = new AIController[GameInfo.instance.ai_players.Length];
         aisYReached = new float[GameInfo.instance.ai_players.Length];
         aisCumulativeTimeWithoutProgressInLastLapse = new float[GameInfo.instance.ai_players.Length];
@@ -82,6 +85,9 @@ public partial class AIDirector: MonoBehaviour
 
     void UpdateBehaviourParameters()
     {
+        if (GameInfo.instance == null)
+            return;
+
         UpdatePerformanceMeasurementData();
 
         playerEBF = CalculatePlayerErraticBehaviourFactor();
@@ -174,14 +180,14 @@ public partial class AIDirector: MonoBehaviour
     public void EBFGizmos()
     {
 #if UNITY_EDITOR
-        Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(10, Screen.height, 0));
+        Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(10, Screen.height-40, 0));
         
         Handles.Label(stageDimensions, 
-            $@"Player EBF: {playerEBF} PM: {playerCumulativeTimeWithoutProgressInLastLapse}
-            AI1 EBF: {ais[0].erraticBehaviourFactor} TBF: {ais[0].desiredPlayerEBFOffset+playerEBF} PM: {aisCumulativeTimeWithoutProgressInLastLapse[0]}
-            AI2 EBF: {ais[1].erraticBehaviourFactor} TBF: {ais[1].desiredPlayerEBFOffset+playerEBF} PM: {aisCumulativeTimeWithoutProgressInLastLapse[1]}
-            AI3 EBF: {ais[2].erraticBehaviourFactor} TBF: {ais[2].desiredPlayerEBFOffset+playerEBF} PM: {aisCumulativeTimeWithoutProgressInLastLapse[2]}
-        ");
+            $@"Player EBF: {playerEBF.ToString("0.00")} PM: {playerCumulativeTimeWithoutProgressInLastLapse.ToString("0.00")}
+AI1 EBF: {ais[0].erraticBehaviourFactor.ToString("0.00")} TBF: {(ais[0].desiredPlayerEBFOffset+playerEBF).ToString("0.00")} PM: {aisCumulativeTimeWithoutProgressInLastLapse[0].ToString("0.00")}
+AI2 EBF: {ais[1].erraticBehaviourFactor.ToString("0.00")} TBF: {(ais[1].desiredPlayerEBFOffset+playerEBF).ToString("0.00")} PM: {aisCumulativeTimeWithoutProgressInLastLapse[1].ToString("0.00")}
+AI3 EBF: {ais[2].erraticBehaviourFactor.ToString("0.00")} TBF: {(ais[2].desiredPlayerEBFOffset+playerEBF).ToString("0.00")} PM: {aisCumulativeTimeWithoutProgressInLastLapse[2].ToString("0.00")}
+");
 #endif
     }
 }
