@@ -51,7 +51,10 @@ public class MainMenuManager : MonoBehaviour
     {
         SkillsEquippedManager aux = GameObject.FindObjectOfType<SkillsEquippedManager>();
         if (aux != null)
+        {
             aux.CheckPerks();
+            aux.RefreshCosts();
+        }
         allMenusContainer.DOAnchorPos(new Vector2(PIXELS_BETWEEN_MENUS * 3, 0), 0.25f);
     }
     public void SwipeToSettings()

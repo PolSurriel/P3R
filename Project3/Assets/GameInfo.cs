@@ -13,6 +13,10 @@ public class GameInfo : MonoBehaviour
     // Variables we need to save
     public static bool freePerkSlotUnlocked;
     public static int premiumPerkSlotsUnlocked;
+    public static int freeCostUnlocked;
+    public static int premiumCostUnlocked;
+    public static int totalPerkCost;
+    public static int equippedPerkCost;
 
     public class RunnerSkinInfo
     {
@@ -155,8 +159,12 @@ public class GameInfo : MonoBehaviour
             
             freePerkSlotUnlocked = data.freePerkSlotUnlocked;
             premiumPerkSlotsUnlocked = data.premiumPerkSlotsUnlocked;
+            freeCostUnlocked = data.freeCostUnlocked;
+            premiumCostUnlocked = data.premiumCostUnlocked;
+            totalPerkCost = data.totalPerkCost;
+            equippedPerkCost = data.equippedPerkCost;
 
-            Debug.Log(playerSkin.baseSkinName + " " + playerSkin.suitSkinName + " " + playerSkin.accessory1SkinName + " " + playerSkin.accessory2SkinName + "Unlocked: " + freePerkSlotUnlocked);
+            Debug.Log(playerSkin.baseSkinName + " " + playerSkin.suitSkinName + " " + playerSkin.accessory1SkinName + " " + playerSkin.accessory2SkinName + "Unlocked: " + equippedPerkCost);
         }
     }
 

@@ -13,6 +13,10 @@ public class SaveData
     public PerkData[] equipped;
     public bool freePerkSlotUnlocked;
     public int premiumPerkSlotsUnlocked;
+    public int freeCostUnlocked;
+    public int premiumCostUnlocked;
+    public int totalPerkCost;
+    public int equippedPerkCost;
 
     public SaveData()
     {
@@ -24,6 +28,10 @@ public class SaveData
         equipped = null;
         freePerkSlotUnlocked = false;
         premiumPerkSlotsUnlocked = 0;
+        freeCostUnlocked = 0;
+        premiumCostUnlocked = 0;
+        totalPerkCost = 0;
+        equippedPerkCost = 0;
     }
 
     public SaveData(GameInfo gameInfo)
@@ -37,9 +45,10 @@ public class SaveData
         equipped = null;
         freePerkSlotUnlocked = GameInfo.freePerkSlotUnlocked;
         premiumPerkSlotsUnlocked = GameInfo.premiumPerkSlotsUnlocked;
-
-
-
+        freeCostUnlocked = GameInfo.freeCostUnlocked;
+        premiumCostUnlocked = GameInfo.premiumCostUnlocked;
+        totalPerkCost = GameInfo.totalPerkCost;
+        equippedPerkCost = GameInfo.equippedPerkCost;
     }
 
     public void UpdateState(GameInfo gameInfo)
@@ -50,6 +59,10 @@ public class SaveData
         accessory2 = GameInfo.playerSkin.accessory2SkinName;
         freePerkSlotUnlocked = GameInfo.freePerkSlotUnlocked;
         premiumPerkSlotsUnlocked = GameInfo.premiumPerkSlotsUnlocked;
+        freeCostUnlocked = GameInfo.freeCostUnlocked;
+        premiumCostUnlocked = GameInfo.premiumCostUnlocked;
+        totalPerkCost = GameInfo.totalPerkCost;
+        equippedPerkCost = GameInfo.equippedPerkCost;
     }
 
     public void SaveInventory(List<ScriptablePerk> _inventory)

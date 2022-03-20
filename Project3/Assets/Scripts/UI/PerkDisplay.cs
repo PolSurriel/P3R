@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class PerkDisplay : MonoBehaviour
 {
-     Color common = new Color(0.99f, 0.99f, 0.99f);
-     Color uncommon = new Color(0f, 0.88f, 0.06f);
-     Color rare = new Color(0.15f, 0.64f, 0.93f);
-     Color epic = new Color(0.79f, 0.15f, 0.93f);
-     Color legendary = new Color(0.93f, 0.75f, 0.15f);
-     Color def = new Color(0.39f, 0.39f, 0.39f);
+    Color common = new Color(0.99f, 0.99f, 0.99f);
+    Color uncommon = new Color(0f, 0.88f, 0.06f);
+    Color rare = new Color(0.15f, 0.64f, 0.93f);
+    Color epic = new Color(0.79f, 0.15f, 0.93f);
+    Color legendary = new Color(0.93f, 0.75f, 0.15f);
+    Color def = new Color(0.39f, 0.39f, 0.39f);
     public ScriptablePerk perk;
 
     public Text itemLvl;
