@@ -8,6 +8,17 @@ public class GameInfo : MonoBehaviour
     private const int AI_PLAYERS_COUNT = 3;
 
 
+    public void OnMatchSceneClosed()
+    {
+
+        Destroy(player.gameObject);
+        if(ai_players != null)
+            foreach(var ai in ai_players)
+                Destroy(ai.gameObject);
+        
+        Destroy(MapController.instanceGameObject);
+
+    }
    
 
     public class RunnerSkinInfo
@@ -49,9 +60,6 @@ public class GameInfo : MonoBehaviour
         DontDestroyOnLoad(instance.gameObject);
 
 
-
-        ai_players = new GameObject[AI_PLAYERS_COUNT];
-
     }
 
     public void InitPlayers()
@@ -84,7 +92,7 @@ public class GameInfo : MonoBehaviour
                 break;
             case 4:
 
-
+                ai_players = new GameObject[AI_PLAYERS_COUNT];
                 /*
                     Doc:
                 https://media.discordapp.net/attachments/905760062293811221/954412884895617044/unknown.png?width=1467&height=1467

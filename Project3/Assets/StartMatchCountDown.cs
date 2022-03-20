@@ -13,6 +13,13 @@ public class StartMatchCountDown : MonoBehaviour
     float duration = 5;
 
 
+    private void OnDestroy()
+    {
+
+        if (GameInfo.instance != null)
+            GameInfo.instance.OnMatchSceneClosed();
+    }
+
     private void Start()
     {
         text = GetComponent<TextMeshPro>();

@@ -65,7 +65,7 @@ public partial class AIDirector: MonoBehaviour
 
     void SetupBehaviourData()
     {
-        if (GameInfo.instance == null)
+        if (GameInfo.instance == null || GameInfo.instance.ai_players == null)
             return;
 
         ais = new AIController[GameInfo.instance.ai_players.Length];
@@ -85,7 +85,7 @@ public partial class AIDirector: MonoBehaviour
 
     void UpdateBehaviourParameters()
     {
-        if (GameInfo.instance == null)
+        if (GameInfo.instance == null || GameInfo.instance.ai_players == null)
             return;
 
         UpdatePerformanceMeasurementData();
@@ -143,6 +143,9 @@ public partial class AIDirector: MonoBehaviour
 
     void UpdatePerformanceMeasurementData()
     {
+        if (GameInfo.instance == null || GameInfo.instance.ai_players == null)
+            return;
+
         float playerY = GameInfo.instance.player.transform.position.y;
         UpdateSinglePMData(playerMaxYReached, ref playerCumulativeTimeWithoutProgressInLastLapse, playerY);
 
@@ -179,6 +182,10 @@ public partial class AIDirector: MonoBehaviour
 
     public void EBFGizmos()
     {
+
+        if (GameInfo.instance == null || GameInfo.instance.ai_players == null || GameInfo.instance.ai_players.Length == 0)
+            return;
+
 #if UNITY_EDITOR
         Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(10, Screen.height-40, 0));
         

@@ -15,6 +15,8 @@ public class MapController : MonoBehaviour
     public static int MaxtilemapDifficulty = 6;
     public static int actualDifficulty = 0;
 
+    public static GameObject instanceGameObject;
+
     Queue<int> doNotRepeat;
     Queue<GameObject> tilemapInstances;
     const int MAX_DONOTREPEAT_ITEMS = 1;
@@ -38,6 +40,8 @@ public class MapController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        instanceGameObject = this.gameObject;
         gridSize = GetComponent<Grid>().cellSize.x;
         doNotRepeat = new Queue<int>();
         tilemapInstances = new Queue<GameObject>();

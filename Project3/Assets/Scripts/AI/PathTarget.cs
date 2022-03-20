@@ -95,7 +95,6 @@ public class PathTarget : MonoBehaviour
 
         if (useRandomVerticalOffset)
         {
-            Debug.Log("YES");
             Debug.DrawLine(transform.position, transform.position + Vector3.up * maxVerticalOffset * 0.5f, Color.red);
             Debug.DrawLine(transform.position, transform.position + Vector3.down * maxVerticalOffset * 0.5f, Color.red);
         }
