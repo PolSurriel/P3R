@@ -54,6 +54,7 @@ public class MapController : MonoBehaviour
         }catch(NullReferenceException e)
         {
             // THEN, WE ARE IN EDIT MODE
+            //playerTransform = FindObjectOfType<AIController>().transform;
             playerTransform = FindObjectOfType<PlayerController>().transform;
         }
 
@@ -64,7 +65,7 @@ public class MapController : MonoBehaviour
         {
 
             int numberOfTilemaps = 3;
-            InstantiateTilemap(0);
+            InstantiateTilemap(15);
             for (int i = 0; i < numberOfTilemaps; i++)
             {
                 InstantiateTilemap(GetRandomTilemapIndex(actualDifficulty));
