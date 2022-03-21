@@ -18,6 +18,19 @@ public class GameInfo : MonoBehaviour
     public static int totalPerkCost;
     public static int equippedPerkCost;
 
+    public void OnMatchSceneClosed()
+    {
+
+        Destroy(player.gameObject);
+        if(ai_players != null)
+            foreach(var ai in ai_players)
+                Destroy(ai.gameObject);
+        
+        Destroy(MapController.instanceGameObject);
+
+    }
+   
+
     public class RunnerSkinInfo
     {
         public string baseSkinName;
@@ -33,7 +46,6 @@ public class GameInfo : MonoBehaviour
         accessory1SkinName = "Default",
         accessory2SkinName = "Default"
     };
-
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject ai_playerPrefab;
@@ -65,7 +77,6 @@ public class GameInfo : MonoBehaviour
         LoadData();
         DontDestroyOnLoad(instance.gameObject);
 
-        ai_players = new GameObject[AI_PLAYERS_COUNT];
 
     }
 
@@ -99,15 +110,29 @@ public class GameInfo : MonoBehaviour
                 break;
             case 4:
 
+                ai_players = new GameObject[AI_PLAYERS_COUNT];
+                /*
+                    Doc:
+                https://media.discordapp.net/attachments/905760062293811221/954412884895617044/unknown.png?width=1467&height=1467
+
+                 */
+                //TMP hardcoded desired
+                float[] targetEBFOffsets = new float[] { -.1f, 0, .1f, -.05f }; 
+                float[] initialEBFs = new float[] { .5f, .5f, .5f, .5f }; 
+
                 for (int i = 0; i < AI_PLAYERS_COUNT; i++)
                 {
-                    GameObject ai_player = Instantiate(ai_playerPrefab);
+                    GameObject ai_player = Instantiate(playerPrefab);
+                    var aiController = ai_player.AddComponent<AIController>();
                     DontDestroyOnLoad(ai_player);
+                    aiController.desiredPlayerEBFOffset = targetEBFOffsets[i];
+                    aiController.erraticBehaviourFactor = initialEBFs[i];
+                    
                     
                     // TODO: Randomize skins
-                    var animController = ai_player.GetComponent<PlayerAnimationController>();
+                    var animController = ai_player.transform.GetChild(1).GetChild(0).GetComponent<PlayerAnimationController>();
                     animController.baseSkin = "Yellow";
-                    animController.suitSkin = "Default";
+                    animController.suitSkin = "MIBred";
                     animController.accessory1Skin = "Default";
                     animController.accessory2Skin = "Default";
 

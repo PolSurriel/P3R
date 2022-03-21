@@ -6,14 +6,20 @@ using UnityEngine;
 [RequireComponent(typeof(MapController))]
 public partial class AIDirector : MonoBehaviour
 {
-    [HideInInspector]
     public Transform astarMaxX;
-    [HideInInspector]
     public Transform astarMinX;
 
     static AIDirector instance;
 
-    
+
+
+    private void OnDrawGizmos()
+    {
+        if (GameInfo.instance == null)
+            return;
+            
+        EBFGizmos();
+    }
 
     private void Awake()
     {
@@ -39,6 +45,7 @@ public partial class AIDirector : MonoBehaviour
     void Start()
     {
         SetMapController();
+        SetupBehaviourData();
     }
 
     MapController mapController;
@@ -72,6 +79,12 @@ public partial class AIDirector : MonoBehaviour
 
         AIController.AStarIterationsDiscarder.m_reboundWalls.Add(wallInfo);
 
+    }
+
+
+    private void Update()
+    {
+        UpdateBehaviourParameters();
     }
 
     public static void RemoveReboundSurface(ReboundSurface toRemove)

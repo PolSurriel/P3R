@@ -16,7 +16,7 @@ MonoBehaviour:
   Min: 0
   Max: 2
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-8799397762334037255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   Min: 0
   Max: 4
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-8030967594325107587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,11 +176,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/ingame music/layering
   m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 1
+  Path: event:/FOLEY/interactive objects/portal
+  guid: 7f05b7f82357bd45b301f933f9e017ba
+  Banks:
+  - {fileID: 4190685020433566246}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 304
 --- !u!114 &-7288035301168351440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +238,7 @@ MonoBehaviour:
   lastModified: 637817556278761855
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-6315594504104879354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,16 +276,36 @@ MonoBehaviour:
   Path: event:/MUSIC/ingame music
   guid: d77810ceb6b50f40b9e32b718c3d67b8
   Banks:
-  - {fileID: -3959153551214956815}
+  - {fileID: 4190685020433566246}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -7429323390909476602}
-  - {fileID: 262434986541675124}
+  - {fileID: 7653495663336383377}
+  - {fileID: 2603344486335822577}
+  - {fileID: -2013228018466030373}
+  - {fileID: -6105429665794944736}
+  - {fileID: -2441026292818598354}
   MinDistance: 0
   MaxDistance: 0
   Length: 96052
+--- !u!114 &-6105429665794944736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/volume layer 1
+  m_EditorClassIdentifier: 
+  Name: volume layer 1
+  Min: 0
+  Max: 100
+  Default: 0
+  Exists: 1
 --- !u!114 &-6022880246022430439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,12 +496,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master Bank.bank
   m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637806022441754598
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
+  Name: volume layer 3
+  Min: 0
+  Max: 100
+  Default: 0
+  Exists: 0
+--- !u!114 &-3765404798581816407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/volume layer 2
+  m_EditorClassIdentifier: 
+  Name: volume layer 2
+  Min: 0
+  Max: 100
+  Default: 0
+  Exists: 0
 --- !u!114 &-3558605532888345285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,7 +619,7 @@ MonoBehaviour:
   Path: event:/FOLEY/interactive objects/treadmill
   guid: 2f91f79f26438b48a8eedf7068cbaac4
   Banks:
-  - {fileID: -6742619843212970457}
+  - {fileID: 4190685020433566246}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -600,12 +642,12 @@ MonoBehaviour:
   Path: event:/FOLEY/character actions/doublejump
   guid: 2ccc698385bc1245bb5e8a20962fad30
   Banks:
-  - {fileID: -6742619843212970457}
+  - {fileID: 4190685020433566246}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -2045578851134314891}
+  - {fileID: -1031122194816249878}
   MinDistance: 0
   MaxDistance: 0
   Length: 453
@@ -642,7 +684,7 @@ MonoBehaviour:
   Path: event:/FOLEY/interactive objects/doors
   guid: 8cd3b54de75a1b4091bca49a117e9576
   Banks:
-  - {fileID: -6742619843212970457}
+  - {fileID: 4190685020433566246}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -650,6 +692,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-2441026292818598354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/volume layer 4
+  m_EditorClassIdentifier: 
+  Name: volume layer 4
+  Min: 0
+  Max: 100
+  Default: 0
+  Exists: 1
 --- !u!114 &-2409387900972512680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,6 +763,23 @@ MonoBehaviour:
   Name: character_voice
   Min: 0
   Max: 2
+  Default: 0
+  Exists: 0
+--- !u!114 &-2013228018466030373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/volume layer 3
+  m_EditorClassIdentifier: 
+  Name: volume layer 3
+  Min: 0
+  Max: 100
   Default: 0
   Exists: 1
 --- !u!114 &-1969973068864552997
@@ -792,6 +868,23 @@ MonoBehaviour:
   Max: 2
   Default: 0
   Exists: 0
+--- !u!114 &-1031122194816249878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/doublejump/character_voice
+  m_EditorClassIdentifier: 
+  Name: character_voice
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &-937143640398654004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,8 +1073,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 4582147371547256262}
-  - {fileID: -3959153551214956815}
+  - {fileID: 3319507911863729056}
+  - {fileID: 4190685020433566246}
   EditorEvents:
   - {fileID: -6192160620797420149}
   - {fileID: 8219567203053585725}
@@ -998,10 +1091,10 @@ MonoBehaviour:
   - {fileID: 0}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -3959153551214956815}
+  - {fileID: 4190685020433566246}
   StringsBanks:
-  - {fileID: 4582147371547256262}
-  stringsBankWriteTime: 637741245680912145
+  - {fileID: 3319507911863729056}
+  stringsBankWriteTime: 637819876542654308
   cacheVersion: 3
 --- !u!114 &262434986541675124
 MonoBehaviour:
@@ -1019,7 +1112,42 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
-  Exists: 1
+  Exists: 0
+--- !u!114 &841691841678843911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
+  SubDir: 
+  lastModified: 637817555813258980
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &1163462271687573394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/volume layer 1
+  m_EditorClassIdentifier: 
+  Name: volume layer 1
+  Min: 0
+  Max: 100
+  Default: 0
+  Exists: 0
 --- !u!114 &1241328934520636020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,8 +1181,8 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
-  Exists: 1
---- !u!114 &2326113297348115529
+  Exists: 0
+--- !u!114 &1692260654395772365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1070,7 +1198,71 @@ MonoBehaviour:
   Min: 0
   Max: 4
   Default: 0
-  Exists: 1
+  Exists: 0
+--- !u!114 &1966971053923001762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/character actions/jump
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/character actions/jump
+  guid: 38f07885e377964bb8b87630b420996e
+  Banks:
+  - {fileID: 4190685020433566246}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 2793582990618731716}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1156
+--- !u!114 &2065788575434283866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/volume layer 4
+  m_EditorClassIdentifier: 
+  Name: volume layer 4
+  Min: 0
+  Max: 100
+  Default: 0
+  Exists: 0
+--- !u!114 &2232650332509713050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/menu music 1
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/menu music 1
+  guid: b6a56a2f0818544e82b59ae571514fba
+  Banks:
+  - {fileID: 4190685020433566246}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 96028
 --- !u!114 &2427867126255365778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,7 +1295,7 @@ MonoBehaviour:
   Path: event:/FOLEY/interactive objects/impact sound 1
   guid: 584d57a3722aad42946ec9afe6465126
   Banks:
-  - {fileID: -6742619843212970457}
+  - {fileID: 4190685020433566246}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1111,6 +1303,40 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 281
+--- !u!114 &2603344486335822577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/volume layer 2
+  m_EditorClassIdentifier: 
+  Name: volume layer 2
+  Min: 0
+  Max: 100
+  Default: 0
+  Exists: 1
+--- !u!114 &2793582990618731716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/jump/character_voice
+  m_EditorClassIdentifier: 
+  Name: character_voice
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &3319507911863729056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,7 +1351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.strings.bank
   SubDir: 
-  lastModified: 637817556278781858
+  lastModified: 637819876542654308
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -1254,7 +1480,7 @@ MonoBehaviour:
   Path: event:/FOLEY/interactive objects/impact sound 2
   guid: a8ba1956ee62ec43b881220c3bde3c38
   Banks:
-  - {fileID: -3959153551214956815}
+  - {fileID: 4190685020433566246}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1262,6 +1488,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 705
+--- !u!114 &4190685020433566246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
+  SubDir: 
+  lastModified: 637819876542613998
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &4582147371547256262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1532,7 +1776,7 @@ MonoBehaviour:
   Path: event:/MUSIC/menu music 2
   guid: 341c3babe90f764d943e8d32f868868f
   Banks:
-  - {fileID: -6742619843212970457}
+  - {fileID: 4190685020433566246}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1572,7 +1816,7 @@ MonoBehaviour:
   Path: event:/FOLEY/interactive objects/stain
   guid: 4d05e4e730c9b242ab796ba52fb01689
   Banks:
-  - {fileID: -6742619843212970457}
+  - {fileID: 4190685020433566246}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1621,6 +1865,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 96052
+--- !u!114 &7653495663336383377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/layering
+  m_EditorClassIdentifier: 
+  Name: layering
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 1
 --- !u!114 &7914683124029742309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1670,7 +1931,7 @@ MonoBehaviour:
   Path: event:/FOLEY/interactive objects/bumper
   guid: 087463e226302745840513e6b635f884
   Banks:
-  - {fileID: -6742619843212970457}
+  - {fileID: 4190685020433566246}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1778,7 +2039,7 @@ MonoBehaviour:
   Path: event:/FOLEY/interactive objects/third jump zone
   guid: 977a14c836d2c0479b65540c38046ffd
   Banks:
-  - {fileID: -6742619843212970457}
+  - {fileID: 4190685020433566246}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

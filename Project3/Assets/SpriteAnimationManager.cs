@@ -12,6 +12,7 @@ public class SpriteAnimationManager
         SpriteAnimation result = new SpriteAnimation();
         result.spriteRenderer = spriteRenderer;
 
+    
         path = path + "_";
 
         int i = 0;
@@ -65,6 +66,11 @@ public class SpriteAnimationManager
 
     public class SpriteAnimation
     {
+        public List<SpriteAnimation> copyState = new List<SpriteAnimation>();
+
+        public bool useOtherAnimationIndex;
+
+
         public SpriteRenderer spriteRenderer;
         public float speed = 1f;
 
@@ -82,8 +88,10 @@ public class SpriteAnimationManager
             return Play(context);
         }
 
+
         public Coroutine Play(MonoBehaviour context)
         {
+
             playRoutine = context.StartCoroutine(PlayRoutine());
             return playRoutine;
         }
@@ -93,6 +101,7 @@ public class SpriteAnimationManager
 
         public Coroutine PlayOnce(MonoBehaviour context, OnAnimationComplete onCompleteCallback = null)
         {
+
             currentSpriteIndex = 0;
             playRoutine = context.StartCoroutine(PlayOnceRoutine(onCompleteCallback));
             return playRoutine;
@@ -102,24 +111,27 @@ public class SpriteAnimationManager
         {
             float timeCounter = 0f;
 
-            spriteRenderer.sprite = sprites[currentSpriteIndex];
+            if(!useOtherAnimationIndex)
+            SetSprite();
 
             float changeFrameEach = 1f / framesPerSecond;
 
-            while (true)
+            while (!useOtherAnimationIndex)
             {
                 timeCounter += Time.deltaTime * speed;
+
+                
 
                 if (timeCounter > changeFrameEach)
                 {
 
                     int increment = (int)(timeCounter / changeFrameEach);
-
-                    currentSpriteIndex += increment;
-
+                    
+                        currentSpriteIndex += increment;
+                    
                     if (currentSpriteIndex >= sprites.Count)
                     {
-                        if(onCompleteCallback != null)
+                        if(onCompleteCallback != null && !useOtherAnimationIndex)
                         {
                             onCompleteCallback();
                         }
@@ -127,7 +139,9 @@ public class SpriteAnimationManager
                         break;
                     }
 
-                    spriteRenderer.sprite = sprites[currentSpriteIndex];
+
+                    if (currentSpriteIndex < sprites.Count)
+                        SetSprite();
                     timeCounter = 0f;
 
                 }
@@ -137,17 +151,29 @@ public class SpriteAnimationManager
 
         }
 
+        void SetSprite()
+        {
+            spriteRenderer.sprite = sprites[currentSpriteIndex];
+
+            foreach(var anim in copyState)
+            {
+                if(currentSpriteIndex < anim.sprites.Count)
+                    anim.spriteRenderer.sprite = anim.sprites[currentSpriteIndex];
+            }
+
+        }
 
         IEnumerator PlayRoutine()
         {
             float timeCounter = 0f;
 
-            
-            spriteRenderer.sprite = sprites[currentSpriteIndex];
+
+            if(!useOtherAnimationIndex)
+                SetSprite();
 
             float changeFrameEach = 1f / framesPerSecond;
 
-            while (true)
+            while (!useOtherAnimationIndex)
             {
                 timeCounter += Time.deltaTime * speed;
 
@@ -156,10 +182,12 @@ public class SpriteAnimationManager
 
                     int increment = (int)(timeCounter / changeFrameEach);
 
-                    currentSpriteIndex += increment;
-                    currentSpriteIndex = currentSpriteIndex % sprites.Count;
-                        
-                    spriteRenderer.sprite = sprites[currentSpriteIndex];
+                        currentSpriteIndex += increment;
+                        currentSpriteIndex = currentSpriteIndex % sprites.Count;
+
+
+                    if(currentSpriteIndex < sprites.Count)    
+                        SetSprite();
                     timeCounter = 0f;
                 }
 

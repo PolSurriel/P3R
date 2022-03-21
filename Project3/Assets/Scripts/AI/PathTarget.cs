@@ -7,12 +7,30 @@ using UnityEngine;
 public class PathTarget : MonoBehaviour
 {
 
+    [OnValueChanged("OnRandomVerticalOffsetActivated")]
+    public bool useRandomVerticalOffset;
+    public float maxVerticalOffset;
+    [OnValueChanged("OnRandomHorizontalOffsetActivated")]
+    public bool useRandomHorizontalOffset;
+    public float maxHorizontalOffset;
+
     public bool forceDotConstraint;
     public bool useDotConstrainToChoose = false;
     public float dotConstrainThreshold;
     public Vector2 dotConstrain;
 
     public Transform fakePosition;
+
+    void OnRandomVerticalOffsetActivated()
+    {
+        if (useRandomVerticalOffset)
+            useRandomHorizontalOffset = false;
+    }
+    void OnRandomHorizontalOffsetActivated()
+    {
+        if (useRandomHorizontalOffset)
+            useRandomVerticalOffset = false;
+    }
 
     public Vector2 GetEvaluablePosition()
     {
@@ -74,6 +92,18 @@ public class PathTarget : MonoBehaviour
         Debug.DrawLine((Vector2)transform.position + Vector2.left* RADIUS, (Vector2)transform.position + Vector2.right* RADIUS);
         Debug.DrawLine((Vector2)transform.position + Vector2.up* RADIUS, (Vector2)transform.position + Vector2.down* RADIUS);
 
+
+        if (useRandomVerticalOffset)
+        {
+            Debug.DrawLine(transform.position, transform.position + Vector3.up * maxVerticalOffset * 0.5f, Color.red);
+            Debug.DrawLine(transform.position, transform.position + Vector3.down * maxVerticalOffset * 0.5f, Color.red);
+        }
+
+        if (useRandomHorizontalOffset)
+        {
+            Debug.DrawLine(transform.position, transform.position + Vector3.up * maxHorizontalOffset * 0.5f);
+            Debug.DrawLine(transform.position, transform.position + Vector3.down * maxHorizontalOffset * 0.5f);
+        }
 
     }
 }

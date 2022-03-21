@@ -167,11 +167,19 @@ public class Portal : MonoBehaviour
             if (inverseX)
             {
                 vel.x = vel.x * -1f;
+            }else
+            {
+                // we add a little position offset so player don't collision with walls
+                newPos.x += otherPortal.normal.x * ((CircleCollider2D)collision).radius;
             }
 
             if (inverseY)
             {
                 vel.y = vel.y * -1f;
+            }else
+            {
+                // we add a little position offset so player don't collision with walls
+                newPos.y += otherPortal.normal.y * ((CircleCollider2D)collision).radius;
             }
 
             rb.velocity = vel;

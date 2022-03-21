@@ -155,12 +155,14 @@ public partial class AIController : MonoBehaviour
         StartCoroutine(AStarRoutine());
     }
 
+    bool firstJumpDone = false;
 
     IEnumerator AStarRoutine()
     {
 
         // Aquí es donde se calcula el timeBeforeJump
-        timeBeforeJump = AIDirector.GetTimeBeforeJump(erraticBehaviourFactor) * timeVariationAI;
+        timeBeforeJump = firstJumpDone ? AIDirector.GetTimeBeforeJump(erraticBehaviourFactor) * timeVariationAI: Random.Range(0.1f, 0.5f);
+        firstJumpDone = true;
 
         aStarSolver.output = null;
         executingAstarSeek = false;
