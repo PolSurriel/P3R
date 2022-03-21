@@ -81,14 +81,32 @@ public partial class AIDirector: MonoBehaviour
 
     }
 
+    public AnimationCurve songLayer0VolumePlayerPerformance;
+    public AnimationCurve songLayer1VolumePlayerPerformance;
+    public AnimationCurve songLayer2VolumePlayerPerformance;
+    public AnimationCurve songLayer3VolumePlayerPerformance;
+
+    void SetMusicVolumeFromPlayerPM()
+    {
+
+        var performancePercentage = 1f - ((playerCumulativeTimeWithoutProgressInLastLapse*0.5f) / performanceMeasurementLapse);
+
+        AudioController.instance.SetSongLayer0Volume(StartMatchCountDown.matchStarted?songLayer0VolumePlayerPerformance.Evaluate(performancePercentage):0f);
+        AudioController.instance.SetSongLayer1Volume(songLayer1VolumePlayerPerformance.Evaluate(performancePercentage));
+        AudioController.instance.SetSongLayer2Volume(songLayer2VolumePlayerPerformance.Evaluate(performancePercentage));
+        AudioController.instance.SetSongLayer3Volume(songLayer3VolumePlayerPerformance.Evaluate(performancePercentage));
+
+    }
 
 
     void UpdateBehaviourParameters()
     {
+       
+        UpdatePerformanceMeasurementData();
+
         if (GameInfo.instance == null || GameInfo.instance.ai_players == null)
             return;
 
-        UpdatePerformanceMeasurementData();
 
         playerEBF = CalculatePlayerErraticBehaviourFactor();
 
@@ -96,6 +114,7 @@ public partial class AIDirector: MonoBehaviour
         {
             ai.AproximateOwnEBFToPlayerEBF(playerEBF);
         }
+
     }
 
 
@@ -119,7 +138,7 @@ public partial class AIDirector: MonoBehaviour
 
     void UpdateSinglePMData
         (
-            float maxYReached, 
+            ref float maxYReached, 
             ref float cumulativeTimeWithoutProgressInLastLapse,
             float currentY
         )
@@ -143,14 +162,28 @@ public partial class AIDirector: MonoBehaviour
 
     void UpdatePerformanceMeasurementData()
     {
+
+        float playerY;
+
+#if UNITY_EDITOR
+        if(GameInfo.instance == null)
+        {
+            playerY = FindObjectOfType<Runner>().transform.position.y;
+        }
+        else
+#endif
+
+        playerY = GameInfo.instance.player.transform.position.y;
+        
+        UpdateSinglePMData(ref playerMaxYReached, ref playerCumulativeTimeWithoutProgressInLastLapse, playerY);
+
+
         if (GameInfo.instance == null || GameInfo.instance.ai_players == null)
             return;
 
-        float playerY = GameInfo.instance.player.transform.position.y;
-        UpdateSinglePMData(playerMaxYReached, ref playerCumulativeTimeWithoutProgressInLastLapse, playerY);
 
-        for(int i = 0; i < ais.Length; i++)
-            UpdateSinglePMData(aisYReached[i], 
+        for (int i = 0; i < ais.Length; i++)
+            UpdateSinglePMData(ref aisYReached[i], 
                 ref aisCumulativeTimeWithoutProgressInLastLapse[i], 
                 ais[i].transform.position.y);
            

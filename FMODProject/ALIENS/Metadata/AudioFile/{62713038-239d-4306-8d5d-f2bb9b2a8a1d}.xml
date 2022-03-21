@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{62713038-239d-4306-8d5d-f2bb9b2a8a1d}">
+        <property name="assetPath">
+            <value>potato.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>5.4176458333333333</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{d1cd7570-2b07-4392-b439-522037591509}</destination>
+        </relationship>
+    </object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{62ec96d8-2525-4336-b1c1-3d4bcb28c464}">
+        <property name="assetPath">
+            <value>Splat_Splatter_01.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>96</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>5.01171875</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{d1cd7570-2b07-4392-b439-522037591509}</destination>
+        </relationship>
+    </object>
+</objects>

@@ -78,6 +78,14 @@ public class ReboundSurface : MonoBehaviour
     {
         var runner = collision.collider.GetComponent<Runner>();
 
+        if (runner.isPlayer)
+        {
+            AudioController.instance.sounds.reboundSurface.Play();
+        }else
+        {
+            AudioController.instance.sounds.reboundSurfaceAI.Play();
+        }
+
         runner.rb.velocity = (runner.lastVelocity * senseVector + Vector2.up* Mathf.Min(runner.lastVelocity.magnitude*2.5f, maxUpMagnitude)).normalized * runner.lastVelocity.magnitude;
     }
 

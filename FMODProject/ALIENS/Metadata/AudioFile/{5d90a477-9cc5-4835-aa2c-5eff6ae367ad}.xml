@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{5d90a477-9cc5-4835-aa2c-5eff6ae367ad}">
+        <property name="assetPath">
+            <value>burpy.mp3</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>12.071999999999999</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{d1cd7570-2b07-4392-b439-522037591509}</destination>
+        </relationship>
+    </object>
+</objects>

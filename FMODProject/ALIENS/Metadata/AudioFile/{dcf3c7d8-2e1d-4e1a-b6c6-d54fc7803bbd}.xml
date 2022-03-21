@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{dcf3c7d8-2e1d-4e1a-b6c6-d54fc7803bbd}">
+        <property name="assetPath">
+            <value>Foam24.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>96</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>1.9484375</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{d1cd7570-2b07-4392-b439-522037591509}</destination>
+        </relationship>
+    </object>
+</objects>
