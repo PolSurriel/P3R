@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
         {
             // THEN, WE ARE IN EDIT MODE
             //playerTransform = FindObjectOfType<AIController>().transform;
-            playerTransform = FindObjectOfType<PlayerController>().transform;
+            //playerTransform = FindObjectOfType<PlayerController>().transform;
         }
     }
 

@@ -12,8 +12,8 @@ public class MapController : MonoBehaviour
     public int numberOfTilemaps;
     public Transform playerTransform;
     public List<int>[] tilemapsDifficulties;
-    public static int MaxtilemapDifficulty = 6;
-    public static int actualDifficulty = 0;
+    public static int MaxtilemapDifficulty = 8;
+    public static int actualDifficulty = 7;
 
     public static GameObject instanceGameObject;
 
@@ -59,7 +59,7 @@ public class MapController : MonoBehaviour
         {
             // THEN, WE ARE IN EDIT MODE
             //playerTransform = FindObjectOfType<AIController>().transform;
-            playerTransform = FindObjectOfType<PlayerController>().transform;
+            //playerTransform = FindObjectOfType<PlayerController>().transform;
         }
 
 
@@ -112,7 +112,7 @@ public class MapController : MonoBehaviour
 
         } while (doNotRepeat.Contains(tilemapsDifficulties[difficulty][result]));
 
-        return result;
+        return tilemapsDifficulties[difficulty][result];
     }
 
     void LoadTilemaps()

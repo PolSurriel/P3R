@@ -13,14 +13,14 @@ public class ProjectUtils : MonoBehaviour
     // Load Parallax
     public static Sprite LoadBackground(int index)
     {
-        return (Resources.Load("Backgrounds/Back/background" + (index + 1), typeof(Sprite)) as Sprite);
+        return (Resources.Load("Backgrounds/Back/bg" + (index + 1), typeof(Sprite)) as Sprite);
     }
     public static Sprite LoadMids(int index)
     {
-        return (Resources.Load("Backgrounds/Mid/mid" + (index + 1), typeof(Sprite)) as Sprite);
+        return (Resources.Load("Backgrounds/Mid/bg2." + (index + 1), typeof(Sprite)) as Sprite);
     }
     public static Sprite LoadFronts(int index)
     {
-        return (Resources.Load("Backgrounds/Front/front" + (index + 1), typeof(Sprite)) as Sprite);
+        return (Resources.Load("Backgrounds/Front/comp-" + (index + 1), typeof(Sprite)) as Sprite);
     }
 }
