@@ -69,7 +69,7 @@ public class MapController : MonoBehaviour
         {
 
             int numberOfTilemaps = 3;
-            InstantiateTilemap(15);
+            InstantiateTilemap(0);
             for (int i = 0; i < numberOfTilemaps; i++)
             {
                 InstantiateTilemap(GetRandomTilemapIndex(actualDifficulty));
@@ -173,10 +173,6 @@ public class MapController : MonoBehaviour
             Destroy(tilemapInstances.Peek());
             tilemapInstances.Dequeue();
         }
-
-
-
-
 
     }
 
