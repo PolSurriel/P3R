@@ -32,6 +32,7 @@ public class Door : MonoBehaviour
 
     void Open()
     {
+        AudioController.instance.sounds.door.Play();
         leftCollider.enabled = false;
         rightCollider.enabled = false;
         StartCoroutine(OpenRoutine());
@@ -43,6 +44,7 @@ public class Door : MonoBehaviour
         if (closed)
             return;
 
+        AudioController.instance.sounds.doorClose.Play();
         closed = true;
 
         StartCoroutine(CloseRoutine());

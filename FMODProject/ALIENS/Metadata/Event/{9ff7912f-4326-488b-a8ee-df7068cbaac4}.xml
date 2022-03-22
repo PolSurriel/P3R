@@ -103,6 +103,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{0b549eac-ca2a-4762-ba2e-338ed30304e6}">
+		<property name="volume">
+			<value>10</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -176,24 +179,30 @@
 	<object class="MixerBusFader" id="{8f1b9938-83de-4a70-a5a4-a6f214acb898}" />
 	<object class="ThreeEQEffect" id="{95e96aaf-a38f-43a4-85f6-e23105a42d92}">
 		<property name="midGain">
-			<value>-8</value>
+			<value>-64</value>
+		</property>
+		<property name="highGain">
+			<value>-25</value>
 		</property>
 		<property name="lowCrossover">
 			<value>10</value>
 		</property>
 		<property name="highCrossover">
-			<value>21000</value>
+			<value>680</value>
 		</property>
 	</object>
 	<object class="MultibandEqEffect" id="{854129ad-de58-4440-ac26-579cf7f41a85}">
 		<property name="filterTypeA">
-			<value>10</value>
+			<value>8</value>
 		</property>
 		<property name="frequencyA">
-			<value>1314.21655</value>
+			<value>2498.10815</value>
 		</property>
 		<property name="qualityA">
-			<value>0.7961725</value>
+			<value>0.246517241</value>
+		</property>
+		<property name="gainA">
+			<value>-15.5172415</value>
 		</property>
 	</object>
 </objects>

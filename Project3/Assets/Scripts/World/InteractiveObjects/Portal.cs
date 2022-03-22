@@ -147,6 +147,8 @@ public class Portal : MonoBehaviour
         if (collision.tag == "Player" || collision.tag == "AI_Player")
         {
 
+            collision.GetComponent<Runner>().EnterOnAPortal();
+
             //collision.GetComponent<Runner>().EnterOnAPortal();
 
             if (ignoring.Contains(collision.gameObject))

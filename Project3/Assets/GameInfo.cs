@@ -109,8 +109,9 @@ public class GameInfo : MonoBehaviour
                     DontDestroyOnLoad(ai_player);
                     aiController.desiredPlayerEBFOffset = targetEBFOffsets[i];
                     aiController.erraticBehaviourFactor = initialEBFs[i];
-                    
-                    
+
+                    Destroy(ai_player.gameObject.GetComponent<PlayerController>());
+
                     // TODO: Randomize skins
                     var animController = ai_player.transform.GetChild(1).GetChild(0).GetComponent<PlayerAnimationController>();
                     animController.baseSkin = "Yellow";

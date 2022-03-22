@@ -159,6 +159,9 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{33614713-bba0-4071-95ee-634e61b9a099}">
+		<property name="pitch">
+			<value>4.5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{21a46b1e-6ee9-460a-9b43-b5ab0d186716}</destination>
 		</relationship>
@@ -169,8 +172,11 @@
 		<property name="lowGain">
 			<value>-12</value>
 		</property>
+		<property name="midGain">
+			<value>-8</value>
+		</property>
 		<property name="highGain">
-			<value>1</value>
+			<value>-5.5</value>
 		</property>
 	</object>
 	<object class="ChorusEffect" id="{a3580d25-191e-45fe-850d-bbd1ab98611b}">

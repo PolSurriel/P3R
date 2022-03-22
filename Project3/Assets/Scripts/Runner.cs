@@ -76,6 +76,17 @@ public class Runner : MonoBehaviour
 
     void JumpOnStain(Vector2 direction)
     {
+
+        if (isPlayer)
+        {
+            AudioController.instance.sounds.stain.Play();
+
+        }else
+        {
+            AudioController.instance.sounds.stainAI.Play();
+
+        }
+
         stainJumpsCounter++;
 
         if (stainJumpsCounter >= STAIN_TIMES_TO_JUMP)
@@ -90,7 +101,16 @@ public class Runner : MonoBehaviour
 
     public void EnterOnAPortal()
     {
-        usingPortal = true;
+        if (isPlayer)
+        {
+            AudioController.instance.sounds.portal.Play();
+
+        }else
+        {
+            AudioController.instance.sounds.portalAI.Play();
+        }
+
+        //usingPortal = true;
     }
 
     void CantJumpFeedback()
@@ -300,6 +320,15 @@ public class Runner : MonoBehaviour
     public bool wallup;
     void CollideWithFloor(Collision2D collision)
     {
+
+        if (isPlayer)
+        {
+            AudioController.instance.sounds.wallCollision.Play();
+        }else
+        {
+            AudioController.instance.sounds.wallCollisionAI.Play();
+        }
+
         vfx.OnCollisionWithWall(collision.contacts[0].point);
         wallup = false;
         jumpCounter = 0;

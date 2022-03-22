@@ -10,7 +10,7 @@ public class StartMatchCountDown : MonoBehaviour
     TextMeshPro text;
     
     float timeCounter = 0f;
-    float duration = 4;
+    float duration = 5;
 
 
     private void OnDestroy()
@@ -22,7 +22,10 @@ public class StartMatchCountDown : MonoBehaviour
 
     private void Start()
     {
+        
         text = GetComponent<TextMeshPro>();
+        AudioController.instance.sounds.matchSong.Play();
+
     }
 
     public static bool matchStarted = false;
@@ -40,7 +43,9 @@ public class StartMatchCountDown : MonoBehaviour
             text.fontSize = 25f;
             text.text = "GO!";
             matchStarted = true;
+            
 
+            
             if (GameInfo.instance == null || GameInfo.instance.ai_players == null)
                 return;
 

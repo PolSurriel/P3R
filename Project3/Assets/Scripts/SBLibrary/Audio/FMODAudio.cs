@@ -14,6 +14,8 @@ public class FMODAudio : SurrealBoost.Audio
         instance = FMODUnity.RuntimeManager.CreateInstance(path);
     }
 
+
+
     public override void Play()
     {
         instance.start();
@@ -39,5 +41,9 @@ public class FMODAudio : SurrealBoost.Audio
         instance.release();
     }
 
+    public override void SetVolume(float v)
+    {
+        instance.setVolume(v);
+    }
 }
 

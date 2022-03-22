@@ -85,6 +85,7 @@ public partial class AIDirector : MonoBehaviour
     private void Update()
     {
         UpdateBehaviourParameters();
+        SetMusicVolumeFromPlayerPM();
     }
 
     public static void RemoveReboundSurface(ReboundSurface toRemove)

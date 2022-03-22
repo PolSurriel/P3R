@@ -74,6 +74,11 @@ public class UnityAudio : SurrealBoost.Audio
         audioSource.Stop();
         yield break;
     }
+
+    public override void SetVolume(float v)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 
