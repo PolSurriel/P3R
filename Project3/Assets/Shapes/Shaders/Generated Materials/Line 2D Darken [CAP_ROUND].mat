@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Line 2D Darken [CAP_ROUND]
   m_Shader: {fileID: 4800000, guid: cd82b6dbf3af6554e96188a487f5aeac, type: 3}
-  m_ShaderKeywords: CAP_ROUND
+  m_ShaderKeywords: CAP_ROUND ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0

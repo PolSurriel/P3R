@@ -14,6 +14,9 @@ public class Portal : MonoBehaviour
     public bool inverseX;
     [OnValueChanged("OnInverseYChanged")]
     public bool inverseY;
+    [OnValueChanged("OnSwapValuesChanged")]
+    public bool swapValues;
+    [InfoBox("First, we invert velocity axis value, and then, we swap them", InfoMessageType.Warning)]
 
     public Vector2 normal;
 
@@ -25,6 +28,11 @@ public class Portal : MonoBehaviour
     void OnInverseYChanged()
     {
         otherPortal.inverseY = inverseY;
+    }
+    
+    void OnSwapValuesChanged()
+    {
+        otherPortal.swapValues = swapValues;
     }
 
     AIController[] ais;
@@ -184,6 +192,13 @@ public class Portal : MonoBehaviour
                 newPos.y += otherPortal.normal.y * ((CircleCollider2D)collision).radius;
             }
 
+            if (swapValues)
+            {
+                float aux = vel.y;
+                vel.y = vel.x;
+                vel.x = aux;
+            }
+            
             rb.velocity = vel;
 
             collision.gameObject.transform.position = newPos /* + vel.normalized * 0.5f*/;

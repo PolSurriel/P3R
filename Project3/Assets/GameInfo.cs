@@ -8,6 +8,16 @@ public class GameInfo : MonoBehaviour
     private const int AI_PLAYERS_COUNT = 3;
 
 
+    public static List<ScriptablePerk> inventoryPerks = new List<ScriptablePerk>();
+    public static List<ScriptablePerk> equippedPerks = new List<ScriptablePerk>();
+    // Variables we need to save
+    public static bool freePerkSlotUnlocked;
+    public static int premiumPerkSlotsUnlocked;
+    public static int freeCostUnlocked;
+    public static int premiumCostUnlocked;
+    public static int totalPerkCost;
+    public static int equippedPerkCost;
+
     public void OnMatchSceneClosed()
     {
 
@@ -38,10 +48,13 @@ public class GameInfo : MonoBehaviour
     };
 
     [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject ai_playerPrefab;
+    [SerializeField] private ScriptablePerk def;
 
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject[] ai_players;
 
+    public SaveData state;
     public static GameInfo instance;
 
     //Esto es temporal para la pre-alpha. De hecho los niveles dejaran de existir despues de la entrega.
@@ -53,10 +66,15 @@ public class GameInfo : MonoBehaviour
         {
             Destroy(this.gameObject);
             return;
-
         }
-
         instance = this;
+        freePerkSlotUnlocked = false;
+        premiumPerkSlotsUnlocked = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            equippedPerks.Add(def);
+        }
+        LoadData();
         DontDestroyOnLoad(instance.gameObject);
 
 
@@ -133,6 +151,62 @@ public class GameInfo : MonoBehaviour
         
     }
 
+    public void SaveData()
+    {
+        //state.SaveInventory(inventoryPerks);
+        state.UpdateState(instance);
+        SaveSys.SaveData(state);
+    }
+
+    public void LoadData()
+    {
+        SaveData data = SaveSys.LoadMenuData();
+        if(data != null)
+        {
+            state = data;
+            playerSkin.baseSkinName = data.baseSkin;
+            playerSkin.suitSkinName = data.suitSkin;
+            playerSkin.accessory1SkinName = data.accessory1;
+            playerSkin.accessory2SkinName = data.accessory2;
+
+            
+            if(data.equipped != null)
+                foreach(var perk in data.equipped)
+                {
+                    var aux = Resources.Load<ScriptablePerk>("Perks/" + perk.name);
+                    equippedPerks.Add(aux);
+                }
+            if(data.inventory != null)
+                foreach(var perk in data.inventory)
+                {
+                    var aux = Resources.Load<ScriptablePerk>("Perks/" + perk.name);
+                    inventoryPerks.Add(aux);
+                }
+            
+            freePerkSlotUnlocked = data.freePerkSlotUnlocked;
+            premiumPerkSlotsUnlocked = data.premiumPerkSlotsUnlocked;
+            freeCostUnlocked = data.freeCostUnlocked;
+            premiumCostUnlocked = data.premiumCostUnlocked;
+            totalPerkCost = data.totalPerkCost;
+            equippedPerkCost = data.equippedPerkCost;
+
+            Debug.Log(playerSkin.baseSkinName + " " + playerSkin.suitSkinName + " " + playerSkin.accessory1SkinName + " " + playerSkin.accessory2SkinName + "Unlocked: " + equippedPerkCost);
+        }
+    }
+
+    public void AddPerk()
+    {
+        inventoryPerks.Add(Resources.Load<ScriptablePerk>("Perks/Ligther"));
+    }
 
 
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+            SaveData();
+    }
+    private void OnApplicationQuit()
+    {
+        SaveData();
+    }
 }

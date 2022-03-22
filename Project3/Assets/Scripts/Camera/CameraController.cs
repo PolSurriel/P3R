@@ -16,7 +16,10 @@ public class CameraController : MonoBehaviour
         }
         catch (NullReferenceException e)
         {
-            // THEN, WE ARE IN EDIT MODE AND DEBUGGAME WILL SET THE PROPERTY FOR US
+            // THEN, WE ARE IN EDIT MODE
+            //playerTransform = FindObjectOfType<AIController>().transform;
+            //playerTransform = FindObjectOfType<PlayerController>().transform;
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
     }
 
