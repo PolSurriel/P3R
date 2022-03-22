@@ -65,7 +65,7 @@ public class MapController : MonoBehaviour
         {
 
             int numberOfTilemaps = 3;
-            InstantiateTilemap(15);
+            InstantiateTilemap(20);
             for (int i = 0; i < numberOfTilemaps; i++)
             {
                 InstantiateTilemap(GetRandomTilemapIndex(actualDifficulty));
