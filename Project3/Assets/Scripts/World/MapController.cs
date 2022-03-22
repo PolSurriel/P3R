@@ -9,6 +9,11 @@ using System;
 [RequireComponent(typeof(Grid))]
 public class MapController : MonoBehaviour
 {
+
+    public bool debugMode;
+    public List<GameObject> debugTilemaps = new List<GameObject>();
+
+
     public int numberOfTilemaps;
     public Transform playerTransform;
     public List<int>[] tilemapsDifficulties;
@@ -70,10 +75,18 @@ public class MapController : MonoBehaviour
 
             int numberOfTilemaps = 3;
             InstantiateTilemap(0);
-            for (int i = 0; i < numberOfTilemaps; i++)
+
+            if(!debugMode)
+                for (int i = 0; i < numberOfTilemaps; i++)
+                    InstantiateTilemap(GetRandomTilemapIndex(actualDifficulty));
+            else
             {
-                InstantiateTilemap(GetRandomTilemapIndex(actualDifficulty));
+                foreach(var tm in debugTilemaps)
+                {
+                    InstantiateTilemap(tm);
+                }
             }
+
 
         }else
         {
@@ -99,8 +112,20 @@ public class MapController : MonoBehaviour
 
     }
 
-   
-    
+
+    void InstantiateTilemap(GameObject tilemap)
+    {
+        int index = 0;
+        foreach(var tm in tilemaps)
+        {
+            if (tm == tilemap)
+            {
+                InstantiateTilemap(index);
+            }
+
+            index++;
+        }
+    }
 
     int GetRandomTilemapIndex(int difficulty)
     {

@@ -619,7 +619,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51b2a333f8af554496ab88eca45192c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfTilemaps: 23
+  debugMode: 1
+  debugTilemaps:
+  - {fileID: 7769749786109202092, guid: b45d6dd2763b1804b98f0273054c8d7e, type: 3}
+  numberOfTilemaps: 26
   playerTransform: {fileID: 0}
   nodeDistance: 0
   nodeZeroPosition: {x: 0, y: 0}
@@ -1650,7 +1653,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.3333335
+  orthographic size: 5.627027
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2271,6 +2274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf03cef7ca952d499ea45d240d9ab6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAI: 1
   playerPrefab: {fileID: 328328316266981640, guid: 22ffd39eb4a48de4bb4bee3a14b0c483,
     type: 3}
 --- !u!1 &1205473843
