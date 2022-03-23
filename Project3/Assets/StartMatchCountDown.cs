@@ -56,4 +56,10 @@ public class StartMatchCountDown : MonoBehaviour
 
         }
     }
+
+    public void ResetCountDown()
+    {
+        timeCounter = 0;
+        duration = 5;
+    }
 }

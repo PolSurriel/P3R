@@ -18,7 +18,7 @@ public class MapController : MonoBehaviour
     public Transform playerTransform;
     public List<int>[] tilemapsDifficulties;
     public static int MaxtilemapDifficulty = 8;
-    public static int actualDifficulty = 7;
+    public static int actualDifficulty = 0;
 
     public static GameObject instanceGameObject;
 
@@ -26,19 +26,21 @@ public class MapController : MonoBehaviour
     Queue<GameObject> tilemapInstances;
     const int MAX_DONOTREPEAT_ITEMS = 1;
     const int MAX_CONCURRENT_TILEMAPS = 5;
-    
 
+    
     GameObject[] tilemaps;
     float totalHeightAcumulated;
     float gridSize;
     int enqueuedCount;
 
+    [SerializeField] private GameObject lineaMeta;
     public float nodeDistance;
 
 
     public Vector2 nodeZeroPosition;
 
     public List<NodeListWrapper> nodesGlobalMatrix;
+
 
     bool closedLevel = false;
 
@@ -67,11 +69,12 @@ public class MapController : MonoBehaviour
             //playerTransform = FindObjectOfType<PlayerController>().transform;
         }
 
+        
 
-
-
-        if (GameInfo.instance == null || GameInfo.instance.levelID == 0 || GameInfo.instance.levelID == 3)
+        if (GameInfo.instance == null || GameInfo.instance.levelID == 0 || GameInfo.instance.levelID == 3 || GameInfo.instance.levelID == 2 || GameInfo.instance.levelID == 4)
         {
+            if (GameInfo.instance != null && GameInfo.instance.levelID == 3)
+                lineaMeta.SetActive(false);
 
             int numberOfTilemaps = 3;
             InstantiateTilemap(0);
@@ -95,10 +98,6 @@ public class MapController : MonoBehaviour
             int[] level = null;
 
             if (GameInfo.instance.levelID == 1) {
-                level = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-            }
-            else if (GameInfo.instance.levelID == 2 || GameInfo.instance.levelID == 4) {
-
                 level = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
             }
             
@@ -209,7 +208,7 @@ public class MapController : MonoBehaviour
 
         if (playerTransform.position.y > totalHeightAcumulated - Camera.main.orthographicSize * 2)
         {
-            if(!closedLevel)
+            if(!closedLevel || (lineaMeta.activeSelf && totalHeightAcumulated < lineaMeta.transform.position.y))
                 InstantiateTilemap(GetRandomTilemapIndex(actualDifficulty));
 
         }
@@ -222,6 +221,15 @@ public class MapController : MonoBehaviour
         {
             tilemapsDifficulties[i] = new List<int>();
         }
+    }
+
+    public void ResetMap()
+    {
+        if (GameObject.FindObjectOfType<StartMatchCountDown>() != null)
+            GameObject.FindObjectOfType<StartMatchCountDown>().ResetCountDown();
+        doNotRepeat.Clear();
+        tilemapInstances.Clear();
+        lineaMeta.SetActive(true);
     }
 }
 

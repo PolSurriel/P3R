@@ -20,7 +20,8 @@ public class MainMenuManager : MonoBehaviour
     {
         PLAYER,
         AI,
-        VERSUS
+        VERSUS,
+        INFINITE
 
     }
 
@@ -78,6 +79,13 @@ public class MainMenuManager : MonoBehaviour
     }
     public void LoadLevel3()
     {
+        GameInfo.instance.levelID = 3;
+        SceneManager.LoadScene(level3);
+
+        GameInfo.instance.InitPlayers();
+    }
+    public void LoadLevel4()
+    {
         // TODO: to debug has changed levelID to 2 instead of 3
         GameInfo.instance.levelID = 4;
         SceneManager.LoadScene(level3);
@@ -92,11 +100,14 @@ public class MainMenuManager : MonoBehaviour
             case ModeType.PLAYER:
                 LoadLevel1();
                 break;
+            case ModeType.VERSUS:
+                LoadLevel4();
+                break;
+            case ModeType.INFINITE:
+                LoadLevel3();
+                break;
             case ModeType.AI:
                 LoadLevel2();
-                break;
-            case ModeType.VERSUS:
-                LoadLevel3();
                 break;
             default:
                 break;
@@ -110,17 +121,20 @@ public class MainMenuManager : MonoBehaviour
 
     public void PreviousMode()
     {
-        modeType = (ModeType)(((int)modeType - 1) % 3);
+        //modeType = (ModeType)(((int)modeType - 1) % 3);
         switch (modeType)
         {
             case ModeType.PLAYER:
+                modeType = ModeType.AI;
+                break;
+            case ModeType.VERSUS:
+                modeType = ModeType.PLAYER;
+                break;
+            case ModeType.INFINITE:
                 modeType = ModeType.VERSUS;
                 break;
             case ModeType.AI:
-                modeType = ModeType.PLAYER;
-                break;
-            case ModeType.VERSUS:
-                modeType = ModeType.AI;
+                modeType = ModeType.INFINITE;
                 break;
             default:
                 break;
@@ -131,16 +145,19 @@ public class MainMenuManager : MonoBehaviour
 
     public void NextMode()
     {
-        modeType = (ModeType)(((int)modeType + 1) % 3);
+        //modeType = (ModeType)(((int)modeType + 1) % 3);
         switch (modeType)
         {
             case ModeType.PLAYER:
-                modeType = ModeType.AI;
-                break;
-            case ModeType.AI:
                 modeType = ModeType.VERSUS;
                 break;
             case ModeType.VERSUS:
+                modeType = ModeType.INFINITE;
+                break;
+            case ModeType.INFINITE:
+                modeType = ModeType.AI;
+                break;
+            case ModeType.AI:
                 modeType = ModeType.PLAYER;
                 break;
             default:

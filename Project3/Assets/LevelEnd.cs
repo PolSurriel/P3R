@@ -19,6 +19,7 @@ public class LevelEnd : MonoBehaviour
 
         if(collision.GetComponent<PlayerController>() != null || (collision.GetComponent<AIController>() != null && GameInfo.instance.levelID == 2))
         {
+            GameObject.FindObjectOfType<MapController>().ResetMap();
             MatchController.instance.Quit();
         }
     }

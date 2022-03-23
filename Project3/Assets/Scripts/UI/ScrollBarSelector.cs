@@ -20,7 +20,7 @@ public class ScrollBarSelector : MonoBehaviour
     private void Update()
     {
         //scrollbar.horizontalNormalizedPosition = Mathf.Clamp(scrollbar.horizontalNormalizedPosition, 0.085f, 0.91f);
-        Debug.Log(indexMenu);
+
         
         if(!flagChanging)
             for(int i = 0; i < pos.Length; i++)

@@ -85,6 +85,7 @@ public class GameInfo : MonoBehaviour
         switch (levelID)
         {
             case 1:
+            case 3:
 
                 player = Instantiate(playerPrefab);
                 DontDestroyOnLoad(player);
@@ -118,7 +119,7 @@ public class GameInfo : MonoBehaviour
                  */
                 //TMP hardcoded desired
                 float[] targetEBFOffsets = new float[] { -.1f, 0, .1f, -.05f }; 
-                float[] initialEBFs = new float[] { .5f, .5f, .5f, .5f }; 
+                float[] initialEBFs = new float[] { .3f, .3f, .3f, .3f }; 
 
                 for (int i = 0; i < AI_PLAYERS_COUNT; i++)
                 {
