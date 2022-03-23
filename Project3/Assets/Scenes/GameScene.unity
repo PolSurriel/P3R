@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51b2a333f8af554496ab88eca45192c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 1
+  debugMode: 0
   debugTilemaps:
   - {fileID: 7532805520321851600, guid: 16c97784a9cc60048bdcfb49d968253f, type: 3}
   - {fileID: 7646639408964073939, guid: 266c8a144e883c04fa37966b43d8c148, type: 3}
@@ -1554,7 +1554,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.862069
+  orthographic size: 5.3333335
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
