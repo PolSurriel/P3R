@@ -108,7 +108,7 @@ public class MapController : MonoBehaviour
             
             if(GameInfo.instance.levelID == 4 || GameInfo.instance.levelID == 2)
             {
-                level = new int[] { 0, 1, 23, 6, 4, 19, 3, 7, 8, 9 };
+                level = new int[] { 0, 1, 8, 6, 4, 19, 3, 7, 8, 9 };
             }
 
             foreach (var tilemapIndex in level)
