@@ -28,6 +28,9 @@ public class GameInfo : MonoBehaviour
         
         Destroy(MapController.instanceGameObject);
 
+        AudioController.instance.sounds.matchSong.Stop();
+        StartMatchCountDown.matchStarted = false;
+
     }
    
 

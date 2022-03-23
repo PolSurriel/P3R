@@ -71,6 +71,7 @@ public partial class AIController : MonoBehaviour
     bool ChooseTarget(bool useDotConstraint = true)
     {
 
+
         // Obtenemos todos los targets
         var targets = FindObjectsOfType<PathTarget>();
 
@@ -80,6 +81,7 @@ public partial class AIController : MonoBehaviour
         // por cada target
         foreach (var target in targets)
         {
+
 
             // si lo estamos ignorando, pasamos al siguiente
             if (targetsToIgnore.Contains(target))
