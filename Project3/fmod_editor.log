@@ -2,13 +2,12 @@
 [LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
 [LOG] SystemI::init                            : Initialize version=20010 (110198), maxchannels=256, flags=0x00020000
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=44100, nAvgBytesPerSec=352800, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=48000, nAvgBytesPerSec=384000, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
 [LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
-[LOG] OutputWASAPI::init                       : Output buffer size: 3760 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
-[WRN] SystemI::init                            : Output requires a sample rate of 44100Hz, resampling will occur.
+[LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000025BA37A5EE8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 00000181270FF298 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Priority: 0, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -16,4 +15,81 @@
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Priority: 0, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001814497AF68
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001814497AF68
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001814497D488
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001814497D488
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001814497D488
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001814497D488
+[LOG] SoundI::release                          : theme layer 3 (000001814497EC28)
+[LOG] SoundI::release                          :     theme layer 3 (00000180384D94B8)
+[LOG] SoundI::release                          :     theme layer 3 (000001814497D488)
+[LOG] SoundI::release                          : theme layer 4 (0000018144978F58)
+[LOG] SoundI::release                          :     theme layer 4 (00000180384D9658)
+[LOG] SoundI::release                          :     theme layer 4 (000001814497A8A8)
+[LOG] SoundI::release                          : theme layer 1 (0000018144975298)
+[LOG] SoundI::release                          :     theme layer 1 (00000180384D9998)
+[LOG] SoundI::release                          :     theme layer 1 (000001814497AF68)
+[LOG] SoundI::release                          : theme layer 2 (00000181449746C8)
+[LOG] SoundI::release                          :     theme layer 2 (00000180384D97F8)
+[LOG] SoundI::release                          :     theme layer 2 (000001814497B478)
+[LOG] SoundI::release                          :  (00000181455FCD18)
+[LOG] SoundI::release                          :     alien voice (000001812C687138)
+[LOG] SoundI::release                          :  (00000181455FDA08)
+[LOG] SoundI::release                          :     woosh 3 (000001812C688178)
+[LOG] SoundI::release                          :  (00000181455FBEB8)
+[LOG] SoundI::release                          :     woosh 1 (000001812C68A058)
+[LOG] SoundI::release                          :  (00000181455FAD78)
+[LOG] SoundI::release                          :     windmill static hum (000001812C68A398)
+[LOG] SoundI::release                          :  (00000181455FAEE8)
+[LOG] SoundI::release                          :     impact 2 (000001812C68A6D8)
+[LOG] SoundI::release                          :  (00000181455FB618)
+[LOG] SoundI::release                          :     neptoons warp portal (000001812C685258)
+[LOG] SoundI::release                          :  (00000181455FF3E8)
+[LOG] SoundI::release                          :     jump sound (000001812C68ABB8)
+[LOG] SoundI::release                          :  (00000181455FF558)
+[LOG] SoundI::release                          :     neptoons treadmill (000001812C688658)
+[LOG] SoundI::release                          :  (00000181455FDB78)
+[LOG] SoundI::release                          :     neptoons sticky stain 1 (000001812C686918)
+[LOG] SoundI::release                          :  (00000181455FCE88)
+[LOG] SoundI::release                          :     neptoons sticky stain 2 (000001812C686438)
+[LOG] SoundI::release                          :  (00000181455FC8C8)
+[LOG] SoundI::release                          :     neptoons sticky stain 3 (000001812C68A1F8)
+[LOG] SoundI::release                          :  (00000181455FCBA8)
+[LOG] SoundI::release                          :     hydraulic door (000001812C689698)
+[LOG] SoundI::release                          :  (00000181455FD2D8)
+[LOG] SoundI::release                          :     powerupsoda (000001812C686AB8)
+[LOG] SoundI::release                          :  (00000181455FECB8)
+[LOG] SoundI::release                          :     third jump crystal (000001812C685A78)
+[LOG] SoundI::release                          :  (00000181455FA368)
+[LOG] SoundI::release                          :     powerupsoda bleeps (000001812C689838)
+[LOG] SoundI::release                          :  (00000181455FAA98)
+[LOG] SoundI::release                          :     crazy impact (000001812C686DF8)
+[LOG] SoundI::release                          :  (00000181455FF6C8)
+[LOG] SoundI::release                          :     damage (000001812C689EB8)
+[LOG] SoundI::release                          :  (00000181455FDCE8)
+[LOG] SoundI::release                          :     Foam24 (000001812C689B78)
+[LOG] SoundI::release                          :  (00000181455FA928)
+[LOG] SoundI::release                          :     Foam12 (000001812C687FD8)
+[LOG] SoundI::release                          :  (00000181455FB8F8)
+[LOG] SoundI::release                          :     bumper 3 (000001812C68AEF8)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] SystemI::close                           : Closed.
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
+[LOG] SystemI::close                           : Closed.

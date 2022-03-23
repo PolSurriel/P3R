@@ -13,6 +13,10 @@ public class MapController : MonoBehaviour
     public bool debugMode;
     public List<GameObject> debugTilemaps = new List<GameObject>();
 
+    // ---- setear tilemaps para la alpha, variables temporales
+    public List<GameObject> tmp_alphaLevelTilemaps = new List<GameObject>();
+    public List<GameObject> tmp_alphaOnBoardingTilemaps = new List<GameObject>();
+
 
     public int numberOfTilemaps;
     public Transform playerTransform;

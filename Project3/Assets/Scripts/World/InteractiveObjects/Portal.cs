@@ -249,7 +249,7 @@ public class Portal : MonoBehaviour
 
 
             rb.velocity = vel;
-            Debug.LogError("Printed");
+            //Debug.LogError("Printed");
             Debug.DrawLine(newPos, newPos + vel.normalized * 100f, Color.blue, 10f);
 
             collision.gameObject.transform.position = newPos /* + vel.normalized * 0.5f*/;
