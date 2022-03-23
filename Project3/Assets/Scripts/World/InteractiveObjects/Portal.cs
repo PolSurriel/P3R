@@ -6,6 +6,26 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
 
+    public static Vector2 SmartSwap(bool swap, Vector2 outNormal, Vector2 toSwap)
+    {
+
+        if (!swap)
+            return toSwap;
+
+        var auxY = toSwap.y;
+        toSwap.y = toSwap.x;
+        toSwap.x = auxY;
+
+        float dot = Vector2.Dot(toSwap, outNormal);
+
+        if(dot < 0f)
+        {
+            toSwap *= -1f;
+        }
+
+        return toSwap;
+    }
+
 
     public bool aiIgnore;
     public Portal otherPortal;
@@ -15,7 +35,7 @@ public class Portal : MonoBehaviour
     [OnValueChanged("OnInverseYChanged")]
     public bool inverseY;
     [OnValueChanged("OnSwapValuesChanged")]
-    public bool swapValues;
+    public bool swapXY;
     [InfoBox("First, we invert velocity axis value, and then, we swap them", InfoMessageType.Warning)]
 
     public Vector2 normal;
@@ -32,12 +52,10 @@ public class Portal : MonoBehaviour
     
     void OnSwapValuesChanged()
     {
-        otherPortal.swapValues = swapValues;
+        otherPortal.swapXY = swapXY;
     }
 
     AIController[] ais;
-
-    
 
     public AIController.NativePortalInfo GeneratePortalNativeInfo() {
 
@@ -45,6 +63,8 @@ public class Portal : MonoBehaviour
             collisionInfo = CalculateLineCollisionInfo(),
             inverseX = inverseX,
             inverseY = inverseY,
+            swapXY = swapXY,
+            normal = normal,
             otherPortalPosition = otherPortal.transform.position,
             portalPosition = transform.position
 
@@ -102,6 +122,35 @@ public class Portal : MonoBehaviour
     {
         if(!aiIgnore)
             AIDirector.AddPortal(this);
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        var inVelocity = otherPortal.normal * -1f;
+        inVelocity = Quaternion.AngleAxis(25f, Vector3.forward) * inVelocity;
+
+        var outVelocity = inVelocity;
+
+        if (inverseX) outVelocity.x *= -1f;
+        if (inverseY) outVelocity.y *= -1f;
+
+        outVelocity = SmartSwap(swapXY, normal, outVelocity);
+
+        Debug.DrawLine(transform.position, (Vector2)transform.position + outVelocity, Color.red);
+        Debug.DrawLine(transform.position, (Vector2)transform.position + inVelocity, Color.green);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere((Vector2)transform.position + inVelocity, 0.01f);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere((Vector2)transform.position + outVelocity, 0.01f);
+
+        // DESIRED OUTPUT IF NORMALS ARE OK (muy caro para usar este metodo pero bueno para mostrarse en gizmos)
+        float angleBetweenNormals = Vector2.SignedAngle(normal, otherPortal.normal);
+        Vector2 desiredOutput = Quaternion.AngleAxis(angleBetweenNormals, Vector3.forward) * inVelocity;    
+        Debug.DrawLine(transform.position, (Vector2)transform.position + desiredOutput, Color.yellow);
+
+        
 
     }
 
@@ -164,7 +213,15 @@ public class Portal : MonoBehaviour
 
             otherPortal.ignoring.Add(collision.gameObject);
             
-            Vector3 localPos = collision.gameObject.transform.position - transform.position; 
+            Vector3 localPos = collision.gameObject.transform.position - transform.position;
+
+            if (swapXY)
+            {
+                var auxY = localPos.y;
+                localPos.y = localPos.x;
+                localPos.x = auxY;
+            }
+
             Vector2 newPos = otherPortal.transform.position + localPos;
 
             StartCoroutine(StopIgnoringAt(0.5f, collision.gameObject));
@@ -177,29 +234,23 @@ public class Portal : MonoBehaviour
             if (inverseX)
             {
                 vel.x = vel.x * -1f;
-            }else
-            {
-                // we add a little position offset so player don't collision with walls
-                newPos.x += otherPortal.normal.x * ((CircleCollider2D)collision).radius;
             }
 
-            if (inverseY)
+            else if (inverseY)
             {
                 vel.y = vel.y * -1f;
-            }else
-            {
-                // we add a little position offset so player don't collision with walls
-                newPos.y += otherPortal.normal.y * ((CircleCollider2D)collision).radius;
-            }
-
-            if (swapValues)
-            {
-                float aux = vel.y;
-                vel.y = vel.x;
-                vel.x = aux;
             }
             
+            // we add a little position offset so player don't collision with walls
+            newPos += otherPortal.normal * ((CircleCollider2D)collision).radius*2.2f;
+
+
+            SmartSwap(swapXY, normal, vel);
+
+
             rb.velocity = vel;
+            Debug.LogError("Printed");
+            Debug.DrawLine(newPos, newPos + vel.normalized * 100f, Color.blue, 10f);
 
             collision.gameObject.transform.position = newPos /* + vel.normalized * 0.5f*/;
 
