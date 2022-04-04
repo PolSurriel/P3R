@@ -23,6 +23,6 @@ public class MatchController : MonoBehaviour
 
     void GoToMainMenu()
     {
-        SceneManager.LoadScene(mainMenu);
+        SceneManager.LoadSceneAsync(mainMenu);
     }
 }
