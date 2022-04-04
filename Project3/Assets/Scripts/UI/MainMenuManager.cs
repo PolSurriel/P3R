@@ -11,6 +11,9 @@ public class MainMenuManager : MonoBehaviour
 
     public SceneReference level1, level2, level3;
     public RectTransform allMenusContainer;
+    public Slider loadingSlider;
+
+
 
     private ModeType modeType;
 
@@ -24,6 +27,7 @@ public class MainMenuManager : MonoBehaviour
         INFINITE
 
     }
+
 
     private void Awake()
     {
@@ -66,21 +70,21 @@ public class MainMenuManager : MonoBehaviour
     public void LoadLevel1()
     {
         GameInfo.instance.levelID = 1;
-        SceneManager.LoadScene(level1);
+        StartCoroutine(LoadAsyncScene(level1));
 
         GameInfo.instance.InitPlayers();
     }
     public void LoadLevel2()
     {
         GameInfo.instance.levelID = 2;
-        SceneManager.LoadScene(level2);
+        StartCoroutine(LoadAsyncScene(level2));
 
         GameInfo.instance.InitPlayers();
     }
     public void LoadLevel3()
     {
         GameInfo.instance.levelID = 3;
-        SceneManager.LoadScene(level3);
+        StartCoroutine(LoadAsyncScene(level3));
 
         GameInfo.instance.InitPlayers();
     }
@@ -88,7 +92,7 @@ public class MainMenuManager : MonoBehaviour
     {
         // TODO: to debug has changed levelID to 2 instead of 3
         GameInfo.instance.levelID = 4;
-        SceneManager.LoadScene(level3);
+        StartCoroutine(LoadAsyncScene(level3));
 
         GameInfo.instance.InitPlayers();
     }
@@ -173,7 +177,30 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log(_name + " Skin selected");
     }
 
+    IEnumerator LoadAsyncScene(SceneReference scene)
+    {
+        yield return null;
+
+        AsyncOperation ao = SceneManager.LoadSceneAsync(scene);
+        ao.allowSceneActivation = false;
+
+        while (!ao.isDone)
+        {
+            float progress = Mathf.Clamp01(ao.progress / 0.9f);
+            loadingSlider.value = progress;
+            // Loading completed
+            if (ao.progress == 0.9f)
+            {
+                ao.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+    }
 }
+
+
+
 
 // Clase que re-estrctura una array para añadir un elemento
 public static class Extensions
@@ -190,3 +217,5 @@ public static class Extensions
         return result;
     }
 }
+
+
