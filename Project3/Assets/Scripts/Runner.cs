@@ -267,7 +267,7 @@ public class Runner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "extraJumpZone")
+        if (collision.tag == "extraJumpZone" && !collision.GetComponent<ExtraJumpZone>().ignoring.Contains(this))
         {
             jumpCounter = 0;
         }

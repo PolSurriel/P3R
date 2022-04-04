@@ -216,7 +216,7 @@ public partial class AIController : MonoBehaviour
         {
             onBackupPlanZone = true;
         }
-        else if (collision.tag == "extraJumpZone")
+        else if (collision.tag == "extraJumpZone" && !collision.GetComponent<ExtraJumpZone>().ignoring.Contains(runner))
         {
             executingAstarSeek = false;
             aStarSolver.output = null;
