@@ -17,13 +17,12 @@ public partial class AIController : MonoBehaviour
         private Vector2 m_position;
         public Vector2 position
         {
-            get { return m_position + portalOffset; }
+            get { return m_position; }
             set { m_position = value; }
         }
 
         public float coste;
         public float time;
-        public Vector2 portalOffset;
 
         public float H(Vector2 goalPosition) { return (position - goalPosition).magnitude;}
 

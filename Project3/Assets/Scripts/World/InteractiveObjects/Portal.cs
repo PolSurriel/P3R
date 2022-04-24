@@ -67,7 +67,7 @@ public class Portal : ComplexMonoBehaviour
             inverseX = inverseX,
             inverseY = inverseY,
             swapXY = swapXY,
-            normal = normal,
+            otherPortalNormal = otherPortal.normal,
             otherPortalPosition = otherPortal.transform.position,
             portalPosition = transform.position
 
@@ -225,6 +225,14 @@ public class Portal : ComplexMonoBehaviour
     }
 
 
+    public static Vector2 GetCrossingPortalPosition( Vector2 characterPosition, Vector2 portalPosition, Vector2 otherPortalPosition, Vector2 otherPortalNormal, bool portalSwapXY, float characterRadius)
+    {
+        Vector2 localPosRelativeToPortal = characterPosition - portalPosition;
+        localPosRelativeToPortal = SmartSwap(portalSwapXY, otherPortalNormal, localPosRelativeToPortal);
+
+        return otherPortalPosition + localPosRelativeToPortal + otherPortalNormal * characterRadius;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -241,14 +249,7 @@ public class Portal : ComplexMonoBehaviour
             otherPortal.ignoring.Add(collision.gameObject);
             
             Vector3 localPos = collision.gameObject.transform.position - transform.position;
-
-            SmartSwap(swapXY, otherPortal.normal, localPos);
-
-            if (Vector2.Dot(otherPortal.normal, localPos) < 0f)
-            {
-                localPos *= -1;
-            }
-
+            localPos = SmartSwap(swapXY, otherPortal.normal, localPos);
 
 
             Vector2 newPos = otherPortal.transform.position + localPos;
@@ -266,7 +267,8 @@ public class Portal : ComplexMonoBehaviour
             if (inverseY)
                 vel.y = vel.y * -1f;
 
-            SmartSwap(swapXY, otherPortal.normal, vel);
+            
+            vel = SmartSwap(swapXY, otherPortal.normal, vel);
             
             
             rb.velocity = vel;

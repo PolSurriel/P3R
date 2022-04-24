@@ -23,6 +23,8 @@ using UnityEditor;
 public partial class AIController : MonoBehaviour
 {
     float predictionPlayerRadius;
+    float realPlayerRadius;
+
     public class AStarSolver
     {
         const int MIN_FIRST_ITERATIONS_TO_USE_SECONDJUMP = 3;
@@ -31,14 +33,16 @@ public partial class AIController : MonoBehaviour
 
         Vector2 originPosition;
         float predictionPlayerRadius;
+        float realPlayerRadius;
         JobyfablePrecalculatedPredictionSystem jumpPredictor;
         int layerMaskRaycastNOT;
         int layerMaskPortal;
         int layerMaskPrediction;
         Vector2 goalPosition;
+        int jumpPredictorIndex;
 
 
-        public AStarSolver(float predictionPlayerRadius, JobyfablePrecalculatedPredictionSystem jumpPredictor)
+        public AStarSolver(float predictionPlayerRadius, float realPlayerRadius, JobyfablePrecalculatedPredictionSystem jumpPredictor)
         {
 
             layerMaskPortal = 1 << LayerMask.NameToLayer("Portal");
@@ -48,6 +52,7 @@ public partial class AIController : MonoBehaviour
 
             this.jumpPredictor = jumpPredictor;
             this.predictionPlayerRadius = predictionPlayerRadius;
+            this.realPlayerRadius = realPlayerRadius;
 
             SetupIterationDiscarder();
 
@@ -66,9 +71,10 @@ public partial class AIController : MonoBehaviour
         {
 
             AStarIterationsDiscarder.m_precalculatedDirections = jumpPredictor.precalculatedDirections;
+            jumpPredictorIndex = AStarIterationsDiscarder.lastAddedJumpPredictorIndex;
+            AStarIterationsDiscarder.m_jumpPredictors[AStarIterationsDiscarder.lastAddedJumpPredictorIndex++] = jumpPredictor;
 
         }
-
 
 
         /* Este metodo modifica la información de un nodo si este cruza un portal.
@@ -77,45 +83,55 @@ public partial class AIController : MonoBehaviour
          */
         void PortalCase(ref AStarNode nextNode,  Vector2 prevPos, ref RaycastHit2D portalHit)
         {
-
-
             if (portalHit)
             {
                 var portal = portalHit.collider.GetComponent<Portal>();
 
                 nextNode.iterationsSincePortalCrossed = 2;
 
-                if (portal.inverseY)
-                {
-                    nextNode.portalSense.y *= -1;
-
-                }
-
-                if (portal.inverseX)
-                {
-                    nextNode.portalSense.x *= -1;
-                }
-
+                Vector2 deltaMove = nextNode.position - prevPos; // value previous of crossing portal.
+                
+                
                 if (portal.swapXY)
                 {
-                    //TODO
+                    // 1) we get the swapped+inversed new velocity
+                    deltaMove *= new Vector2( portal.inverseX ? -1f:1f, portal.inverseY ? -1f : 1f);
+                    var newVel = Portal.SmartSwap(true, portal.otherPortal.normal, deltaMove.normalized);
+
+                    // 2) we get the new local position relative to other portal (local swapped!)
+                    var relativePortal = prevPos - (Vector2)portal.transform.position;
+                    var relativeOtherPortal = Portal.SmartSwap(true, portal.otherPortal.normal, relativePortal);
+
+                    // 3) we get the next node position
+                    nextNode.position = (Vector2)portal.otherPortal.transform.position + relativeOtherPortal + portal.otherPortal.normal * realPlayerRadius;
+
+                    // 4) using new velocity we get the new simulation index
+                    nextNode.directionIndex = jumpPredictor.GetSimulationIndex(newVel);
+
+                    // then we clean portal sense
+                    nextNode.portalSense = Vector2.one;
+
+                    // 5) we get the new origin
+                    nextNode.origin = nextNode.position - (jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex]);
+
                 }
+                else
+                {
 
-                nextNode.portalNormal = portal.normal;
+                    if (portal.inverseY)
+                        nextNode.portalSense.y *= -1;
 
-                // Change nextPos
-                Vector2 deltaMove = nextNode.position - prevPos;
-                deltaMove *= nextNode.portalSense;
-                nextNode.position = prevPos + (deltaMove);
+                    if (portal.inverseX)
+                        nextNode.portalSense.x *= -1;
 
 
-                // Calculate offset
-                Vector2 portalPos = portal.transform.position;
-                Vector2 otherPortalpos = portal.otherPortal.transform.position;
-                nextNode.portalOffset += (otherPortalpos - portalPos);
+                    deltaMove *= nextNode.portalSense;
+                    nextNode.position = prevPos + (deltaMove) + portal.otherPortal.normal * realPlayerRadius;
 
-                nextNode.origin = nextNode.position - (nextNode.portalSense * jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex]);
+                    // Calculate new origin
+                    nextNode.origin = nextNode.position - (nextNode.portalSense * jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex]);
 
+                }
 
             }
 
@@ -428,8 +444,9 @@ public partial class AIController : MonoBehaviour
                     nodePosition = inNode.position,
                     m_goalPosition = goalPosition,
                     m_portalSense = inNode.portalSense,
-                    m_portalNormal = inNode.portalNormal,
                     m_iterationsCount = jumpPredictor.iterationsCount,
+                    m_characterRadius = predictionPlayerRadius,
+                    m_jumpPredictorIndex = jumpPredictorIndex
 
                 };
 
