@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
+using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(Grid))]
 public class MapController : MonoBehaviour
@@ -18,9 +19,11 @@ public class MapController : MonoBehaviour
     public List<GameObject> tmp_alphaOnBoardingTilemaps = new List<GameObject>();
 
 
-    public int numberOfTilemaps;
+    public static int numberOfTilemaps = 23;
+
     public Transform playerTransform;
-    public List<int>[] tilemapsDifficulties;
+    public static List<int>[] tilemapsDifficulties;
+    
     public static int MaxtilemapDifficulty = 8;
     public static int actualDifficulty = 0;
 
@@ -31,8 +34,9 @@ public class MapController : MonoBehaviour
     const int MAX_DONOTREPEAT_ITEMS = 1;
     const int MAX_CONCURRENT_TILEMAPS = 5;
 
-    
-    GameObject[] tilemaps;
+
+    public static bool tilemapsInizializated = false;
+    public static GameObject[] tilemaps;
     float totalHeightAcumulated;
     float gridSize;
     int enqueuedCount;
@@ -59,7 +63,7 @@ public class MapController : MonoBehaviour
 
         nodeDistance = gridSize / 3f;
 
-        InitializeArrayTilemaps();
+        
         LoadTilemaps();
 
         try
@@ -148,8 +152,15 @@ public class MapController : MonoBehaviour
         return tilemapsDifficulties[difficulty][result];
     }
 
-    void LoadTilemaps()
+    public static void LoadTilemaps()
     {
+        if (tilemapsInizializated)
+            return;
+
+        tilemapsInizializated = true;
+
+        InitializeArrayTilemaps();
+
         tilemaps = new GameObject[numberOfTilemaps];
         for (int i = 0; i < numberOfTilemaps; i++)
         {
@@ -223,7 +234,7 @@ public class MapController : MonoBehaviour
         }
     }
 
-    void InitializeArrayTilemaps()
+    static void InitializeArrayTilemaps()
     {
         tilemapsDifficulties = new List<int>[MaxtilemapDifficulty];
         for(int i=0; i<tilemapsDifficulties.Length; i++)

@@ -1,10 +1,12 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class Portal : MonoBehaviour
+public class Portal : ComplexMonoBehaviour
 {
+    protected override string GetDocsLink() => "https://docs.google.com/document/d/1TtdxIMOyhyy9kL0Gu0x5pjhhjCxQG3gG2YF3BIHFiSE/edit?usp=sharing";
 
     public static Vector2 SmartSwap(bool swap, Vector2 outNormal, Vector2 toSwap)
     {
@@ -125,10 +127,36 @@ public class Portal : MonoBehaviour
 
     }
 
-    private void OnDrawGizmos()
+    float gizmosSelectedTimeCounter = 0f;
+    bool gizmosSelectedTimeIncresePositive = true;
+    private void OnDrawGizmosSelected()
     {
+        gizmosSelectedTimeCounter += 0.1f* Time.deltaTime * (gizmosSelectedTimeIncresePositive ? 1f:-1f);
+        otherPortal.gizmosSelectedTimeCounter = gizmosSelectedTimeCounter;
+
+        if(
+            (gizmosSelectedTimeIncresePositive && gizmosSelectedTimeCounter > 1f)
+            ||
+            (!gizmosSelectedTimeIncresePositive && gizmosSelectedTimeCounter < -1f))
+        {
+            gizmosSelectedTimeIncresePositive = !gizmosSelectedTimeIncresePositive;
+            otherPortal.gizmosSelectedTimeIncresePositive = gizmosSelectedTimeIncresePositive;
+        }
+
+        DrawPortalsEnterExitInfo();
+        otherPortal.DrawPortalsEnterExitInfo();
+    }
+
+
+    public void DrawPortalsEnterExitInfo()
+    {
+        SurrealBoost.GizmosTools.Draw2D.ArrowedLine(transform.position, (Vector2)transform.position + normal*0.7f, 0.02f, Color.white);
+        #if UNITY_EDITOR
+            Handles.Label((Vector2)transform.position + normal * 0.7f, "normal");
+        #endif
+
         var inVelocity = otherPortal.normal * -1f;
-        inVelocity = Quaternion.AngleAxis(25f, Vector3.forward) * inVelocity;
+        inVelocity = Quaternion.AngleAxis(25f * gizmosSelectedTimeCounter, Vector3.forward) * inVelocity;
 
         var outVelocity = inVelocity;
 
@@ -137,20 +165,18 @@ public class Portal : MonoBehaviour
 
         outVelocity = SmartSwap(swapXY, normal, outVelocity);
 
-        Debug.DrawLine(transform.position, (Vector2)transform.position + outVelocity, Color.red);
-        Debug.DrawLine(transform.position, (Vector2)transform.position + inVelocity, Color.green);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere((Vector2)transform.position + inVelocity, 0.01f);
+        const float lineWidth = 0.05f;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere((Vector2)transform.position + outVelocity, 0.01f);
+        SurrealBoost.GizmosTools.Draw2D.ArrowedLine(transform.position, (Vector2)transform.position + outVelocity, lineWidth, Color.red);
+        SurrealBoost.GizmosTools.Draw2D.ArrowedLine(transform.position, (Vector2)transform.position + inVelocity, lineWidth, Color.green);
 
-        // DESIRED OUTPUT IF NORMALS ARE OK (muy caro para usar este metodo pero bueno para mostrarse en gizmos)
-        float angleBetweenNormals = Vector2.SignedAngle(normal, otherPortal.normal);
-        Vector2 desiredOutput = Quaternion.AngleAxis(angleBetweenNormals, Vector3.forward) * inVelocity;    
-        Debug.DrawLine(transform.position, (Vector2)transform.position + desiredOutput, Color.yellow);
+#if UNITY_EDITOR
+        Handles.color = Color.green;
+        Handles.Label((Vector2)transform.position + inVelocity, "INPUT VELOCITY");
+        Handles.color = Color.red;
+        Handles.Label((Vector2)transform.position + outVelocity, "OUTPUT VELOCITY");
+#endif
 
-        
 
     }
 

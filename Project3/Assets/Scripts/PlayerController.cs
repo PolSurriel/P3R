@@ -220,8 +220,7 @@ public class PlayerController : MonoBehaviour
             if (!firstDragInputIteration)
             {
                 Vector2 deltaMove = currentInput - tmpLastInputPos;
-                inputVector += deltaMove*0.003f;
-                //inputVector += deltaMove*0.005f;
+                inputVector -= deltaMove*0.003f;
             }
 
             tmpLastInputPos = Input.mousePosition;

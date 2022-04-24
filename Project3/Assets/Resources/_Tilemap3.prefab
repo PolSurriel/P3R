@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3534076871273528058}
   - component: {fileID: 3415899332194937951}
   m_Layer: 8
-  m_Name: Tilemap3
+  m_Name: _Tilemap3
   m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
