@@ -20,10 +20,11 @@ public class Portal : ComplexMonoBehaviour
 
         float dot = Vector2.Dot(toSwap, outNormal);
 
-        if(dot < 0f)
+        if (dot < 0f)
         {
             toSwap *= -1f;
         }
+
 
         return toSwap;
     }
@@ -224,7 +225,7 @@ public class Portal : ComplexMonoBehaviour
     }
 
 
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player" || collision.tag == "AI_Player")
@@ -241,12 +242,14 @@ public class Portal : ComplexMonoBehaviour
             
             Vector3 localPos = collision.gameObject.transform.position - transform.position;
 
-            if (swapXY)
+            SmartSwap(swapXY, otherPortal.normal, localPos);
+
+            if (Vector2.Dot(otherPortal.normal, localPos) < 0f)
             {
-                var auxY = localPos.y;
-                localPos.y = localPos.x;
-                localPos.x = auxY;
+                localPos *= -1;
             }
+
+
 
             Vector2 newPos = otherPortal.transform.position + localPos;
 
@@ -258,29 +261,21 @@ public class Portal : ComplexMonoBehaviour
             var vel = rb.velocity;
 
             if (inverseX)
-            {
                 vel.x = vel.x * -1f;
-            }
 
-            else if (inverseY)
-            {
+            if (inverseY)
                 vel.y = vel.y * -1f;
-            }
+
+            SmartSwap(swapXY, otherPortal.normal, vel);
             
-            // we add a little position offset so player don't collision with walls
-            newPos += otherPortal.normal * ((CircleCollider2D)collision).radius*2.2f;
-
-
-            SmartSwap(swapXY, normal, vel);
-
-
+            
             rb.velocity = vel;
-            //Debug.LogError("Printed");
-            Debug.DrawLine(newPos, newPos + vel.normalized * 100f, Color.blue, 10f);
-
-            collision.gameObject.transform.position = newPos /* + vel.normalized * 0.5f*/;
+            Debug.DrawLine(newPos, newPos+ otherPortal.normal * ((CircleCollider2D)collision).radius, Color.green, 10f);
+            Debug.DrawLine(newPos, newPos+ otherPortal.normal * ((CircleCollider2D)collision).radius * 0.7f, Color.red, 10f);
 
 
+
+            collision.gameObject.transform.position = newPos  + otherPortal.normal * ((CircleCollider2D)collision).radius;
 
         }
     }

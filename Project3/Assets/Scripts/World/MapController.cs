@@ -114,11 +114,19 @@ public class MapController : MonoBehaviour
             {
                 level = new int[] { 0, 1, 8, 6, 4, 19, 3, 7, 8, 9 };
             }
-
-            foreach (var tilemapIndex in level)
+            if (!debugMode)
+                foreach (var tilemapIndex in level)
+                {
+                    InstantiateTilemap(tilemapIndex);
+                }
+            else
             {
-                InstantiateTilemap(tilemapIndex);
+                foreach (var tm in debugTilemaps)
+                {
+                    InstantiateTilemap(tm);
+                }
             }
+
         }
 
 
