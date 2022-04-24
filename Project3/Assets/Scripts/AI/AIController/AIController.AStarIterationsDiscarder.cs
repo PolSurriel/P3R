@@ -65,7 +65,6 @@ public partial class AIController : MonoBehaviour
 
         public Vector2 nodePosition;
         public Vector2 m_portalSense;
-        public bool m_swapXY;
         public Vector2 m_portalNormal;
 
         public int m_iterationsCount;
@@ -74,7 +73,7 @@ public partial class AIController : MonoBehaviour
         public NativeArray<bool> m_result;
 
 
-        void PortalCase(ref Vector2 portalNormal, ref bool swapXY, ref Vector2 portalSense, ref Vector2 lastNodePos, ref Vector2 nextNodePos, ref Vector2 origin, ref Vector2 portalOffset, ref int directionIndex, ref int positionIndex)
+        void PortalCase(ref Vector2 portalNormal, ref Vector2 portalSense, ref Vector2 lastNodePos, ref Vector2 nextNodePos, ref Vector2 origin, ref Vector2 portalOffset, ref int directionIndex, ref int positionIndex)
         {
             var movDirection =  (nextNodePos - lastNodePos).normalized; 
 
@@ -104,14 +103,16 @@ public partial class AIController : MonoBehaviour
                         portalSense.x *= -1;
 
                     if (portal.swapXY)
-                        swapXY = !swapXY;
+                    {
+
+                    }
 
                     portalNormal = portal.normal;
 
                     // Change nextPos
                     Vector2 deltaMove = nextNodePos - lastNodePos;
                     deltaMove *= portalSense;
-                    nextNodePos = lastNodePos + Portal.SmartSwap(swapXY, portalNormal, deltaMove);
+                    nextNodePos = lastNodePos + (deltaMove);
 
 
                     // Calculate offset
@@ -119,7 +120,7 @@ public partial class AIController : MonoBehaviour
                     Vector2 otherPortalpos = portal.otherPortalPosition;
                     portalOffset += (otherPortalpos - portalPos);
 
-                    origin = nextNodePos - Portal.SmartSwap(swapXY, portalNormal, portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + positionIndex]);
+                    origin = nextNodePos - (portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + positionIndex]);
 
 
                 }
@@ -141,8 +142,6 @@ public partial class AIController : MonoBehaviour
             Vector2 portalSense = m_portalSense;
             Vector2 portalOffset = Vector2.zero;
             Vector2 portalNormal = m_portalNormal;
-            bool swapXY = m_swapXY;
-
             Vector2 origin = nodePosition;
             Vector2 lastPosition = nodePosition;
 
@@ -150,8 +149,8 @@ public partial class AIController : MonoBehaviour
             for (int pathIndex = 0; pathIndex < NUMBER_OF_PRECALCULATED_POINTS; pathIndex += INCREMENT)
             {
                 // calculo su posicion
-                var nextPosition = portalOffset + origin + Portal.SmartSwap(swapXY, portalNormal, portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + pathIndex]);
-                PortalCase(ref portalNormal, ref swapXY, ref portalSense, ref lastPosition, ref nextPosition, ref origin, ref portalOffset, ref directionIndex, ref pathIndex);
+                var nextPosition = portalOffset + origin + (portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + pathIndex]);
+                PortalCase(ref portalNormal, ref portalSense, ref lastPosition, ref nextPosition, ref origin, ref portalOffset, ref directionIndex, ref pathIndex);
 
                 float distToGoal = Vector2.Distance(nextPosition, m_goalPosition);
                 //ReboundWallCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin);

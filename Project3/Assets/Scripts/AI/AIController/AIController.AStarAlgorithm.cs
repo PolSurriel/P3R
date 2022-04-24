@@ -98,7 +98,7 @@ public partial class AIController : MonoBehaviour
 
                 if (portal.swapXY)
                 {
-                    nextNode.swapXY = !nextNode.swapXY;
+                    //TODO
                 }
 
                 nextNode.portalNormal = portal.normal;
@@ -106,7 +106,7 @@ public partial class AIController : MonoBehaviour
                 // Change nextPos
                 Vector2 deltaMove = nextNode.position - prevPos;
                 deltaMove *= nextNode.portalSense;
-                nextNode.position = prevPos + Portal.SmartSwap(nextNode.swapXY, nextNode.portalNormal, deltaMove);
+                nextNode.position = prevPos + (deltaMove);
 
 
                 // Calculate offset
@@ -114,7 +114,7 @@ public partial class AIController : MonoBehaviour
                 Vector2 otherPortalpos = portal.otherPortal.transform.position;
                 nextNode.portalOffset += (otherPortalpos - portalPos);
 
-                nextNode.origin = nextNode.position - Portal.SmartSwap(nextNode.swapXY, nextNode.portalNormal, nextNode.portalSense * jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex]);
+                nextNode.origin = nextNode.position - (nextNode.portalSense * jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex]);
 
 
             }
@@ -328,8 +328,8 @@ public partial class AIController : MonoBehaviour
             for (int pathIndex = 0; pathIndex < NUMBER_OF_PRECALCULATED_POINTS && pathIndex < endIndex; pathIndex += INCREMENT)
             {
                 // calculo su posicion
-                var nextPosition = inNode.position + Portal.SmartSwap(inNode.swapXY, inNode.portalNormal, inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex* jumpPredictor.iterationsCount + pathIndex]);
-                var lastPos = inNode.position + Portal.SmartSwap(inNode.swapXY, inNode.portalNormal, inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex* jumpPredictor.iterationsCount + pathIndex>0 ? pathIndex-INCREMENT : 0]);
+                var nextPosition = inNode.position + (inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex* jumpPredictor.iterationsCount + pathIndex]);
+                var lastPos = inNode.position + (inNode.portalSense * jumpPredictor.precalculatedDirections[directionIndex* jumpPredictor.iterationsCount + pathIndex>0 ? pathIndex-INCREMENT : 0]);
 
                 Debug.DrawLine(nextPosition, lastPos, c, duration);
 
@@ -366,7 +366,13 @@ public partial class AIController : MonoBehaviour
             {
                 // Calculamos la posición inmediatamente siguiente en la trayectoria actual
                 //Vector2 origin = inNode.position - inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex * jumpPredictor.iterationsCount + inNode.positionIndex];
-                Vector2 nextPos = inNode.origin + Portal.SmartSwap(inNode.swapXY, inNode.portalNormal, inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex * jumpPredictor.iterationsCount + inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT]);
+
+                /*
+                 
+                 */
+
+                var localRelativeToOrigin = jumpPredictor.precalculatedDirections[inNode.directionIndex * jumpPredictor.iterationsCount + inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT];
+                Vector2 nextPos = inNode.origin + (inNode.portalSense * localRelativeToOrigin);
 
                 //extraemos su coste.
                 RaycastHit2D portalHit = Physics2D.Linecast(inNode.position, nextPos, layerMaskPortal);
@@ -422,7 +428,6 @@ public partial class AIController : MonoBehaviour
                     nodePosition = inNode.position,
                     m_goalPosition = goalPosition,
                     m_portalSense = inNode.portalSense,
-                    m_swapXY = inNode.swapXY,
                     m_portalNormal = inNode.portalNormal,
                     m_iterationsCount = jumpPredictor.iterationsCount,
 
@@ -442,7 +447,7 @@ public partial class AIController : MonoBehaviour
                         continue;
 
                     // Calculamos la primera posición del salto.
-                    var nextNodePos = inNode.position + Portal.SmartSwap(inNode.swapXY, inNode.portalNormal, inNode.portalSense * jumpPredictor.precalculatedDirections[i * jumpPredictor.iterationsCount + PRECALCULATED_POINTS_INCREMENT]);
+                    var nextNodePos = inNode.position + (inNode.portalSense * jumpPredictor.precalculatedDirections[i * jumpPredictor.iterationsCount + PRECALCULATED_POINTS_INCREMENT]);
 
                     // Evaluamos el coste del nodo
                     RaycastHit2D portalHit = Physics2D.Linecast(inNode.position, nextNodePos, layerMaskPortal);
@@ -531,7 +536,7 @@ public partial class AIController : MonoBehaviour
             var currentPos = origin;
             for (int i = 0; i < inNode.positionIndex; i += PRECALCULATED_POINTS_INCREMENT)
             {
-                var nextPos = origin + Portal.SmartSwap(inNode.swapXY, inNode.portalNormal, inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex* jumpPredictor.iterationsCount + i + PRECALCULATED_POINTS_INCREMENT]);
+                var nextPos = origin + (inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex* jumpPredictor.iterationsCount + i + PRECALCULATED_POINTS_INCREMENT]);
                 Debug.DrawLine(currentPos, nextPos, c, 1f);
                 currentPos = nextPos;
             }
@@ -550,7 +555,7 @@ public partial class AIController : MonoBehaviour
             if (inNode.positionIndex < NUMBER_OF_PRECALCULATED_POINTS - PRECALCULATED_POINTS_INCREMENT)
             {
                 // Calculamos la posición inmediatamente siguiente en la trayectoria actual
-                Vector2 nextPos = inNode.origin + Portal.SmartSwap(inNode.swapXY, inNode.portalNormal, inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex* jumpPredictor.iterationsCount + inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT]);
+                Vector2 nextPos = inNode.origin + (inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex* jumpPredictor.iterationsCount + inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT]);
                 //if (inNode.secondJumpDone)
                 //{
                 //    Debug.DrawLine(inNode.position, nextPos, Color.magenta, 1f);
@@ -559,7 +564,7 @@ public partial class AIController : MonoBehaviour
 
             }else
             {
-                Vector2 lastPos = inNode.origin + Portal.SmartSwap(inNode.swapXY, inNode.portalNormal, inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex* jumpPredictor.iterationsCount + inNode.positionIndex - PRECALCULATED_POINTS_INCREMENT]);
+                Vector2 lastPos = inNode.origin + (inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex* jumpPredictor.iterationsCount + inNode.positionIndex - PRECALCULATED_POINTS_INCREMENT]);
                 //if (inNode.secondJumpDone)
                 //{ 
                 //    Debug.DrawLine(inNode.position, lastPos, Color.magenta, 1f);
