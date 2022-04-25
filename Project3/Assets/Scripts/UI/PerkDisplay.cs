@@ -12,6 +12,7 @@ public class PerkDisplay : MonoBehaviour
     Color legendary = new Color(0.93f, 0.75f, 0.15f);
     Color def = new Color(0.39f, 0.39f, 0.39f);
     public ScriptablePerk perk;
+    [SerializeField] ScriptablePerk defPerk;
 
     public Text itemLvl;
     public Text fusionLvl;
@@ -25,6 +26,8 @@ public class PerkDisplay : MonoBehaviour
 
     public void RefreshCard()
     {
+        if (perk == null)
+            perk = defPerk;
         if (perk.myName != "Default" && perk.myName != "Blocked")
         {
             itemLvl.text = "Lvl." + perk.itemLvl.ToString();
