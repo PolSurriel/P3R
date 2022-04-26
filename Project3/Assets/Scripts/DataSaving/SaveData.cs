@@ -41,8 +41,8 @@ public class SaveData
         suitSkin = GameInfo.playerSkin.suitSkinName;
         accessory1 = GameInfo.playerSkin.accessory1SkinName;
         accessory2 = GameInfo.playerSkin.accessory2SkinName;
-        inventory = null;
-        equipped = null;
+        inventory = ConvertInventoryToItemData(GameInfo.equippedPerks);
+        equipped = ConvertInventoryToItemData(GameInfo.inventoryPerks);
         freePerkSlotUnlocked = GameInfo.freePerkSlotUnlocked;
         premiumPerkSlotsUnlocked = GameInfo.premiumPerkSlotsUnlocked;
         freeCostUnlocked = GameInfo.freeCostUnlocked;
@@ -57,6 +57,8 @@ public class SaveData
         suitSkin = GameInfo.playerSkin.suitSkinName;
         accessory1 = GameInfo.playerSkin.accessory1SkinName;
         accessory2 = GameInfo.playerSkin.accessory2SkinName;
+        equipped = ConvertInventoryToItemData(GameInfo.equippedPerks);
+        inventory = ConvertInventoryToItemData(GameInfo.inventoryPerks);
         freePerkSlotUnlocked = GameInfo.freePerkSlotUnlocked;
         premiumPerkSlotsUnlocked = GameInfo.premiumPerkSlotsUnlocked;
         freeCostUnlocked = GameInfo.freeCostUnlocked;
@@ -77,7 +79,7 @@ public class SaveData
 
         foreach (var entry in inventory)
         {
-            PerkData item = new PerkData(entry.name, entry.itemLvl, entry.fusionLvl, entry.cost, entry.maxFusionLvl, entry.sprite.ToString(), (int)entry.rarity);
+            PerkData item = new PerkData(entry);
             items[index] = item;
             index++;
         }

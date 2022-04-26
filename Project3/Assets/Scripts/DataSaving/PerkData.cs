@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PerkData
 {
     public string name;
@@ -21,6 +22,17 @@ public class PerkData
         maxFusionLvl = _maxfusionlvl;
         imagePath = _imagepath;
         rarity = _rarity;
+    }
+
+    public PerkData(ScriptablePerk _perk)
+    {
+        name = _perk.name;
+        itemLvl = _perk.itemLvl;
+        fusionLvl = _perk.fusionLvl;
+        cost = _perk.cost;
+        maxFusionLvl = _perk.maxFusionLvl;
+        imagePath = _perk.sprite.ToString();
+        rarity = (int)_perk.rarity;
     }
 
 }

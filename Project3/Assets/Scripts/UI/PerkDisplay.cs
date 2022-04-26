@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PerkDisplay : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PerkDisplay : MonoBehaviour
     public Text fusionLvl;
     public Image sprite;
     public Image rarity;
+    public GameObject selectedMenu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +80,10 @@ public class PerkDisplay : MonoBehaviour
 
     public void PressButton()
     {
-        Debug.Log("I've been pressed");
+        foreach(PerkDisplay perk in GameObject.FindObjectsOfType<PerkDisplay>())
+        {
+            perk.selectedMenu.SetActive(false);
+        }
+        selectedMenu.SetActive(true);
     }
 }

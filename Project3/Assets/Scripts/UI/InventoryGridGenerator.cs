@@ -7,34 +7,46 @@ public class InventoryGridGenerator : MonoBehaviour
 {
     public GameObject perkSlotPrefab;
     public ScriptablePerk def;
+    int counter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        int counter = 0;
-        GameObject aux;
-
-        // Load Perks from GameInfo
-        if(GameInfo.inventoryPerks !=null)
-            foreach (ScriptablePerk perk in GameInfo.inventoryPerks)
-            {
-                aux = Instantiate(perkSlotPrefab);
-                aux.transform.SetParent(this.transform);
-                aux.GetComponent<PerkDisplay>().perk = perk;
-                aux.GetComponent<PerkDisplay>().RefreshCard();
-                counter++;
-            }
-        
-        // Fills remaining slots until the end of the line
-        while(counter%5 !=0 || counter < 20){
-            aux = Instantiate(perkSlotPrefab, this.transform);
-            aux.transform.SetParent(this.transform);
-            aux.GetComponent<PerkDisplay>().perk = def;
-            aux.GetComponent<PerkDisplay>().RefreshCard();
-            counter++;
-        }
-
-
+        ReloadInventory();
         //Resets Grid Vertical Position
         this.transform.parent.GetComponent<ScrollRect>().verticalNormalizedPosition = 0;
+    }
+
+    public void ReloadInventory()
+    {
+
+        // Load Perks from GameInfo
+        if (GameInfo.inventoryPerks != null)
+        {
+            GenerateNewSlots();
+            int inventoryIndex = 0;
+            foreach (Transform child in this.transform)
+            {
+                if(inventoryIndex < GameInfo.inventoryPerks.Count)
+                {
+                    child.GetComponent<PerkDisplay>().perk = GameInfo.inventoryPerks[inventoryIndex];
+                    child.GetComponent<PerkDisplay>().RefreshCard();
+                    inventoryIndex++;
+                }
+            }
+        }
+    }
+
+    void GenerateNewSlots()
+    {
+        GameObject _aux;
+        while (counter < GameInfo.inventoryPerks.Count || counter % 5 != 0 || counter < 20)
+        {
+            _aux = Instantiate(perkSlotPrefab, this.transform);
+            _aux.transform.SetParent(this.transform);
+            _aux.GetComponent<PerkDisplay>().perk = def;
+            _aux.GetComponent<PerkDisplay>().RefreshCard();
+            counter++;
+        }
     }
 }
