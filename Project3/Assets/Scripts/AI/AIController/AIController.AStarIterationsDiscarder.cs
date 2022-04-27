@@ -86,7 +86,7 @@ public partial class AIController : MonoBehaviour
 
      
 
-        void PortalCase(ref Vector2 portalSense, ref Vector2 lastNodePos, ref Vector2 nextNodePos, ref Vector2 origin, ref int directionIndex, ref int positionIndex)
+        void PortalCase(ref Vector2 portalSense, ref Vector2 lastNodePos, ref Vector2 nextNodePos, ref Vector2 origin, ref int directionIndex, ref int positionIndex, ref bool enterInPortalSwap)
         {
             var movDirection =  (nextNodePos - lastNodePos).normalized; 
 
@@ -119,6 +119,11 @@ public partial class AIController : MonoBehaviour
                     
                     if (portal.swapXY)
                     {
+                        //tmp
+                        enterInPortalSwap = true;
+                        return;
+
+
                         // 1) we get the swapped+inversed new velocity
                         deltaMove *= new Vector2(portal.inverseX ? -1f : 1f, portal.inverseY ? -1f : 1f);
                         var newVel = Portal.SmartSwap(true, portal.otherPortalNormal, deltaMove.normalized);
@@ -131,13 +136,13 @@ public partial class AIController : MonoBehaviour
                         nextNodePos = (Vector2)portal.otherPortalPosition + relativeOtherPortal;
 
                         // 4) using new velocity we get the new simulation index
-                        directionIndex = m_jumpPredictors[m_jumpPredictorIndex].GetSimulationIndex(newVel);
+                        //directionIndex = m_jumpPredictors[m_jumpPredictorIndex].GetSimulationIndex(newVel);
 
                         // then we clean portal sense
-                        portalSense = Vector2.one;
+                        //portalSense = Vector2.one;
 
                         // 5) we get the new origin
-                        origin = nextNodePos - (m_jumpPredictors[m_jumpPredictorIndex].precalculatedDirections[directionIndex * m_jumpPredictors[m_jumpPredictorIndex].iterationsCount + positionIndex]);
+                        //origin = nextNodePos - (m_jumpPredictors[m_jumpPredictorIndex].precalculatedDirections[directionIndex * m_jumpPredictors[m_jumpPredictorIndex].iterationsCount + positionIndex]);
 
                     }
                     else
@@ -183,13 +188,14 @@ public partial class AIController : MonoBehaviour
             {
                 // calculo su posicion
                 var nextPosition = origin + (portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + pathIndex]);
-                PortalCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin, ref directionIndex, ref pathIndex);
+                bool enterInPortalSwap = false;
+                PortalCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin, ref directionIndex, ref pathIndex, ref enterInPortalSwap);
 
                 float distToGoal = Vector2.Distance(nextPosition, m_goalPosition);
                 //ReboundWallCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin);
 
                 // Si pasa cerca del goal o un portal, lo valido.
-                if (distToGoal <= GOAL_MIN_DISTANCE) //(m_usePortal && Vector2.Distance(nextPosition, m_portalPosition) <= GOAL_MIN_DISTANCE))
+                if (distToGoal <= GOAL_MIN_DISTANCE || enterInPortalSwap) //(m_usePortal && Vector2.Distance(nextPosition, m_portalPosition) <= GOAL_MIN_DISTANCE))
                 {
                     m_result[directionIndex] = true;
                     return;

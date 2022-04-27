@@ -106,13 +106,16 @@ public partial class AIController : MonoBehaviour
                     nextNode.position = (Vector2)portal.otherPortal.transform.position + relativeOtherPortal + portal.otherPortal.normal * realPlayerRadius;
 
                     // 4) using new velocity we get the new simulation index
-                    nextNode.directionIndex = jumpPredictor.GetSimulationIndex(newVel);
+                    //nextNode.directionIndex = jumpPredictor.GetSimulationIndex(newVel);
 
                     // then we clean portal sense
-                    nextNode.portalSense = Vector2.one;
+                    //nextNode.portalSense = Vector2.one;
 
                     // 5) we get the new origin
-                    nextNode.origin = nextNode.position - (jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex]);
+                    //nextNode.origin = nextNode.position - (jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex]);
+
+                    //tmp
+                    nextNode.forceEndOfPath = true;
 
                 }
                 else
@@ -374,6 +377,9 @@ public partial class AIController : MonoBehaviour
         void ForeachNeighbour(ref AStarNode inNode, ASDelegationNeighbour method)
         {
 
+            if (inNode.forceEndOfPath)
+                return;
+
             
             // CASO A: CONTINUAR LA TRAYECTORIA
 
@@ -383,9 +389,6 @@ public partial class AIController : MonoBehaviour
                 // Calculamos la posición inmediatamente siguiente en la trayectoria actual
                 //Vector2 origin = inNode.position - inNode.portalSense * jumpPredictor.precalculatedDirections[inNode.directionIndex * jumpPredictor.iterationsCount + inNode.positionIndex];
 
-                /*
-                 
-                 */
 
                 var localRelativeToOrigin = jumpPredictor.precalculatedDirections[inNode.directionIndex * jumpPredictor.iterationsCount + inNode.positionIndex + PRECALCULATED_POINTS_INCREMENT];
                 Vector2 nextPos = inNode.origin + (inNode.portalSense * localRelativeToOrigin);

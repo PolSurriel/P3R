@@ -6,6 +6,7 @@ public partial class AIController : MonoBehaviour
 {
     public class AStarNode
     {
+        public bool forceEndOfPath = false;
         public int iterationsSincePortalCrossed;
         public bool secondJumpDone;
         public int directionIndex;
