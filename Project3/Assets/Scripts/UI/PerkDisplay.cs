@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PerkDisplay : MonoBehaviour
 {
@@ -12,11 +13,14 @@ public class PerkDisplay : MonoBehaviour
     Color legendary = new Color(0.93f, 0.75f, 0.15f);
     Color def = new Color(0.39f, 0.39f, 0.39f);
     public ScriptablePerk perk;
+    [SerializeField] ScriptablePerk defPerk;
 
     public Text itemLvl;
     public Text fusionLvl;
     public Image sprite;
     public Image rarity;
+    public GameObject selectedMenu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +29,8 @@ public class PerkDisplay : MonoBehaviour
 
     public void RefreshCard()
     {
+        if (perk == null)
+            perk = defPerk;
         if (perk.myName != "Default" && perk.myName != "Blocked")
         {
             itemLvl.text = "Lvl." + perk.itemLvl.ToString();
@@ -74,6 +80,10 @@ public class PerkDisplay : MonoBehaviour
 
     public void PressButton()
     {
-        Debug.Log("I've been pressed");
+        foreach(PerkDisplay perk in GameObject.FindObjectsOfType<PerkDisplay>())
+        {
+            perk.selectedMenu.SetActive(false);
+        }
+        selectedMenu.SetActive(true);
     }
 }

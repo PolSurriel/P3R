@@ -182,13 +182,14 @@ public class GameInfo : MonoBehaviour
             playerSkin.accessory1SkinName = data.accessory1;
             playerSkin.accessory2SkinName = data.accessory2;
 
-            
+            equippedPerks.Clear();
             if(data.equipped != null)
                 foreach(var perk in data.equipped)
                 {
                     var aux = Resources.Load<ScriptablePerk>("Perks/" + perk.name);
                     equippedPerks.Add(aux);
                 }
+            inventoryPerks.Clear();
             if(data.inventory != null)
                 foreach(var perk in data.inventory)
                 {
@@ -204,6 +205,31 @@ public class GameInfo : MonoBehaviour
             equippedPerkCost = data.equippedPerkCost;
 
             Debug.Log(playerSkin.baseSkinName + " " + playerSkin.suitSkinName + " " + playerSkin.accessory1SkinName + " " + playerSkin.accessory2SkinName + "Unlocked: " + equippedPerkCost);
+        }
+        else
+        {
+            data = new SaveData();
+
+            state = data;
+            playerSkin.baseSkinName = data.baseSkin;
+            playerSkin.suitSkinName = data.suitSkin;
+            playerSkin.accessory1SkinName = data.accessory1;
+            playerSkin.accessory2SkinName = data.accessory2;
+
+            equippedPerks = new List<ScriptablePerk>();
+            for (int i = 0; i < 4; i++)
+            {
+                var aux = Resources.Load<ScriptablePerk>("Perks/Default");
+                equippedPerks.Add(aux);
+            }
+            inventoryPerks = new List<ScriptablePerk>();
+
+            freePerkSlotUnlocked = data.freePerkSlotUnlocked;
+            premiumPerkSlotsUnlocked = data.premiumPerkSlotsUnlocked;
+            freeCostUnlocked = data.freeCostUnlocked;
+            premiumCostUnlocked = data.premiumCostUnlocked;
+            totalPerkCost = data.totalPerkCost;
+            equippedPerkCost = data.equippedPerkCost;
         }
     }
 
