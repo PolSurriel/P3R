@@ -545,14 +545,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51b2a333f8af554496ab88eca45192c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  debugMode: 1
   debugTilemaps:
-  - {fileID: 7532805520321851600, guid: 16c97784a9cc60048bdcfb49d968253f, type: 3}
-  - {fileID: 7646639408964073939, guid: 266c8a144e883c04fa37966b43d8c148, type: 3}
-  - {fileID: 20021624341907279, guid: 04104c72fa9b99f479272a34016b68e2, type: 3}
+  - {fileID: 7769749786109202092, guid: b45d6dd2763b1804b98f0273054c8d7e, type: 3}
   tmp_alphaLevelTilemaps: []
   tmp_alphaOnBoardingTilemaps: []
-  numberOfTilemaps: 23
   playerTransform: {fileID: 0}
   lineaMeta: {fileID: 412079370}
   nodeDistance: 0
@@ -1554,7 +1551,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.3333335
+  orthographic size: 6.0292206
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2722,6 +2719,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90f43b26cc9e941c09c29ef9ab1f0ad1, type: 3}
+--- !u!1 &1591009684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1591009685}
+  m_Layer: 0
+  m_Name: zero
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1591009685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591009684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1847601566 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5743855340870037602, guid: 90f43b26cc9e941c09c29ef9ab1f0ad1,

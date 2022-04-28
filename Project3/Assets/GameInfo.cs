@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameInfo : MonoBehaviour
 {
+    
+    public class PreloadedSprites {
+
+
+    }
+
+    
     private const int AI_PLAYERS_COUNT = 3;
 
 
@@ -79,6 +86,8 @@ public class GameInfo : MonoBehaviour
         }
         LoadData();
         DontDestroyOnLoad(instance.gameObject);
+
+        MapController.LoadTilemaps();
 
 
     }

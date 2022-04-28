@@ -6,25 +6,24 @@ public partial class AIController : MonoBehaviour
 {
     public class AStarNode
     {
+        public bool forceEndOfPath = false;
         public int iterationsSincePortalCrossed;
         public bool secondJumpDone;
         public int directionIndex;
         public int positionIndex;
         public Vector2 portalSense = Vector2.one;
-        public bool swapXY;
         public Vector2 portalNormal;
         public Vector2 origin;
 
         private Vector2 m_position;
         public Vector2 position
         {
-            get { return m_position + portalOffset; }
+            get { return m_position; }
             set { m_position = value; }
         }
 
         public float coste;
         public float time;
-        public Vector2 portalOffset;
 
         public float H(Vector2 goalPosition) { return (position - goalPosition).magnitude;}
 

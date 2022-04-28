@@ -122,7 +122,7 @@ public class PrecalculatedPredictionSystem : ClassicPredictionSystem
         {
             precalculatedDirections.Add(base.SimulateImpulse(impulse, time, iterations, false));
             impulseForces.Add(impulse);
-            impulse = impulse.Rotate(deltaDegrees);
+            impulse = impulse.Rotate(deltaDegrees).normalized * forceMagnitude;
         }
 
         CloseSimulation();
@@ -351,6 +351,22 @@ public struct JobyfablePrecalculatedPredictionSystem
 public Vector2 GetForce(int simulationIndex)
     {
         return impulseForces[simulationIndex];
+    }
+
+    static float AngleBetween360(Vector2 a, Vector2 b)
+    {
+        float an = Mathf.Atan2(a.x * b.y - a.y * b.x, Vector2.Dot(a, b)) * Mathf.Rad2Deg;
+
+        if (an < 0f)
+            an += 360f;
+
+        return an;
+    }
+
+
+    public int GetSimulationIndex(Vector2 dir)
+    {
+        return GetSimulationIndex(AngleBetween360(Vector2.up, dir.normalized));
     }
 
     public int GetSimulationIndex(float degree)

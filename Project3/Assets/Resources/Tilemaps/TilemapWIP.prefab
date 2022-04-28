@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7769749786109202094}
   - component: {fileID: 8484663136339843083}
   m_Layer: 8
-  m_Name: Tilemap20
+  m_Name: Tilemap2
   m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2885,7 +2885,7 @@ PrefabInstance:
     - target: {fileID: 7933926629593723902, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: normal.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7933926629593723902, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
@@ -2895,17 +2895,22 @@ PrefabInstance:
     - target: {fileID: 7933926629593723902, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: inverseX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7933926629593723902, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: inverseY
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7933926629593723902, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: normal.y
-      value: -1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933926629593723902, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
+        type: 3}
+      propertyPath: swapXY
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7933926629593723903, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
@@ -2955,7 +2960,7 @@ PrefabInstance:
     - target: {fileID: 7933926629695877558, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: inverseX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7933926629695877558, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
@@ -2965,6 +2970,11 @@ PrefabInstance:
     - target: {fileID: 7933926629695877558, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
         type: 3}
       propertyPath: inverseY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933926629695877558, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,
+        type: 3}
+      propertyPath: swapXY
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7933926629695877559, guid: 3d7d5ed45c9c0ad4788473fbe0dcedcb,

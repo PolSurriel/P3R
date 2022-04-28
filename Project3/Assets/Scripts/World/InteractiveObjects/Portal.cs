@@ -1,10 +1,12 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class Portal : MonoBehaviour
+public class Portal : ComplexMonoBehaviour
 {
+    protected override string GetDocsLink() => "https://docs.google.com/document/d/1TtdxIMOyhyy9kL0Gu0x5pjhhjCxQG3gG2YF3BIHFiSE/edit?usp=sharing";
 
     public static Vector2 SmartSwap(bool swap, Vector2 outNormal, Vector2 toSwap)
     {
@@ -18,10 +20,11 @@ public class Portal : MonoBehaviour
 
         float dot = Vector2.Dot(toSwap, outNormal);
 
-        if(dot < 0f)
+        if (dot < 0f)
         {
             toSwap *= -1f;
         }
+
 
         return toSwap;
     }
@@ -64,7 +67,7 @@ public class Portal : MonoBehaviour
             inverseX = inverseX,
             inverseY = inverseY,
             swapXY = swapXY,
-            normal = normal,
+            otherPortalNormal = otherPortal.normal,
             otherPortalPosition = otherPortal.transform.position,
             portalPosition = transform.position
 
@@ -125,10 +128,36 @@ public class Portal : MonoBehaviour
 
     }
 
-    private void OnDrawGizmos()
+    float gizmosSelectedTimeCounter = 0f;
+    bool gizmosSelectedTimeIncresePositive = true;
+    private void OnDrawGizmosSelected()
     {
+        gizmosSelectedTimeCounter += 0.1f* Time.deltaTime * (gizmosSelectedTimeIncresePositive ? 1f:-1f);
+        otherPortal.gizmosSelectedTimeCounter = gizmosSelectedTimeCounter;
+
+        if(
+            (gizmosSelectedTimeIncresePositive && gizmosSelectedTimeCounter > 1f)
+            ||
+            (!gizmosSelectedTimeIncresePositive && gizmosSelectedTimeCounter < -1f))
+        {
+            gizmosSelectedTimeIncresePositive = !gizmosSelectedTimeIncresePositive;
+            otherPortal.gizmosSelectedTimeIncresePositive = gizmosSelectedTimeIncresePositive;
+        }
+
+        DrawPortalsEnterExitInfo();
+        otherPortal.DrawPortalsEnterExitInfo();
+    }
+
+
+    public void DrawPortalsEnterExitInfo()
+    {
+        SurrealBoost.GizmosTools.Draw2D.ArrowedLine(transform.position, (Vector2)transform.position + normal*0.7f, 0.02f, Color.white);
+        #if UNITY_EDITOR
+            Handles.Label((Vector2)transform.position + normal * 0.7f, "normal");
+        #endif
+
         var inVelocity = otherPortal.normal * -1f;
-        inVelocity = Quaternion.AngleAxis(25f, Vector3.forward) * inVelocity;
+        inVelocity = Quaternion.AngleAxis(25f * gizmosSelectedTimeCounter, Vector3.forward) * inVelocity;
 
         var outVelocity = inVelocity;
 
@@ -137,20 +166,18 @@ public class Portal : MonoBehaviour
 
         outVelocity = SmartSwap(swapXY, normal, outVelocity);
 
-        Debug.DrawLine(transform.position, (Vector2)transform.position + outVelocity, Color.red);
-        Debug.DrawLine(transform.position, (Vector2)transform.position + inVelocity, Color.green);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere((Vector2)transform.position + inVelocity, 0.01f);
+        const float lineWidth = 0.05f;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere((Vector2)transform.position + outVelocity, 0.01f);
+        SurrealBoost.GizmosTools.Draw2D.ArrowedLine(transform.position, (Vector2)transform.position + outVelocity, lineWidth, Color.red);
+        SurrealBoost.GizmosTools.Draw2D.ArrowedLine(transform.position, (Vector2)transform.position + inVelocity, lineWidth, Color.green);
 
-        // DESIRED OUTPUT IF NORMALS ARE OK (muy caro para usar este metodo pero bueno para mostrarse en gizmos)
-        float angleBetweenNormals = Vector2.SignedAngle(normal, otherPortal.normal);
-        Vector2 desiredOutput = Quaternion.AngleAxis(angleBetweenNormals, Vector3.forward) * inVelocity;    
-        Debug.DrawLine(transform.position, (Vector2)transform.position + desiredOutput, Color.yellow);
+#if UNITY_EDITOR
+        Handles.color = Color.green;
+        Handles.Label((Vector2)transform.position + inVelocity, "INPUT VELOCITY");
+        Handles.color = Color.red;
+        Handles.Label((Vector2)transform.position + outVelocity, "OUTPUT VELOCITY");
+#endif
 
-        
 
     }
 
@@ -198,7 +225,15 @@ public class Portal : MonoBehaviour
     }
 
 
-    
+    public static Vector2 GetCrossingPortalPosition( Vector2 characterPosition, Vector2 portalPosition, Vector2 otherPortalPosition, Vector2 otherPortalNormal, bool portalSwapXY, float characterRadius)
+    {
+        Vector2 localPosRelativeToPortal = characterPosition - portalPosition;
+        localPosRelativeToPortal = SmartSwap(portalSwapXY, otherPortalNormal, localPosRelativeToPortal);
+
+        return otherPortalPosition + localPosRelativeToPortal + otherPortalNormal * characterRadius;
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player" || collision.tag == "AI_Player")
@@ -214,13 +249,8 @@ public class Portal : MonoBehaviour
             otherPortal.ignoring.Add(collision.gameObject);
             
             Vector3 localPos = collision.gameObject.transform.position - transform.position;
+            localPos = SmartSwap(swapXY, otherPortal.normal, localPos);
 
-            if (swapXY)
-            {
-                var auxY = localPos.y;
-                localPos.y = localPos.x;
-                localPos.x = auxY;
-            }
 
             Vector2 newPos = otherPortal.transform.position + localPos;
 
@@ -232,29 +262,22 @@ public class Portal : MonoBehaviour
             var vel = rb.velocity;
 
             if (inverseX)
-            {
                 vel.x = vel.x * -1f;
-            }
 
-            else if (inverseY)
-            {
+            if (inverseY)
                 vel.y = vel.y * -1f;
-            }
+
             
-            // we add a little position offset so player don't collision with walls
-            newPos += otherPortal.normal * ((CircleCollider2D)collision).radius*2.2f;
-
-
-            SmartSwap(swapXY, normal, vel);
-
-
+            vel = SmartSwap(swapXY, otherPortal.normal, vel);
+            
+            
             rb.velocity = vel;
-            //Debug.LogError("Printed");
-            Debug.DrawLine(newPos, newPos + vel.normalized * 100f, Color.blue, 10f);
-
-            collision.gameObject.transform.position = newPos /* + vel.normalized * 0.5f*/;
+            Debug.DrawLine(newPos, newPos+ otherPortal.normal * ((CircleCollider2D)collision).radius, Color.green, 10f);
+            Debug.DrawLine(newPos, newPos+ otherPortal.normal * ((CircleCollider2D)collision).radius * 0.7f, Color.red, 10f);
 
 
+
+            collision.gameObject.transform.position = newPos  + otherPortal.normal * ((CircleCollider2D)collision).radius;
 
         }
     }

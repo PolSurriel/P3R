@@ -55,6 +55,8 @@ public partial class AIController : MonoBehaviour
         }
     }
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,12 +64,13 @@ public partial class AIController : MonoBehaviour
             return;
 
         predictionPlayerRadius = GetComponent<CircleCollider2D>().radius * 1.15f;
+        realPlayerRadius = GetComponent<CircleCollider2D>().radius;
         runner = GetComponent<Runner>();
         rb = GetComponent<Rigidbody2D>();
         var tmpJumpPredictor = new PrecalculatedPredictionSystem(rb, PRECALCULATION_DURATION, NUMBER_OF_PRECALCULATED_POINTS, DIRECTIONS_COUNT, runner.GetImpulseMagnitude());
         jumpPredictor = tmpJumpPredictor.GetJobyfable();
 
-        aStarSolver = new AStarSolver(predictionPlayerRadius, jumpPredictor);
+        aStarSolver = new AStarSolver(predictionPlayerRadius, realPlayerRadius, jumpPredictor);
 
 
     }
@@ -216,7 +219,7 @@ public partial class AIController : MonoBehaviour
         {
             onBackupPlanZone = true;
         }
-        else if (collision.tag == "extraJumpZone")
+        else if (collision.tag == "extraJumpZone" && !collision.GetComponent<ExtraJumpZone>().ignoring.Contains(runner))
         {
             executingAstarSeek = false;
             aStarSolver.output = null;

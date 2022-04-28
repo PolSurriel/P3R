@@ -39,7 +39,6 @@ public class AINodeConnection
 [System.Serializable]
 public class AINode
 {
-
     public Vector2 localPosition;
     public TilemapAIInfo tilemap;
     public int iIndex, jIndex;
