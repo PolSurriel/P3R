@@ -341,12 +341,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   runner: {fileID: 0}
-  floor: {fileID: -9197134654715703934, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
-  floor2: {fileID: -3245826588181596406, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
-  jump: {fileID: -5991360266443149873, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
-  jump2: {fileID: 8818498191572356106, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
-  jump3: {fileID: -8025230655740070909, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
-  wall: {fileID: 6572534960254962694, guid: 95b6c21c64e66a546af48c7d630f8ead, type: 3}
 --- !u!114 &328328315719937633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,6 +538,7 @@ GameObject:
   - component: {fileID: 328328316266981635}
   - component: {fileID: 328328316266981633}
   - component: {fileID: 8899124944630039838}
+  - component: {fileID: 6900488040033301845}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -693,6 +688,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallCollisionParticle: {fileID: 187952, guid: e9963d9e65ae9524791b583c40e885cd,
     type: 3}
+--- !u!114 &6900488040033301845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328328316266981640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d552593d7b5d70468fb59fa907ee355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &328328316767540306
 GameObject:
   m_ObjectHideFlags: 0
