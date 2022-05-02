@@ -24,6 +24,7 @@ public class GameInfo : MonoBehaviour
     public static int premiumCostUnlocked;
     public static int totalPerkCost;
     public static int equippedPerkCost;
+    public static int softCurrency;
 
     public void OnMatchSceneClosed()
     {
@@ -203,6 +204,7 @@ public class GameInfo : MonoBehaviour
             premiumCostUnlocked = data.premiumCostUnlocked;
             totalPerkCost = data.totalPerkCost;
             equippedPerkCost = data.equippedPerkCost;
+            softCurrency = data.softCurrency;
 
             Debug.Log(playerSkin.baseSkinName + " " + playerSkin.suitSkinName + " " + playerSkin.accessory1SkinName + " " + playerSkin.accessory2SkinName + "Unlocked: " + equippedPerkCost);
         }
@@ -233,9 +235,9 @@ public class GameInfo : MonoBehaviour
         }
     }
 
-    public void AddPerk()
+    public void AddPerkToInventory(ScriptablePerk perk)
     {
-        inventoryPerks.Add(Resources.Load<ScriptablePerk>("Perks/Ligther"));
+        inventoryPerks.Add(perk);
     }
 
 

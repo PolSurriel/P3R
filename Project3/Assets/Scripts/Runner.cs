@@ -12,6 +12,7 @@ public class Runner : MonoBehaviour
     RunnerVFXController vfx;
 
     private PerksInGame perks;
+    public Material myMat;
     
     [HideInInspector]
     public float jumpMagnitude = 10f;

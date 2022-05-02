@@ -612,6 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  myMat: {fileID: 2100000, guid: a834fec2437f21f4a9c9c68bc4f2fec9, type: 2}
   jumpMagnitude: 10
   contactToSurfaceDirection: {x: 0, y: 0}
   treadmill: {fileID: 0}
@@ -700,6 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d552593d7b5d70468fb59fa907ee355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPulse: 0
 --- !u!1 &328328316767540306
 GameObject:
   m_ObjectHideFlags: 0

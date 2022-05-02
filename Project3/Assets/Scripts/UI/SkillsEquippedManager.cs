@@ -31,7 +31,6 @@ public class SkillsEquippedManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void CheckPerks()

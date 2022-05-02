@@ -12,6 +12,7 @@ public class MainMenuManager : MonoBehaviour
     public SceneReference level1, level2, level3;
     public RectTransform allMenusContainer;
     public Slider loadingSlider;
+    [SerializeField] Text softCurrenyTxt;
 
 
 
@@ -32,12 +33,21 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {
         //AudioController.instance.sounds.jump.Play();
+        RefreshCurrencies();
     }
 
     private void Start()
     {
         modeType = ModeType.PLAYER;
         raceText.text = modeType.ToString();
+    }
+
+    private void Update()
+    {
+        if (GameInfo.softCurrency.ToString() != softCurrenyTxt.text)
+            RefreshCurrencies();
+
+
     }
 
     public void SwipeToShop()
@@ -175,6 +185,22 @@ public class MainMenuManager : MonoBehaviour
     {
         GameInfo.playerSkin.baseSkinName = _name;
         Debug.Log(_name + " Skin selected");
+    }
+
+    public void SelectSuit(string _name)
+    {
+        GameInfo.playerSkin.suitSkinName = _name;
+        Debug.Log(_name + " suit selected");
+    }
+
+    public void RefreshCurrencies()
+    {
+        softCurrenyTxt.text = GameInfo.softCurrency.ToString();
+    }
+
+    public void AddSoftCurrency(int amount)
+    {
+        GameInfo.softCurrency += amount;
     }
 
     IEnumerator LoadAsyncScene(SceneReference scene)

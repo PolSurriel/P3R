@@ -1530,6 +1530,18 @@ MonoBehaviour:
   - {fileID: 957096663533242240}
   freeblocked: {fileID: 11400000, guid: f409de074121d174c875a077d9aa2b16, type: 2}
   premiumblocked: {fileID: 11400000, guid: 23a711fe0100a964089cb4bdddfe4b57, type: 2}
+  costsImages:
+  - {fileID: 2466304771037030651}
+  - {fileID: 170644922396272344}
+  - {fileID: 9153348740369770206}
+  - {fileID: 5403859381027735094}
+  - {fileID: 4503545747966593272}
+  - {fileID: 3982508681188292666}
+  - {fileID: 6748761205508946951}
+  - {fileID: 7568558176362400719}
+  - {fileID: 4202075129255334049}
+  freeLockSprite: {fileID: 0}
+  premiumLockSprite: {fileID: 0}
 --- !u!1 &5727041667106312137
 GameObject:
   m_ObjectHideFlags: 0
