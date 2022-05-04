@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f7e39a73ee4db7458a0bf1f6ef27b3f, type: 3}
-  m_Name: Default
+  m_Name: Pulse
   m_EditorClassIdentifier: 
-  myName: Default
-  itemLvl: 0
-  fusionLvl: 0
-  cost: 0
-  maxFusionLvl: 0
-  sprite: {fileID: 21300000, guid: c0294f49b20e5014b8758e57668f16ed, type: 3}
-  rarity: 5
+  myName: Pulse
+  itemLvl: 17
+  fusionLvl: 1
+  cost: 2
+  maxFusionLvl: 5
+  sprite: {fileID: 21300000, guid: 2ea3ea54c499d314f957e0a47dc11c9c, type: 3}
+  rarity: 0

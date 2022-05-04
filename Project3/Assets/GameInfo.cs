@@ -24,6 +24,7 @@ public class GameInfo : MonoBehaviour
     public static int premiumCostUnlocked;
     public static int totalPerkCost;
     public static int equippedPerkCost;
+    public static int softCurrency;
 
     public void OnMatchSceneClosed()
     {
@@ -59,7 +60,7 @@ public class GameInfo : MonoBehaviour
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject ai_playerPrefab;
-    [SerializeField] private ScriptablePerk def;
+    public static ScriptablePerk defaultPerk;
 
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject[] ai_players;
@@ -77,12 +78,13 @@ public class GameInfo : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+        defaultPerk = Resources.Load<ScriptablePerk>("Perks/Default");
         instance = this;
         freePerkSlotUnlocked = false;
         premiumPerkSlotsUnlocked = 0;
         for (int i = 0; i < 4; i++)
         {
-            equippedPerks.Add(def);
+            equippedPerks.Add(defaultPerk);
         }
         LoadData();
         DontDestroyOnLoad(instance.gameObject);
@@ -203,6 +205,7 @@ public class GameInfo : MonoBehaviour
             premiumCostUnlocked = data.premiumCostUnlocked;
             totalPerkCost = data.totalPerkCost;
             equippedPerkCost = data.equippedPerkCost;
+            softCurrency = data.softCurrency;
 
             Debug.Log(playerSkin.baseSkinName + " " + playerSkin.suitSkinName + " " + playerSkin.accessory1SkinName + " " + playerSkin.accessory2SkinName + "Unlocked: " + equippedPerkCost);
         }
@@ -233,9 +236,15 @@ public class GameInfo : MonoBehaviour
         }
     }
 
-    public void AddPerk()
+
+    public static void AddSoftCurrency(int amount)
     {
-        inventoryPerks.Add(Resources.Load<ScriptablePerk>("Perks/Ligther"));
+        GameInfo.softCurrency += amount;
+    }
+
+    public static void AddPerkToInventory(ScriptablePerk perk)
+    {
+        inventoryPerks.Add(perk);
     }
 
 

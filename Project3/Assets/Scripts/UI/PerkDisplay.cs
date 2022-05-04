@@ -13,6 +13,7 @@ public class PerkDisplay : MonoBehaviour
     Color legendary = new Color(0.93f, 0.75f, 0.15f);
     Color def = new Color(0.39f, 0.39f, 0.39f);
     public ScriptablePerk perk;
+    public int perkIndex = 0;
     [SerializeField] ScriptablePerk defPerk;
 
     public Text itemLvl;
@@ -20,11 +21,13 @@ public class PerkDisplay : MonoBehaviour
     public Image sprite;
     public Image rarity;
     public GameObject selectedMenu;
+    SkillsEquippedManager perkManager;
 
     // Start is called before the first frame update
     void Start()
     {
         RefreshCard();
+        perkManager = GameObject.FindObjectOfType<SkillsEquippedManager>();
     }
 
     public void RefreshCard()
@@ -41,7 +44,7 @@ public class PerkDisplay : MonoBehaviour
         {
             fusionLvl.text = "";
             itemLvl.text = "";
-            this.transform.GetComponentInChildren<Button>().interactable = false;
+            //this.transform.GetComponentInChildren<Button>().interactable = false;
         }
         sprite.sprite = perk.sprite;
         SetRarity();
@@ -80,10 +83,32 @@ public class PerkDisplay : MonoBehaviour
 
     public void PressButton()
     {
-        foreach(PerkDisplay perk in GameObject.FindObjectsOfType<PerkDisplay>())
+        foreach (PerkDisplay perk in GameObject.FindObjectsOfType<PerkDisplay>())
         {
             perk.selectedMenu.SetActive(false);
         }
-        selectedMenu.SetActive(true);
+        if (perk.myName != "Default" && !perkManager.flagEquip)
+            selectedMenu.SetActive(true);
+    }
+
+    public void InventoryEquipButton()
+    {
+        // Function called when pressed button "equip" of an Inventory's Perk
+        if(perkManager != null)
+        {
+            perkManager.SelectPerk(perk);
+        }
+    }
+
+    public void EquipPerk()
+    {
+        // Function called when pressed the selected position of
+        // equippedPerks where you want to equip selectedPerk
+        if (perkManager.flagEquip)
+        {
+            perkManager.UnequipPerk(perkIndex);
+        }
+
+
     }
 }

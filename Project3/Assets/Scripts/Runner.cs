@@ -10,6 +10,9 @@ public class Runner : MonoBehaviour
 {
     public Rigidbody2D rb;
     RunnerVFXController vfx;
+
+    private PerksInGame perks;
+    public Material myMat;
     
     [HideInInspector]
     public float jumpMagnitude = 10f;
@@ -212,6 +215,7 @@ public class Runner : MonoBehaviour
         //c.a = 0.4f;
 
         //Debug.DrawLine(transform.position, (Vector2)transform.position + direction * 100f, c, 10f);
+        perks.CheckJumpPerks(this);
 
     }
 

@@ -17,6 +17,7 @@ public class SaveData
     public int premiumCostUnlocked;
     public int totalPerkCost;
     public int equippedPerkCost;
+    public int softCurrency;
 
     public SaveData()
     {
@@ -32,6 +33,7 @@ public class SaveData
         premiumCostUnlocked = 0;
         totalPerkCost = 0;
         equippedPerkCost = 0;
+        softCurrency = 0;
     }
 
     public SaveData(GameInfo gameInfo)
@@ -49,6 +51,7 @@ public class SaveData
         premiumCostUnlocked = GameInfo.premiumCostUnlocked;
         totalPerkCost = GameInfo.totalPerkCost;
         equippedPerkCost = GameInfo.equippedPerkCost;
+        softCurrency = GameInfo.softCurrency;
     }
 
     public void UpdateState(GameInfo gameInfo)
@@ -65,6 +68,7 @@ public class SaveData
         premiumCostUnlocked = GameInfo.premiumCostUnlocked;
         totalPerkCost = GameInfo.totalPerkCost;
         equippedPerkCost = GameInfo.equippedPerkCost;
+        softCurrency = GameInfo.softCurrency;
     }
 
     public void SaveInventory(List<ScriptablePerk> _inventory)
