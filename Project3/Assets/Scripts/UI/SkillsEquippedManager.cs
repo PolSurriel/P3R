@@ -13,6 +13,8 @@ public class SkillsEquippedManager : MonoBehaviour
     [SerializeField] GameObject[] costsImages = new GameObject[9];
     [SerializeField] Sprite freeLockSprite;
     [SerializeField] Sprite premiumLockSprite;
+    public bool flagEquip = false;
+    private ScriptablePerk perkSelected;
 
     Color colorCostEquipped = new Color(0.9f, 0.6f, 0.2f);
     Color colorCostNotEquipped = new Color(0.95f, 0.95f, 0.95f);
@@ -38,7 +40,7 @@ public class SkillsEquippedManager : MonoBehaviour
         for (int i = 0; i < allPerks.Length; i++)
         {
             allPerks[i].perk = GameInfo.equippedPerks[i];
-            freePerkSlot.RefreshCard();
+            allPerks[i].RefreshCard();
         }
         if (!GameInfo.freePerkSlotUnlocked)
             freePerkSlot.perk = freeblocked;
@@ -56,9 +58,11 @@ public class SkillsEquippedManager : MonoBehaviour
         index = 2;
         indexFree = 4;
         indexPremium = 3;
+        GameInfo.totalPerkCost = 0;
         for(int i=0; i < 2; i++)
         {
             costsImages[i].transform.Find("Lock").localScale = new Vector3(0, 0, 0);
+            GameInfo.totalPerkCost++;
         }
         for (int i=2; i<costsImages.Length; i++)
         {
@@ -68,12 +72,14 @@ public class SkillsEquippedManager : MonoBehaviour
         {
             costsImages[index + i].transform.Find("Lock").localScale = new Vector3(0, 0, 0);
             indexFree--;
+            GameInfo.totalPerkCost++;
         }
         index += GameInfo.freeCostUnlocked;
         for(int i=0; i<GameInfo.premiumCostUnlocked; i++)
         {
             costsImages[index +  i].transform.Find("Lock").localScale = new Vector3(0, 0, 0);
             indexPremium--;
+            GameInfo.totalPerkCost++;
 
         }
         index += GameInfo.premiumCostUnlocked;
@@ -88,12 +94,12 @@ public class SkillsEquippedManager : MonoBehaviour
         {
             costsImages[i].transform.Find("Image").GetComponent<Image>().color = colorCostNotEquipped;
         }
-
+        Debug.Log("Total Perk Cost: " + GameInfo.totalPerkCost);
     }
 
-    public bool CheckCost(int _cost)
+    public bool CheckCost(int _costPlus, int _costMinus)
     {
-        return (GameInfo.totalPerkCost > GameInfo.equippedPerkCost + _cost);
+        return (GameInfo.totalPerkCost >= GameInfo.equippedPerkCost + _costPlus - _costMinus);
     }
 
     public int CalculateEquippedPerkCost()
@@ -122,6 +128,43 @@ public class SkillsEquippedManager : MonoBehaviour
             }
             index++;
         }
+
+    }
+
+    public void SelectPerk(ScriptablePerk perk)
+    {
+
+        flagEquip = true;
+        perkSelected = perk;
+    }
+
+    public void UnequipPerk(int slot)
+    {
+        if (flagEquip)
+        {
+            if (CheckCost(perkSelected.cost, allPerks[slot].perk.cost))
+            {
+                GameInfo.equippedPerks[slot] = perkSelected;
+                GameInfo.equippedPerkCost = CalculateEquippedPerkCost();
+                allPerks[slot].perk = perkSelected;
+                allPerks[slot].RefreshCard();
+                flagEquip = false;
+                perkSelected = null;
+            }
+        }
+        else
+        {
+            GameInfo.equippedPerks[slot] = GameInfo.defaultPerk;
+            GameInfo.equippedPerkCost = CalculateEquippedPerkCost();
+            allPerks[slot].perk = GameInfo.defaultPerk;
+            allPerks[slot].RefreshCard();
+            foreach(ScriptablePerk perk in GameInfo.equippedPerks)
+            {
+                Debug.Log(perk.myName);
+            }
+        }
+        
+        RefreshCosts();
 
     }
 

@@ -201,6 +201,7 @@ public class MainMenuManager : MonoBehaviour
     public void AddSoftCurrency(int amount)
     {
         GameInfo.softCurrency += amount;
+        RefreshCurrencies();
     }
 
     IEnumerator LoadAsyncScene(SceneReference scene)

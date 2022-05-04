@@ -786,6 +786,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b0bb69cd7b192084a81e84f3395b8c9d,
         type: 2}
+    - target: {fileID: 4338875850038167612, guid: 98e1df2351043bb48a96b09c1a61a4da,
+        type: 3}
+      propertyPath: cost
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 4872564831427354521, guid: 98e1df2351043bb48a96b09c1a61a4da,
         type: 3}
       propertyPath: perk
@@ -821,6 +826,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664346777066080460, guid: 98e1df2351043bb48a96b09c1a61a4da,
+        type: 3}
+      propertyPath: cost
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98e1df2351043bb48a96b09c1a61a4da, type: 3}

@@ -45,20 +45,23 @@ public class PerksInGame : MonoBehaviour
     {
         if(player.jumpCounter >= 1)         // Comprobar todas las perks que puedan triggear en el segundo salto
         {
-            bool flagPulse = Random.Range(0.0f, 1.0f) < pulseProb;
 
-            if(Random.Range(0.0f, 1.0f) < transparentProb)
+            if(Random.Range(0.0f, 1.0f) < transparentProb && isTransparent)
             {
                 StartCoroutine(TransparentEffect());
             }
-            foreach (Runner enemy in GameObject.FindObjectsOfType<Runner>())
+            if (isPulse)
             {
-                if (player.gameObject != enemy.gameObject && flagPulse)
+                bool flagPulse = Random.Range(0.0f, 1.0f) < pulseProb;
+                foreach (Runner enemy in GameObject.FindObjectsOfType<Runner>())
                 {
-                    enemy.rb.AddForce(new Vector2(      // Calculates Vector to Add Force
-                        enemy.transform.position.x - player.transform.position.x,
-                        enemy.transform.position.y - player.transform.position.y
-                        ).normalized * PulseForceMagnitude);
+                    if (player.gameObject != enemy.gameObject && flagPulse)
+                    {
+                        enemy.rb.AddForce(new Vector2(      // Calculates Vector to Add Force
+                            enemy.transform.position.x - player.transform.position.x,
+                            enemy.transform.position.y - player.transform.position.y
+                            ).normalized * PulseForceMagnitude);
+                    }
                 }
             }
         }
