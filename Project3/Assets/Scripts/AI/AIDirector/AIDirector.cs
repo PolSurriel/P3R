@@ -1,4 +1,5 @@
-﻿using SurrealBoost.Types;
+﻿using Sirenix.OdinInspector;
+using SurrealBoost.Types;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,9 @@ using UnityEngine;
 [RequireComponent(typeof(MapController))]
 public partial class AIDirector : MonoBehaviour
 {
+    [FoldoutGroup("Other configuration")]
     public Transform astarMaxX;
+    [FoldoutGroup("Other configuration")]
     public Transform astarMinX;
 
     static AIDirector instance;

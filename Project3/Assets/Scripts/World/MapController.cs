@@ -160,6 +160,25 @@ public class MapController : MonoBehaviour
         return tilemapsDifficulties[difficulty][result];
     }
 
+    public delegate void TilemapPathIteration(string path);
+    public static void ForEachTilemapSRCPath(TilemapPathIteration method)
+    {
+        int i = 1;
+        
+        do
+        {
+            string path = $"Assets/Resources/Tilemaps/Tilemap{i++}.prefab";
+            
+            if (AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)) != null)
+            {
+                method(path);
+            }
+            else break;
+
+        } while (true);
+
+    }
+
     public static void LoadTilemaps()
     {
         if (tilemapsInizializated)
