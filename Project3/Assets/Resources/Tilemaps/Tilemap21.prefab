@@ -2381,6 +2381,11 @@ PrefabInstance:
       propertyPath: difficulties.Array.data[3]
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 130553757402441420, guid: 296738cc72fb52c4891638373c22f09a,
+        type: 3}
+      propertyPath: timeVariationTrigger
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 3966616534217132592, guid: 296738cc72fb52c4891638373c22f09a,
         type: 3}
       propertyPath: m_Name

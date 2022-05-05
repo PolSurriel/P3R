@@ -1123,7 +1123,7 @@ MonoBehaviour:
   maxAngleDeviationClamp: 0
   clampMinAngleDeviation: 0
   minAngleDeviationClamp: 0
-  scalar: 2
+  scalar: 0.5
   astarMaxX: {fileID: 571218955}
   astarMinX: {fileID: 987735034}
 --- !u!114 &127046073
@@ -1793,7 +1793,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.806818
+  orthographic size: 5.852273
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

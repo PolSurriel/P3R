@@ -53,37 +53,22 @@ public partial class AIDirector : MonoBehaviour
     [Button("Apply")]
     void ApplyScalar()
     {
-
-        int modifiedCount = 0; 
-        MapController.ForEachTilemapSRCPath((string path)=> {
-            // get a reference to the prefab itself, not a clone or instantiation: 
-            GameObject editablePrefab = AssetDatabase.LoadAssetAtPath(path,
-                 typeof(GameObject)) as GameObject;
-
+        MapController.EditEachTilemapPrefab((ref GameObject editablePrefab) =>
+        {
             for (int i = 0; i < editablePrefab.transform.childCount; i++)
             {
                 VariablesTilemap vt = editablePrefab.transform.GetChild(i).GetComponent<VariablesTilemap>();
 
-                if(vt != null)
+                if (vt != null)
                 {
                     vt.timeVariationTrigger *= scalar;
-                    AssetDatabase.DeleteAsset(path);
-                    AssetDatabase.CreateAsset(editablePrefab, path);
-                    modifiedCount++;
-                    
+                    break;
                 }
             }
 
-
         });
-        
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-        
-        Debug.Log($"Modified {modifiedCount} tilemaps.");
-
-
 
     }
+    
 
 }

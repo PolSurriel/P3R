@@ -7,6 +7,8 @@ using UnityEngine.Tilemaps;
 using System;
 using Sirenix.OdinInspector;
 
+
+
 [RequireComponent(typeof(Grid))]
 public class MapController : MonoBehaviour
 {
@@ -178,6 +180,30 @@ public class MapController : MonoBehaviour
         } while (true);
 
     }
+
+
+    public delegate void EditTilemapPrefab(ref GameObject tilemapPrefab);
+    public static void EditEachTilemapPrefab(EditTilemapPrefab method)
+    {
+
+        int modifiedCount = 0;
+        MapController.ForEachTilemapSRCPath((string path) => {
+            // get a reference to the prefab itself, not a clone or instantiation: 
+            GameObject editablePrefab = AssetDatabase.LoadAssetAtPath(path,
+                 typeof(GameObject)) as GameObject;
+
+            method(ref editablePrefab);
+            PrefabUtility.SavePrefabAsset(editablePrefab);
+
+        });
+
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+
+        Debug.Log($"Modified {modifiedCount} tilemaps.");
+    }
+
+
 
     public static void LoadTilemaps()
     {

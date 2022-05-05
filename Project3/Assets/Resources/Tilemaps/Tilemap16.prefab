@@ -643,8 +643,8 @@ MonoBehaviour:
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
   maxHorizontalOffset: 0
-  forceDotConstraint: 0
   useDotConstrainToChoose: 0
+  forceDotConstraint: 0
   dotConstrainThreshold: 0
   dotConstrain: {x: 0, y: 0}
   fakePosition: {fileID: 0}
@@ -914,7 +914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleVariationTrigger: 40
-  timeVariationTrigger: 0.5
+  timeVariationTrigger: 128
   difficulties: 000000000200000003000000
 --- !u!1 &7532805520116704260
 GameObject:
@@ -963,8 +963,8 @@ MonoBehaviour:
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
   maxHorizontalOffset: 0
-  forceDotConstraint: 0
   useDotConstrainToChoose: 0
+  forceDotConstraint: 0
   dotConstrainThreshold: 0
   dotConstrain: {x: 0, y: 0}
   fakePosition: {fileID: 0}
@@ -2257,8 +2257,8 @@ MonoBehaviour:
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
   maxHorizontalOffset: 0
-  forceDotConstraint: 0
   useDotConstrainToChoose: 0
+  forceDotConstraint: 0
   dotConstrainThreshold: 0
   dotConstrain: {x: 0, y: 0}
   fakePosition: {fileID: 0}
@@ -2311,8 +2311,8 @@ MonoBehaviour:
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
   maxHorizontalOffset: 0
-  forceDotConstraint: 0
   useDotConstrainToChoose: 0
+  forceDotConstraint: 0
   dotConstrainThreshold: 0
   dotConstrain: {x: 0, y: 0}
   fakePosition: {fileID: 0}

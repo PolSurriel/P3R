@@ -47,8 +47,8 @@ MonoBehaviour:
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
   maxHorizontalOffset: 0
-  forceDotConstraint: 0
   useDotConstrainToChoose: 0
+  forceDotConstraint: 0
   dotConstrainThreshold: 0
   dotConstrain: {x: 0, y: 0}
   fakePosition: {fileID: 0}
@@ -101,8 +101,8 @@ MonoBehaviour:
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
   maxHorizontalOffset: 0
-  forceDotConstraint: 0
   useDotConstrainToChoose: 0
+  forceDotConstraint: 0
   dotConstrainThreshold: 0
   dotConstrain: {x: 0, y: 0}
   fakePosition: {fileID: 0}
@@ -155,8 +155,8 @@ MonoBehaviour:
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
   maxHorizontalOffset: 0
-  forceDotConstraint: 0
   useDotConstrainToChoose: 0
+  forceDotConstraint: 0
   dotConstrainThreshold: 0
   dotConstrain: {x: 0, y: 0}
   fakePosition: {fileID: 0}
@@ -1855,6 +1855,11 @@ PrefabInstance:
         type: 3}
       propertyPath: difficulties.Array.data[3]
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 130553757402441420, guid: 296738cc72fb52c4891638373c22f09a,
+        type: 3}
+      propertyPath: timeVariationTrigger
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3966616534217132592, guid: 296738cc72fb52c4891638373c22f09a,
         type: 3}
