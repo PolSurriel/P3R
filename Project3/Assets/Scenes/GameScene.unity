@@ -786,9 +786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51b2a333f8af554496ab88eca45192c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  debugMode: 1
   debugTilemaps:
-  - {fileID: 7769749786109202092, guid: b45d6dd2763b1804b98f0273054c8d7e, type: 3}
+  - {fileID: 2693755942346678824, guid: 955f82572dc7a1642b17ea63dde8c2db, type: 3}
   tmp_alphaLevelTilemaps: []
   tmp_alphaOnBoardingTilemaps: []
   playerTransform: {fileID: 0}
