@@ -16,13 +16,11 @@ public class MapController : MonoBehaviour
     public bool debugMode;
     public List<GameObject> debugTilemaps = new List<GameObject>();
 
-    // ---- setear tilemaps para la alpha, variables temporales
-    public List<GameObject> tmp_alphaLevelTilemaps = new List<GameObject>();
-    public List<GameObject> tmp_alphaOnBoardingTilemaps = new List<GameObject>();
-
+    
 
     public static int numberOfTilemaps = 23;
 
+    [HideInInspector]
     public Transform playerTransform;
     public static List<int>[] tilemapsDifficulties;
     
@@ -43,13 +41,9 @@ public class MapController : MonoBehaviour
     float gridSize;
     int enqueuedCount;
 
-    [SerializeField] private GameObject lineaMeta;
-    public float nodeDistance;
+    GameObject lineaMeta;
+    
 
-
-    public Vector2 nodeZeroPosition;
-
-    public List<NodeListWrapper> nodesGlobalMatrix;
 
 
     bool closedLevel = false;
@@ -57,15 +51,13 @@ public class MapController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lineaMeta = FindObjectOfType<LevelEnd>().gameObject;
 
         instanceGameObject = this.gameObject;
         gridSize = GetComponent<Grid>().cellSize.x;
         doNotRepeat = new Queue<int>();
         tilemapInstances = new Queue<GameObject>();
 
-        nodeDistance = gridSize / 3f;
-
-        
         LoadTilemaps();
 
         try
