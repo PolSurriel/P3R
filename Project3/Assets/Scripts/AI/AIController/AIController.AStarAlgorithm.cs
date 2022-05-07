@@ -75,7 +75,6 @@ public partial class AIController : MonoBehaviour
 
             AStarIterationsDiscarder.m_precalculatedDirections = jumpPredictor.precalculatedDirections;
             jumpPredictorIndex = AStarIterationsDiscarder.lastAddedJumpPredictorIndex;
-            AStarIterationsDiscarder.m_jumpPredictors[AStarIterationsDiscarder.lastAddedJumpPredictorIndex++] = jumpPredictor;
 
         }
 

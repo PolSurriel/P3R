@@ -61,11 +61,6 @@ public partial class AIController : MonoBehaviour
 
         [ReadOnly]
         [NativeDisableParallelForRestriction]
-        public static NativeArray<JobyfablePrecalculatedPredictionSystem> m_jumpPredictors;
-
-
-        [ReadOnly]
-        [NativeDisableParallelForRestriction]
         public static NativeFIFO<NativeReboundWallInfo> m_reboundWalls;
 
         [ReadOnly]
