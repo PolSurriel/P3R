@@ -219,6 +219,7 @@ public class MapController : MonoBehaviour
         {
             ProjectUtils.LoadTilemap(i);
             tilemaps[i] = ProjectUtils.LoadTilemap(i);
+            tilemaps[i].GetComponent<Tilemap>().CompressBounds();
 
             //Lee la array de que dificultades se tiene que poner este tilemap
             int[] aux = tilemaps[i].GetComponentInChildren<VariablesTilemap>().GetDifficulties();
@@ -242,20 +243,11 @@ public class MapController : MonoBehaviour
 
         tilemapInstances.Enqueue(obj);
 
-        if(index == 1)
-        {
-            obj.transform.position = Vector3.up * (totalHeightAcumulated+2f);
-        }
-        else
-        {
-
-            obj.transform.position = Vector3.up * totalHeightAcumulated;
-        }
+      
+        obj.transform.position = Vector3.up * totalHeightAcumulated;
         obj.transform.SetParent(this.transform);
-
+        
         totalHeightAcumulated += obj.GetComponent<Tilemap>().size.y * gridSize;
-
-       
 
         if (closedLevel)
             return;
