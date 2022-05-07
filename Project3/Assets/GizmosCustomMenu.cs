@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GizmosCustomMenu : MonoBehaviour
@@ -14,7 +15,7 @@ public class GizmosCustomMenu : MonoBehaviour
     public bool portalsRuntimeInfo;
     public bool portalsConfiguration;
 
-
+  
     public static GizmosCustomMenu m_instance;
     public static GizmosCustomMenu instance {
         get {
