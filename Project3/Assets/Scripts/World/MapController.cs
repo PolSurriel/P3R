@@ -16,9 +16,8 @@ public class MapController : MonoBehaviour
     public bool debugMode;
     public List<GameObject> debugTilemaps = new List<GameObject>();
 
-    
 
-    public static int numberOfTilemaps = 23;
+    public static int numberOfTilemaps = 29;
 
     [HideInInspector]
     public Transform playerTransform;

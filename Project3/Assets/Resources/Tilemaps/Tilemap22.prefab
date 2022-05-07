@@ -1,5 +1,115 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1098317957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1098317958}
+  - component: {fileID: 1098317959}
+  m_Layer: 0
+  m_Name: PathTarget (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1098317958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098317957}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.03, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8986129502086002711}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1098317959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098317957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbe65a1d39f86c44956928a09d3f4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reachTargetRadius: 0.9
+  useRandomVerticalOffset: 0
+  maxVerticalOffset: 0
+  useRandomHorizontalOffset: 0
+  maxHorizontalOffset: 0
+  useDotConstrainToChoose: 0
+  forceDotConstraint: 0
+  dotConstrainThreshold: 0
+  dotConstrain: {x: 0, y: 0}
+  fakePosition: {fileID: 0}
+  useIncisionConstrain: 1
+  incisionVector: {x: 0, y: 1}
+--- !u!1 &1628199039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1628199040}
+  - component: {fileID: 1628199041}
+  m_Layer: 0
+  m_Name: PathTarget (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1628199040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628199039}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.91, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8986129502086002711}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1628199041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628199039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbe65a1d39f86c44956928a09d3f4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reachTargetRadius: 0.9
+  useRandomVerticalOffset: 0
+  maxVerticalOffset: 0
+  useRandomHorizontalOffset: 0
+  maxHorizontalOffset: 0
+  useDotConstrainToChoose: 0
+  forceDotConstraint: 0
+  dotConstrainThreshold: 0
+  dotConstrain: {x: 0, y: 0}
+  fakePosition: {fileID: 0}
+  useIncisionConstrain: 1
+  incisionVector: {x: 1, y: 0}
 --- !u!1 &4634624693101989025
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +314,8 @@ Transform:
   - {fileID: 5346887369357863422}
   - {fileID: 5236898448492147852}
   - {fileID: 2747216442911056416}
+  - {fileID: 1628199040}
+  - {fileID: 1098317958}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -797,45 +909,7 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 8986129502086002706}
     m_ColliderPaths:
-    - - X: 50019532
-        Y: 50019532
-      - X: 29990234
-        Y: 50019532
-      - X: 29990234
-        Y: 40000000
-      - X: 30009766
-        Y: 40000000
-      - X: 30009766
-        Y: 20019532
-      - X: 29990234
-        Y: 20019532
-      - X: 29990234
-        Y: 10029296
-      - X: 10009766
-        Y: 10029296
-      - X: 10009766
-        Y: 30019532
-      - X: 9999999
-        Y: 30019532
-      - X: 9999999
-        Y: 40000000
-      - X: 9765
-        Y: 40000000
-      - X: 9765
-        Y: 40029296
-      - X: -19970704
-        Y: 40029296
-      - X: -19970704
-        Y: 50019532
-      - X: -40000000
-        Y: 50019532
-      - X: -40000000
-        Y: -29980368
-      - X: -20009766
-        Y: -29980368
-      - X: -20009766
-        Y: -10000001
-      - X: -29980468
+    - - X: -29980468
         Y: -10000001
       - X: -29980468
         Y: -9999999
@@ -878,12 +952,54 @@ CompositeCollider2D:
       - X: 30009766
         Y: -10000000
       - X: 30009766
-        Y: -29980368
+        Y: -30000000
       - X: 50019532
-        Y: -29980368
+        Y: -30000000
+      - X: 50019532
+        Y: 50019532
+      - X: 29990234
+        Y: 50019532
+      - X: 29990234
+        Y: 40000000
+      - X: 30009766
+        Y: 40000000
+      - X: 30009766
+        Y: 20019532
+      - X: 29990234
+        Y: 20019532
+      - X: 29990234
+        Y: 10029296
+      - X: 10009766
+        Y: 10029296
+      - X: 10009766
+        Y: 30019532
+      - X: 9999999
+        Y: 30019532
+      - X: 9999999
+        Y: 40000000
+      - X: 9765
+        Y: 40000000
+      - X: 9765
+        Y: 40029296
+      - X: -19970704
+        Y: 40029296
+      - X: -19970704
+        Y: 50019532
+      - X: -40000000
+        Y: 50019532
+      - X: -40000000
+        Y: -30000000
+      - X: -30029296
+        Y: -30000000
+      - X: -30029296
+        Y: -30029296
+      - X: -20009766
+        Y: -30029296
+      - X: -20009766
+        Y: -10000001
   m_CompositePaths:
     m_Paths:
-    - - {x: -2.0010061, y: -2.9980369}
+    - - {x: -2.0010061, y: -3.0029297}
       - {x: -2.0009472, y: -1.0000001}
       - {x: -1.9970704, y: -0.9999706}
       - {x: -1.9970996, y: 0.0019532}
@@ -902,8 +1018,8 @@ CompositeCollider2D:
       - {x: 2.9990234, y: 0.000947}
       - {x: 2.9990528, y: -1}
       - {x: 3.0009766, y: -1.0000294}
-      - {x: 3.0010061, y: -2.9980369}
-      - {x: 5.001953, y: -2.9980075}
+      - {x: 3.0010061, y: -3}
+      - {x: 5.001953, y: -2.999971}
       - {x: 5.001924, y: 5.001953}
       - {x: 2.9990234, y: 5.001924}
       - {x: 2.9990528, y: 4}
@@ -920,7 +1036,9 @@ CompositeCollider2D:
       - {x: -1.9970704, y: 4.0029593}
       - {x: -1.9970996, y: 5.001953}
       - {x: -4, y: 5.001924}
-      - {x: -3.999971, y: -2.9980369}
+      - {x: -3.999971, y: -3}
+      - {x: -3.0029297, y: -3.0000293}
+      - {x: -3.0029004, y: -3.0029297}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!114 &7122727873834249905
