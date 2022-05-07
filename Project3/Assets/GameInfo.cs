@@ -48,14 +48,18 @@ public class GameInfo : MonoBehaviour
         public string accessory1SkinName;
         public string accessory2SkinName;
         public string suitSkinName;
+        public Color playerColor;
     }
 
-    
-    public static RunnerSkinInfo playerSkin = new RunnerSkinInfo (){
+
+    public static RunnerSkinInfo playerSkin = new RunnerSkinInfo() {
         baseSkinName = "Yellow",
         suitSkinName = "Default",
         accessory1SkinName = "Default",
-        accessory2SkinName = "Default"
+        accessory2SkinName = "Default",
+
+        // Placeholder color
+        playerColor = new Color(1, 1, 1)
     };
 
     [SerializeField] private GameObject playerPrefab;
@@ -104,6 +108,8 @@ public class GameInfo : MonoBehaviour
                 player = Instantiate(playerPrefab);
                 DontDestroyOnLoad(player);
 
+                RefreshSkin();
+
                 break;
             case 2:
 
@@ -116,11 +122,7 @@ public class GameInfo : MonoBehaviour
                 ai.erraticBehaviourFactor = 0.5f;
 
                 // TODO: Set selected skins
-                var playerAnimController = player.GetComponent<Runner>().aspect.GetComponent<PlayerAnimationController>();
-                playerAnimController.baseSkin = "Yellow";
-                playerAnimController.suitSkin = "Default";
-                playerAnimController.accessory1Skin = "Default";
-                playerAnimController.accessory2Skin = "Default";
+                RefreshSkin();
 
                 break;
             case 4:
@@ -166,6 +168,26 @@ public class GameInfo : MonoBehaviour
         
     }
 
+    void RefreshSkin()
+    {
+        var playerAnimController = player.GetComponent<Runner>().aspect.GetComponent<PlayerAnimationController>();
+        playerAnimController.baseSkin = playerSkin.baseSkinName;
+        playerAnimController.suitSkin = playerSkin.suitSkinName;
+        playerAnimController.accessory1Skin = playerSkin.accessory1SkinName;
+        playerAnimController.accessory2Skin = playerSkin.accessory2SkinName;
+        Material mat = playerAnimController.gameObject.GetComponent<SpriteRenderer>().material;
+        if(playerSkin.playerColor != new Color(1, 1, 1))
+        {
+            mat.SetFloat("_ColorChangeTolerance", 0.2f);
+            mat.SetColor("_ColorChangeNewCol", playerSkin.playerColor);
+        }
+        else
+        {
+            mat.SetFloat("_ColorChangeTolerance", 1.0f);
+
+        }
+    }
+
     public void SaveData()
     {
         //state.SaveInventory(inventoryPerks);
@@ -183,6 +205,7 @@ public class GameInfo : MonoBehaviour
             playerSkin.suitSkinName = data.suitSkin;
             playerSkin.accessory1SkinName = data.accessory1;
             playerSkin.accessory2SkinName = data.accessory2;
+            playerSkin.playerColor = new Color(data.colorBaseSkin[0], data.colorBaseSkin[1], data.colorBaseSkin[2]);
 
             equippedPerks.Clear();
             if(data.equipped != null)
