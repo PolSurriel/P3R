@@ -46,6 +46,8 @@ public partial class AIController : MonoBehaviour
     public const int ITERATION_DISCARDER_BATCH = 3;
     public struct AStarIterationsDiscarder : IJobParallelFor
     {
+        public static float DIST_REACH_TARGET = 0.9f;
+
         public static float maxX;
         public static float minX;
 
@@ -195,7 +197,7 @@ public partial class AIController : MonoBehaviour
                 //ReboundWallCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin);
 
                 // Si pasa cerca del goal o un portal, lo valido.
-                if (distToGoal <= GOAL_MIN_DISTANCE || enterInPortalSwap) //(m_usePortal && Vector2.Distance(nextPosition, m_portalPosition) <= GOAL_MIN_DISTANCE))
+                if (distToGoal <= DIST_REACH_TARGET || enterInPortalSwap) //(m_usePortal && Vector2.Distance(nextPosition, m_portalPosition) <= GOAL_MIN_DISTANCE))
                 {
                     m_result[directionIndex] = true;
                     return;

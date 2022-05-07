@@ -230,7 +230,6 @@ public class MapController : MonoBehaviour
         }
     }
 
-
     void InstantiateTilemap(int index)
     {
         if (doNotRepeat.Contains(index) && !closedLevel)
@@ -245,17 +244,18 @@ public class MapController : MonoBehaviour
 
         if(index == 1)
         {
-
             obj.transform.position = Vector3.up * (totalHeightAcumulated+2f);
         }
         else
         {
-            obj.transform.position = Vector3.up * totalHeightAcumulated;
 
+            obj.transform.position = Vector3.up * totalHeightAcumulated;
         }
         obj.transform.SetParent(this.transform);
 
         totalHeightAcumulated += obj.GetComponent<Tilemap>().size.y * gridSize;
+
+       
 
         if (closedLevel)
             return;

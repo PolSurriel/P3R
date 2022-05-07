@@ -8,7 +8,8 @@ public partial class AIController : MonoBehaviour
     private void OnDrawGizmos()
     {
 
-
+        if (!GizmosCustomMenu.instance.aiController)
+            return;
 
         //var color = Color.black;
         //color.a = 0.4f;
@@ -67,7 +68,7 @@ public partial class AIController : MonoBehaviour
 
         if (aStarGoal != null)
         {
-            Gizmos.DrawWireSphere(aStarGoal.position, GOAL_MIN_DISTANCE);
+            Gizmos.DrawWireSphere(aStarGoal.position, goalMinDist);
 
         }
 

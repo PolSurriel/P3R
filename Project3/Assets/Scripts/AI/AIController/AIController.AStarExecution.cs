@@ -26,7 +26,8 @@ public partial class AIController : MonoBehaviour
 
     AStarNode currentNode;
 
-    const float GOAL_MIN_DISTANCE = 0.9f;
+    [HideInInspector]
+    public float goalMinDist;
 
     bool onBackupPlanZone = false;
 
@@ -172,6 +173,7 @@ public partial class AIController : MonoBehaviour
         if (ChooseTarget())
         {
             // Generamos infomración para ejecutar el Astar a hacia ese target
+            aStarSolver.goalMinDist = goalMinDist;
 
             // Calculamos el camino
             yield return aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);

@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbe65a1d39f86c44956928a09d3f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reachTargetRadius: 0.9
   useRandomVerticalOffset: 0
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
@@ -125,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleVariationTrigger: 40
-  timeVariationTrigger: 2048
+  timeVariationTrigger: 2049
   difficulties: 000000000200000003000000
 --- !u!1 &7646639407376381331
 GameObject:
@@ -184,7 +185,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.37, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7646639407376381333
 MonoBehaviour:
@@ -241,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbe65a1d39f86c44956928a09d3f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reachTargetRadius: 0.9
   useRandomVerticalOffset: 0
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
@@ -295,6 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbe65a1d39f86c44956928a09d3f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reachTargetRadius: 0.9
   useRandomVerticalOffset: 0
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
@@ -444,7 +447,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.37, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7646639407814631602
 MonoBehaviour:
@@ -515,7 +518,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.37, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7646639407895459681
 MonoBehaviour:
@@ -586,7 +589,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.37, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7646639407896110567
 MonoBehaviour:
@@ -657,7 +660,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.37, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7646639408134417410
 MonoBehaviour:
@@ -714,6 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbe65a1d39f86c44956928a09d3f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reachTargetRadius: 0.9
   useRandomVerticalOffset: 0
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
@@ -782,7 +786,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.37, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7646639408725583228
 MonoBehaviour:
@@ -839,6 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbe65a1d39f86c44956928a09d3f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reachTargetRadius: 0.9
   useRandomVerticalOffset: 0
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
@@ -1434,200 +1439,84 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 7646639408964073943}
     m_ColliderPaths:
-    - - X: -20009666
-        Y: -30029337
-      - X: -20009666
-        Y: -10000100
-      - X: -19970663
-        Y: -10000100
-      - X: -19970604
-        Y: -10000041
-      - X: -19970604
-        Y: 40019573
-      - X: -19970663
-        Y: 40019632
-      - X: -40000041
-        Y: 40019632
-      - X: -40000100
-        Y: 40019573
-      - X: -40000100
-        Y: 9999960
-      - X: -40000041
-        Y: 9999901
-      - X: -29999958
-        Y: 9999901
-      - X: -29999959
-        Y: 9999900
-      - X: -40000041
-        Y: 9999900
-      - X: -40000100
-        Y: 9999959
-      - X: -40000100
-        Y: -40
-      - X: -40000041
-        Y: -99
-      - X: -29999958
-        Y: -99
-      - X: -29999959
-        Y: -100
-      - X: -40000041
-        Y: -100
-      - X: -40000100
-        Y: -41
-      - X: -40000100
-        Y: -10000040
-      - X: -40000041
-        Y: -10000099
-      - X: -29999958
-        Y: -10000099
-      - X: -29999959
-        Y: -10000100
-      - X: -40000041
-        Y: -10000100
-      - X: -40000100
-        Y: -10000041
-      - X: -40000100
-        Y: -30000041
-      - X: -40000041
-        Y: -30000100
-      - X: -30029396
-        Y: -30000100
-      - X: -30029396
-        Y: -30029337
-      - X: -30029337
-        Y: -30029396
-      - X: -20009725
-        Y: -30029396
-    - - X: 50019632
-        Y: -30000041
-      - X: 50019632
-        Y: 40019573
-      - X: 50019573
-        Y: 40019632
-      - X: 29990193
-        Y: 40019632
-      - X: 29990134
-        Y: 40019573
-      - X: 29990134
-        Y: 29999959
-      - X: 29990193
-        Y: 29999900
-      - X: 30009666
-        Y: 29999900
-      - X: 30009666
-        Y: 20009725
-      - X: 30009725
-        Y: 20009666
-      - X: 39999900
-        Y: 20009666
-      - X: 39999900
-        Y: 19999900
-      - X: 30009666
-        Y: 19999900
-      - X: 30009666
-        Y: 10019632
-      - X: 29990193
-        Y: 10019632
-      - X: 29990134
-        Y: 10019573
-      - X: 29990134
-        Y: -40
-      - X: 29990193
-        Y: -99
-      - X: 39999900
-        Y: -99
-      - X: 39999900
-        Y: -100
-      - X: 30009666
-        Y: -100
-      - X: 30009666
-        Y: -9990277
-      - X: 30009725
-        Y: -9990336
-      - X: 39999900
-        Y: -9990336
-      - X: 39999900
-        Y: -10000100
-      - X: 30009666
-        Y: -10000100
-      - X: 30009666
-        Y: -19980368
-      - X: 29990193
-        Y: -19980368
-      - X: 29990134
-        Y: -19980427
-      - X: 29990134
-        Y: -30000041
-      - X: 29990193
-        Y: -30000100
-      - X: 50019573
-        Y: -30000100
-    - - X: 10009866
-        Y: -10009807
-      - X: 10009866
-        Y: 30009807
-      - X: 10009807
-        Y: 30009866
-      - X: -9806
-        Y: 30009866
-      - X: -9865
-        Y: 30009807
-      - X: -9865
-        Y: -10009807
-      - X: -9806
-        Y: -10009866
-      - X: 10009807
-        Y: -10009866
-    - - X: -41
-        Y: -100
-      - X: -42
-        Y: -99
-      - X: 10000042
-        Y: -99
-      - X: 10000041
-        Y: -100
-    - - X: -29980368
-        Y: -100
-      - X: -29980368
-        Y: -99
-      - X: -19999958
-        Y: -99
-      - X: -19999959
-        Y: -100
+    - - X: -20009766
+        Y: -10000001
+      - X: -29980468
+        Y: -10000001
+      - X: -29980468
+        Y: -10000000
+      - X: -19970704
+        Y: -10000000
+      - X: -19970704
+        Y: 40019532
+      - X: -40000000
+        Y: 40019532
+      - X: -40000000
+        Y: -30000000
+      - X: -30029296
+        Y: -30000000
+      - X: -30029296
+        Y: -30029296
+      - X: -20009766
+        Y: -30029296
+    - - X: 50019532
+        Y: 40019532
+      - X: 29990234
+        Y: 40019532
+      - X: 29990234
+        Y: 30000000
+      - X: 30009766
+        Y: 30000000
+      - X: 30009766
+        Y: 10019532
+      - X: 29990234
+        Y: 10019532
+      - X: 29990234
+        Y: 1
+      - X: 30009766
+        Y: 1
+      - X: 30009766
+        Y: -19980468
+      - X: 29990234
+        Y: -19980468
+      - X: 29990234
+        Y: -30000000
+      - X: 50019532
+        Y: -30000000
+    - - X: 10009766
+        Y: 30009766
+      - X: -9765
+        Y: 30009766
+      - X: -9765
+        Y: -10009766
+      - X: 10009766
+        Y: -10009766
   m_CompositePaths:
     m_Paths:
-    - - {x: -2.0010018, y: -3.0029397}
-      - {x: -2.0009372, y: -1.00001}
-      - {x: -1.9970604, y: -0.9999749}
-      - {x: -1.9970956, y: 4.001963}
-      - {x: -4.00001, y: 4.001928}
-      - {x: -3.9999747, y: -3.00001}
-      - {x: -3.0029397, y: -3.0000393}
-      - {x: -3.0029044, y: -3.0029397}
-    - - {x: 5.001928, y: -3.00001}
-      - {x: 5.001928, y: 4.001963}
-      - {x: 2.9990134, y: 4.001928}
-      - {x: 2.9990487, y: 2.99999}
-      - {x: 3.0009665, y: 2.9999607}
-      - {x: 3.0010018, y: 2.0009665}
-      - {x: 3.99999, y: 2.0009372}
-      - {x: 3.999961, y: 1.99999}
-      - {x: 3.0009665, y: 1.9999608}
-      - {x: 3.0009375, y: 1.001963}
-      - {x: 2.9990134, y: 1.0019281}
-      - {x: 2.9990487, y: -0.0000099}
-      - {x: 3.0009665, y: -0.0000394}
-      - {x: 3.0010018, y: -0.99903363}
-      - {x: 3.99999, y: -0.999063}
-      - {x: 3.999961, y: -1.00001}
-      - {x: 3.0009665, y: -1.0000393}
-      - {x: 3.0009375, y: -1.998037}
-      - {x: 2.9990134, y: -1.998072}
-      - {x: 2.9990487, y: -3.00001}
-    - - {x: 1.0009514, y: -1.0009866}
-      - {x: 1.0009514, y: 3.0009866}
-      - {x: -0.0009865001, y: 3.0009515}
-      - {x: -0.0009513, y: -1.0009866}
+    - - {x: 5.001924, y: -3}
+      - {x: 5.001924, y: 4.001953}
+      - {x: 2.9990234, y: 4.001924}
+      - {x: 2.9990528, y: 3}
+      - {x: 3.0009766, y: 2.9999707}
+      - {x: 3.0009472, y: 1.0019532}
+      - {x: 2.9990234, y: 1.0019239}
+      - {x: 2.9990528, y: 0.0000001}
+      - {x: 3.0009766, y: -0.000029300001}
+      - {x: 3.0009472, y: -1.9980469}
+      - {x: 2.9990234, y: -1.9980761}
+      - {x: 2.9990528, y: -3}
+    - - {x: -2.0010061, y: -3.0029297}
+      - {x: -2.0009472, y: -1.0000001}
+      - {x: -1.9970704, y: -0.99997073}
+      - {x: -1.9970996, y: 4.001953}
+      - {x: -4, y: 4.001924}
+      - {x: -3.999971, y: -3}
+      - {x: -3.0029297, y: -3.0000293}
+      - {x: -3.0029004, y: -3.0029297}
+    - - {x: 1.0009474, y: -1.0009766}
+      - {x: 1.0009474, y: 3.0009766}
+      - {x: -0.0009765, y: 3.0009472}
+      - {x: -0.0009472, y: -1.0009766}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!114 &7646639408964073938
@@ -2214,7 +2103,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.37, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7646639409230540362
 MonoBehaviour:
@@ -2271,6 +2160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbe65a1d39f86c44956928a09d3f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reachTargetRadius: 0.9
   useRandomVerticalOffset: 0
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0
@@ -2325,6 +2215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbe65a1d39f86c44956928a09d3f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reachTargetRadius: 0.9
   useRandomVerticalOffset: 0
   maxVerticalOffset: 0
   useRandomHorizontalOffset: 0

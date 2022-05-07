@@ -50,7 +50,7 @@ public partial class AIDirector : MonoBehaviour
     public float scalar = 1f;
 
     [FoldoutGroup(CONFIG_NAME)]
-    [Button("Apply")]
+    [Button("Apply multiplication")]
     void ApplyScalar()
     {
         MapController.EditEachTilemapPrefab((ref GameObject editablePrefab) =>
@@ -69,6 +69,32 @@ public partial class AIDirector : MonoBehaviour
         });
 
     }
-    
+
+
+    [Title("Add a number to all tilemaps max&min timebeforejump")]
+    [FoldoutGroup(CONFIG_NAME)]
+    public float number = 1f;
+
+    [FoldoutGroup(CONFIG_NAME)]
+    [Button("Apply sum")]
+    void ApplyOffset()
+    {
+        MapController.EditEachTilemapPrefab((ref GameObject editablePrefab) =>
+        {
+            for (int i = 0; i < editablePrefab.transform.childCount; i++)
+            {
+                VariablesTilemap vt = editablePrefab.transform.GetChild(i).GetComponent<VariablesTilemap>();
+
+                if (vt != null)
+                {
+                    vt.timeVariationTrigger += number;
+                    break;
+                }
+            }
+
+        });
+
+    }
+
 
 }

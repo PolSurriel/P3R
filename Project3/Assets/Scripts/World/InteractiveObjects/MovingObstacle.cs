@@ -92,8 +92,11 @@ public class MovingObstacle : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (!GizmosCustomMenu.instance.movingObstaclesFuture)
+        {
+            return;
+        }
 
-        Gizmos.DrawWireSphere(obstacle.position, 1.3f);
         Transform lastPoint = null;
         Transform firstPoint = null;
         int i = 0;

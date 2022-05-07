@@ -55,7 +55,11 @@ public partial class AIController : MonoBehaviour
         return dot < target.dotConstrainThreshold;
     }
 
-    const float MIN_DIST_TO_CHOOSE_TARGET = GOAL_MIN_DISTANCE * 1.2f;
+    float MIN_DIST_TO_CHOOSE_TARGET {
+       get{
+            return goalMinDist * 1.2f;
+       }
+    }
 
 
     /*Entre todos los targets cercanos, decide a cual ir mediante el Astar
@@ -103,7 +107,7 @@ public partial class AIController : MonoBehaviour
                 // * backup plans en el futuro mediante comportamientos reactivos.
 
             
-                if ((!(targetPos.y < transform.position.y + GOAL_MIN_DISTANCE)) || onBackupPlanZone)
+                if ((!(targetPos.y < transform.position.y + goalMinDist)) || onBackupPlanZone)
                 {
                     // El target está los suficientemente cerca
                     float dist = Vector2.Distance(targetPos, transform.position);
@@ -156,7 +160,7 @@ public partial class AIController : MonoBehaviour
             }
         }
 
-
+        goalMinDist = currentPathTargetObject.reachTargetRadius;
         aStarGoal = new AstarGoal(currentPathTargetObject.transform.position, currentPathTargetObject.incisionVector, currentPathTargetObject.useIncisionConstrain);
         lastTargetPos = aStarGoal.position;
 
