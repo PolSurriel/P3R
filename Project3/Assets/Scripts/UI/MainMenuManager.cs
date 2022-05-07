@@ -108,6 +108,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayMode()
     {
+        ResetSkinMat();     // Reset Skin color material for IA
+
         switch (modeType)
         {
             case ModeType.PLAYER:
@@ -200,14 +202,16 @@ public class MainMenuManager : MonoBehaviour
 
     public void RefreshSkinPrev()
     {
-        if(GameInfo.playerSkin.playerColor != new Color(1.0f, 1.0f, 1.0f))
+        
+        Material mat = GameObject.Find("SkinTexture").GetComponent<Image>().material;
+        if (GameInfo.playerSkin.playerColor != new Color(1.0f, 1.0f, 1.0f))
         {
-            GameObject.Find("SkinTexture").GetComponent<Image>().material.SetFloat("_ColorChangeTolerance", 0.2f);
-            GameObject.Find("SkinTexture").GetComponent<Image>().material.SetColor("_ColorChangeNewCol", GameInfo.playerSkin.playerColor);
+            mat.SetFloat("_ColorChangeTolerance", 0.2f);
+            mat.SetColor("_ColorChangeNewCol", GameInfo.playerSkin.playerColor);
         }
         else
         {
-            GameObject.Find("SkinTexture").GetComponent<Image>().material.SetFloat("_ColorChangeTolerance", 1.0f);
+            mat.SetFloat("_ColorChangeTolerance", 1.0f);
         }
 
         if(GameInfo.playerSkin.suitSkinName == "MIBred")
@@ -219,6 +223,12 @@ public class MainMenuManager : MonoBehaviour
             GameObject.Find("SuitTexturePrev").GetComponent<Image>().sprite = defSuitPrev;
         }
         
+    }
+
+    public void ResetSkinMat()
+    {
+        Material mat = GameObject.Find("SkinTexture").GetComponent<Image>().material;
+        mat.SetFloat("_ColorChangeTolerance", 1.0f);
     }
 
     public void AddSoftCurrency(int amount)

@@ -159,6 +159,7 @@ public class GameInfo : MonoBehaviour
 
                 player = Instantiate(playerPrefab);
                 DontDestroyOnLoad(player);
+                RefreshSkin();
 
                 break;
             default:

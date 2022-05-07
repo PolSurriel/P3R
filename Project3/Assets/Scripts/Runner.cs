@@ -66,6 +66,7 @@ public class Runner : MonoBehaviour
         playerRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
         vfx = GetComponent<RunnerVFXController>();
+        perks = GetComponent<PerksInGame>();
 
 
 
