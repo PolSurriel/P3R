@@ -1421,7 +1421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleVariationTrigger: 40
-  timeVariationTrigger: 513
+  timeVariationTrigger: 0.5
   difficulties: 000000000200000003000000
 --- !u!1 &368830647111977027
 GameObject:

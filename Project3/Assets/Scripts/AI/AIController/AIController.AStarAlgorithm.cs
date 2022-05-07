@@ -172,7 +172,7 @@ public partial class AIController : MonoBehaviour
             var dbprevPos = prevPos;
             var dbnextPos = nextPos;
             node.ifChoosenDoOnGizmos.Add(()=> {
-                Debug.DrawLine(dbprevPos, dbnextPos, Color.red);
+                //Debug.DrawLine(dbprevPos, dbnextPos, Color.red);
 
             });
 #endif
@@ -669,6 +669,13 @@ public partial class AIController : MonoBehaviour
             Dictionary<AStarNode, float> costSoFar = new Dictionary<AStarNode, float>();
 
 
+            const int INTERATIONS_NEEDED_AVG = 800;
+            float fps = (1.0f / Time.smoothDeltaTime);
+            int totalFrames = (int)(timeBeforeJump * fps) +1;
+            int iterationBatch = INTERATIONS_NEEDED_AVG / totalFrames;
+
+            //int iterationsBatch = 
+
             // Si no podemos saltar, devolvemos path not found
             if (frontier.Empty())
             {
@@ -684,7 +691,7 @@ public partial class AIController : MonoBehaviour
                 do
                 {
 
-                    if (iterationsCount++ >= MAX_FRAME_ITERATIONS)
+                    if (iterationsCount >= iterationBatch || iterationsCount++ >= MAX_FRAME_ITERATIONS)
                     {
                         yield return null;
                         iterationsCount = 0;

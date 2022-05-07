@@ -7,16 +7,10 @@ using UnityEngine;
 public partial class AIDirector : MonoBehaviour
 {
     const string CONFIG_NAME = "Global tilemap configuration";
-    const string CLAMP_CONFIG = CONFIG_NAME + "/Apply clamp to all tilemaps";
-
-  
+    const string CLAMP_CONFIG = CONFIG_NAME + "/Clamp values";
 
 
-    
-    [FoldoutGroup(CLAMP_CONFIG)]
-    public bool clampMaxWaitTime;
-    [FoldoutGroup(CLAMP_CONFIG)]
-    public float maxWaitTimeClamp;
+
 
     [FoldoutGroup(CLAMP_CONFIG)]
     public bool clampMinWaitTime;
@@ -24,9 +18,9 @@ public partial class AIDirector : MonoBehaviour
     public float minWaitTimeClamp;
 
     [FoldoutGroup(CLAMP_CONFIG)]
-    public bool clampMaxAngleDeviation;
+    public bool clampMaxWaitTime;
     [FoldoutGroup(CLAMP_CONFIG)]
-    public float maxAngleDeviationClamp;
+    public float maxWaitTimeClamp;
 
     [FoldoutGroup(CLAMP_CONFIG)]
     public bool clampMinAngleDeviation;
@@ -34,14 +28,51 @@ public partial class AIDirector : MonoBehaviour
     public float minAngleDeviationClamp;
 
     [FoldoutGroup(CLAMP_CONFIG)]
+    public bool clampMaxAngleDeviation;
+    [FoldoutGroup(CLAMP_CONFIG)]
+    public float maxAngleDeviationClamp;
+
+    [FoldoutGroup(CLAMP_CONFIG)]
     [Button("Apply clamp")]
     void ApplyClamp()
     {
 
+        
+        MapController.EditEachTilemapPrefab((ref GameObject prefab)=> {
+            for (int i = 0; i < prefab.transform.childCount; i++)
+            {
+                VariablesTilemap vt = prefab.transform.GetChild(i).GetComponent<VariablesTilemap>();
+
+                if (vt != null)
+                {
+
+                    if (clampMaxAngleDeviation)
+                        if(vt.angleVariationTrigger > maxAngleDeviationClamp)
+                            vt.angleVariationTrigger = maxAngleDeviationClamp; 
+
+                    if (clampMinAngleDeviation)
+                        if (vt.angleVariationTrigger < minAngleDeviationClamp)
+                            vt.angleVariationTrigger = minAngleDeviationClamp;
+
+                    if (clampMaxWaitTime)
+                        if(vt.timeVariationTrigger > maxWaitTimeClamp)
+                            vt.timeVariationTrigger = maxWaitTimeClamp;
+
+                    if (clampMinWaitTime)
+                        if(vt.timeVariationTrigger < minWaitTimeClamp)
+                            vt.timeVariationTrigger = minWaitTimeClamp;
+
+                    vt.timeVariationTrigger *= scalar;
+                    break;
+                }
+            }
+        });
+
         clampMaxWaitTime = false;
-        clampMinWaitTime = false;
         clampMaxAngleDeviation = false;
+        clampMinWaitTime = false;
         clampMinAngleDeviation = false;
+
 
     }
 

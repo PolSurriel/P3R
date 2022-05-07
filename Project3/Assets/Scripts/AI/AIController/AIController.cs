@@ -60,6 +60,9 @@ public partial class AIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        debugBG =  transform.GetChild(3);
+        debugTestMesh = transform.GetChild(2).GetComponent<TextMesh>();
+
         if (!this.enabled)
             return;
 
@@ -120,9 +123,9 @@ public partial class AIController : MonoBehaviour
     {
         if (!StartMatchCountDown.matchStarted) return;
 
-        if(timeStuckedCount > MAX_TIME_STUCKED)
+        if(timeStuckedCount > MAX_TIME_STUCKED && aStarSolver.timeSinceCalculationStarded >= timeBeforeJump + MAX_TIME_STUCKED)
         {
-            Debug.Log("stucked!");
+            Debug.Log("stucked");
             runner.jumpCounter = 0;
             timeStuckedCount = 0f;
             executingAstarSeek = false;

@@ -185,6 +185,7 @@ public class MapController : MonoBehaviour
 
             method(ref editablePrefab);
             PrefabUtility.SavePrefabAsset(editablePrefab);
+            modifiedCount++;
 
         });
 

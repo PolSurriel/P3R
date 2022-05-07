@@ -1961,7 +1961,7 @@ PrefabInstance:
     - target: {fileID: 130553757402441420, guid: 296738cc72fb52c4891638373c22f09a,
         type: 3}
       propertyPath: timeVariationTrigger
-      value: 3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3966616534217132592, guid: 296738cc72fb52c4891638373c22f09a,
         type: 3}

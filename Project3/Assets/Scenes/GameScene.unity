@@ -1109,14 +1109,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  clampMaxWaitTime: 0
-  maxWaitTimeClamp: 0
   clampMinWaitTime: 0
-  minWaitTimeClamp: 0
-  clampMaxAngleDeviation: 0
-  maxAngleDeviationClamp: 0
+  minWaitTimeClamp: 1
+  clampMaxWaitTime: 0
+  maxWaitTimeClamp: 2
   clampMinAngleDeviation: 0
   minAngleDeviationClamp: 0
+  clampMaxAngleDeviation: 0
+  maxAngleDeviationClamp: 0
   scalar: 0.5
   number: 1
   astarMaxX: {fileID: 571218955}
@@ -2443,7 +2443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf03cef7ca952d499ea45d240d9ab6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAI: 0
+  useAI: 1
   playerPrefab: {fileID: 328328316266981640, guid: 22ffd39eb4a48de4bb4bee3a14b0c483,
     type: 3}
 --- !u!1 &1111849429
@@ -2728,6 +2728,7 @@ MonoBehaviour:
   pathTargets: 1
   movingObstaclesFuture: 1
   aiController: 1
+  aiStatus: 1
   portalsRuntimeInfo: 1
   portalsConfiguration: 1
 --- !u!224 &1293437759 stripped

@@ -5,8 +5,63 @@ using UnityEngine;
 
 public partial class AIController : MonoBehaviour
 {
+
+
+
+    TextMesh debugTestMesh;
+    Transform debugBG;
+
     private void OnDrawGizmos()
     {
+
+#if UNITY_EDITOR
+        if (GizmosCustomMenu.instance.aiStatus)
+        {
+            
+            switch (state)
+            {
+                case AStarExecutionState.STOPPED:
+                    debugTestMesh.fontSize = 20;
+                    debugTestMesh.color = Color.yellow;
+                    debugTestMesh.text = "STOPPED";
+                    break;
+                case AStarExecutionState.CHOOSING_TARGET:
+                    debugTestMesh.fontSize = 20;
+                    debugTestMesh.color = Color.white;
+                    debugTestMesh.text = "CHOOSING\nTARGET";
+                    break;
+                case AStarExecutionState.EXECUTING_ASTAR:
+                    Handles.Label(aStarGoal.position, $"Choosen target by {gameObject.name}");
+
+                    debugTestMesh.fontSize = 50;
+                    debugTestMesh.color = Color.red;
+                    debugTestMesh.text = (timeBeforeJump - aStarSolver.timeSinceCalculationStarded).ToString(".0")+"s";
+                    break;
+                case AStarExecutionState.WAITING_TO_JUMP:
+                    Handles.Label(aStarGoal.position, $"Choosen target by {gameObject.name}");
+
+                    debugTestMesh.fontSize = 50;
+                    debugTestMesh.color = Color.green;
+                    debugTestMesh.text = (timeBeforeJump - aStarSolver.timeSinceCalculationStarded).ToString(".0") + "s";
+                    break;
+                case AStarExecutionState.JUMPING:
+                    debugTestMesh.fontSize = 16;
+                    debugTestMesh.color = Color.green;
+                    debugTestMesh.text = "JUMPING";
+                    break;
+            }
+
+            
+            debugBG.localPosition = new Vector3(0.61f, 0.45f, -0.1f);
+
+        }
+        else
+        {
+            debugBG.position = new Vector3(9999f, 0.71f, 0f);
+
+        }
+#endif
+
 
         if (!GizmosCustomMenu.instance.aiController)
             return;
@@ -31,7 +86,7 @@ public partial class AIController : MonoBehaviour
 #if UNITY_EDITOR
                 Handles.Label(node.position, "" + i);
 #endif
-                Debug.DrawLine(lastPos, node.position);
+                Debug.DrawLine(lastPos, node.position, Color.red);
 
                 lastPos = node.position;
 

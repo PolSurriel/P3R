@@ -158,8 +158,22 @@ public partial class AIController : MonoBehaviour
 
     bool firstJumpDone = false;
 
+    enum AStarExecutionState
+    {
+        STOPPED,
+        CHOOSING_TARGET,
+        EXECUTING_ASTAR,
+        WAITING_TO_JUMP,
+        JUMPING
+    }
+
+    AStarExecutionState state = AStarExecutionState.STOPPED;
+
+
     IEnumerator AStarRoutine()
     {
+
+        
 
         // Aquí es donde se calcula el timeBeforeJump
         timeBeforeJump = firstJumpDone ? AIDirector.GetTimeBeforeJump(erraticBehaviourFactor) * timeVariationAI: Random.Range(0.1f, 0.5f);
@@ -168,26 +182,33 @@ public partial class AIController : MonoBehaviour
         aStarSolver.output = null;
         executingAstarSeek = false;
         pendingToStartAStarPipeline = false;
+        state = AStarExecutionState.CHOOSING_TARGET;
 
         // Si la eleección de target fue exitosa
         if (ChooseTarget())
         {
+            state = AStarExecutionState.EXECUTING_ASTAR;
+
             // Generamos infomración para ejecutar el Astar a hacia ese target
             aStarSolver.goalMinDist = goalMinDist;
 
             // Calculamos el camino
             yield return aStarSolver.AStar(transform.position, aStarGoal, timeBeforeJump);
 
+            state = AStarExecutionState.WAITING_TO_JUMP;
             while(aStarSolver.timeSinceCalculationStarded < timeBeforeJump)
             {
                 yield return null;
                 aStarSolver.timeSinceCalculationStarded += Time.deltaTime;
             }
+
             
+
             // Si el caminno no fue encontrado
             if (aStarSolver.output == null)
             {
 
+                state = AStarExecutionState.STOPPED;
                 // Avisamos a los logs
                 //Debug.LogError("No path found.");
 
@@ -205,6 +226,7 @@ public partial class AIController : MonoBehaviour
             }
             else // Si el camino es válido
             {
+                state = AStarExecutionState.JUMPING;
                 // Iniciamos el seek al resultado del AStar
                 StartAStartSeekPathResult(ref aStarSolver.output);
                 targetsToIgnore = new List<PathTarget>();
