@@ -341,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   runner: {fileID: 0}
+  animationController: {fileID: 328328315719937633}
 --- !u!114 &328328315719937633
 MonoBehaviour:
   m_ObjectHideFlags: 0

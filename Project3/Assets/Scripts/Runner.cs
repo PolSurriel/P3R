@@ -215,7 +215,8 @@ public class Runner : MonoBehaviour
         //c.a = 0.4f;
 
         //Debug.DrawLine(transform.position, (Vector2)transform.position + direction * 100f, c, 10f);
-        perks.CheckJumpPerks(this);
+        if(perks != null)
+            perks.CheckJumpPerks(this);
 
     }
 

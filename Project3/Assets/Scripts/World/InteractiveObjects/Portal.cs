@@ -132,6 +132,8 @@ public class Portal : ComplexMonoBehaviour
     bool gizmosSelectedTimeIncresePositive = true;
     private void OnDrawGizmosSelected()
     {
+
+
         gizmosSelectedTimeCounter += 0.1f* Time.deltaTime * (gizmosSelectedTimeIncresePositive ? 1f:-1f);
         otherPortal.gizmosSelectedTimeCounter = gizmosSelectedTimeCounter;
 
@@ -151,6 +153,9 @@ public class Portal : ComplexMonoBehaviour
 
     public void DrawPortalsEnterExitInfo()
     {
+        if (!GizmosCustomMenu.instance.portalsConfiguration)
+            return;
+
         SurrealBoost.GizmosTools.Draw2D.ArrowedLine(transform.position, (Vector2)transform.position + normal*0.7f, 0.02f, Color.white);
         #if UNITY_EDITOR
             Handles.Label((Vector2)transform.position + normal * 0.7f, "normal");
@@ -251,6 +256,14 @@ public class Portal : ComplexMonoBehaviour
             Vector3 localPos = collision.gameObject.transform.position - transform.position;
             localPos = SmartSwap(swapXY, otherPortal.normal, localPos);
 
+            float dot = Vector2.Dot(localPos.normalized, otherPortal.normal);
+
+            if (dot < 0f)
+            {
+                localPos *= -1f;
+            }
+
+
 
             Vector2 newPos = otherPortal.transform.position + localPos;
 
@@ -269,16 +282,34 @@ public class Portal : ComplexMonoBehaviour
 
             
             vel = SmartSwap(swapXY, otherPortal.normal, vel);
-            
-            
-            rb.velocity = vel;
-            Debug.DrawLine(newPos, newPos+ otherPortal.normal * ((CircleCollider2D)collision).radius, Color.green, 10f);
-            Debug.DrawLine(newPos, newPos+ otherPortal.normal * ((CircleCollider2D)collision).radius * 0.7f, Color.red, 10f);
+            dot = Vector2.Dot(vel, otherPortal.normal);
 
+            if (dot < 0f)
+            {
+                vel *= -1f;
+            }
+
+
+            rb.velocity = vel;
+            //Debug.DrawLine(newPos, newPos+ otherPortal.normal * ((CircleCollider2D)collision).radius, Color.green, 10f);
+            //Debug.DrawLine(newPos, newPos+ otherPortal.normal * ((CircleCollider2D)collision).radius * 0.7f, Color.red, 10f);
+
+#if UNITY_EDITOR
+            if (GizmosCustomMenu.instance.portalsRuntimeInfo)
+            {
+                
+                Debug.DrawLine(collision.gameObject.transform.position, newPos, Color.green, 99999f);
+                Debug.DrawLine(newPos, newPos + otherPortal.normal * ((CircleCollider2D)collision).radius * 1.1f, Color.red, 99999f);
+
+            }
+#endif
 
 
             collision.gameObject.transform.position = newPos  + otherPortal.normal * ((CircleCollider2D)collision).radius;
-
+#if UNITY_EDITOR
+            if (GizmosCustomMenu.instance.portalsRuntimeInfo)
+                Debug.DrawLine(collision.gameObject.transform.position, (Vector2)collision.gameObject.transform.position + vel, Color.blue, 99999f);
+#endif
         }
     }
 

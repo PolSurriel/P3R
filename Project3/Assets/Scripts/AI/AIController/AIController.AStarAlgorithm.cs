@@ -27,6 +27,9 @@ public partial class AIController : MonoBehaviour
 
     public class AStarSolver
     {
+
+        public float goalMinDist;
+
         const int MIN_FIRST_ITERATIONS_TO_USE_SECONDJUMP = 3;
         public MovingObstacle[] movingObstaclesToHandle;
         public RotatingObstacle[] rotatingObstaclesToHandle;
@@ -304,9 +307,9 @@ public partial class AIController : MonoBehaviour
 
                         // revisamos si hay que anular pq llega primero a goal
                         float distanceToGoal = (goalPosition - to).magnitude;
-                        if (distanceToGoal <= GOAL_MIN_DISTANCE)
+                        if (distanceToGoal <= goalMinDist)
                         {
-                            var closestGoal = SurrealBoost.Utils.Intersection2D.ClosestLineCircle(from, to,goalPosition, GOAL_MIN_DISTANCE);
+                            var closestGoal = SurrealBoost.Utils.Intersection2D.ClosestLineCircle(from, to,goalPosition, goalMinDist);
                             var goalDist = Vector2.Distance(from, closestGoal);
                             if(goalDist < wallDist)
                             {
@@ -605,7 +608,7 @@ public partial class AIController : MonoBehaviour
         {
 
             float distanceToGoal = (goal.position - current.position).magnitude;
-            if (distanceToGoal <= GOAL_MIN_DISTANCE)
+            if (distanceToGoal <= goalMinDist)
             {
 
                 

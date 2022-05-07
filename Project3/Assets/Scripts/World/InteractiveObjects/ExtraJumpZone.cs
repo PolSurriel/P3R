@@ -74,7 +74,7 @@ public class ExtraJumpZone : MonoBehaviour
     {
 
         var runner = collision.GetComponent<Runner>();
-        if (ignoring.Contains(runner))
+        if (runner == null || ignoring.Contains(runner))
             return;
 
         ignoring.Add(collision.GetComponent<Runner>());

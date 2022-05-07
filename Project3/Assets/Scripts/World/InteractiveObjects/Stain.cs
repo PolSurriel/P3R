@@ -6,7 +6,12 @@ public class Stain : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponent<Runner>().EnterOnStain();
+        var runner = collision.GetComponent<Runner>();
+
+        if (runner == null)
+            return;
+
+        runner.EnterOnStain();
         var ai = collision.GetComponent<AIController>();
     
         if(ai != null)

@@ -7,6 +7,8 @@ using UnityEngine.Tilemaps;
 using System;
 using Sirenix.OdinInspector;
 
+
+
 [RequireComponent(typeof(Grid))]
 public class MapController : MonoBehaviour
 {
@@ -14,13 +16,11 @@ public class MapController : MonoBehaviour
     public bool debugMode;
     public List<GameObject> debugTilemaps = new List<GameObject>();
 
-    // ---- setear tilemaps para la alpha, variables temporales
-    public List<GameObject> tmp_alphaLevelTilemaps = new List<GameObject>();
-    public List<GameObject> tmp_alphaOnBoardingTilemaps = new List<GameObject>();
-
+    
 
     public static int numberOfTilemaps = 23;
 
+    [HideInInspector]
     public Transform playerTransform;
     public static List<int>[] tilemapsDifficulties;
     
@@ -41,13 +41,9 @@ public class MapController : MonoBehaviour
     float gridSize;
     int enqueuedCount;
 
-    [SerializeField] private GameObject lineaMeta;
-    public float nodeDistance;
+    GameObject lineaMeta;
+    
 
-
-    public Vector2 nodeZeroPosition;
-
-    public List<NodeListWrapper> nodesGlobalMatrix;
 
 
     bool closedLevel = false;
@@ -55,15 +51,13 @@ public class MapController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lineaMeta = FindObjectOfType<LevelEnd>().gameObject;
 
         instanceGameObject = this.gameObject;
         gridSize = GetComponent<Grid>().cellSize.x;
         doNotRepeat = new Queue<int>();
         tilemapInstances = new Queue<GameObject>();
 
-        nodeDistance = gridSize / 3f;
-
-        
         LoadTilemaps();
 
         try
@@ -160,6 +154,49 @@ public class MapController : MonoBehaviour
         return tilemapsDifficulties[difficulty][result];
     }
 
+    public delegate void TilemapPathIteration(string path);
+    public static void ForEachTilemapSRCPath(TilemapPathIteration method)
+    {
+        int i = 1;
+        
+        do
+        {
+            string path = $"Assets/Resources/Tilemaps/Tilemap{i++}.prefab";
+            
+            if (AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)) != null)
+            {
+                method(path);
+            }
+            else break;
+
+        } while (true);
+
+    }
+
+
+    public delegate void EditTilemapPrefab(ref GameObject tilemapPrefab);
+    public static void EditEachTilemapPrefab(EditTilemapPrefab method)
+    {
+
+        int modifiedCount = 0;
+        MapController.ForEachTilemapSRCPath((string path) => {
+            // get a reference to the prefab itself, not a clone or instantiation: 
+            GameObject editablePrefab = AssetDatabase.LoadAssetAtPath(path,
+                 typeof(GameObject)) as GameObject;
+
+            method(ref editablePrefab);
+            PrefabUtility.SavePrefabAsset(editablePrefab);
+
+        });
+
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+
+        Debug.Log($"Modified {modifiedCount} tilemaps.");
+    }
+
+
+
     public static void LoadTilemaps()
     {
         if (tilemapsInizializated)
@@ -174,6 +211,7 @@ public class MapController : MonoBehaviour
         {
             ProjectUtils.LoadTilemap(i);
             tilemaps[i] = ProjectUtils.LoadTilemap(i);
+            tilemaps[i].GetComponent<Tilemap>().CompressBounds();
 
             //Lee la array de que dificultades se tiene que poner este tilemap
             int[] aux = tilemaps[i].GetComponentInChildren<VariablesTilemap>().GetDifficulties();
@@ -184,7 +222,6 @@ public class MapController : MonoBehaviour
             }
         }
     }
-
 
     void InstantiateTilemap(int index)
     {
@@ -198,18 +235,10 @@ public class MapController : MonoBehaviour
 
         tilemapInstances.Enqueue(obj);
 
-        if(index == 1)
-        {
-
-            obj.transform.position = Vector3.up * (totalHeightAcumulated+2f);
-        }
-        else
-        {
-            obj.transform.position = Vector3.up * totalHeightAcumulated;
-
-        }
+      
+        obj.transform.position = Vector3.up * totalHeightAcumulated;
         obj.transform.SetParent(this.transform);
-
+        
         totalHeightAcumulated += obj.GetComponent<Tilemap>().size.y * gridSize;
 
         if (closedLevel)

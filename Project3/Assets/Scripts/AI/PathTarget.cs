@@ -8,6 +8,9 @@ public class PathTarget : ComplexMonoBehaviour
 {
     protected override string GetDocsLink() => "https://docs.google.com/document/d/1xOc4dZQYG8v7FqNdOv_oYREJqseOEOXbCb-CxMyNqqI/edit?usp=sharing";
 
+    [Title("radius")]
+    public float reachTargetRadius = 0.9f;
+
     [Title("Evaluable position offsets")]
     [InfoBox("This offsets are applied in the pathfinding algorithm scope, NOT when the target is chosen.")]
     [OnValueChanged("OnRandomVerticalOffsetActivated")]
@@ -98,11 +101,12 @@ public class PathTarget : ComplexMonoBehaviour
 
     private void OnDrawGizmos()
     {
-
-        const float RADIUS = 1f;
-
-        //Handles.color = Color.yellow;
-        //Handles.DrawWireDisc(transform.position, transform.forward, RADIUS);
+        if (!GizmosCustomMenu.instance.pathTargets)
+        {
+            return;
+        }
+        
+        float RADIUS = reachTargetRadius;
 
         Debug.DrawLine((Vector2)transform.position + Vector2.left* RADIUS, (Vector2)transform.position + Vector2.right* RADIUS);
         Debug.DrawLine((Vector2)transform.position + Vector2.up* RADIUS, (Vector2)transform.position + Vector2.down* RADIUS);
@@ -119,6 +123,25 @@ public class PathTarget : ComplexMonoBehaviour
             Debug.DrawLine(transform.position, transform.position + Vector3.up * maxHorizontalOffset * 0.5f);
             Debug.DrawLine(transform.position, transform.position + Vector3.down * maxHorizontalOffset * 0.5f);
         }
+
+#if UNITY_EDITOR
+        Handles.color = new Color(0f, 0f, 0f, 0.1f);
+        Handles.DrawSolidArc(transform.position, Vector3.forward, Vector3.right, 360f, RADIUS);
+        Handles.color = Color.white;
+        Handles.DrawWireArc(transform.position, Vector3.forward, Vector3.right, 360f, RADIUS);
+#endif
+
+        if (useIncisionConstrain)
+        {
+            SurrealBoost.GizmosTools.Draw2D.ArrowedLine(transform.position, (Vector2)transform.position + incisionVector * RADIUS, 0.08f, Color.white);
+        }
+
+        if (useDotConstrainToChoose)
+        {
+            SurrealBoost.GizmosTools.Draw2D.ArrowedLine(transform.position, (Vector2)transform.position + dotConstrain * RADIUS, 0.08f, Color.yellow);
+        }
+
+
 
     }
 }
