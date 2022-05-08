@@ -63,8 +63,7 @@ public partial class AIController : MonoBehaviour
         }
 
         // apply
-        float velMagnitude = rb.velocity.magnitude;
-        rb.velocity = (rb.velocity * scalar + (1f-scalar) * targetVelocity).normalized* velMagnitude;
+        rb.velocity = rb.velocity * scalar + (1f-scalar) * targetVelocity;
 
 
 
@@ -183,6 +182,7 @@ public partial class AIController : MonoBehaviour
         // Aquí es donde se calcula el timeBeforeJump
         if (nextJumpCausedByPowerUp)
         {
+            nextJumpCausedByPowerUp = false;
             timeBeforeJump = 0f;
         }
         else
@@ -217,10 +217,21 @@ public partial class AIController : MonoBehaviour
                 aStarSolver.timeSinceCalculationStarded += Time.deltaTime;
             }
 
-            
+
+
+            // si la ia se queda atascada, activamos backup plan
+            if (astarExecutionsCountBeforeFindingPath > 400)
+            {
+                runner.Jump(runner.aspect.sr.flipX ? Vector2.left:Vector2.right);
+            }
+            else if(astarExecutionsCountBeforeFindingPath > 200)
+            {
+                onBackupPlanZone = true;
+            }
+
 
             // Si el caminno no fue encontrado
-            if (aStarSolver.output == null)
+            else if (aStarSolver.output == null)
             {
 
                 astarExecutionsCountBeforeFindingPath++;
@@ -242,6 +253,7 @@ public partial class AIController : MonoBehaviour
             }
             else // Si el camino es válido
             {
+                onBackupPlanZone = false;
                 astarExecutionsCountBeforeFindingPath = 0;
                 state = AStarExecutionState.JUMPING;
                 // Iniciamos el seek al resultado del AStar

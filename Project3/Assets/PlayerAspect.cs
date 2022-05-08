@@ -32,7 +32,8 @@ public class PlayerAspect : MonoBehaviour
 
     }
 
-    SpriteRenderer sr;
+    [HideInInspector]
+    public SpriteRenderer sr;
 
     public PlayerAnimationController animationController;
 
