@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameInfo : MonoBehaviour
 {
@@ -25,6 +27,17 @@ public class GameInfo : MonoBehaviour
     public static int totalPerkCost;
     public static int equippedPerkCost;
     public static int softCurrency;
+
+    public static bool showAIStatusInfo = false;
+
+    public void ToggleAIStatusDebugInfo()
+    {
+        showAIStatusInfo = !showAIStatusInfo;
+    }
+
+    public void SetAppVolume(Slider vol){
+        
+    }
 
     public void OnMatchSceneClosed()
     {
