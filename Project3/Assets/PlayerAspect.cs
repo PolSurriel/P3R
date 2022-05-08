@@ -11,6 +11,7 @@ public class PlayerAspect : MonoBehaviour
     public Runner runner;
 
 
+    public ParticleSystem stainParticleSys;
 
     public enum State
     {
@@ -32,7 +33,8 @@ public class PlayerAspect : MonoBehaviour
 
     }
 
-    SpriteRenderer sr;
+    [HideInInspector]
+    public SpriteRenderer sr;
 
     public PlayerAnimationController animationController;
 

@@ -58,6 +58,8 @@ public class Runner : MonoBehaviour
     {
         stainJumpsCounter = 0;
         onStain = true;
+        aspect.stainParticleSys.Play();
+
     }
 
 
@@ -188,6 +190,7 @@ public class Runner : MonoBehaviour
 
         if (onStain)
         {
+            aspect.stainParticleSys.Play();
             JumpOnStain(direction);
             return;
         }

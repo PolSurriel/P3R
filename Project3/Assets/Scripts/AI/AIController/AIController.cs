@@ -227,7 +227,7 @@ public partial class AIController : MonoBehaviour
 
         if (collision.tag == "backupPlanZone")
         {
-            onBackupPlanZone = true;
+            //onBackupPlanZone = true;
         }
         else if (collision.tag == "extraJumpZone" && !collision.GetComponent<ExtraJumpZone>().ignoring.Contains(runner))
         {
@@ -250,7 +250,7 @@ public partial class AIController : MonoBehaviour
         if (collision.tag == "backupPlanZone")
         {
 
-            onBackupPlanZone = false;
+            //onBackupPlanZone = false;
         }
     }
 
