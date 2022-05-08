@@ -81,21 +81,21 @@ public class MainMenuManager : MonoBehaviour
         GameInfo.instance.levelID = 1;
         StartCoroutine(LoadAsyncScene(level1));
 
-        GameInfo.instance.InitPlayers();
+        
     }
     public void LoadLevel2()
     {
         GameInfo.instance.levelID = 2;
         StartCoroutine(LoadAsyncScene(level2));
 
-        GameInfo.instance.InitPlayers();
+        //GameInfo.instance.InitPlayers();
     }
     public void LoadLevel3()
     {
         GameInfo.instance.levelID = 3;
         StartCoroutine(LoadAsyncScene(level3));
 
-        GameInfo.instance.InitPlayers();
+        //GameInfo.instance.InitPlayers();
     }
     public void LoadLevel4()
     {
@@ -103,7 +103,7 @@ public class MainMenuManager : MonoBehaviour
         GameInfo.instance.levelID = 4;
         StartCoroutine(LoadAsyncScene(level3));
 
-        GameInfo.instance.InitPlayers();
+        //GameInfo.instance.InitPlayers();
     }
 
     public void PlayMode()
@@ -250,8 +250,9 @@ public class MainMenuManager : MonoBehaviour
 
     IEnumerator LoadAsyncScene(SceneReference scene)
     {
-        yield return null;
+        yield return new WaitForSeconds(0.1f);
 
+        GameInfo.instance.InitPlayers();
         AsyncOperation ao = SceneManager.LoadSceneAsync(scene);
         ao.allowSceneActivation = false;
 

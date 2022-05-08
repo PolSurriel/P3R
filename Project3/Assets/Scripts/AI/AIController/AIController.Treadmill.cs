@@ -21,7 +21,7 @@ public partial class AIController : MonoBehaviour
     void TreadmilleUpdate()
     {
         var distToDestination = Vector2.Distance(treadMillTarget, transform.position);
-        if(distToDestination < 0.5f)
+        if(distToDestination < 0.5f || true) //the true is tmp fix!!
         {
             onATreadmill = false;
             executingAstarSeek = false;
@@ -40,6 +40,9 @@ public partial class AIController : MonoBehaviour
     {
         // Actualizamos el estado
         onATreadmill = true;
+
+        nextJumpCausedByPowerUp = true;
+        
 
         // Evaluamos las posibles salidas
         // (si caemos en mitad del treadmill y éste sube, todos los exits que esten por debajo no sirven)

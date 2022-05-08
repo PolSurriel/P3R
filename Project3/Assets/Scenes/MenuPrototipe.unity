@@ -234,6 +234,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3871014486929703737, guid: 726812c7d124541538a054c722c888f4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 325143777, guid: 3076439530bfc0a4f8c3660211d36108, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 81977702059988248, guid: 3076439530bfc0a4f8c3660211d36108,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -4355,6 +4364,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: -360
       objectReference: {fileID: 0}
+    - target: {fileID: 7004853478418283383, guid: 3076439530bfc0a4f8c3660211d36108,
+        type: 3}
+      propertyPath: cost
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 7136160760089381417, guid: 3076439530bfc0a4f8c3660211d36108,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5206,11 +5220,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 782a16d85e22511468fc22d699274730,
         type: 2}
-    - target: {fileID: 3871014486929703737, guid: 726812c7d124541538a054c722c888f4,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3076439530bfc0a4f8c3660211d36108, type: 3}
 --- !u!114 &870426239 stripped
@@ -5641,6 +5650,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5743855340870037602, guid: 90f43b26cc9e941c09c29ef9ab1f0ad1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 204878649681820142, guid: 3076439530bfc0a4f8c3660211d36108,
         type: 3}
       propertyPath: m_Color.r
@@ -6239,11 +6253,6 @@ PrefabInstance:
     - target: {fileID: 1129271079677859869, guid: 3076439530bfc0a4f8c3660211d36108,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5743855340870037602, guid: 90f43b26cc9e941c09c29ef9ab1f0ad1,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

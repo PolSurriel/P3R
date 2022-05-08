@@ -6,12 +6,12 @@ public class PerksInGame : MonoBehaviour
 {
     [SerializeField]
     bool isPulse = false;
-    float pulseProb = 1.0f;
+    float pulseProb = 0.2f;
     const float PulseForceMagnitude = 5f;
 
     [SerializeField]
     bool isTransparent = false;
-    float transparentProb = 1.0f;
+    float transparentProb = 0.2f;
     float transparentTime = 5.0f;
 
     public float extraVelocityPercentage = 1.0f;
@@ -20,6 +20,8 @@ public class PerksInGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isTransparent = false;
+        isPulse = false;
         if(this.gameObject.GetComponent<PlayerController>() != null)        // Just use perks in Player, not IA
         {
             foreach (ScriptablePerk perk in GameInfo.equippedPerks)
