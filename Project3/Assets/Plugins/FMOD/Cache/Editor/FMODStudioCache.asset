@@ -1363,7 +1363,11 @@ MonoBehaviour:
   - {fileID: 3223227245603629143}
   - {fileID: 953506528383971878}
   - {fileID: -4530517064537398917}
+<<<<<<< HEAD
   - {fileID: 6206141643160770528}
+=======
+  - {fileID: 3801030885774599200}
+>>>>>>> ranking
   EditorEvents:
   - {fileID: -6192160620797420149}
   - {fileID: -3125400438433707824}
@@ -1387,7 +1391,11 @@ MonoBehaviour:
   - {fileID: -388462578323254384}
   StringsBanks:
   - {fileID: 3319507911863729056}
+<<<<<<< HEAD
   stringsBankWriteTime: 637836734695981722
+=======
+  stringsBankWriteTime: 637846952247240769
+>>>>>>> ranking
   cacheVersion: 3
 --- !u!114 &122745259696128123
 MonoBehaviour:
@@ -1785,7 +1793,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.strings.bank
   SubDir: 
+<<<<<<< HEAD
   lastModified: 637836734695981722
+=======
+  lastModified: 637846952247240769
+>>>>>>> ranking
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -1825,6 +1837,24 @@ MonoBehaviour:
   Min: 0
   Max: 4
   Default: 0
+  Exists: 1
+--- !u!114 &3801030885774599200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
+  SubDir: 
+  lastModified: 637846952248268022
+  LoadResult: 0
+  FileSizes: []
   Exists: 1
 --- !u!114 &3937017674518223750
 MonoBehaviour:
