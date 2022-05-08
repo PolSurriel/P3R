@@ -36,6 +36,19 @@ public class StartMatchCountDown : MonoBehaviour
     bool audiogosoundplayed;
 
 
+    public ParticleSystem fir1;
+    public ParticleSystem fir2;
+    public ParticleSystem fir3;
+    public ParticleSystem fir4;
+    public ParticleSystem fir5;
+
+
+    bool fir1played;
+    bool fir2played;
+    bool fir3played;
+    bool fir4played;
+    bool fir5played;
+
 
 
     private void OnDestroy()
@@ -70,7 +83,37 @@ public class StartMatchCountDown : MonoBehaviour
     {
         timeCounter += Time.deltaTime;
 
-        if(timeCounter <= (duration - 0.5f))
+        if (timeCounter > 4.5f && !fir1played)
+        {
+            fir1played = true;
+            fir1.Play();
+        }
+
+        if (timeCounter > 4.6f && !fir2played)
+        {
+            fir2played = true;
+            fir2.Play();
+        }
+
+        if (timeCounter > 4.7f && !fir3played)
+        {
+            fir3played = true;
+            fir3.Play();
+        }
+
+        if (timeCounter > 5f && !fir4played)
+        {
+            fir4played = true;
+            fir4.Play();
+        }
+
+        if (timeCounter > 5.1f && !fir5played)
+        {
+            fir5played = true;
+            fir5.Play();
+        }
+
+        if (timeCounter <= (duration - 0.5f))
         {
 
             if (!audiosecond5played && timeCounter > 0.5f)
