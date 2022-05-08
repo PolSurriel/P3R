@@ -58,6 +58,11 @@ public class RotatingObstacle : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (!GizmosCustomMenu.instance.movingObstaclesFuture)
+        {
+            return;
+        }
+
         Debug.DrawLine(transform.position, obstacle.position);
         Gizmos.DrawWireSphere(obstacle.position, 0.3f);
 

@@ -286,6 +286,12 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5590368058158794331, guid: 0118f47af0c641049871279e29b5fc9a,
+        type: 3}
+      propertyPath: perk
+      value: 
+      objectReference: {fileID: 11400000, guid: d52de22fba55c954d86dc2fe23b33ce1,
+        type: 2}
     - target: {fileID: 6832469848366031363, guid: 0118f47af0c641049871279e29b5fc9a,
         type: 3}
       propertyPath: m_Sprite
@@ -604,6 +610,12 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5590368058158794331, guid: 0118f47af0c641049871279e29b5fc9a,
+        type: 3}
+      propertyPath: perk
+      value: 
+      objectReference: {fileID: 11400000, guid: d52de22fba55c954d86dc2fe23b33ce1,
+        type: 2}
     - target: {fileID: 6832469848366031363, guid: 0118f47af0c641049871279e29b5fc9a,
         type: 3}
       propertyPath: m_Sprite
@@ -746,6 +758,12 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5590368058158794331, guid: 0118f47af0c641049871279e29b5fc9a,
+        type: 3}
+      propertyPath: perk
+      value: 
+      objectReference: {fileID: 11400000, guid: d52de22fba55c954d86dc2fe23b33ce1,
+        type: 2}
     - target: {fileID: 6832469848366031363, guid: 0118f47af0c641049871279e29b5fc9a,
         type: 3}
       propertyPath: m_Sprite

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -63,9 +63,12 @@ public class Runner : MonoBehaviour
 
     private void Start()
     {
+        transform.GetChild(3).position = Vector2.one * 9999f;
+
         playerRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
         vfx = GetComponent<RunnerVFXController>();
+        perks = GetComponent<PerksInGame>();
 
 
 
@@ -204,8 +207,11 @@ public class Runner : MonoBehaviour
 
         rb.isKinematic = false;
         rb.velocity = Vector2.zero;
-        rb.AddForce(direction.normalized * jumpMagnitude * forcePercentage, ForceMode2D.Impulse);
-
+        if(perks == null)
+            rb.AddForce(direction.normalized * jumpMagnitude * forcePercentage, ForceMode2D.Impulse);
+        else
+            rb.AddForce(direction.normalized * jumpMagnitude * forcePercentage * perks.extraVelocityPercentage, ForceMode2D.Impulse);
+        
         transform.position = transform.position + (Vector3)(contactToSurfaceDirection * 0.1f);
 
         jumpDirection = direction;
@@ -215,7 +221,8 @@ public class Runner : MonoBehaviour
         //c.a = 0.4f;
 
         //Debug.DrawLine(transform.position, (Vector2)transform.position + direction * 100f, c, 10f);
-        perks.CheckJumpPerks(this);
+        if(perks != null)
+            perks.CheckJumpPerks(this);
 
     }
 

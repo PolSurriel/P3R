@@ -31,7 +31,7 @@ public partial class AIController : MonoBehaviour
 
     // Jump predictor
     JobyfablePrecalculatedPredictionSystem jumpPredictor;
-    const int DIRECTIONS_COUNT = 36;
+    const int DIRECTIONS_COUNT = 38;
     const int NUMBER_OF_PRECALCULATED_POINTS = 300;
     const int PRECALCULATED_POINTS_INCREMENT = 30;
     const float DELTA_DEGREE = 360f / (float)DIRECTIONS_COUNT;
@@ -53,6 +53,10 @@ public partial class AIController : MonoBehaviour
                 
             }
         }
+
+        
+
+        Destroy(GetComponent<PerksInGame>());
     }
 
     
@@ -60,6 +64,9 @@ public partial class AIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        debugBG =  transform.GetChild(3);
+        debugTestMesh = transform.GetChild(2).GetComponent<TextMesh>();
+
         if (!this.enabled)
             return;
 
@@ -120,9 +127,9 @@ public partial class AIController : MonoBehaviour
     {
         if (!StartMatchCountDown.matchStarted) return;
 
-        if(timeStuckedCount > MAX_TIME_STUCKED)
+        if(timeStuckedCount > MAX_TIME_STUCKED && aStarSolver.timeSinceCalculationStarded >= timeBeforeJump + MAX_TIME_STUCKED)
         {
-            Debug.Log("stucked!");
+            Debug.Log("stucked");
             runner.jumpCounter = 0;
             timeStuckedCount = 0f;
             executingAstarSeek = false;
@@ -176,6 +183,28 @@ public partial class AIController : MonoBehaviour
 
     }
 
+    void OnCollisionWithFloor()
+    {
+        if (executingAstarSeek)
+        {
+            if (Vector2.Distance(lastTargetPos, transform.position) > MIN_DIST_TO_CHOOSE_TARGET)
+            {
+                lastTargetPos = Vector2.zero;
+                lastTargetLandedPosition = Vector2.zero;
+            }
+            else
+            {
+                lastTargetLandedPosition = lastTargetPos;
+            }
+        }
+
+        lastTargetPos = Vector2.down;
+        executingAstarSeek = false;
+
+
+        StartAStarPipeline();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!StartMatchCountDown.matchStarted)
@@ -184,26 +213,7 @@ public partial class AIController : MonoBehaviour
         if (collision.collider.tag == "floor")
         {
 
-            if (executingAstarSeek)
-            {
-                if(Vector2.Distance(lastTargetPos, transform.position) > MIN_DIST_TO_CHOOSE_TARGET)
-                {
-                    lastTargetPos = Vector2.zero;
-                    lastTargetLandedPosition = Vector2.zero;
-                }
-                else
-                {
-                    lastTargetLandedPosition = lastTargetPos;
-                }
-            }
-
-            lastTargetPos = Vector2.down;
-            executingAstarSeek = false;
-
-
-            StartAStarPipeline();
-
-
+            OnCollisionWithFloor();
         }
     }
 
@@ -221,9 +231,15 @@ public partial class AIController : MonoBehaviour
         }
         else if (collision.tag == "extraJumpZone" && !collision.GetComponent<ExtraJumpZone>().ignoring.Contains(runner))
         {
+            nextJumpCausedByPowerUp = true;
             executingAstarSeek = false;
             aStarSolver.output = null;
             StartAStarPipeline();
+        }
+
+        if(collision.tag == "transitionLine")
+        {
+            OnCollisionWithFloor();
         }
 
 
@@ -233,6 +249,7 @@ public partial class AIController : MonoBehaviour
     {
         if (collision.tag == "backupPlanZone")
         {
+
             onBackupPlanZone = false;
         }
     }

@@ -46,6 +46,8 @@ public partial class AIController : MonoBehaviour
     public const int ITERATION_DISCARDER_BATCH = 3;
     public struct AStarIterationsDiscarder : IJobParallelFor
     {
+        public static float DIST_REACH_TARGET = 0.9f;
+
         public static float maxX;
         public static float minX;
 
@@ -55,11 +57,6 @@ public partial class AIController : MonoBehaviour
 
         [NativeDisableParallelForRestriction]
         public static int lastAddedJumpPredictorIndex = 0;
-
-
-        [ReadOnly]
-        [NativeDisableParallelForRestriction]
-        public static NativeArray<JobyfablePrecalculatedPredictionSystem> m_jumpPredictors;
 
 
         [ReadOnly]
@@ -84,7 +81,6 @@ public partial class AIController : MonoBehaviour
         public NativeArray<bool> m_result;
 
 
-     
 
         void PortalCase(ref Vector2 portalSense, ref Vector2 lastNodePos, ref Vector2 nextNodePos, ref Vector2 origin, ref int directionIndex, ref int positionIndex, ref bool enterInPortalSwap)
         {
@@ -109,8 +105,7 @@ public partial class AIController : MonoBehaviour
 
                 if (cast.result)
                 {
-                    
-                    
+
 
                     // Change nextPos
                     Vector2 deltaMove = nextNodePos - lastNodePos;
@@ -155,7 +150,9 @@ public partial class AIController : MonoBehaviour
                             portalSense.x *= -1;
 
                         deltaMove *= portalSense;
-                        nextNodePos = lastNodePos + (deltaMove) + portal.otherPortalNormal * m_characterRadius;
+                        //nextNodePos = lastNodePos + (deltaMove) + portal.otherPortalNormal * m_characterRadius;
+                        nextNodePos = portal.otherPortalPosition + (deltaMove);
+
 
                         origin = nextNodePos - (portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + positionIndex]);
 
@@ -191,11 +188,12 @@ public partial class AIController : MonoBehaviour
                 bool enterInPortalSwap = false;
                 PortalCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin, ref directionIndex, ref pathIndex, ref enterInPortalSwap);
 
+
                 float distToGoal = Vector2.Distance(nextPosition, m_goalPosition);
                 //ReboundWallCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin);
 
                 // Si pasa cerca del goal o un portal, lo valido.
-                if (distToGoal <= GOAL_MIN_DISTANCE || enterInPortalSwap) //(m_usePortal && Vector2.Distance(nextPosition, m_portalPosition) <= GOAL_MIN_DISTANCE))
+                if (distToGoal <= DIST_REACH_TARGET || enterInPortalSwap) //(m_usePortal && Vector2.Distance(nextPosition, m_portalPosition) <= GOAL_MIN_DISTANCE))
                 {
                     m_result[directionIndex] = true;
                     return;

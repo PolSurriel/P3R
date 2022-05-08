@@ -34,12 +34,11 @@ public class PlayerAspect : MonoBehaviour
 
     SpriteRenderer sr;
 
-    PlayerAnimationController animationController;
+    public PlayerAnimationController animationController;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        animationController = GetComponent<PlayerAnimationController>();
 
         if(animationController.baseSkin == "")
         {

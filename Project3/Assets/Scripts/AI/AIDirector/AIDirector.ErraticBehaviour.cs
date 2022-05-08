@@ -14,44 +14,27 @@ public partial class AIDirector: MonoBehaviour
 
      */
 
+    [FoldoutGroup("Erratic behaviour configuration")]
     public AnimationCurve minWaitTimeBeforeJump;
+    [FoldoutGroup("Erratic behaviour configuration")]
     public AnimationCurve maxWaitTimeBeforeJump;
-
+    [FoldoutGroup("Erratic behaviour configuration")]
     public AnimationCurve minJumpVectorDeviation;
+    [FoldoutGroup("Erratic behaviour configuration")]
     public AnimationCurve maxJumpVectorDeviation;
-
-
+    [FoldoutGroup("Erratic behaviour configuration")]
     public AnimationCurve probabilityToApplyJumpDeviationScalar;
+    [FoldoutGroup("Erratic behaviour configuration")]
     public float probabilityToApplyJumpDeviation = 20f;
 
-    [TitleGroup("---- GlobalTilemapConfiguration ----")]
-    public bool clampMaxWaitTime;
-    public float maxWaitTimeClamp;
-
-    public bool clampMinWaitTime;
-    public float minWaitTimeClamp;
-
-    public bool clampMaxAngleDeviation;
-    public float maxAngleDeviationClamp;
-
-    public bool clampMinAngleDeviation;
-    public float minAngleDeviationClamp;
+    
 
     float playerEBF;
 
     [HideInInspector]
     public float desiredEBFDifference;
 
-    [Button("Apply clamp")]
-    void ApplyClamp()
-    {
-
-        clampMaxWaitTime = false;
-        clampMinWaitTime = false;
-        clampMaxAngleDeviation = false;
-        clampMinAngleDeviation = false;
-
-    }
+  
 
 
     AIController[] ais;
@@ -81,9 +64,13 @@ public partial class AIDirector: MonoBehaviour
 
     }
 
+    [FoldoutGroup("Song volume curves")]
     public AnimationCurve songLayer0VolumePlayerPerformance;
+    [FoldoutGroup("Song volume curves")]
     public AnimationCurve songLayer1VolumePlayerPerformance;
+    [FoldoutGroup("Song volume curves")]
     public AnimationCurve songLayer2VolumePlayerPerformance;
+    [FoldoutGroup("Song volume curves")]
     public AnimationCurve songLayer3VolumePlayerPerformance;
 
     void SetMusicVolumeFromPlayerPM()

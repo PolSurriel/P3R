@@ -43,10 +43,6 @@ public class TransitionLine : MonoBehaviour
     }
 
 
-    private void OnDrawGizmos()
-    {
-        Debug.DrawLine(new Vector2(xA, y), new Vector2(xB, y), Color.red);
-    }
 
     private void OnDestroy()
     {

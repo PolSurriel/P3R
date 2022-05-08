@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class VariablesTilemap : MonoBehaviour
 {
-    [SerializeField] private float angleVariationTrigger;
-    [SerializeField] private float timeVariationTrigger;
+    public float angleVariationTrigger;
+    public float timeVariationTrigger;
     [SerializeField] private int[] difficulties = { 0 };
 
 

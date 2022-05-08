@@ -27,6 +27,9 @@ public partial class AIController : MonoBehaviour
 
     public class AStarSolver
     {
+
+        public float goalMinDist;
+
         const int MIN_FIRST_ITERATIONS_TO_USE_SECONDJUMP = 3;
         public MovingObstacle[] movingObstaclesToHandle;
         public RotatingObstacle[] rotatingObstaclesToHandle;
@@ -72,7 +75,6 @@ public partial class AIController : MonoBehaviour
 
             AStarIterationsDiscarder.m_precalculatedDirections = jumpPredictor.precalculatedDirections;
             jumpPredictorIndex = AStarIterationsDiscarder.lastAddedJumpPredictorIndex;
-            AStarIterationsDiscarder.m_jumpPredictors[AStarIterationsDiscarder.lastAddedJumpPredictorIndex++] = jumpPredictor;
 
         }
 
@@ -87,7 +89,7 @@ public partial class AIController : MonoBehaviour
             {
                 var portal = portalHit.collider.GetComponent<Portal>();
 
-                nextNode.iterationsSincePortalCrossed = 2;
+                nextNode.iterationsSincePortalCrossed = 1;
 
                 Vector2 deltaMove = nextNode.position - prevPos; // value previous of crossing portal.
                 
@@ -129,11 +131,17 @@ public partial class AIController : MonoBehaviour
 
 
                     deltaMove *= nextNode.portalSense;
-                    nextNode.position = prevPos + (deltaMove) + portal.otherPortal.normal * realPlayerRadius;
+                    nextNode.position = (Vector2)portal.otherPortal.transform.position + (deltaMove);
+
 
                     // Calculate new origin
-                    nextNode.origin = nextNode.position - (nextNode.portalSense * jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex]);
+                    var currentPosToOrigin = jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex];
+                    nextNode.origin = nextNode.position - nextNode.portalSense * currentPosToOrigin;
 
+                    Debug.DrawLine(prevPos, nextNode.position, Color.yellow, 999999f);
+
+
+                    
                 }
 
             }
@@ -170,7 +178,7 @@ public partial class AIController : MonoBehaviour
             var dbprevPos = prevPos;
             var dbnextPos = nextPos;
             node.ifChoosenDoOnGizmos.Add(()=> {
-                Debug.DrawLine(dbprevPos, dbnextPos, Color.red);
+                //Debug.DrawLine(dbprevPos, dbnextPos, Color.red);
 
             });
 #endif
@@ -289,7 +297,12 @@ public partial class AIController : MonoBehaviour
                     {
                         var closestWall = wallCast1 ? wallCast1.point : wallCast2.point;
                         var wallDist = Vector2.Distance(from, closestWall);
-                        
+
+                        if( Vector2.Distance(to, goalPosition) <= goalMinDist  && Vector2.Distance(goalPosition, from) < wallDist)
+                        {
+                            collides = false;
+                        }
+
                         // revisamos si hay que anular pq llega primero a portal
                         if (portalHit)
                         {
@@ -304,9 +317,9 @@ public partial class AIController : MonoBehaviour
 
                         // revisamos si hay que anular pq llega primero a goal
                         float distanceToGoal = (goalPosition - to).magnitude;
-                        if (distanceToGoal <= GOAL_MIN_DISTANCE)
+                        if (distanceToGoal <= goalMinDist)
                         {
-                            var closestGoal = SurrealBoost.Utils.Intersection2D.ClosestLineCircle(from, to,goalPosition, GOAL_MIN_DISTANCE);
+                            var closestGoal = SurrealBoost.Utils.Intersection2D.ClosestLineCircle(from, to,goalPosition, goalMinDist);
                             var goalDist = Vector2.Distance(from, closestGoal);
                             if(goalDist < wallDist)
                             {
@@ -319,15 +332,20 @@ public partial class AIController : MonoBehaviour
                 }
             }
 
+#if UNITY_EDITOR
             //IMPORTANTE: Las siguientes float lineas dibujan los pasos
             //que se tienen en consideración.
             //Rojo: colisiona, Verde: ok.
             //Son MUY útiles para visualizar los nodos visitados por el algoritmo. 
 
-            //float alpha = 0.999f;
-            //Color c = collides ? new Color(1f, 0f, 0f, alpha) : new Color(0f, 1f, 0f, alpha);
-            //Debug.DrawLine(from, to, c, 1.2f);
-            
+            if (GizmosCustomMenu.instance.aiEvaluatedPaths)
+            {
+                float alpha = 0.999f;
+                Color c = collides ? new Color(1f, 0f, 0f, alpha) : new Color(0f, 1f, 0f, alpha);
+                Debug.DrawLine(from, to, c, 1.2f);
+            }
+
+#endif
 
             // Cálculo final del coste:
             float cost = collides ? -1f : (from - to).magnitude;
@@ -435,7 +453,7 @@ public partial class AIController : MonoBehaviour
 
             // Si el segundo salto todavía no ha sido dado
             // Y no acabamos de cruzar un portal 
-            if (!inNode.secondJumpDone && inNode.iterationsSincePortalCrossed <= 0)
+            if (!inNode.secondJumpDone /*&& inNode.iterationsSincePortalCrossed <= 0 TMF FIX */)
             {
 
                 // VALIDACION DIRECCIONES - Descartamos iteraciones no-necesarias
@@ -605,7 +623,7 @@ public partial class AIController : MonoBehaviour
         {
 
             float distanceToGoal = (goal.position - current.position).magnitude;
-            if (distanceToGoal <= GOAL_MIN_DISTANCE)
+            if (distanceToGoal <= goalMinDist)
             {
 
                 
@@ -667,6 +685,13 @@ public partial class AIController : MonoBehaviour
             Dictionary<AStarNode, float> costSoFar = new Dictionary<AStarNode, float>();
 
 
+            const int INTERATIONS_NEEDED_AVG = 1500;
+            float fps = (1.0f / Time.smoothDeltaTime);
+            int totalFrames = (int)(timeBeforeJump * fps) +1;
+            int iterationBatch = INTERATIONS_NEEDED_AVG / totalFrames;
+
+            //int iterationsBatch = 
+
             // Si no podemos saltar, devolvemos path not found
             if (frontier.Empty())
             {
@@ -682,10 +707,10 @@ public partial class AIController : MonoBehaviour
                 do
                 {
 
-                    if (iterationsCount++ >= MAX_FRAME_ITERATIONS)
+                    if ((iterationsCount++ >= MAX_FRAME_ITERATIONS) && timeBeforeJump != 0f)
                     {
-                        yield return null;
                         iterationsCount = 0;
+                        yield return null;
                         timeSinceCalculationStarded += Time.deltaTime;
                     }
 

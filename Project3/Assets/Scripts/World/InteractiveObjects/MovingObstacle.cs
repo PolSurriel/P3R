@@ -16,6 +16,12 @@ public class MovingObstacle : MonoBehaviour
     [HideInInspector]
     public float colliderRadius;
 
+    private void Awake()
+    {
+        if (speed > 2f)
+            speed = 2f;
+    }
+
     private void Start()
     {
         avoidCollider.transform.position = Vector3.down * 10f;
@@ -92,8 +98,11 @@ public class MovingObstacle : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (!GizmosCustomMenu.instance.movingObstaclesFuture)
+        {
+            return;
+        }
 
-        Gizmos.DrawWireSphere(obstacle.position, 1.3f);
         Transform lastPoint = null;
         Transform firstPoint = null;
         int i = 0;

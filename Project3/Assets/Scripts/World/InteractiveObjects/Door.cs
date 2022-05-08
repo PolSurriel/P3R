@@ -101,7 +101,11 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+
         var rb = collision.GetComponent<Rigidbody2D>();
+
+        if (rb == null)
+            return;
 
         if(rb.velocity.y > 0f)
         {
