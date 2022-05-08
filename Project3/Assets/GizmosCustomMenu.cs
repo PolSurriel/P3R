@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GizmosCustomMenu : MonoBehaviour
@@ -10,11 +11,13 @@ public class GizmosCustomMenu : MonoBehaviour
 
     public bool pathTargets;
     public bool movingObstaclesFuture;
-    public bool aiController;
+    public bool aiPathResult;
+    public bool aiStatus;
+    public bool aiEvaluatedPaths;
     public bool portalsRuntimeInfo;
     public bool portalsConfiguration;
 
-
+  
     public static GizmosCustomMenu m_instance;
     public static GizmosCustomMenu instance {
         get {

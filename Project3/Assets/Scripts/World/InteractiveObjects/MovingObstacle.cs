@@ -16,6 +16,12 @@ public class MovingObstacle : MonoBehaviour
     [HideInInspector]
     public float colliderRadius;
 
+    private void Awake()
+    {
+        if (speed > 2f)
+            speed = 2f;
+    }
+
     private void Start()
     {
         avoidCollider.transform.position = Vector3.down * 10f;

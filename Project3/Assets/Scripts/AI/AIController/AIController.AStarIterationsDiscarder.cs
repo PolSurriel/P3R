@@ -61,11 +61,6 @@ public partial class AIController : MonoBehaviour
 
         [ReadOnly]
         [NativeDisableParallelForRestriction]
-        public static NativeArray<JobyfablePrecalculatedPredictionSystem> m_jumpPredictors;
-
-
-        [ReadOnly]
-        [NativeDisableParallelForRestriction]
         public static NativeFIFO<NativeReboundWallInfo> m_reboundWalls;
 
         [ReadOnly]
@@ -86,7 +81,6 @@ public partial class AIController : MonoBehaviour
         public NativeArray<bool> m_result;
 
 
-     
 
         void PortalCase(ref Vector2 portalSense, ref Vector2 lastNodePos, ref Vector2 nextNodePos, ref Vector2 origin, ref int directionIndex, ref int positionIndex, ref bool enterInPortalSwap)
         {
@@ -111,8 +105,7 @@ public partial class AIController : MonoBehaviour
 
                 if (cast.result)
                 {
-                    
-                    
+
 
                     // Change nextPos
                     Vector2 deltaMove = nextNodePos - lastNodePos;
@@ -157,7 +150,9 @@ public partial class AIController : MonoBehaviour
                             portalSense.x *= -1;
 
                         deltaMove *= portalSense;
-                        nextNodePos = lastNodePos + (deltaMove) + portal.otherPortalNormal * m_characterRadius;
+                        //nextNodePos = lastNodePos + (deltaMove) + portal.otherPortalNormal * m_characterRadius;
+                        nextNodePos = portal.otherPortalPosition + (deltaMove);
+
 
                         origin = nextNodePos - (portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + positionIndex]);
 
@@ -192,6 +187,7 @@ public partial class AIController : MonoBehaviour
                 var nextPosition = origin + (portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + pathIndex]);
                 bool enterInPortalSwap = false;
                 PortalCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin, ref directionIndex, ref pathIndex, ref enterInPortalSwap);
+
 
                 float distToGoal = Vector2.Distance(nextPosition, m_goalPosition);
                 //ReboundWallCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin);

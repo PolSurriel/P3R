@@ -63,6 +63,8 @@ public class Runner : MonoBehaviour
 
     private void Start()
     {
+        transform.GetChild(3).position = Vector2.one * 9999f;
+
         playerRadius = GetComponent<CircleCollider2D>().radius;
         rb = GetComponent<Rigidbody2D>();
         vfx = GetComponent<RunnerVFXController>();

@@ -16,9 +16,8 @@ public class MapController : MonoBehaviour
     public bool debugMode;
     public List<GameObject> debugTilemaps = new List<GameObject>();
 
-    
 
-    public static int numberOfTilemaps = 23;
+    public static int numberOfTilemaps = 29;
 
     [HideInInspector]
     public Transform playerTransform;
@@ -158,7 +157,7 @@ public class MapController : MonoBehaviour
     public static void ForEachTilemapSRCPath(TilemapPathIteration method)
     {
         int i = 1;
-        
+#if UNITY_EDITOR
         do
         {
             string path = $"Assets/Resources/Tilemaps/Tilemap{i++}.prefab";
@@ -171,13 +170,14 @@ public class MapController : MonoBehaviour
 
         } while (true);
 
+#endif
     }
 
 
     public delegate void EditTilemapPrefab(ref GameObject tilemapPrefab);
     public static void EditEachTilemapPrefab(EditTilemapPrefab method)
     {
-
+#if UNITY_EDITOR
         int modifiedCount = 0;
         MapController.ForEachTilemapSRCPath((string path) => {
             // get a reference to the prefab itself, not a clone or instantiation: 
@@ -186,6 +186,7 @@ public class MapController : MonoBehaviour
 
             method(ref editablePrefab);
             PrefabUtility.SavePrefabAsset(editablePrefab);
+            modifiedCount++;
 
         });
 
@@ -193,6 +194,7 @@ public class MapController : MonoBehaviour
         AssetDatabase.Refresh();
 
         Debug.Log($"Modified {modifiedCount} tilemaps.");
+#endif
     }
 
 
