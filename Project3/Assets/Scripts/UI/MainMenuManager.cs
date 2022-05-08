@@ -13,7 +13,8 @@ public class MainMenuManager : MonoBehaviour
     public RectTransform allMenusContainer;
     public Slider loadingSlider;
     [SerializeField] Text softCurrenyTxt;
-
+    [SerializeField] Sprite MIBSuitPrev;
+    [SerializeField] Sprite defSuitPrev;
 
 
     private ModeType modeType;
@@ -34,6 +35,7 @@ public class MainMenuManager : MonoBehaviour
     {
         //AudioController.instance.sounds.jump.Play();
         RefreshCurrencies();
+        StartCoroutine(InitaliceMainMenu(1.0f));
     }
 
     private void Start()
@@ -44,9 +46,6 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameInfo.softCurrency.ToString() != softCurrenyTxt.text)
-            RefreshCurrencies();
-
 
     }
 
@@ -109,6 +108,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayMode()
     {
+        ResetSkinMat();     // Reset Skin color material for IA
+
         switch (modeType)
         {
             case ModeType.PLAYER:
@@ -181,16 +182,17 @@ public class MainMenuManager : MonoBehaviour
         raceText.text = modeType.ToString();
     }
 
-    public void SelectSkin(string _name)
+    public void SelectSkin(GameObject _sprite)
     {
-        GameInfo.playerSkin.baseSkinName = _name;
-        Debug.Log(_name + " Skin selected");
+        GameInfo.playerSkin.playerColor = _sprite.GetComponent<Image>().color;
+        StartCoroutine(InitaliceMainMenu(0.1f));
     }
 
     public void SelectSuit(string _name)
     {
         GameInfo.playerSkin.suitSkinName = _name;
         Debug.Log(_name + " suit selected");
+        StartCoroutine(InitaliceMainMenu(0.1f));
     }
 
     public void RefreshCurrencies()
@@ -198,10 +200,52 @@ public class MainMenuManager : MonoBehaviour
         softCurrenyTxt.text = GameInfo.softCurrency.ToString();
     }
 
+    public void RefreshSkinPrev()
+    {
+        
+        Material mat = GameObject.Find("SkinTexture").GetComponent<Image>().material;
+        if (GameInfo.playerSkin.playerColor != new Color(1.0f, 1.0f, 1.0f))
+        {
+            mat.SetFloat("_ColorChangeTolerance", 0.2f);
+            mat.SetColor("_ColorChangeNewCol", GameInfo.playerSkin.playerColor);
+        }
+        else
+        {
+            mat.SetFloat("_ColorChangeTolerance", 1.0f);
+        }
+
+        if(GameInfo.playerSkin.suitSkinName == "MIBred")
+        {
+            GameObject.Find("SuitTexturePrev").GetComponent<Image>().sprite = MIBSuitPrev;
+        }
+        else
+        {
+            GameObject.Find("SuitTexturePrev").GetComponent<Image>().sprite = defSuitPrev;
+        }
+        
+    }
+
+    public void ResetSkinMat()
+    {
+        Material mat = GameObject.Find("SkinTexture").GetComponent<Image>().material;
+        mat.SetFloat("_ColorChangeTolerance", 1.0f);
+    }
+
     public void AddSoftCurrency(int amount)
     {
         GameInfo.softCurrency += amount;
         RefreshCurrencies();
+    }
+
+    IEnumerator InitaliceMainMenu(float _waitTime)
+    {
+        // Initialice and refresh all variables needed in menu
+        // Ex: Currency amount, skin selected previsualizer, etc.
+        yield return new WaitForSeconds(_waitTime);
+
+        RefreshCurrencies();
+        RefreshSkinPrev();
+
     }
 
     IEnumerator LoadAsyncScene(SceneReference scene)

@@ -799,6 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPulse: 0
+  isTransparent: 1
 --- !u!1 &328328316767540306
 GameObject:
   m_ObjectHideFlags: 0
