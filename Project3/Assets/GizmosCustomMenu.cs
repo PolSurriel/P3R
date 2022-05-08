@@ -17,7 +17,23 @@ public class GizmosCustomMenu : MonoBehaviour
     public bool portalsRuntimeInfo;
     public bool portalsConfiguration;
 
-  
+
+    private void Start()
+    {
+        if (GameInfo.instance != null)
+        {
+
+
+            pathTargets = false;
+            movingObstaclesFuture = false;
+            aiPathResult = false;
+            aiStatus = GameInfo.showAIStatusInfo;
+            aiEvaluatedPaths = false;
+            portalsRuntimeInfo = false;
+            portalsConfiguration = false;
+}
+    }
+
     public static GizmosCustomMenu m_instance;
     public static GizmosCustomMenu instance {
         get {

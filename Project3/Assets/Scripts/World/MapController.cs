@@ -80,7 +80,7 @@ public class MapController : MonoBehaviour
             int numberOfTilemaps = 3;
             InstantiateTilemap(0);
 
-            if(!debugMode)
+            if(!debugMode && GameInfo.instance == null)
                 for (int i = 0; i < numberOfTilemaps; i++)
                     InstantiateTilemap(GetRandomTilemapIndex(actualDifficulty));
             else
@@ -101,13 +101,13 @@ public class MapController : MonoBehaviour
             if (GameInfo.instance.levelID == 1) {
                 level = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
             }
-            
-            
-            if(GameInfo.instance.levelID == 4 || GameInfo.instance.levelID == 2)
+
+            InstantiateTilemap(0);
+            if (GameInfo.instance.levelID == 4 || GameInfo.instance.levelID == 2)
             {
                 level = new int[] { 0, 1, 8, 6, 4, 19, 3, 7, 8, 9 };
             }
-            if (!debugMode)
+            if (!debugMode && GameInfo.instance == null)
                 foreach (var tilemapIndex in level)
                 {
                     InstantiateTilemap(tilemapIndex);
