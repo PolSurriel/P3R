@@ -11,6 +11,7 @@ public class PlayerAspect : MonoBehaviour
     public Runner runner;
 
 
+    public ParticleSystem stainParticleSys;
 
     public enum State
     {

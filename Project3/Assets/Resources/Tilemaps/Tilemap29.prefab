@@ -1511,18 +1511,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbe65a1d39f86c44956928a09d3f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reachTargetRadius: 0.9
-  useRandomVerticalOffset: 0
-  maxVerticalOffset: 0
-  useRandomHorizontalOffset: 0
-  maxHorizontalOffset: 0
-  useDotConstrainToChoose: 0
-  forceDotConstraint: 0
-  dotConstrainThreshold: 0
-  dotConstrain: {x: 0, y: 0}
+  reachTargetRadius: -1.4243218e-22
+  useRandomVerticalOffset: 109
+  maxVerticalOffset: -3.2178782e-17
+  useRandomHorizontalOffset: 109
+  maxHorizontalOffset: -3.217857e-17
+  useDotConstrainToChoose: 109
+  forceDotConstraint: 1
+  dotConstrainThreshold: -3.2109272e-17
+  dotConstrain: {x: 5.11e-43, y: -1.4408331e-22}
   fakePosition: {fileID: 0}
-  useIncisionConstrain: 1
-  incisionVector: {x: 1, y: 0}
+  useIncisionConstrain: 109
+  incisionVector: {x: -3.2178358e-17, y: 5.11e-43}
 --- !u!1 &8024728719231622827
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,10 @@ public class UnityAudio : SurrealBoost.Audio
     {
         audioclip = Resources.Load<AudioClip>(path);
     }
+    public UnityAudio(AudioClip clip)
+    {
+        audioclip = clip;
+    }
     public override void Clean()
     {
         throw new System.NotImplementedException();

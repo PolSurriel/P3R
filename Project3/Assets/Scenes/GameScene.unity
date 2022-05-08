@@ -793,7 +793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugMode: 1
   debugTilemaps:
-  - {fileID: 20021624341907279, guid: 04104c72fa9b99f479272a34016b68e2, type: 3}
+  - {fileID: 7532805520321851600, guid: 16c97784a9cc60048bdcfb49d968253f, type: 3}
   playerTransform: {fileID: 0}
 --- !u!114 &127046072
 MonoBehaviour:
@@ -2466,7 +2466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf03cef7ca952d499ea45d240d9ab6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAI: 1
+  useAI: 0
   playerPrefab: {fileID: 328328316266981640, guid: 22ffd39eb4a48de4bb4bee3a14b0c483,
     type: 3}
 --- !u!1 &1111849429
@@ -2705,6 +2705,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8baac47c06ee71e45aa5b0b0d846c23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  second5: {fileID: 8300000, guid: bb504814f6d18124986f6c3d2b36b9ab, type: 3}
+  second4: {fileID: 8300000, guid: 1561c7af75b69b240a1a2ef3fd6a28df, type: 3}
+  second3: {fileID: 8300000, guid: 3e17c0fd89b99c04698ce991b801d9e0, type: 3}
+  second2: {fileID: 8300000, guid: a6975787b53a75e459af36e68c01c9b7, type: 3}
+  second1: {fileID: 8300000, guid: c5d6734480e9a6f43bdd301e8f9fcd4c, type: 3}
+  gosound: {fileID: 8300000, guid: 252d8af8725f879458fd06bf9aa21971, type: 3}
 --- !u!1 &1248257030
 GameObject:
   m_ObjectHideFlags: 0
