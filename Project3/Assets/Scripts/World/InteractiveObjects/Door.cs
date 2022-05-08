@@ -8,20 +8,34 @@ public class Door : MonoBehaviour
     public Transform leftDoor;
     public Transform rightDoor;
 
+
+    public Transform normalOrigin;
+    public Transform normalEnd;
+
     public BoxCollider2D leftCollider;
     public BoxCollider2D rightCollider;
 
-    Quaternion leftClosedRotation = Quaternion.identity;
-    Quaternion rightClosedRotation = Quaternion.identity;
+    Quaternion leftClosedRotation;
+    Quaternion rightClosedRotation;
     Quaternion leftOpenedRotation;
     Quaternion rightOpenedRotation;
     Quaternion initialRot;
 
+
+    Vector2 normal;
+
     private void Start()
     {
-        initialRot = this.transform.rotation;
-        leftOpenedRotation = leftDoor.localRotation;
-        rightOpenedRotation = rightDoor.localRotation;
+        normal = normalEnd.position - normalOrigin.position;
+
+        normal.Normalize();
+
+        leftOpenedRotation = leftDoor.rotation;
+        rightOpenedRotation = rightDoor.rotation;
+
+        leftClosedRotation = leftOpenedRotation * Quaternion.AngleAxis(-90f, Vector3.forward);
+        rightClosedRotation = rightOpenedRotation * Quaternion.AngleAxis(90f, Vector3.forward);
+
         leftCollider.enabled = false;
         rightCollider.enabled = false;
 
@@ -103,13 +117,13 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
+        Debug.Log("activated");
         var rb = collision.GetComponent<Rigidbody2D>();
 
         if (rb == null)
             return;
 
-        if(rb.velocity.y > 0f)
+        if(Vector2.Dot(rb.velocity.normalized, normal) > 0f)
         {
             Close();
         }
