@@ -31,6 +31,8 @@ public partial class AIController : MonoBehaviour
 
     bool onBackupPlanZone = false;
 
+    public bool nextJumpCausedByPowerUp = false;
+
     PathTarget currentPathTargetObject;
     List<PathTarget> targetsToIgnore = new List<PathTarget>();
 
@@ -61,7 +63,10 @@ public partial class AIController : MonoBehaviour
         }
 
         // apply
-        rb.velocity = rb.velocity * scalar + (1f-scalar) * targetVelocity;
+        float velMagnitude = rb.velocity.magnitude;
+        rb.velocity = (rb.velocity * scalar + (1f-scalar) * targetVelocity).normalized* velMagnitude;
+
+
 
     }
 
@@ -173,10 +178,20 @@ public partial class AIController : MonoBehaviour
     IEnumerator AStarRoutine()
     {
 
-        
+
 
         // Aquí es donde se calcula el timeBeforeJump
-        timeBeforeJump = firstJumpDone ? AIDirector.GetTimeBeforeJump(erraticBehaviourFactor) * timeVariationAI: Random.Range(0.1f, 0.5f);
+        if (nextJumpCausedByPowerUp)
+        {
+            timeBeforeJump = 0f;
+        }
+        else
+        {
+            timeBeforeJump = firstJumpDone ? AIDirector.GetTimeBeforeJump(erraticBehaviourFactor) * timeVariationAI: Random.Range(0.1f, 0.5f);
+
+        }
+        
+        
         firstJumpDone = true;
 
         aStarSolver.output = null;

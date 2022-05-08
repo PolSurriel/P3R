@@ -89,7 +89,7 @@ public partial class AIController : MonoBehaviour
             {
                 var portal = portalHit.collider.GetComponent<Portal>();
 
-                nextNode.iterationsSincePortalCrossed = 2;
+                nextNode.iterationsSincePortalCrossed = 1;
 
                 Vector2 deltaMove = nextNode.position - prevPos; // value previous of crossing portal.
                 
@@ -131,11 +131,17 @@ public partial class AIController : MonoBehaviour
 
 
                     deltaMove *= nextNode.portalSense;
-                    nextNode.position = prevPos + (deltaMove) + portal.otherPortal.normal * realPlayerRadius;
+                    nextNode.position = (Vector2)portal.otherPortal.transform.position + (deltaMove);
+
 
                     // Calculate new origin
-                    nextNode.origin = nextNode.position - (nextNode.portalSense * jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex]);
+                    var currentPosToOrigin = jumpPredictor.precalculatedDirections[nextNode.directionIndex * jumpPredictor.iterationsCount + nextNode.positionIndex];
+                    nextNode.origin = nextNode.position - nextNode.portalSense * currentPosToOrigin;
 
+                    Debug.DrawLine(prevPos, nextNode.position, Color.yellow, 999999f);
+
+
+                    
                 }
 
             }
@@ -291,7 +297,12 @@ public partial class AIController : MonoBehaviour
                     {
                         var closestWall = wallCast1 ? wallCast1.point : wallCast2.point;
                         var wallDist = Vector2.Distance(from, closestWall);
-                        
+
+                        if( Vector2.Distance(to, goalPosition) <= goalMinDist  && Vector2.Distance(goalPosition, from) < wallDist)
+                        {
+                            collides = false;
+                        }
+
                         // revisamos si hay que anular pq llega primero a portal
                         if (portalHit)
                         {
@@ -442,7 +453,7 @@ public partial class AIController : MonoBehaviour
 
             // Si el segundo salto todavía no ha sido dado
             // Y no acabamos de cruzar un portal 
-            if (!inNode.secondJumpDone && inNode.iterationsSincePortalCrossed <= 0)
+            if (!inNode.secondJumpDone /*&& inNode.iterationsSincePortalCrossed <= 0 TMF FIX */)
             {
 
                 // VALIDACION DIRECCIONES - Descartamos iteraciones no-necesarias
@@ -674,7 +685,7 @@ public partial class AIController : MonoBehaviour
             Dictionary<AStarNode, float> costSoFar = new Dictionary<AStarNode, float>();
 
 
-            const int INTERATIONS_NEEDED_AVG = 800;
+            const int INTERATIONS_NEEDED_AVG = 1500;
             float fps = (1.0f / Time.smoothDeltaTime);
             int totalFrames = (int)(timeBeforeJump * fps) +1;
             int iterationBatch = INTERATIONS_NEEDED_AVG / totalFrames;
@@ -696,10 +707,10 @@ public partial class AIController : MonoBehaviour
                 do
                 {
 
-                    if (iterationsCount >= iterationBatch || iterationsCount++ >= MAX_FRAME_ITERATIONS)
+                    if ((iterationsCount++ >= MAX_FRAME_ITERATIONS) && timeBeforeJump != 0f)
                     {
-                        yield return null;
                         iterationsCount = 0;
+                        yield return null;
                         timeSinceCalculationStarded += Time.deltaTime;
                     }
 

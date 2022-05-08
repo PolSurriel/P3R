@@ -66,7 +66,7 @@ public partial class AIController : MonoBehaviour
 #endif
 
 
-        if (!GizmosCustomMenu.instance.aiController)
+        if (!GizmosCustomMenu.instance.aiPathResult)
             return;
 
         //var color = Color.black;

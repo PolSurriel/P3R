@@ -31,7 +31,7 @@ public partial class AIController : MonoBehaviour
 
     // Jump predictor
     JobyfablePrecalculatedPredictionSystem jumpPredictor;
-    const int DIRECTIONS_COUNT = 36;
+    const int DIRECTIONS_COUNT = 38;
     const int NUMBER_OF_PRECALCULATED_POINTS = 300;
     const int PRECALCULATED_POINTS_INCREMENT = 30;
     const float DELTA_DEGREE = 360f / (float)DIRECTIONS_COUNT;
@@ -53,6 +53,10 @@ public partial class AIController : MonoBehaviour
                 
             }
         }
+
+        
+
+        Destroy(GetComponent<PerksInGame>());
     }
 
     
@@ -227,6 +231,7 @@ public partial class AIController : MonoBehaviour
         }
         else if (collision.tag == "extraJumpZone" && !collision.GetComponent<ExtraJumpZone>().ignoring.Contains(runner))
         {
+            nextJumpCausedByPowerUp = true;
             executingAstarSeek = false;
             aStarSolver.output = null;
             StartAStarPipeline();
