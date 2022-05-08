@@ -1584,12 +1584,12 @@ PrefabInstance:
     - target: {fileID: 130553757402441420, guid: 296738cc72fb52c4891638373c22f09a,
         type: 3}
       propertyPath: difficulties.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 130553757402441420, guid: 296738cc72fb52c4891638373c22f09a,
         type: 3}
       propertyPath: difficulties.Array.data[1]
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 130553757402441420, guid: 296738cc72fb52c4891638373c22f09a,
         type: 3}

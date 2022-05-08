@@ -72,7 +72,7 @@ public class MapController : MonoBehaviour
 
         
 
-        if (GameInfo.instance == null || GameInfo.instance.levelID == 0 || GameInfo.instance.levelID == 3)
+        if (GameInfo.instance == null || GameInfo.instance.levelID == 0 || GameInfo.instance.levelID == 3 || GameInfo.instance.levelID == 4)
         {
             if (GameInfo.instance != null && GameInfo.instance.levelID == 3)
                 lineaMeta.SetActive(false);
@@ -103,7 +103,7 @@ public class MapController : MonoBehaviour
             }
 
             InstantiateTilemap(0);
-            if (GameInfo.instance.levelID == 4 || GameInfo.instance.levelID == 2)
+            if ( GameInfo.instance.levelID == 2)
             {
                 level = new int[] { 0, 1, 8, 6, 4, 19, 3, 7, 8, 9 };
             }
