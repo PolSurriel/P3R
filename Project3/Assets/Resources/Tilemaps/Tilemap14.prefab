@@ -2213,6 +2213,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 4420986589591873724, guid: 53704a08b34eed94bb347ca95cd83d45,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.28
+      objectReference: {fileID: 0}
     - target: {fileID: 4420986589591873726, guid: 53704a08b34eed94bb347ca95cd83d45,
         type: 3}
       propertyPath: m_LocalPosition.x

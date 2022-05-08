@@ -568,6 +568,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19844192, guid: aa67315846cbf1a4db925cced0c050da, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa67315846cbf1a4db925cced0c050da, type: 3}
 --- !u!198 &27773638 stripped
@@ -631,6 +635,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19810620, guid: 5a0a0878a2909a545a8c905f63fd4b26, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810620, guid: 5a0a0878a2909a545a8c905f63fd4b26, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19882938, guid: 5a0a0878a2909a545a8c905f63fd4b26, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19882938, guid: 5a0a0878a2909a545a8c905f63fd4b26, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19882938, guid: 5a0a0878a2909a545a8c905f63fd4b26, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19882938, guid: 5a0a0878a2909a545a8c905f63fd4b26, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 19896696, guid: 5a0a0878a2909a545a8c905f63fd4b26, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -649,6 +677,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19896696, guid: 5a0a0878a2909a545a8c905f63fd4b26, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19896696, guid: 5a0a0878a2909a545a8c905f63fd4b26, type: 3}
+      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -959,7 +991,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugMode: 1
   debugTilemaps:
-  - {fileID: 7532805520321851600, guid: 16c97784a9cc60048bdcfb49d968253f, type: 3}
+  - {fileID: 2274277308839676105, guid: 994a280fe19a4434ea0ccca8fe0d3389, type: 3}
+  - {fileID: 2693755942346678824, guid: 955f82572dc7a1642b17ea63dde8c2db, type: 3}
   playerTransform: {fileID: 0}
 --- !u!114 &127046072
 MonoBehaviour:
@@ -1961,7 +1994,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.806818
+  orthographic size: 5.534296
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2176,6 +2209,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19877600, guid: 36bdc02b23d9ca94d93bd715c0cca5c0, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19877600, guid: 36bdc02b23d9ca94d93bd715c0cca5c0, type: 3}
+      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2652,6 +2689,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19812234, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19812234, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19812234, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19812234, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 19828324, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -2671,6 +2724,18 @@ PrefabInstance:
     - target: {fileID: 19828324, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19828324, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19838308, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19838308, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
@@ -3177,6 +3242,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19890786, guid: a54f4434684ca0143bf644289de35374, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19890786, guid: a54f4434684ca0143bf644289de35374, type: 3}
+      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4114,6 +4183,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19831234, guid: 6bc8c7b8a20b3574080cc6fa394ec725, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bc8c7b8a20b3574080cc6fa394ec725, type: 3}
 --- !u!198 &1990496979 stripped
@@ -4169,7 +4242,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.806818
+  orthographic size: 5.534296
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
