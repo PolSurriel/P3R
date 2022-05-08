@@ -5,7 +5,7 @@ using TMPro;
 
 public class LevelEnd : MonoBehaviour
 {
-    const int CurrencyMult = 10;
+    const int CurrencyMult = 2;
     float startingTime;
     [SerializeField]
     GameObject rankingMenu;
@@ -35,23 +35,25 @@ public class LevelEnd : MonoBehaviour
         {
             rankingMenu.SetActive(true);
             // Add Soft Currency
-            float multipier = Mathf.Clamp((120.0f - (Time.time - startingTime)), 0, 0);
+            float multipier = Mathf.Clamp((120.0f - (Time.time - startingTime)), 0, 120);
             int currencyToAdd = CurrencyMult * (int)Mathf.Round(multipier) + 100;
             GameObject rankingSlot = Instantiate(prefabRankingSlot, rankingMenu.transform.GetChild(0).GetChild(1));
             rankingSlot.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = currencyToAdd.ToString();
             GameInfo.AddSoftCurrency(currencyToAdd);
+            collision.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             Destroy(collision.GetComponent<PlayerController>());
 
             
         }
         if(collision.GetComponent<AIController>() != null)
         {
-            GameObject rankingSlot = Instantiate(prefabRankingSlot, rankingMenu.transform.Find("PlayerList"));
+            GameObject rankingSlot = Instantiate(prefabRankingSlot, rankingMenu.transform.GetChild(0).GetChild(1));
             rankingSlot.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = names[Random.Range(0, 8)];
-            float multipier = Mathf.Clamp((120.0f - (Time.time - startingTime)), 0, 0);
+            float multipier = Mathf.Clamp((120.0f - (Time.time - startingTime)), 0, 120);
             int currencyToAdd = CurrencyMult * (int)Mathf.Round(multipier) + 100;
             rankingSlot.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = currencyToAdd.ToString();
-            Destroy(collision.GetComponent<AIController>());
+            collision.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            //Destroy(collision.GetComponent<AIController>());
 
         }
     }
