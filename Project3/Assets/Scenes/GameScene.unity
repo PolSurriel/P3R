@@ -2396,7 +2396,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.534296
+  orthographic size: 6.4683547
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2538,6 +2538,7 @@ MonoBehaviour:
   mainMenu:
     sceneAsset: {fileID: 102900000, guid: e5faaff3e5dbdcb4bb3597bbb501cf4a, type: 3}
     scenePath: Assets/Scenes/MenuPrototipe.unity
+  startingTime: 0
 --- !u!1001 &564684657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3554,12 +3555,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathTargets: 1
-  movingObstaclesFuture: 1
+  movingObstaclesFuture: 0
   aiPathResult: 0
-  aiStatus: 1
-  aiEvaluatedPaths: 1
-  portalsRuntimeInfo: 1
-  portalsConfiguration: 1
+  aiStatus: 0
+  aiEvaluatedPaths: 0
+  portalsRuntimeInfo: 0
+  portalsConfiguration: 0
 --- !u!224 &1293437759 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3871014487046406137, guid: 726812c7d124541538a054c722c888f4,
@@ -4645,7 +4646,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.534296
+  orthographic size: 6.4683547
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

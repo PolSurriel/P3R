@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
             }
             point.transform.position = currentPos;
 
-            point.color = new Color(1.0f, 0.45f, 0.0f, alpha);
+            point.color = new Color(1.0f, 1f, 1f, alpha);
             point.enabled = true;
         }
     }

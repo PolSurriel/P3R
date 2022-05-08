@@ -220,11 +220,11 @@ public partial class AIController : MonoBehaviour
 
 
             // si la ia se queda atascada, activamos backup plan
-            if (astarExecutionsCountBeforeFindingPath > 400)
+            if (astarExecutionsCountBeforeFindingPath > 110)
             {
                 runner.Jump(runner.aspect.sr.flipX ? Vector2.left:Vector2.right);
             }
-            else if(astarExecutionsCountBeforeFindingPath > 200)
+            else if(astarExecutionsCountBeforeFindingPath > 100)
             {
                 onBackupPlanZone = true;
             }
