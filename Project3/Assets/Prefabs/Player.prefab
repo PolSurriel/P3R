@@ -1898,6 +1898,18 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 19815734, guid: 617378de28fbaa64c96485d5b0d9169b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.46308985
+      objectReference: {fileID: 0}
+    - target: {fileID: 19815734, guid: 617378de28fbaa64c96485d5b0d9169b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.745283
+      objectReference: {fileID: 0}
+    - target: {fileID: 19815734, guid: 617378de28fbaa64c96485d5b0d9169b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 19858650, guid: 617378de28fbaa64c96485d5b0d9169b, type: 3}
       propertyPath: playOnAwake
       value: 0

@@ -40,6 +40,7 @@ public class LevelEnd : MonoBehaviour
             GameObject rankingSlot = Instantiate(prefabRankingSlot, rankingMenu.transform.GetChild(0).GetChild(1));
             rankingSlot.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = currencyToAdd.ToString();
             GameInfo.AddSoftCurrency(currencyToAdd);
+            Destroy(collision.GetComponent<PlayerController>());
 
             
         }
@@ -50,6 +51,8 @@ public class LevelEnd : MonoBehaviour
             float multipier = Mathf.Clamp((120.0f - (Time.time - startingTime)), 0, 0);
             int currencyToAdd = CurrencyMult * (int)Mathf.Round(multipier) + 100;
             rankingSlot.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = currencyToAdd.ToString();
+            Destroy(collision.GetComponent<AIController>());
+
         }
     }
 
