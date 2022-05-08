@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -957,9 +957,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51b2a333f8af554496ab88eca45192c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 1
+  debugMode: 0
   debugTilemaps:
-  - {fileID: 7532805520321851600, guid: 16c97784a9cc60048bdcfb49d968253f, type: 3}
+  - {fileID: 2693755942346678824, guid: 955f82572dc7a1642b17ea63dde8c2db, type: 3}
+  - {fileID: 2274277308839676105, guid: 994a280fe19a4434ea0ccca8fe0d3389, type: 3}
   playerTransform: {fileID: 0}
 --- !u!114 &127046072
 MonoBehaviour:
@@ -2363,7 +2364,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.806818
+  orthographic size: 5.328713
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -4572,7 +4573,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.7415733
+  orthographic size: 5.328713
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

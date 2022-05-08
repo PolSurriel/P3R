@@ -15,11 +15,13 @@ public class Door : MonoBehaviour
     Quaternion rightClosedRotation = Quaternion.identity;
     Quaternion leftOpenedRotation;
     Quaternion rightOpenedRotation;
+    Quaternion initialRot;
 
     private void Start()
     {
-        leftOpenedRotation = leftDoor.rotation;
-        rightOpenedRotation = rightDoor.rotation;
+        initialRot = this.transform.rotation;
+        leftOpenedRotation = leftDoor.localRotation;
+        rightOpenedRotation = rightDoor.localRotation;
         leftCollider.enabled = false;
         rightCollider.enabled = false;
 
@@ -58,8 +60,8 @@ public class Door : MonoBehaviour
         {
             timeCounter += Time.deltaTime;
 
-            leftDoor.rotation = Quaternion.Lerp( leftClosedRotation, leftOpenedRotation, timeCounter/ TIME_TO_OPEN_OR_CLOSE);
-            rightDoor.rotation = Quaternion.Lerp(rightClosedRotation, rightOpenedRotation, timeCounter / TIME_TO_OPEN_OR_CLOSE);
+            leftDoor.localRotation = Quaternion.Lerp( leftClosedRotation, leftOpenedRotation, timeCounter/ TIME_TO_OPEN_OR_CLOSE);
+            rightDoor.localRotation = Quaternion.Lerp(rightClosedRotation, rightOpenedRotation, timeCounter / TIME_TO_OPEN_OR_CLOSE);
             yield return null;
 
         } while (timeCounter < TIME_TO_OPEN_OR_CLOSE);
@@ -75,8 +77,8 @@ public class Door : MonoBehaviour
         {
             timeCounter += Time.deltaTime;
 
-            leftDoor.rotation = Quaternion.Lerp(leftOpenedRotation, leftClosedRotation, timeCounter / TIME_TO_OPEN_OR_CLOSE);
-            rightDoor.rotation = Quaternion.Lerp(rightOpenedRotation, rightClosedRotation, timeCounter / TIME_TO_OPEN_OR_CLOSE);
+            leftDoor.localRotation = Quaternion.Lerp(leftOpenedRotation, leftClosedRotation, timeCounter / TIME_TO_OPEN_OR_CLOSE);
+            rightDoor.localRotation = Quaternion.Lerp(rightOpenedRotation, rightClosedRotation, timeCounter / TIME_TO_OPEN_OR_CLOSE);
             yield return null;
 
         } while (timeCounter < TIME_TO_OPEN_OR_CLOSE);
