@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -205,8 +205,11 @@ public class Runner : MonoBehaviour
 
         rb.isKinematic = false;
         rb.velocity = Vector2.zero;
-        rb.AddForce(direction.normalized * jumpMagnitude * forcePercentage, ForceMode2D.Impulse);
-
+        if(perks == null)
+            rb.AddForce(direction.normalized * jumpMagnitude * forcePercentage, ForceMode2D.Impulse);
+        else
+            rb.AddForce(direction.normalized * jumpMagnitude * forcePercentage * perks.extraVelocityPercentage, ForceMode2D.Impulse);
+        
         transform.position = transform.position + (Vector3)(contactToSurfaceDirection * 0.1f);
 
         jumpDirection = direction;

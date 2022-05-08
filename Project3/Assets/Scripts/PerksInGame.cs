@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +13,9 @@ public class PerksInGame : MonoBehaviour
     bool isTransparent = false;
     float transparentProb = 1.0f;
     float transparentTime = 5.0f;
+
+    public float extraVelocityPercentage = 1.0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,9 @@ public class PerksInGame : MonoBehaviour
                     case "Transparent":
                         // Ghost parameters are 65, 157
                         isTransparent = true;
+                        break;
+                    case "Velocity":
+                        extraVelocityPercentage += 0.2f;
                         break;
                     default:
                         break;
@@ -84,6 +90,8 @@ public class PerksInGame : MonoBehaviour
             child.GetComponent<SpriteRenderer>().material.SetFloat("_GhostTransparency", 0.5f);
             child.GetComponent<SpriteRenderer>().material.SetFloat("_GhostBlend", 0.5f);
         }
+        // Adds velocity while in this effect
+        extraVelocityPercentage += 0.1f;
 
         // FALTA DESACTIVAR LA COLISION CON LOS ENEMIGOS
 
@@ -97,6 +105,7 @@ public class PerksInGame : MonoBehaviour
             child.GetComponent<SpriteRenderer>().material.SetFloat("_GhostTransparency", 0.0f);
             child.GetComponent<SpriteRenderer>().material.SetFloat("_GhostBlend", 0.0f);
         }
+        extraVelocityPercentage -= 0.1f;
 
     }
 }
