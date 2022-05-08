@@ -59,6 +59,11 @@ public class ExtraJumpZone : MonoBehaviour
     IEnumerator StartRestoreRunnerCooldown(Runner runner)
     {
         float t = 0f;
+
+        yield return null;
+        ignoring.Add(runner);
+        t += Time.deltaTime;
+
         do { yield return null; }
         while ((t += Time.deltaTime) < TIME_TO_RESTORE);
         ignoring.Remove(runner);
@@ -77,7 +82,7 @@ public class ExtraJumpZone : MonoBehaviour
         if (runner == null || ignoring.Contains(runner))
             return;
 
-        ignoring.Add(collision.GetComponent<Runner>());
+        
         StartCoroutine(StartRestoreRunnerCooldown(runner));
 
         if (collision.GetComponent<Runner>().isPlayer)
