@@ -321,15 +321,20 @@ public partial class AIController : MonoBehaviour
                 }
             }
 
+#if UNITY_EDITOR
             //IMPORTANTE: Las siguientes float lineas dibujan los pasos
             //que se tienen en consideración.
             //Rojo: colisiona, Verde: ok.
             //Son MUY útiles para visualizar los nodos visitados por el algoritmo. 
 
-            //float alpha = 0.999f;
-            //Color c = collides ? new Color(1f, 0f, 0f, alpha) : new Color(0f, 1f, 0f, alpha);
-            //Debug.DrawLine(from, to, c, 1.2f);
-            
+            if (GizmosCustomMenu.instance.aiEvaluatedPaths)
+            {
+                float alpha = 0.999f;
+                Color c = collides ? new Color(1f, 0f, 0f, alpha) : new Color(0f, 1f, 0f, alpha);
+                Debug.DrawLine(from, to, c, 1.2f);
+            }
+
+#endif
 
             // Cálculo final del coste:
             float cost = collides ? -1f : (from - to).magnitude;

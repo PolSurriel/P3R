@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51b2a333f8af554496ab88eca45192c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  debugMode: 1
   debugTilemaps: []
   playerTransform: {fileID: 0}
 --- !u!114 &127046072
@@ -1788,7 +1788,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.0217395
+  orthographic size: 4.408313
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2729,6 +2729,7 @@ MonoBehaviour:
   movingObstaclesFuture: 1
   aiController: 1
   aiStatus: 1
+  aiEvaluatedPaths: 1
   portalsRuntimeInfo: 1
   portalsConfiguration: 1
 --- !u!224 &1293437759 stripped

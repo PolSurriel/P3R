@@ -208,6 +208,7 @@ public partial class AIController : MonoBehaviour
             if (aStarSolver.output == null)
             {
 
+                astarExecutionsCountBeforeFindingPath++;
                 state = AStarExecutionState.STOPPED;
                 // Avisamos a los logs
                 //Debug.LogError("No path found.");
@@ -226,6 +227,7 @@ public partial class AIController : MonoBehaviour
             }
             else // Si el camino es válido
             {
+                astarExecutionsCountBeforeFindingPath = 0;
                 state = AStarExecutionState.JUMPING;
                 // Iniciamos el seek al resultado del AStar
                 StartAStartSeekPathResult(ref aStarSolver.output);

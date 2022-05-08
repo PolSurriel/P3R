@@ -13,6 +13,7 @@ public class GizmosCustomMenu : MonoBehaviour
     public bool movingObstaclesFuture;
     public bool aiController;
     public bool aiStatus;
+    public bool aiEvaluatedPaths;
     public bool portalsRuntimeInfo;
     public bool portalsConfiguration;
 

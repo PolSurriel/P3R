@@ -81,7 +81,7 @@ public partial class AIController : MonoBehaviour
         public NativeArray<bool> m_result;
 
 
-     
+        private bool tmp_portalCastTrue;
 
         void PortalCase(ref Vector2 portalSense, ref Vector2 lastNodePos, ref Vector2 nextNodePos, ref Vector2 origin, ref int directionIndex, ref int positionIndex, ref bool enterInPortalSwap)
         {
@@ -106,8 +106,8 @@ public partial class AIController : MonoBehaviour
 
                 if (cast.result)
                 {
-                    
-                    
+
+                    tmp_portalCastTrue = true;
 
                     // Change nextPos
                     Vector2 deltaMove = nextNodePos - lastNodePos;
@@ -187,6 +187,12 @@ public partial class AIController : MonoBehaviour
                 var nextPosition = origin + (portalSense * m_precalculatedDirections[directionIndex * m_iterationsCount + pathIndex]);
                 bool enterInPortalSwap = false;
                 PortalCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin, ref directionIndex, ref pathIndex, ref enterInPortalSwap);
+
+                if (tmp_portalCastTrue)
+                {
+                    m_result[directionIndex] = true;
+                    return;
+                }
 
                 float distToGoal = Vector2.Distance(nextPosition, m_goalPosition);
                 //ReboundWallCase(ref portalSense, ref lastPosition, ref nextPosition, ref origin);

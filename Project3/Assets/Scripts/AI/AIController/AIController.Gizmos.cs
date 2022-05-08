@@ -11,12 +11,15 @@ public partial class AIController : MonoBehaviour
     TextMesh debugTestMesh;
     Transform debugBG;
 
+    int astarExecutionsCountBeforeFindingPath = 0 ;
+
     private void OnDrawGizmos()
     {
 
 #if UNITY_EDITOR
         if (GizmosCustomMenu.instance.aiStatus)
         {
+            debugTestMesh.transform.GetChild(0).GetComponent<TextMesh>().text = astarExecutionsCountBeforeFindingPath+"";
             
             switch (state)
             {

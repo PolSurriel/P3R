@@ -179,6 +179,28 @@ public partial class AIController : MonoBehaviour
 
     }
 
+    void OnCollisionWithFloor()
+    {
+        if (executingAstarSeek)
+        {
+            if (Vector2.Distance(lastTargetPos, transform.position) > MIN_DIST_TO_CHOOSE_TARGET)
+            {
+                lastTargetPos = Vector2.zero;
+                lastTargetLandedPosition = Vector2.zero;
+            }
+            else
+            {
+                lastTargetLandedPosition = lastTargetPos;
+            }
+        }
+
+        lastTargetPos = Vector2.down;
+        executingAstarSeek = false;
+
+
+        StartAStarPipeline();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!StartMatchCountDown.matchStarted)
@@ -187,26 +209,7 @@ public partial class AIController : MonoBehaviour
         if (collision.collider.tag == "floor")
         {
 
-            if (executingAstarSeek)
-            {
-                if(Vector2.Distance(lastTargetPos, transform.position) > MIN_DIST_TO_CHOOSE_TARGET)
-                {
-                    lastTargetPos = Vector2.zero;
-                    lastTargetLandedPosition = Vector2.zero;
-                }
-                else
-                {
-                    lastTargetLandedPosition = lastTargetPos;
-                }
-            }
-
-            lastTargetPos = Vector2.down;
-            executingAstarSeek = false;
-
-
-            StartAStarPipeline();
-
-
+            OnCollisionWithFloor();
         }
     }
 
@@ -229,6 +232,11 @@ public partial class AIController : MonoBehaviour
             StartAStarPipeline();
         }
 
+        if(collision.tag == "transitionLine")
+        {
+            OnCollisionWithFloor();
+        }
+
 
     }
 
@@ -236,6 +244,7 @@ public partial class AIController : MonoBehaviour
     {
         if (collision.tag == "backupPlanZone")
         {
+
             onBackupPlanZone = false;
         }
     }
