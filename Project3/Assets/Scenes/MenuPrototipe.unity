@@ -304,6 +304,11 @@ PrefabInstance:
       propertyPath: cost
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 554956873870330210, guid: 3076439530bfc0a4f8c3660211d36108,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 554956873914333259, guid: 3076439530bfc0a4f8c3660211d36108,
         type: 3}
       propertyPath: MIBSuitPrev
@@ -420,6 +425,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554956874213505500, guid: 3076439530bfc0a4f8c3660211d36108,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 617705009397200552, guid: 3076439530bfc0a4f8c3660211d36108,
         type: 3}

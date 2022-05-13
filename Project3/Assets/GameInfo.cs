@@ -160,12 +160,15 @@ public class GameInfo : MonoBehaviour
 
                     Destroy(ai_player.gameObject.GetComponent<PlayerController>());
 
+                    RefreshSkin(ai_player);
                     // TODO: Randomize skins
+                    /*
                     var animController = ai_player.transform.GetChild(1).GetChild(0).GetComponent<PlayerAnimationController>();
                     animController.baseSkin = "Yellow";
                     animController.suitSkin = "MIBred";
                     animController.accessory1Skin = "Default";
                     animController.accessory2Skin = "Default";
+                    */
 
                     ai_players[i] = ai_player;
                 }
@@ -190,7 +193,7 @@ public class GameInfo : MonoBehaviour
         playerAnimController.accessory1Skin = playerSkin.accessory1SkinName;
         playerAnimController.accessory2Skin = playerSkin.accessory2SkinName;
         Material mat = playerAnimController.gameObject.GetComponent<SpriteRenderer>().material;
-        if(playerSkin.playerColor != new Color(1, 1, 1))
+        if (playerSkin.playerColor != new Color(1, 1, 1))
         {
             mat.SetFloat("_ColorChangeTolerance", 0.2f);
             mat.SetColor("_ColorChangeNewCol", playerSkin.playerColor);
@@ -200,6 +203,36 @@ public class GameInfo : MonoBehaviour
             mat.SetFloat("_ColorChangeTolerance", 1.0f);
 
         }
+
+    }
+
+    void RefreshSkin(GameObject _player)
+    {
+        var playerAnimController = _player.transform.GetChild(1).GetChild(0).GetComponent<PlayerAnimationController>();
+        playerAnimController.baseSkin = "Yellow";
+        playerAnimController.suitSkin = "MIBred";
+        playerAnimController.accessory1Skin = "Default";
+        playerAnimController.accessory2Skin = "Default";
+        Material mat = playerAnimController.gameObject.GetComponent<SpriteRenderer>().material;
+        int skinIndx = UnityEngine.Random.Range(0, 4);
+        mat.SetFloat("_ColorChangeTolerance", 0.2f);
+        switch (UnityEngine.Random.Range(0, 4))
+        {
+            case 0:
+                mat.SetColor("_ColorChangeNewCol", new Color(0.2f, 0.75f, 0.75f));
+                break;
+            case 1:
+                mat.SetColor("_ColorChangeNewCol", new Color(0.3f, 0.8f, 0.3f));
+                break;
+            case 2:
+                mat.SetColor("_ColorChangeNewCol", new Color(0.7f, 0.3f, 1.0f));
+                break;
+            case 3:
+                mat.SetFloat("_ColorChangeTolerance", 1.0f);
+                break;
+        }
+
+        
     }
 
     public void SaveData()
