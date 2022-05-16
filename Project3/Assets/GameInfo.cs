@@ -27,6 +27,8 @@ public class GameInfo : MonoBehaviour
     public static int totalPerkCost;
     public static int equippedPerkCost;
     public static int softCurrency;
+    public static bool sfxEnable;
+    public static bool musicEnable;
 
     public static bool showAIStatusInfo = false;
 
@@ -105,6 +107,9 @@ public class GameInfo : MonoBehaviour
         }
         LoadData();
         DontDestroyOnLoad(instance.gameObject);
+
+        AudioController.instance.mixer.SetFloat("sfxVolume", Mathf.Log10(Convert.ToSingle(sfxEnable)) * 30f);
+        AudioController.instance.mixer.SetFloat("musicVolume", Mathf.Log10(Convert.ToSingle(musicEnable)) * 30f);
 
         MapController.LoadTilemaps();
 
@@ -276,6 +281,8 @@ public class GameInfo : MonoBehaviour
             totalPerkCost = data.totalPerkCost;
             equippedPerkCost = data.equippedPerkCost;
             softCurrency = data.softCurrency;
+            sfxEnable = data.sfxEnable;
+            musicEnable = data.musicEnable;
 
             Debug.Log(playerSkin.baseSkinName + " " + playerSkin.suitSkinName + " " + playerSkin.accessory1SkinName + " " + playerSkin.accessory2SkinName + "Unlocked: " + equippedPerkCost);
         }

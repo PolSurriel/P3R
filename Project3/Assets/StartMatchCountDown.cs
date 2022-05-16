@@ -62,12 +62,12 @@ public class StartMatchCountDown : MonoBehaviour
     {
 
 
-        audiosecond5 = new UnityAudio(second5);
-        audiosecond4 = new UnityAudio(second4);
-        audiosecond3 = new UnityAudio(second3);
-        audiosecond2 = new UnityAudio(second2);
-        audiosecond1 = new UnityAudio(second1);
-        audiogosound = new UnityAudio(gosound);
+        audiosecond5 = new UnityAudio(second5, AudioController.instance.sfx_Mixer);
+        audiosecond4 = new UnityAudio(second4, AudioController.instance.sfx_Mixer);
+        audiosecond3 = new UnityAudio(second3, AudioController.instance.sfx_Mixer);
+        audiosecond2 = new UnityAudio(second2, AudioController.instance.sfx_Mixer);
+        audiosecond1 = new UnityAudio(second1, AudioController.instance.sfx_Mixer);
+        audiogosound = new UnityAudio(gosound, AudioController.instance.sfx_Mixer);
 
         text = GetComponent<TextMeshPro>();
         AudioController.instance.sounds.matchSong.Play();

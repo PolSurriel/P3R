@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SkillsEquippedManager : MonoBehaviour
 {
     [SerializeField] PerkDisplay[] allPerks = new PerkDisplay[4];
+    [SerializeField] PerkDisplay[] allPerksEquip = new PerkDisplay[4];
     [SerializeField] PerkDisplay freePerkSlot;
     [SerializeField] PerkDisplay[] premiumPerkSlots = new PerkDisplay[2];
     [SerializeField] ScriptablePerk freeblocked;
@@ -40,7 +41,9 @@ public class SkillsEquippedManager : MonoBehaviour
         for (int i = 0; i < allPerks.Length; i++)
         {
             allPerks[i].perk = GameInfo.equippedPerks[i];
+            allPerksEquip[i].perk = GameInfo.equippedPerks[i];
             allPerks[i].RefreshCard();
+            allPerksEquip[i].RefreshCard();
         }
         if (!GameInfo.freePerkSlotUnlocked)
             freePerkSlot.perk = freeblocked;

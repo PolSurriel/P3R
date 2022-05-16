@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public class AudioController : MonoBehaviour
 {
     public static AudioController instance;
     public static AudioSource myAudioSource;
+    public AudioMixer mixer;
+    public AudioMixerGroup sfx_Mixer;
+    public AudioMixerGroup music_Mixer;
+
 
     public class Sounds
     {
@@ -37,7 +42,11 @@ public class AudioController : MonoBehaviour
         public SurrealBoost.Audio runner_jump = new FMODAudio("event:/FOLEY/character actions/jump");
         public SurrealBoost.Audio runner_doubleJump = new FMODAudio("event:/FOLEY/character actions/doublejump");
         public SurrealBoost.Audio gameplaySoundtrack = new FMODAudio("event:/MUSIC/ingame music");
-        public SurrealBoost.Audio buttonSound = new UnityAudio("Audios/buttonSound");
+
+        // UI Sounds
+        public SurrealBoost.Audio buttonSound = new UnityAudio("Audios/buttonSound", instance.sfx_Mixer);
+        public SurrealBoost.Audio perkButtonSound = new UnityAudio("Audios/perkButtonSound", instance.sfx_Mixer);
+        public SurrealBoost.Audio changeTabSound = new UnityAudio("Audios/changeTabSound", instance.sfx_Mixer);
         
         public SurrealBoost.Audio matchSong = new FMODAudio("event:/MUSIC/ingame music");
     }

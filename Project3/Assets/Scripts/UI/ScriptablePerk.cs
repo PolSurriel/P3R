@@ -12,6 +12,7 @@ public class ScriptablePerk : ScriptableObject
     public int maxFusionLvl;
     public Sprite sprite;
     public Rarity rarity;
+    public string description;
     
 }
 public enum Rarity { COMMON, UNCOMMON, RARE, EPIC, LEGENDARY, DEFAULT }
