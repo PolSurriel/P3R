@@ -1,370 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8825358140347951551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/jump/character_voice
-  m_EditorClassIdentifier: 
-  Name: character_voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &-8799397762334037255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-8652023114927296890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637812220554626332
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-8578441247164644752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637806022441754598
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-8551193381489490426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637765056370932467
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-8536253801794732381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637816743912270440
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-8124681910653722590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &-8030967594325107587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/jump
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/jump
-  guid: 087463e226302745840513e6b635f884
-  Banks:
-  - {fileID: -3959153551214956815}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 375
---- !u!114 &-7984001215241431718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637806022441754598
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-7429323390909476602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: 
-  Min: 0
-  Max: 0
-  Default: 0
-  Exists: 0
---- !u!114 &-7288035301168351440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &-6962318769170041648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/character actions/wallcollision
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/character actions/wallcollision
-  guid: d1410d1d9387ff409a6b41f8045bba99
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 54
---- !u!114 &-6909337124046275531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637846800809356123
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-6848556589864468116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/power up
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/power up
-  guid: 977a14c836d2c0479b65540c38046ffd
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 1062
---- !u!114 &-6813342745984310297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/doublejump/character_voice
-  m_EditorClassIdentifier: 
-  Name: character_voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &-6742619843212970457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637817556278761855
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-6624356106072460075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 4
-  m_EditorClassIdentifier: 
-  Name: volume layer 4
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &-6315594504104879354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/jump
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/jump
-  guid: 087463e226302745840513e6b635f884
-  Banks: []
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 375
---- !u!114 &-6192160620797420149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MUSIC/ingame music
-  m_EditorClassIdentifier: 
-  Path: event:/MUSIC/ingame music
-  guid: d77810ceb6b50f40b9e32b718c3d67b8
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 122745259696128123}
-  - {fileID: 4429131665806168343}
-  - {fileID: 5125787406411373372}
-  - {fileID: 5437864332280212624}
-  - {fileID: -6624356106072460075}
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 96052
---- !u!114 &-6105429665794944736
+--- !u!114 &-9221803782319125621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -380,1198 +16,8 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
-  Exists: 0
---- !u!114 &-6022880246022430439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
   Exists: 1
---- !u!114 &-5954506622027722448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637836734695971724
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-5922541920785674929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-5714648872935134686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-5645827582942815413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 4
-  m_EditorClassIdentifier: 
-  Name: volume layer 4
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-5566391157600209697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 1
---- !u!114 &-5528220812516445253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/doublejump/character_voice
-  m_EditorClassIdentifier: 
-  Name: character_voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &-5453992486906444537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/jump/character_voice
-  m_EditorClassIdentifier: 
-  Name: character_voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &-5288015187096097607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/jump/character voice
-  m_EditorClassIdentifier: 
-  Name: character voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &-5224280295982565704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 3
-  m_EditorClassIdentifier: 
-  Name: volume layer 3
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-5168697210276960813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/jump/character voice
-  m_EditorClassIdentifier: 
-  Name: character voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 1
---- !u!114 &-4710368268298035186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637738667498862503
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-4667186898512565407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 1
---- !u!114 &-4530517064537398917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637846800809356123
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-4326000373124406442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ingame music
-  m_EditorClassIdentifier: 
-  Path: event:/ingame music
-  guid: d77810ceb6b50f40b9e32b718c3d67b8
-  Banks: []
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 3759121313639506434}
-  - {fileID: -7288035301168351440}
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 96052
---- !u!114 &-3959153551214956815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: 
-  SubDir: 
-  lastModified: 0
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-3765404798581816407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 2
-  m_EditorClassIdentifier: 
-  Name: volume layer 2
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-3592696688796268678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637836734695971724
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-3558605532888345285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &-3435606316712484446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/jump/character_voice
-  m_EditorClassIdentifier: 
-  Name: character_voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &-3365917442270798757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &-3231346155407029158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &-3149032458122689923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637742650817886917
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-3139846688903070779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/treadmill
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/treadmill
-  guid: 2f91f79f26438b48a8eedf7068cbaac4
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 673
---- !u!114 &-3125400438433707824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/character actions/doublejump
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/character actions/doublejump
-  guid: 2ccc698385bc1245bb5e8a20962fad30
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters:
-  - {fileID: 7445406148667373601}
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 453
---- !u!114 &-2770590982587077728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637816743912270440
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-2475376186061735596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/doors
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/doors
-  guid: 8cd3b54de75a1b4091bca49a117e9576
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters:
-  - {fileID: 3972091912325504365}
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 812
---- !u!114 &-2441026292818598354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 4
-  m_EditorClassIdentifier: 
-  Name: volume layer 4
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-2409387900972512680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 2
-  m_EditorClassIdentifier: 
-  Name: volume layer 2
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-2157326105122042699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/doublejump
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/doublejump
-  guid: 38f07885e377964bb8b87630b420996e
-  Banks: []
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 468
---- !u!114 &-2045578851134314891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/doublejump/character_voice
-  m_EditorClassIdentifier: 
-  Name: character_voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &-2013228018466030373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 3
-  m_EditorClassIdentifier: 
-  Name: volume layer 3
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-1969973068864552997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 3
-  m_EditorClassIdentifier: 
-  Name: volume layer 3
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-1794117971258285608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/mat
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/mat
-  guid: 087463e226302745840513e6b635f884
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 250
---- !u!114 &-1716337011181683707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &-1714445558158319133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &-1577514061813614225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637835552464672471
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-1551453351309065961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637812215526683726
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-1242770055443497485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637834947958752379
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-1070417196718358399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/doublejump/character voice
-  m_EditorClassIdentifier: 
-  Name: character voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &-1031122194816249878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/doublejump/character_voice
-  m_EditorClassIdentifier: 
-  Name: character_voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &-937143640398654004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637812203415908667
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-719162369613076772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &-712613822125508327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &-703401336439423126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637835552464672471
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-647857647915347869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 3
-  m_EditorClassIdentifier: 
-  Name: volume layer 3
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &-631969948804404880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.strings.bank
-  SubDir: 
-  lastModified: 637818698750938036
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 1608
-  Exists: 1
---- !u!114 &-577298081322115476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &-388462578323254384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637834953401550442
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-159174927473832734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &-94625700141168131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637735480985691654
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-26278642978763878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &-2295060737620086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/jump/character voice
-  m_EditorClassIdentifier: 
-  Name: character voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: 3319507911863729056}
-  - {fileID: -388462578323254384}
-  - {fileID: 6425277230648903935}
-  - {fileID: 3937017674518223750}
-  - {fileID: 460794003454809832}
-  - {fileID: -1577514061813614225}
-  - {fileID: 2933595946878469690}
-  - {fileID: 2941648988447118351}
-  - {fileID: 7254922351297245150}
-  - {fileID: -3592696688796268678}
-  - {fileID: 3223227245603629143}
-  - {fileID: 953506528383971878}
-  - {fileID: -4530517064537398917}
-<<<<<<< HEAD
-  - {fileID: 6206141643160770528}
-=======
-  - {fileID: 3801030885774599200}
->>>>>>> ranking
-  EditorEvents:
-  - {fileID: -6192160620797420149}
-  - {fileID: -3125400438433707824}
-  - {fileID: -3139846688903070779}
-  - {fileID: 7140789039348988195}
-  - {fileID: 0}
-  - {fileID: 7319361224051403338}
-  - {fileID: 0}
-  - {fileID: -2475376186061735596}
-  - {fileID: 2232650332509713050}
-  - {fileID: -1794117971258285608}
-  - {fileID: 6656279301855742903}
-  - {fileID: 6676780257193292840}
-  - {fileID: -6848556589864468116}
-  - {fileID: 5189932793728754893}
-  - {fileID: -6962318769170041648}
-  - {fileID: 8282813749846729169}
-  - {fileID: 5181638573394425480}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -388462578323254384}
-  StringsBanks:
-  - {fileID: 3319507911863729056}
-<<<<<<< HEAD
-  stringsBankWriteTime: 637836734695981722
-=======
-  stringsBankWriteTime: 637846952247240769
->>>>>>> ranking
-  cacheVersion: 3
---- !u!114 &122745259696128123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 1
---- !u!114 &262434986541675124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &460794003454809832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637835538067436163
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &555697075189408772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637834155323977991
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &841691841678843911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637817555813258980
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &953506528383971878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637836734695971724
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &1163462271687573394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 1
-  m_EditorClassIdentifier: 
-  Name: volume layer 1
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &1241328934520636020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &1611502759834145737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/doublejump/character voice
-  m_EditorClassIdentifier: 
-  Name: character voice
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &1692260654395772365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &1966971053923001762
+--- !u!114 &-9203913845459882110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1586,16 +32,99 @@ MonoBehaviour:
   Path: event:/FOLEY/character actions/jump
   guid: 38f07885e377964bb8b87630b420996e
   Banks:
-  - {fileID: -388462578323254384}
+  - {fileID: 8501851592859611869}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -5168697210276960813}
+  - {fileID: 5849954255180649396}
   MinDistance: 0
   MaxDistance: 0
   Length: 125
---- !u!114 &2065788575434283866
+--- !u!114 &-9138428155536933634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.strings.bank
+  SubDir: 
+  lastModified: 637846952247240769
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1806
+  Exists: 1
+--- !u!114 &-9010944470679231853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/windmill
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/windmill
+  guid: 65be6f1bcb58e843a860ef8263cc4023
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
+--- !u!114 &-8865980133367843623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/doors/open close
+  m_EditorClassIdentifier: 
+  Name: open close
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &-8799848007668681393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/character actions/ceiling
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/character actions/ceiling
+  guid: 584d57a3722aad42946ec9afe6465126
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 187
+--- !u!114 &-8682656843188234763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1611,8 +140,444 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
-  Exists: 0
---- !u!114 &2232650332509713050
+  Exists: 1
+--- !u!114 &-8056330285994809193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/character actions/doublejump
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/character actions/doublejump
+  guid: 2ccc698385bc1245bb5e8a20962fad30
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 2703762075840469048}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 453
+--- !u!114 &-7746317790549642498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/doors
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/doors
+  guid: 8cd3b54de75a1b4091bca49a117e9576
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -5889747925430853620}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 812
+--- !u!114 &-7624773963915328100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/stain
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/stain
+  guid: 4d05e4e730c9b242ab796ba52fb01689
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 265
+--- !u!114 &-7374316221653521206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/power up norot
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/power up norot
+  guid: aaf25edc224a8e479fb36e3e9ce7d14d
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 968
+--- !u!114 &-5889747925430853620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/doors/open close
+  m_EditorClassIdentifier: 
+  Name: open close
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &-5700592792244100837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/ingame music
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/ingame music
+  guid: d77810ceb6b50f40b9e32b718c3d67b8
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 641576249897729664}
+  - {fileID: 9210372977385651047}
+  - {fileID: 5860047837474927670}
+  - {fileID: -5605152098814266298}
+  - {fileID: 4596113770658967240}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 96052
+--- !u!114 &-5605152098814266298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/volume layer 1
+  m_EditorClassIdentifier: 
+  Name: volume layer 1
+  Min: 0
+  Max: 100
+  Default: 0
+  Exists: 1
+--- !u!114 &-5265737452657209836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/treadmill
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/treadmill
+  guid: 2f91f79f26438b48a8eedf7068cbaac4
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 673
+--- !u!114 &-4745265701483910124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/stain
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/stain
+  guid: 4d05e4e730c9b242ab796ba52fb01689
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 265
+--- !u!114 &-4706138999032128403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/power up
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/power up
+  guid: 977a14c836d2c0479b65540c38046ffd
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1062
+--- !u!114 &-4288001174276775076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/doors
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/doors
+  guid: 8cd3b54de75a1b4091bca49a117e9576
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -8865980133367843623}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 812
+--- !u!114 &-3028532020013347189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/character actions/wallcollision
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/character actions/wallcollision
+  guid: d1410d1d9387ff409a6b41f8045bba99
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 54
+--- !u!114 &-2914710415905781726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/menu music 2
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/menu music 2
+  guid: 341c3babe90f764d943e8d32f868868f
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-2280993385141978185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/character actions/jump
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/character actions/jump
+  guid: 38f07885e377964bb8b87630b420996e
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 2260694250765075520}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 125
+--- !u!114 &-2111294072955878997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/portal
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/portal
+  guid: 7f05b7f82357bd45b301f933f9e017ba
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 304
+--- !u!114 &-1894421421253404070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/mat
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/mat
+  guid: 087463e226302745840513e6b635f884
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 250
+--- !u!114 &-1804644745717554575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/mat
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/mat
+  guid: 087463e226302745840513e6b635f884
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 250
+--- !u!114 &-1237477176589689296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.strings.bank
+  SubDir: 
+  lastModified: 637846952247240769
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1806
+  Exists: 1
+--- !u!114 &-1087284305203687473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/ingame music
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/ingame music
+  guid: d77810ceb6b50f40b9e32b718c3d67b8
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 7726427297644796997}
+  - {fileID: 1095937686786823714}
+  - {fileID: 3669127967360047870}
+  - {fileID: -9221803782319125621}
+  - {fileID: -8682656843188234763}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 96052
+--- !u!114 &-611677755543919212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1627,7 +592,7 @@ MonoBehaviour:
   Path: event:/MUSIC/menu music 1
   guid: b6a56a2f0818544e82b59ae571514fba
   Banks:
-  - {fileID: -388462578323254384}
+  - {fileID: 8501851592859611869}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -1635,7 +600,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 96028
---- !u!114 &2427867126255365778
+--- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1644,15 +609,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &2473890613289371705
+  EditorBanks:
+  - {fileID: -1237477176589689296}
+  - {fileID: 8501851592859611869}
+  EditorEvents:
+  - {fileID: -1894421421253404070}
+  - {fileID: 3806737785147342922}
+  - {fileID: -5265737452657209836}
+  - {fileID: -2914710415905781726}
+  - {fileID: -9203913845459882110}
+  - {fileID: -7624773963915328100}
+  - {fileID: 8125047914179995640}
+  - {fileID: 4813984423440617734}
+  - {fileID: 8354211218882215179}
+  - {fileID: -7746317790549642498}
+  - {fileID: 2804051024901018659}
+  - {fileID: 4367804033443053067}
+  - {fileID: 5764848357529470051}
+  - {fileID: 1328231840200342090}
+  - {fileID: -611677755543919212}
+  - {fileID: -3028532020013347189}
+  - {fileID: -1087284305203687473}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 8501851592859611869}
+  StringsBanks:
+  - {fileID: -1237477176589689296}
+  stringsBankWriteTime: 637846952247240769
+  cacheVersion: 3
+--- !u!114 &515481224413545698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1662,19 +650,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/impact sound 1
+  m_Name: event:/FOLEY/interactive objects/crazyimpact
   m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/impact sound 1
-  guid: 584d57a3722aad42946ec9afe6465126
-  Banks: []
+  Path: event:/FOLEY/interactive objects/crazyimpact
+  guid: a5aecb6326a046428f5698dba03fdbc7
+  Banks:
+  - {fileID: 5220244179150367704}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 281
---- !u!114 &2603344486335822577
+  Length: 875
+--- !u!114 &641576249897729664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/layering
+  m_EditorClassIdentifier: 
+  Name: layering
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 1
+--- !u!114 &1095937686786823714
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1690,8 +696,31 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
-  Exists: 0
---- !u!114 &2793582990618731716
+  Exists: 1
+--- !u!114 &1328231840200342090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/power up norot
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/power up norot
+  guid: aaf25edc224a8e479fb36e3e9ce7d14d
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 968
+--- !u!114 &2260694250765075520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1701,68 +730,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/jump/character_voice
+  m_Name: parameter:/jump/character voice
   m_EditorClassIdentifier: 
-  Name: character_voice
+  Name: character voice
   Min: 0
   Max: 2
   Default: 0
-  Exists: 0
---- !u!114 &2933595946878469690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637836734695971724
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &2941648988447118351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637835538067436163
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &3223227245603629143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637846800809356123
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &3289627618388328035
+  Exists: 1
+--- !u!114 &2703762075840469048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1772,14 +747,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
+  m_Name: parameter:/doublejump/character voice
   m_EditorClassIdentifier: 
-  Name: layering
+  Name: character voice
   Min: 0
-  Max: 4
+  Max: 2
   Default: 0
-  Exists: 0
---- !u!114 &3319507911863729056
+  Exists: 1
+--- !u!114 &2804051024901018659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1788,22 +763,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.strings.bank
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/power up
   m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.strings.bank
-  SubDir: 
-<<<<<<< HEAD
-  lastModified: 637836734695981722
-=======
-  lastModified: 637846952247240769
->>>>>>> ranking
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 1806
-  Exists: 1
---- !u!114 &3331498118471632074
+  Path: event:/FOLEY/interactive objects/power up
+  guid: 977a14c836d2c0479b65540c38046ffd
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1062
+--- !u!114 &3364461248382937306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1812,16 +786,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/treadmill
   m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637818698751328398
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &3759121313639506434
+  Path: event:/FOLEY/interactive objects/treadmill
+  guid: 2f91f79f26438b48a8eedf7068cbaac4
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 673
+--- !u!114 &3669127967360047870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1831,14 +810,141 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
+  m_Name: parameter:/ingame music/volume layer 3
   m_EditorClassIdentifier: 
-  Name: layering
+  Name: volume layer 3
   Min: 0
-  Max: 4
+  Max: 100
   Default: 0
   Exists: 1
---- !u!114 &3801030885774599200
+--- !u!114 &3806737785147342922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/character actions/doublejump
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/character actions/doublejump
+  guid: 2ccc698385bc1245bb5e8a20962fad30
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 4399438105228407826}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 453
+--- !u!114 &3919186773886414987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/menu music 1
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/menu music 1
+  guid: b6a56a2f0818544e82b59ae571514fba
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 96028
+--- !u!114 &4367804033443053067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/crazyimpact
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/crazyimpact
+  guid: a5aecb6326a046428f5698dba03fdbc7
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 875
+--- !u!114 &4399438105228407826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/doublejump/character voice
+  m_EditorClassIdentifier: 
+  Name: character voice
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &4596113770658967240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ingame music/volume layer 4
+  m_EditorClassIdentifier: 
+  Name: volume layer 4
+  Min: 0
+  Max: 100
+  Default: 0
+  Exists: 1
+--- !u!114 &4813984423440617734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/windmill
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/windmill
+  guid: 65be6f1bcb58e843a860ef8263cc4023
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
+--- !u!114 &5220244179150367704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1856,606 +962,7 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
---- !u!114 &3937017674518223750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637834953401550442
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &3972091912325504365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/doors/open close
-  m_EditorClassIdentifier: 
-  Name: open close
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 1
---- !u!114 &3980033213921396423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 1
-  m_EditorClassIdentifier: 
-  Name: volume layer 1
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &3998079831960770198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 1
---- !u!114 &4078717122309848150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &4105637892671684049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/doublejump
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/doublejump
-  guid: 38f07885e377964bb8b87630b420996e
-  Banks: []
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 468
---- !u!114 &4135511394908483265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/impact sound 2
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/impact sound 2
-  guid: a8ba1956ee62ec43b881220c3bde3c38
-  Banks: []
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 705
---- !u!114 &4190685020433566246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637819876542613998
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &4429131665806168343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 2
-  m_EditorClassIdentifier: 
-  Name: volume layer 2
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &4582147371547256262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.strings.bank
-  SubDir: 
-  lastModified: 637741245680912145
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 954
-  Exists: 0
---- !u!114 &4672386260707238370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637816739937194952
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &4714627473171840064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637817545834408594
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &5125787406411373372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 3
-  m_EditorClassIdentifier: 
-  Name: volume layer 3
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &5181638573394425480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/power up norot
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/power up norot
-  guid: aaf25edc224a8e479fb36e3e9ce7d14d
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 968
---- !u!114 &5189932793728754893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/crazyimpact
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/crazyimpact
-  guid: a5aecb6326a046428f5698dba03fdbc7
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 875
---- !u!114 &5437864332280212624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 1
-  m_EditorClassIdentifier: 
-  Name: volume layer 1
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &5461134945545198892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 1
-  m_EditorClassIdentifier: 
-  Name: volume layer 1
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &5688419585322949930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &6137317132413174873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637812205650460946
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &6192408949146783232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637720765711125687
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &6206141643160770528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637836734695971724
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &6425277230648903935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637835538067436163
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &6448288046293147271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637799590244490341
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &6656279301855742903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/character actions/ceiling
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/character actions/ceiling
-  guid: 584d57a3722aad42946ec9afe6465126
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 187
---- !u!114 &6676780257193292840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/windmill
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/windmill
-  guid: 65be6f1bcb58e843a860ef8263cc4023
-  Banks:
-  - {fileID: -388462578323254384}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 2000
---- !u!114 &6709772540757272216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637742650817886917
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &6950556599749652779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &7004382147877656321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &7012781369618331939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MUSIC/ingame music
-  m_EditorClassIdentifier: 
-  Path: event:/MUSIC/ingame music
-  guid: d77810ceb6b50f40b9e32b718c3d67b8
-  Banks: []
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 8128993252117689046}
-  - {fileID: 7004382147877656321}
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 96052
---- !u!114 &7067017151026185147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 4
-  m_EditorClassIdentifier: 
-  Name: volume layer 4
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &7112703546525919906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 1
-  m_EditorClassIdentifier: 
-  Name: volume layer 1
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &7120346662634797667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637735481806697353
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &7140789039348988195
+--- !u!114 &5709529610314376429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2470,7 +977,7 @@ MonoBehaviour:
   Path: event:/MUSIC/menu music 2
   guid: 341c3babe90f764d943e8d32f868868f
   Banks:
-  - {fileID: -388462578323254384}
+  - {fileID: 5220244179150367704}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2478,42 +985,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
---- !u!114 &7254922351297245150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
-  SubDir: 
-  lastModified: 637846800809356123
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &7255641125142251221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &7319361224051403338
+--- !u!114 &5764848357529470051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2523,20 +995,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/stain
+  m_Name: event:/FOLEY/interactive objects/impact sound 2
   m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/stain
-  guid: 4d05e4e730c9b242ab796ba52fb01689
+  Path: event:/FOLEY/interactive objects/impact sound 2
+  guid: a8ba1956ee62ec43b881220c3bde3c38
   Banks:
-  - {fileID: -388462578323254384}
+  - {fileID: 8501851592859611869}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 265
---- !u!114 &7387590998990070924
+  Length: 705
+--- !u!114 &5849954255180649396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2546,89 +1018,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 2
-  m_EditorClassIdentifier: 
-  Name: volume layer 2
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &7445406148667373601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/doublejump/character voice
+  m_Name: parameter:/jump/character voice
   m_EditorClassIdentifier: 
   Name: character voice
   Min: 0
   Max: 2
   Default: 0
   Exists: 1
---- !u!114 &7481502933384699986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ingame music
-  m_EditorClassIdentifier: 
-  Path: event:/ingame music
-  guid: d77810ceb6b50f40b9e32b718c3d67b8
-  Banks: []
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -4667186898512565407}
-  - {fileID: -1714445558158319133}
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 96052
---- !u!114 &7653495663336383377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &7914683124029742309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &7927026282029196037
+--- !u!114 &5860047837474927670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2644,47 +1041,8 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
-  Exists: 0
---- !u!114 &8128993252117689046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
   Exists: 1
---- !u!114 &8219567203053585725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/bumper
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/bumper
-  guid: 087463e226302745840513e6b635f884
-  Banks: []
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 414
---- !u!114 &8282813749846729169
+--- !u!114 &6322659068684053599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2699,7 +1057,7 @@ MonoBehaviour:
   Path: event:/FOLEY/interactive objects/impact sound 2
   guid: a8ba1956ee62ec43b881220c3bde3c38
   Banks:
-  - {fileID: -388462578323254384}
+  - {fileID: 5220244179150367704}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2707,7 +1065,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 705
---- !u!114 &8391661798289037203
+--- !u!114 &7726427297644796997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2717,14 +1075,101 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
+  m_Name: parameter:/ingame music/layering
   m_EditorClassIdentifier: 
-  Name: volume
+  Name: layering
   Min: 0
-  Max: 100
+  Max: 4
   Default: 0
-  Exists: 0
---- !u!114 &8648009605794050851
+  Exists: 1
+--- !u!114 &7955617592009624165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/character actions/wallcollision
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/character actions/wallcollision
+  guid: d1410d1d9387ff409a6b41f8045bba99
+  Banks:
+  - {fileID: 5220244179150367704}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 54
+--- !u!114 &8125047914179995640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/character actions/ceiling
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/character actions/ceiling
+  guid: 584d57a3722aad42946ec9afe6465126
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 187
+--- !u!114 &8354211218882215179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/portal
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/portal
+  guid: 7f05b7f82357bd45b301f933f9e017ba
+  Banks:
+  - {fileID: 8501851592859611869}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 304
+--- !u!114 &8501851592859611869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
+  SubDir: 
+  lastModified: 637846952248268022
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &9210372977385651047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2739,129 +1184,5 @@ MonoBehaviour:
   Name: volume layer 2
   Min: 0
   Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &8699251531517067292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &8749011708624904365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume
-  m_EditorClassIdentifier: 
-  Name: volume
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 1
---- !u!114 &8831038598468863868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
-  Exists: 0
---- !u!114 &8887522701200202891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/volume layer 4
-  m_EditorClassIdentifier: 
-  Name: volume layer 4
-  Min: 0
-  Max: 100
-  Default: 0
-  Exists: 0
---- !u!114 &8991547995149412418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FOLEY/interactive objects/third jump zone
-  m_EditorClassIdentifier: 
-  Path: event:/FOLEY/interactive objects/third jump zone
-  guid: 977a14c836d2c0479b65540c38046ffd
-  Banks: []
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 593
---- !u!114 &9007901231279630526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/doors/open close
-  m_EditorClassIdentifier: 
-  Name: open close
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &9160438714534771496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ingame music/layering
-  m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
   Default: 0
   Exists: 1
