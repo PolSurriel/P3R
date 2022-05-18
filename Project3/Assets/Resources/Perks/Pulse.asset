@@ -19,3 +19,5 @@ MonoBehaviour:
   maxFusionLvl: 5
   sprite: {fileID: 21300000, guid: 2ea3ea54c499d314f957e0a47dc11c9c, type: 3}
   rarity: 2
+  description: There's a chance in your second jump to generate a force field that
+    push your enemies in the oposite direction

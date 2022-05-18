@@ -19,3 +19,8 @@ MonoBehaviour:
   maxFusionLvl: 0
   sprite: {fileID: 21300000, guid: c0294f49b20e5014b8758e57668f16ed, type: 3}
   rarity: 5
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit
+    amet semper ligula. Fusce neque enim, ultrices et imperdiet sit amet, gravida
+    et sem. Duis sit amet dignissim mauris. Aliquam erat volutpat. Sed sit amet diam
+    congue, imperdiet est et, venenatis justo. Sed faucibus lacus non ligula gravida
+    lacinia. Morbi mattis imperdiet lectus sit amet rutrum.

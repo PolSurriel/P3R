@@ -20,6 +20,9 @@ public class SaveData
     public int equippedPerkCost;
     public int softCurrency;
 
+    public bool sfxEnable;
+    public bool musicEnable;
+
     public SaveData()
     {
         baseSkin = "Yellow";
@@ -39,6 +42,8 @@ public class SaveData
         totalPerkCost = 0;
         equippedPerkCost = 0;
         softCurrency = 0;
+        sfxEnable = false;
+        musicEnable = false;
     }
 
     public SaveData(GameInfo gameInfo)
@@ -61,6 +66,8 @@ public class SaveData
         totalPerkCost = GameInfo.totalPerkCost;
         equippedPerkCost = GameInfo.equippedPerkCost;
         softCurrency = GameInfo.softCurrency;
+        sfxEnable = GameInfo.sfxEnable;
+        musicEnable = GameInfo.musicEnable;
     }
 
     public void UpdateState(GameInfo gameInfo)
@@ -82,6 +89,8 @@ public class SaveData
         totalPerkCost = GameInfo.totalPerkCost;
         equippedPerkCost = GameInfo.equippedPerkCost;
         softCurrency = GameInfo.softCurrency;
+        sfxEnable = GameInfo.sfxEnable;
+        musicEnable = GameInfo.musicEnable;
     }
 
     public void SaveInventory(List<ScriptablePerk> _inventory)

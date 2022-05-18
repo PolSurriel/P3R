@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class UnityAudio : SurrealBoost.Audio
 {
     public AudioClip audioclip;
+    public AudioMixerGroup mixer;
 
-    public UnityAudio(string path)
+    public UnityAudio(string path, AudioMixerGroup _mixerName)
     {
         audioclip = Resources.Load<AudioClip>(path);
+        mixer = _mixerName;
     }
-    public UnityAudio(AudioClip clip)
+    public UnityAudio(AudioClip clip, AudioMixerGroup _mixerName)
     {
         audioclip = clip;
+        mixer = _mixerName;
     }
     public override void Clean()
     {
@@ -21,7 +25,7 @@ public class UnityAudio : SurrealBoost.Audio
 
     public override void Play()
     {
-        
+        AudioController.myAudioSource.outputAudioMixerGroup = mixer;
         AudioController.myAudioSource.PlayOneShot(audioclip);
     }
 

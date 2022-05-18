@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using System;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class MainMenuManager : MonoBehaviour
     public SceneReference level1, level2, level3;
     public RectTransform allMenusContainer;
     public Slider loadingSlider;
+    public Toggle sfxSound;
+    public Toggle musicSound;
     [SerializeField] Text softCurrenyTxt;
     [SerializeField] Sprite MIBSuitPrev;
     [SerializeField] Sprite defSuitPrev;
@@ -32,11 +35,12 @@ public class MainMenuManager : MonoBehaviour
 
 
     private void Awake()
-    {
-        //AudioController.instance.sounds.jump.Play();
+    {;
         RefreshCurrencies();
         StartCoroutine(InitaliceMainMenu(1.0f));
     }
+
+    
 
     private void Start()
     {
@@ -52,14 +56,17 @@ public class MainMenuManager : MonoBehaviour
     public void SwipeToShop()
     {
         allMenusContainer.DOAnchorPos(new Vector2(0, 0), 0.25f);
+        AudioController.instance.sounds.changeTabSound.Play();
     }
     public void SwipeToSkins()
     {
         allMenusContainer.DOAnchorPos(new Vector2(PIXELS_BETWEEN_MENUS * 1, 0), 0.25f);
+        AudioController.instance.sounds.changeTabSound.Play();
     }
     public void SwipeToMain()
     {
         allMenusContainer.DOAnchorPos(new Vector2(PIXELS_BETWEEN_MENUS * 2, 0), 0.25f);
+        AudioController.instance.sounds.changeTabSound.Play();
     }
     public void SwipeToSkills()
     {
@@ -70,10 +77,12 @@ public class MainMenuManager : MonoBehaviour
             aux.RefreshCosts();
         }
         allMenusContainer.DOAnchorPos(new Vector2(PIXELS_BETWEEN_MENUS * 3, 0), 0.25f);
+        AudioController.instance.sounds.changeTabSound.Play();
     }
     public void SwipeToSettings()
     {
         allMenusContainer.DOAnchorPos(new Vector2(PIXELS_BETWEEN_MENUS * 4, 0), 0.25f);
+        AudioController.instance.sounds.changeTabSound.Play();
     }
 
     public void LoadLevel1()
@@ -110,6 +119,7 @@ public class MainMenuManager : MonoBehaviour
     {
         ResetSkinMat();     // Reset Skin color material for IA
 
+        AudioController.instance.sounds.buttonSound.Play();
         switch (modeType)
         {
             case ModeType.PLAYER:
@@ -184,12 +194,14 @@ public class MainMenuManager : MonoBehaviour
 
     public void SelectSkin(GameObject _sprite)
     {
+        AudioController.instance.sounds.buttonSound.Play();
         GameInfo.playerSkin.playerColor = _sprite.GetComponent<Image>().color;
         StartCoroutine(InitaliceMainMenu(0.1f));
     }
 
     public void SelectSuit(string _name)
     {
+        AudioController.instance.sounds.buttonSound.Play();
         GameInfo.playerSkin.suitSkinName = _name;
         Debug.Log(_name + " suit selected");
         StartCoroutine(InitaliceMainMenu(0.1f));
@@ -224,6 +236,17 @@ public class MainMenuManager : MonoBehaviour
         }
         
     }
+    public void ChangeSfxVolume()
+    {
+        GameInfo.sfxEnable = sfxSound.isOn;
+        AudioController.instance.mixer.SetFloat("sfxVolume", Mathf.Log10(Convert.ToSingle(sfxSound.isOn))*30f);
+    }
+    public void ChangeMusicVolume()
+    {
+        GameInfo.musicEnable = musicSound.isOn;
+        AudioController.instance.mixer.SetFloat("musicVolume", Mathf.Log10(Convert.ToSingle(musicSound.isOn))*30f);
+
+    }
 
     public void ResetSkinMat()
     {
@@ -245,7 +268,14 @@ public class MainMenuManager : MonoBehaviour
 
         RefreshCurrencies();
         RefreshSkinPrev();
+        RefreshToggles();
 
+    }
+
+    private void RefreshToggles()
+    {
+        sfxSound.isOn = GameInfo.sfxEnable;
+        musicSound.isOn = GameInfo.musicEnable;
     }
 
     IEnumerator LoadAsyncScene(SceneReference scene)

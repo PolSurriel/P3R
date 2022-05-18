@@ -47,36 +47,30 @@ public class PerkDisplay : MonoBehaviour
             //this.transform.GetComponentInChildren<Button>().interactable = false;
         }
         sprite.sprite = perk.sprite;
-        SetRarity();
+        rarity.color = SetRarityColor();
     }
 
     
 
-    void SetRarity()
+    public Color SetRarityColor()
     {
         switch (perk.rarity)
         {
             case Rarity.COMMON:
-                rarity.color = common;
-                break;
+                return common;
             case Rarity.UNCOMMON:
-                rarity.color = uncommon;
-                break;
+                return uncommon;
             case Rarity.RARE:
-                rarity.color = rare;
-                break;
+                return rare;
             case Rarity.EPIC:
-                rarity.color = epic;
-                break;
+                return epic;
             case Rarity.LEGENDARY:
-                rarity.color = legendary;
-                break;
+                return legendary;
             case Rarity.DEFAULT:
-                rarity.color = def;
-                break;
+                return def;
             default:
                 Debug.LogError("Color not found in PerkDisplay");
-                break;
+                return Color.white;
 
         }
     }
@@ -88,7 +82,15 @@ public class PerkDisplay : MonoBehaviour
             perk.selectedMenu.SetActive(false);
         }
         if (perk.myName != "Default" && !perkManager.flagEquip)
-            selectedMenu.SetActive(true);
+		{
+            GameObject.FindObjectOfType<PerkSelectionUI>().SetPerkSelectionUI(this.perk);
+            perkManager.flagEquip = true;
+		}
+        else if (perkManager.flagEquip)
+		{
+            EquipPerk();
+		}
+            //selectedMenu.SetActive(true);
     }
 
     public void InventoryEquipButton()
@@ -104,11 +106,8 @@ public class PerkDisplay : MonoBehaviour
     {
         // Function called when pressed the selected position of
         // equippedPerks where you want to equip selectedPerk
-        if (perkManager.flagEquip)
-        {
-            perkManager.UnequipPerk(perkIndex);
-        }
-
+        perkManager.UnequipPerk(perkIndex);
+        perkManager.flagEquip = false;
 
     }
 }
