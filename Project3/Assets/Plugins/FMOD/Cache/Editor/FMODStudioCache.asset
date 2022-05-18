@@ -33,11 +33,12 @@ MonoBehaviour:
   guid: 38f07885e377964bb8b87630b420996e
   Banks:
   - {fileID: 8501851592859611869}
+  - {fileID: -7932657887831443382}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 5849954255180649396}
+  - {fileID: -8749029033415861237}
   MinDistance: 0
   MaxDistance: 0
   Length: 125
@@ -124,6 +125,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 187
+--- !u!114 &-8749029033415861237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/jump/character voice
+  m_EditorClassIdentifier: 
+  Name: character voice
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &-8682656843188234763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +183,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 453
+--- !u!114 &-7932657887831443382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
+  SubDir: 
+  lastModified: 637846800809356123
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-7746317790549642498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +241,7 @@ MonoBehaviour:
   guid: 4d05e4e730c9b242ab796ba52fb01689
   Banks:
   - {fileID: 8501851592859611869}
+  - {fileID: -7932657887831443382}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -235,6 +272,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 968
+--- !u!114 &-6808826941237316562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FOLEY/interactive objects/treadmill
+  m_EditorClassIdentifier: 
+  Path: event:/FOLEY/interactive objects/treadmill
+  guid: 2f91f79f26438b48a8eedf7068cbaac4
+  Banks:
+  - {fileID: -7932657887831443382}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 673
 --- !u!114 &-5889747925430853620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +489,7 @@ MonoBehaviour:
   guid: 341c3babe90f764d943e8d32f868868f
   Banks:
   - {fileID: 8501851592859611869}
+  - {fileID: -7932657887831443382}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -499,6 +560,7 @@ MonoBehaviour:
   guid: 087463e226302745840513e6b635f884
   Banks:
   - {fileID: 8501851592859611869}
+  - {fileID: -7932657887831443382}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -543,7 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.strings.bank
   SubDir: 
-  lastModified: 637846952247240769
+  lastModified: 637846800809015804
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -569,7 +631,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 7726427297644796997}
+  - {fileID: 0}
   - {fileID: 1095937686786823714}
   - {fileID: 3669127967360047870}
   - {fileID: -9221803782319125621}
@@ -615,6 +677,7 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: -1237477176589689296}
   - {fileID: 8501851592859611869}
+  - {fileID: -7932657887831443382}
   EditorEvents:
   - {fileID: -1894421421253404070}
   - {fileID: 3806737785147342922}
@@ -633,12 +696,13 @@ MonoBehaviour:
   - {fileID: -611677755543919212}
   - {fileID: -3028532020013347189}
   - {fileID: -1087284305203687473}
+  - {fileID: -6808826941237316562}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8501851592859611869}
   StringsBanks:
   - {fileID: -1237477176589689296}
-  stringsBankWriteTime: 637846952247240769
+  stringsBankWriteTime: 637846800809015804
   cacheVersion: 3
 --- !u!114 &515481224413545698
 MonoBehaviour:
@@ -720,6 +784,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 968
+--- !u!114 &1570688782140974498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/doublejump/character voice
+  m_EditorClassIdentifier: 
+  Name: character voice
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &2260694250765075520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,11 +914,12 @@ MonoBehaviour:
   guid: 2ccc698385bc1245bb5e8a20962fad30
   Banks:
   - {fileID: 8501851592859611869}
+  - {fileID: -7932657887831443382}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 4399438105228407826}
+  - {fileID: 1570688782140974498}
   MinDistance: 0
   MaxDistance: 0
   Length: 453
@@ -941,7 +1023,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 2455226571370820466}
+  - {fileID: 0}
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
@@ -1078,10 +1160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master Bank.bank
   m_EditorClassIdentifier: 
-  Name: layering
-  Min: 0
-  Max: 4
-  Default: 0
+  Path: 
+  SubDir: 
+  lastModified: 0
+  LoadResult: 0
+  FileSizes: []
   Exists: 1
 --- !u!114 &7955617592009624165
 MonoBehaviour:
@@ -1122,11 +1205,12 @@ MonoBehaviour:
   guid: 584d57a3722aad42946ec9afe6465126
   Banks:
   - {fileID: 8501851592859611869}
+  - {fileID: -7932657887831443382}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 6621581420237267977}
+  - {fileID: 0}
   MinDistance: 0
   MaxDistance: 0
   Length: 187
@@ -1170,7 +1254,7 @@ MonoBehaviour:
   lastModified: 637846952248268022
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &9210372977385651047
 MonoBehaviour:
   m_ObjectHideFlags: 0

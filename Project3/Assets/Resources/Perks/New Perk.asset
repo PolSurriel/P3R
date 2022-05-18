@@ -17,5 +17,6 @@ MonoBehaviour:
   fusionLvl: 1
   cost: 4
   maxFusionLvl: 3
-  sprite: {fileID: 21300000, guid: 91cec08a9d565d94c89b47396c843e1c, type: 3}
-  rarity: 3
+  sprite: {fileID: 21300000, guid: 3ba06480b70a8455882c539dd6bb1017, type: 3}
+  rarity: 5
+  description: 

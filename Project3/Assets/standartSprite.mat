@@ -256,7 +256,7 @@ Material:
     m_Colors:
     - _AlphaOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorChangeNewCol: {r: 0.2, g: 0.75, b: 0.75, a: 1}
+    - _ColorChangeNewCol: {r: 0.3, g: 0.8, b: 0.3, a: 1}
     - _ColorChangeNewCol2: {r: 1, g: 1, b: 0, a: 1}
     - _ColorChangeNewCol3: {r: 1, g: 1, b: 0, a: 1}
     - _ColorChangeTarget: {r: 0.95294124, g: 0.9450981, b: 0.10588236, a: 1}

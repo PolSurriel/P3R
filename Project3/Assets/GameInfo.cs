@@ -27,8 +27,8 @@ public class GameInfo : MonoBehaviour
     public static int totalPerkCost;
     public static int equippedPerkCost;
     public static int softCurrency;
-    public static bool sfxEnable;
-    public static bool musicEnable;
+    public bool sfxEnable;
+    public bool musicEnable;
 
     public static bool showAIStatusInfo = false;
 
@@ -108,8 +108,8 @@ public class GameInfo : MonoBehaviour
         LoadData();
         DontDestroyOnLoad(instance.gameObject);
 
-        AudioController.instance.mixer.SetFloat("sfxVolume", Mathf.Log10(Convert.ToSingle(sfxEnable)) * 30f);
-        AudioController.instance.mixer.SetFloat("musicVolume", Mathf.Log10(Convert.ToSingle(musicEnable)) * 30f);
+        AudioController.instance.mixer.SetFloat("sfxVolume", Mathf.Log10(Convert.ToSingle(sfxEnable)) * 90f - 80f);
+        AudioController.instance.mixer.SetFloat("musicVolume", Mathf.Log10(Convert.ToSingle(musicEnable)) * 90f - 80f);
 
         MapController.LoadTilemaps();
 
@@ -240,6 +240,11 @@ public class GameInfo : MonoBehaviour
         
     }
 
+    public void PlaySound(UnityAudio _audio)
+	{
+        _audio.Play();
+	}
+
     public void SaveData()
     {
         //state.SaveInventory(inventoryPerks);
@@ -313,6 +318,10 @@ public class GameInfo : MonoBehaviour
         }
     }
 
+    public void PlayButtonSound()
+	{
+        AudioController.instance.sounds.buttonSound.Play();
+	}
 
     public static void AddSoftCurrency(int amount)
     {

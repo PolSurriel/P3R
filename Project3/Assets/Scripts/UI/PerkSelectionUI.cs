@@ -12,17 +12,6 @@ public class PerkSelectionUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI perkCost;
     [SerializeField] GameObject window;
     [SerializeField] PerkDisplay myPerk;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void SetPerkSelectionUI(ScriptablePerk perk)
 	{

@@ -66,8 +66,8 @@ public class SaveData
         totalPerkCost = GameInfo.totalPerkCost;
         equippedPerkCost = GameInfo.equippedPerkCost;
         softCurrency = GameInfo.softCurrency;
-        sfxEnable = GameInfo.sfxEnable;
-        musicEnable = GameInfo.musicEnable;
+        sfxEnable = gameInfo.sfxEnable;
+        musicEnable = gameInfo.musicEnable;
     }
 
     public void UpdateState(GameInfo gameInfo)
@@ -89,8 +89,8 @@ public class SaveData
         totalPerkCost = GameInfo.totalPerkCost;
         equippedPerkCost = GameInfo.equippedPerkCost;
         softCurrency = GameInfo.softCurrency;
-        sfxEnable = GameInfo.sfxEnable;
-        musicEnable = GameInfo.musicEnable;
+        sfxEnable = gameInfo.sfxEnable;
+        musicEnable = gameInfo.musicEnable;
     }
 
     public void SaveInventory(List<ScriptablePerk> _inventory)

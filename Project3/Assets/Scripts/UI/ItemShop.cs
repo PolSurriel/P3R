@@ -19,6 +19,7 @@ public class ItemShop : MonoBehaviour
         {
             GameInfo.AddPerkToInventory(perk);
             GameInfo.AddSoftCurrency(-cost);
+            GameObject.FindObjectOfType<BuyWindowUI>().SetBuyWindowUI(perk);
         }
     }
 
@@ -28,6 +29,7 @@ public class ItemShop : MonoBehaviour
         {
             GameInfo.freePerkSlotUnlocked = true;
             GameInfo.AddSoftCurrency(-cost);
+            GameObject.FindObjectOfType<BuyWindowUI>().SetBuyWindowUI(perk);
         }
     }
     
@@ -37,6 +39,7 @@ public class ItemShop : MonoBehaviour
         {
             GameInfo.premiumPerkSlotsUnlocked++;
             GameInfo.AddSoftCurrency(-cost);
+            GameObject.FindObjectOfType<BuyWindowUI>().SetBuyWindowUI(perk);
         }
     }
 
@@ -46,6 +49,7 @@ public class ItemShop : MonoBehaviour
         {
             GameInfo.freeCostUnlocked++;
             GameInfo.AddSoftCurrency(-cost);
+            GameObject.FindObjectOfType<BuyWindowUI>().SetBuyWindowUI(perk);
         }
     }
 }

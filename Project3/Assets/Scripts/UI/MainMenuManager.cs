@@ -37,7 +37,7 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {;
         RefreshCurrencies();
-        StartCoroutine(InitaliceMainMenu(1.0f));
+        StartCoroutine(InitaliceMainMenu(0.1f));
     }
 
     
@@ -238,13 +238,13 @@ public class MainMenuManager : MonoBehaviour
     }
     public void ChangeSfxVolume()
     {
-        GameInfo.sfxEnable = sfxSound.isOn;
-        AudioController.instance.mixer.SetFloat("sfxVolume", Mathf.Log10(Convert.ToSingle(sfxSound.isOn))*30f);
+        GameInfo.instance.sfxEnable = !sfxSound.isOn;
+        AudioController.instance.mixer.SetFloat("sfxVolume", Mathf.Log10(Convert.ToSingle(GameInfo.instance.sfxEnable)) * 90f - 80f);
     }
     public void ChangeMusicVolume()
     {
-        GameInfo.musicEnable = musicSound.isOn;
-        AudioController.instance.mixer.SetFloat("musicVolume", Mathf.Log10(Convert.ToSingle(musicSound.isOn))*30f);
+        GameInfo.instance.musicEnable = !musicSound.isOn;
+        AudioController.instance.mixer.SetFloat("musicVolume", Mathf.Log10(Convert.ToSingle(GameInfo.instance.musicEnable)) * 90f - 80f);
 
     }
 
@@ -274,8 +274,10 @@ public class MainMenuManager : MonoBehaviour
 
     private void RefreshToggles()
     {
-        sfxSound.isOn = GameInfo.sfxEnable;
-        musicSound.isOn = GameInfo.musicEnable;
+        sfxSound.isOn = !GameInfo.instance.sfxEnable;
+        musicSound.isOn = !GameInfo.instance.musicEnable;
+        AudioController.instance.mixer.SetFloat("sfxVolume", Mathf.Log10(Convert.ToSingle(GameInfo.instance.sfxEnable)) * 90f - 80f);
+        AudioController.instance.mixer.SetFloat("musicVolume", Mathf.Log10(Convert.ToSingle(GameInfo.instance.musicEnable)) * 90f - 80f);
     }
 
     IEnumerator LoadAsyncScene(SceneReference scene)
