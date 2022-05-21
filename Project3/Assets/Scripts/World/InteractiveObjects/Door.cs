@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    private readonly Quaternion LEFT_OPENED_ROTATION = Quaternion.Euler(0f, 0f, 90f);
+    private readonly Quaternion RIGHT_OPENED_ROTATION = Quaternion.Euler(0f, 0f, -90f);
+    private readonly Quaternion LEFT_CLOSED_ROTATION = Quaternion.identity;
+    private readonly Quaternion RIGHT_CLOSED_ROTATION = Quaternion.identity;
+
 
     public Transform leftDoor;
     public Transform rightDoor;
@@ -15,13 +20,6 @@ public class Door : MonoBehaviour
     public BoxCollider2D leftCollider;
     public BoxCollider2D rightCollider;
 
-    Quaternion leftClosedRotation;
-    Quaternion rightClosedRotation;
-    Quaternion leftOpenedRotation;
-    Quaternion rightOpenedRotation;
-    Quaternion initialRot;
-
-
     Vector2 normal;
 
     private void Start()
@@ -30,15 +28,8 @@ public class Door : MonoBehaviour
 
         normal.Normalize();
 
-        leftOpenedRotation = leftDoor.rotation;
-        rightOpenedRotation = rightDoor.rotation;
-
-        leftClosedRotation = leftOpenedRotation * Quaternion.AngleAxis(-90f, Vector3.forward);
-        rightClosedRotation = rightOpenedRotation * Quaternion.AngleAxis(90f, Vector3.forward);
-
         leftCollider.enabled = false;
         rightCollider.enabled = false;
-
     }
 
     const float TIME_TO_OPEN_OR_CLOSE = 0.2f;
@@ -74,8 +65,8 @@ public class Door : MonoBehaviour
         {
             timeCounter += Time.deltaTime;
 
-            leftDoor.localRotation = Quaternion.Lerp( leftClosedRotation, leftOpenedRotation, timeCounter/ TIME_TO_OPEN_OR_CLOSE);
-            rightDoor.localRotation = Quaternion.Lerp(rightClosedRotation, rightOpenedRotation, timeCounter / TIME_TO_OPEN_OR_CLOSE);
+            leftDoor.localRotation = Quaternion.Lerp(LEFT_CLOSED_ROTATION, LEFT_OPENED_ROTATION, timeCounter / TIME_TO_OPEN_OR_CLOSE);
+            rightDoor.localRotation = Quaternion.Lerp(RIGHT_CLOSED_ROTATION, RIGHT_OPENED_ROTATION, timeCounter / TIME_TO_OPEN_OR_CLOSE);
             yield return null;
 
         } while (timeCounter < TIME_TO_OPEN_OR_CLOSE);
@@ -91,8 +82,8 @@ public class Door : MonoBehaviour
         {
             timeCounter += Time.deltaTime;
 
-            leftDoor.localRotation = Quaternion.Lerp(leftOpenedRotation, leftClosedRotation, timeCounter / TIME_TO_OPEN_OR_CLOSE);
-            rightDoor.localRotation = Quaternion.Lerp(rightOpenedRotation, rightClosedRotation, timeCounter / TIME_TO_OPEN_OR_CLOSE);
+            leftDoor.localRotation = Quaternion.Lerp(LEFT_OPENED_ROTATION, LEFT_CLOSED_ROTATION, timeCounter / TIME_TO_OPEN_OR_CLOSE);
+            rightDoor.localRotation = Quaternion.Lerp(RIGHT_OPENED_ROTATION, RIGHT_CLOSED_ROTATION, timeCounter / TIME_TO_OPEN_OR_CLOSE);
             yield return null;
 
         } while (timeCounter < TIME_TO_OPEN_OR_CLOSE);
@@ -123,7 +114,7 @@ public class Door : MonoBehaviour
         if (rb == null)
             return;
 
-        if(Vector2.Dot(rb.velocity.normalized, normal) > 0f)
+        if (Vector2.Dot(rb.velocity.normalized, normal) > 0f)
         {
             Close();
         }
