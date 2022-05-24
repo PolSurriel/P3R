@@ -8,14 +8,19 @@ public class SkillsEquippedManager : MonoBehaviour
     [SerializeField] PerkDisplay[] allPerks = new PerkDisplay[4];
     [SerializeField] PerkDisplay[] allPerksEquip = new PerkDisplay[4];
     [SerializeField] PerkDisplay freePerkSlot;
+    [SerializeField] PerkDisplay freePerkSlotEquip;
     [SerializeField] PerkDisplay[] premiumPerkSlots = new PerkDisplay[2];
+    [SerializeField] PerkDisplay[] premiumPerkSlotsEquip = new PerkDisplay[2];
     [SerializeField] ScriptablePerk freeblocked;
     [SerializeField] ScriptablePerk premiumblocked;
     [SerializeField] GameObject[] costsImages = new GameObject[9];
+    [SerializeField] GameObject[] costsImagesEquip = new GameObject[9];
     [SerializeField] Sprite freeLockSprite;
     [SerializeField] Sprite premiumLockSprite;
+    [SerializeField] GameObject unequipButton;
     public bool flagEquip = false;
     private ScriptablePerk perkSelected;
+    public int indexSelectedPerk = 0;
 
     Color colorCostEquipped = new Color(0.9f, 0.6f, 0.2f);
     Color colorCostNotEquipped = new Color(0.95f, 0.95f, 0.95f);
@@ -36,24 +41,41 @@ public class SkillsEquippedManager : MonoBehaviour
     {
     }
 
+
     public void CheckPerks()
     {
-        for (int i = 0; i < allPerks.Length; i++)
-        {
-            allPerks[i].perk = GameInfo.equippedPerks[i];
-            allPerksEquip[i].perk = GameInfo.equippedPerks[i];
-            allPerks[i].RefreshCard();
-            allPerksEquip[i].RefreshCard();
-        }
+        RefreshPerks();
         if (!GameInfo.freePerkSlotUnlocked)
+		{
             freePerkSlot.perk = freeblocked;
-        freePerkSlot.RefreshCard();
+            freePerkSlot.GetComponentInChildren<Button>().interactable = false;
+            freePerkSlotEquip.perk = freeblocked;
+            freePerkSlotEquip.GetComponentInChildren<Button>().interactable = false;
+            freePerkSlot.RefreshCard();
+            freePerkSlotEquip.RefreshCard();
+		}
         int counter = 2;
         while (GameInfo.premiumPerkSlotsUnlocked < counter)
         {
             counter--;
             premiumPerkSlots[counter].perk = premiumblocked;
+            premiumPerkSlotsEquip[counter].perk = premiumblocked;
+            premiumPerkSlots[counter].GetComponentInChildren<Button>().interactable = false;
+            premiumPerkSlotsEquip[counter].GetComponentInChildren<Button>().interactable = false;
             premiumPerkSlots[counter].RefreshCard();
+            premiumPerkSlotsEquip[counter].RefreshCard();
+        }
+    }
+    public void RefreshPerks()
+	{
+        for (int i = 0; i < allPerks.Length; i++)
+        {
+            allPerks[i].perk = GameInfo.equippedPerks[i];
+            allPerksEquip[i].perk = GameInfo.equippedPerks[i];
+            allPerks[i].GetComponentInChildren<Button>().interactable = true;
+            allPerksEquip[i].GetComponentInChildren<Button>().interactable = true;
+            allPerks[i].RefreshCard();
+            allPerksEquip[i].RefreshCard();
         }
     }
     public void RefreshCosts()
@@ -65,15 +87,18 @@ public class SkillsEquippedManager : MonoBehaviour
         for(int i=0; i < 2; i++)
         {
             costsImages[i].transform.Find("Lock").localScale = new Vector3(0, 0, 0);
+            costsImagesEquip[i].transform.Find("Lock").localScale = new Vector3(0, 0, 0);
             GameInfo.totalPerkCost++;
         }
         for (int i=2; i<costsImages.Length; i++)
         {
             costsImages[i].transform.Find("Lock").localScale = new Vector3(1, 1, 1);
+            costsImagesEquip[i].transform.Find("Lock").localScale = new Vector3(1, 1, 1);
         }
         for(int i = 0; i<GameInfo.freeCostUnlocked; i++)
         {
             costsImages[index + i].transform.Find("Lock").localScale = new Vector3(0, 0, 0);
+            costsImagesEquip[index + i].transform.Find("Lock").localScale = new Vector3(0, 0, 0);
             indexFree--;
             GameInfo.totalPerkCost++;
         }
@@ -81,6 +106,7 @@ public class SkillsEquippedManager : MonoBehaviour
         for(int i=0; i<GameInfo.premiumCostUnlocked; i++)
         {
             costsImages[index +  i].transform.Find("Lock").localScale = new Vector3(0, 0, 0);
+            costsImagesEquip[index +  i].transform.Find("Lock").localScale = new Vector3(0, 0, 0);
             indexPremium--;
             GameInfo.totalPerkCost++;
 
@@ -92,10 +118,12 @@ public class SkillsEquippedManager : MonoBehaviour
         for(int i=0; i<GameInfo.equippedPerkCost; i++)
         {
             costsImages[i].transform.Find("Image").GetComponent<Image>().color = colorCostEquipped;
+            costsImagesEquip[i].transform.Find("Image").GetComponent<Image>().color = colorCostEquipped;
         }
         for(int i = GameInfo.equippedPerkCost; i<costsImages.Length; i++)
         {
             costsImages[i].transform.Find("Image").GetComponent<Image>().color = colorCostNotEquipped;
+            costsImagesEquip[i].transform.Find("Image").GetComponent<Image>().color = colorCostNotEquipped;
         }
         Debug.Log("Total Perk Cost: " + GameInfo.totalPerkCost);
     }
@@ -134,29 +162,42 @@ public class SkillsEquippedManager : MonoBehaviour
 
     }
 
-    public void SelectPerk(ScriptablePerk perk)
+    public void SelectPerk(PerkDisplay perk)
     {
 
         flagEquip = true;
-        perkSelected = perk;
+        perkSelected = perk.perk;
+        indexSelectedPerk = perk.perkIndex;
     }
 
-    public void UnequipPerk(int slot)
+    public void EquipPerk(int slot)
     {
         if (flagEquip)
         {
+            RefreshCosts();
             if (CheckCost(perkSelected.cost, allPerks[slot].perk.cost))
             {
+                GameInfo.inventoryPerks.RemoveAt(indexSelectedPerk);
+                if (allPerks[slot].perk.name != "Default")
+                    GameInfo.inventoryPerks.Add(allPerks[slot].perk);
+
                 GameInfo.equippedPerks[slot] = perkSelected;
                 GameInfo.equippedPerkCost = CalculateEquippedPerkCost();
                 allPerks[slot].perk = perkSelected;
                 allPerks[slot].RefreshCard();
                 flagEquip = false;
                 perkSelected = null;
+                
             }
+			else
+			{
+                AudioController.instance.sounds.errorButtonSound.Play();
+                GameInfo.instance.floatingText.ShowText("Total Cost of Skills Overcome", Color.red);
+			}
         }
         else
         {
+            GameInfo.inventoryPerks.Add(allPerks[slot].perk);
             GameInfo.equippedPerks[slot] = GameInfo.defaultPerk;
             GameInfo.equippedPerkCost = CalculateEquippedPerkCost();
             allPerks[slot].perk = GameInfo.defaultPerk;
@@ -166,11 +207,17 @@ public class SkillsEquippedManager : MonoBehaviour
                 Debug.Log(perk.myName);
             }
         }
-        
+        GameObject.FindObjectOfType<InventoryGridGenerator>().ReloadInventory();
         RefreshCosts();
 
     }
 
+    public void RefreshFlagEquip()
+	{
+        flagEquip = false;
+        unequipButton.SetActive(false);
+
+    }
 
     public void UnlockSlot()
     {

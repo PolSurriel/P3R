@@ -13,17 +13,23 @@ public class PerkSelectionUI : MonoBehaviour
     [SerializeField] GameObject window;
     [SerializeField] PerkDisplay myPerk;
 
-    public void SetPerkSelectionUI(ScriptablePerk perk)
+    public void SetPerkSelectionUI(PerkDisplay perk)
 	{
         this.GetComponent<Image>().enabled = true;
         window.SetActive(true);
-        perkName.text = perk.name;
-        perkDescription.text = perk.description;
-        myPerk.perk = perk;
+        perkName.text = perk.perk.name;
+        perkDescription.text = perk.perk.description;
+        myPerk.perk = perk.perk;
         myPerk.RefreshCard();
+        myPerk.perkIndex = perk.perkIndex;
         myPerk.transform.GetComponentInChildren<Button>().interactable = false;
-        perkCost.text = perk.cost.ToString();
-        perkRarity.text = perk.rarity.ToString();
+        perkCost.text = perk.perk.cost.ToString();
+        perkRarity.text = perk.perk.rarity.ToString();
         perkRarity.colorGradient = new VertexGradient(myPerk.SetRarityColor(), myPerk.SetRarityColor(), Color.black, Color.black);
     }
+    public void UnequipPerk()
+	{
+        myPerk.perkManager.flagEquip = false;
+        myPerk.EquipPerk();
+	}
 }

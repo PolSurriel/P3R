@@ -21,7 +21,7 @@ public class PerkDisplay : MonoBehaviour
     public Image sprite;
     public Image rarity;
     public GameObject selectedMenu;
-    SkillsEquippedManager perkManager;
+    public SkillsEquippedManager perkManager;
 
     // Start is called before the first frame update
     void Start()
@@ -83,14 +83,13 @@ public class PerkDisplay : MonoBehaviour
         }
         if (perk.myName != "Default" && !perkManager.flagEquip)
 		{
-            GameObject.FindObjectOfType<PerkSelectionUI>().SetPerkSelectionUI(this.perk);
+            GameObject.FindObjectOfType<PerkSelectionUI>().SetPerkSelectionUI(this);
             perkManager.flagEquip = true;
 		}
         else if (perkManager.flagEquip)
 		{
             EquipPerk();
 		}
-            //selectedMenu.SetActive(true);
     }
 
     public void InventoryEquipButton()
@@ -98,7 +97,7 @@ public class PerkDisplay : MonoBehaviour
         // Function called when pressed button "equip" of an Inventory's Perk
         if(perkManager != null)
         {
-            perkManager.SelectPerk(perk);
+            perkManager.SelectPerk(this);
         }
     }
 
@@ -106,7 +105,8 @@ public class PerkDisplay : MonoBehaviour
     {
         // Function called when pressed the selected position of
         // equippedPerks where you want to equip selectedPerk
-        perkManager.UnequipPerk(perkIndex);
+        perkManager.EquipPerk(perkIndex);
+        perkManager.CheckPerks();
         perkManager.flagEquip = false;
 
     }

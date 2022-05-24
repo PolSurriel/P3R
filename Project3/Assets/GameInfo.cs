@@ -17,6 +17,8 @@ public class GameInfo : MonoBehaviour
     private const int AI_PLAYERS_COUNT = 3;
 
 
+    [SerializeField] public FloatingMessage floatingText;
+
     public static List<ScriptablePerk> inventoryPerks = new List<ScriptablePerk>();
     public static List<ScriptablePerk> equippedPerks = new List<ScriptablePerk>();
     // Variables we need to save
@@ -101,6 +103,8 @@ public class GameInfo : MonoBehaviour
         instance = this;
         freePerkSlotUnlocked = false;
         premiumPerkSlotsUnlocked = 0;
+        floatingText = GameObject.FindObjectOfType<FloatingMessage>();
+        DontDestroyOnLoad(floatingText);
         for (int i = 0; i < 4; i++)
         {
             equippedPerks.Add(defaultPerk);
