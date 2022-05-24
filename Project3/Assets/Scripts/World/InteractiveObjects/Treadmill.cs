@@ -10,14 +10,18 @@ public class Treadmill : MonoBehaviour
     public Vector2 normal = Vector2.right;
     public List<Transform> exits = new List<Transform>();
 
-    float speed = 1;
+    float speed = 1f;
 
     BoxCollider2D boxCollider;
+
+    public TreadmillAnimation treadmillAnimation;
 
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         direction = direction.normalized;
+
+        treadmillAnimation.SetSpeed(speed);
     }
 
   

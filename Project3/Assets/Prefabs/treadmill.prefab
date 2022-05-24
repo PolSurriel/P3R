@@ -50,10 +50,10 @@ MonoBehaviour:
   playersIn: []
   direction: {x: 0, y: 1}
   normal: {x: 1, y: 0}
-  speed: 1
   exits:
   - {fileID: 1189044391147627747}
   - {fileID: 8774863558689615828}
+  treadmillAnimation: {fileID: 1014596715923832865}
 --- !u!61 &1189044391056795324
 BoxCollider2D:
   m_ObjectHideFlags: 0

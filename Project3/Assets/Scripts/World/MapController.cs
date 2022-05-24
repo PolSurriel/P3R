@@ -229,7 +229,7 @@ public class MapController : MonoBehaviour
     {
         if (doNotRepeat.Contains(index) && !closedLevel)
             throw new System.Exception("Tilemap repeated. You cannot instantiate a repeated tilemap until "+MAX_DONOTREPEAT_ITEMS+" (at least) new tilemaps have been instanced since it's last instantiation.)");
-        index = 18;
+        
         doNotRepeat.Enqueue(index);
         enqueuedCount++;
 
