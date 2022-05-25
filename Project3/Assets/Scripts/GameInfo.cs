@@ -7,7 +7,31 @@ using UnityEngine.UI;
 
 public class GameInfo : MonoBehaviour
 {
-    
+
+    public static float matchTimeCounter = 0f;
+    static bool countingMatchTine = false;
+
+    public float platformsCountDown;
+
+    Coroutine timeCounterRoutineExecution;
+
+    IEnumerator TimeCountRoutine()
+    {
+        countingMatchTine = true;
+        while (true)
+        {
+            yield return null;
+            matchTimeCounter += Time.deltaTime;
+        }
+    }
+
+    public void StartTimeCounter()
+    {
+        if(!countingMatchTine)
+            timeCounterRoutineExecution = StartCoroutine(TimeCountRoutine());
+
+    }
+
     public class PreloadedSprites {
 
 
@@ -41,6 +65,9 @@ public class GameInfo : MonoBehaviour
 
     public void OnMatchSceneClosed()
     {
+        StopCoroutine(timeCounterRoutineExecution);
+        countingMatchTine = false;
+        matchTimeCounter = 0f;
 
         Destroy(player.gameObject);
         if(ai_players != null)
