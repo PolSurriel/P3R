@@ -17,7 +17,7 @@ MonoBehaviour:
   fusionLvl: 1
   cost: 1
   maxFusionLvl: 5
-  sprite: {fileID: 21300000, guid: 81cb03024eddf4a7fbd47a08ed94ad63, type: 3}
+  sprite: {fileID: 21300000, guid: 667319bcf17c16c419bca832c30819c4, type: 3}
   rarity: 1
   description: There's a chance in your second jump to convert into a "ghost. You
     have 10% more speed and don't stick to oil stains

@@ -17,6 +17,6 @@ MonoBehaviour:
   fusionLvl: 1
   cost: 1
   maxFusionLvl: 4
-  sprite: {fileID: 21300000, guid: 8d491424196cc40b4a4ced3884ffc38e, type: 3}
+  sprite: {fileID: 21300000, guid: 67edfb65bf9ee004b9a54a9eaedadf0f, type: 3}
   rarity: 3
   description: You gain a permanent 20% increase speed
