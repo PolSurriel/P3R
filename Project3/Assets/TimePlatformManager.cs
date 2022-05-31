@@ -5,6 +5,8 @@ using UnityEngine;
 public class TimePlatformManager : MonoBehaviour
 {
 
+    
+
     public List<TimePlatform> platforms = new List<TimePlatform>();
 
     static int tilemapsWithoutGreenPlatformCount = 0;
@@ -20,19 +22,18 @@ public class TimePlatformManager : MonoBehaviour
 
     }
 
-    float[] seconds = new float[] {0, 5, 10, 15, 20, 30, 40, 50, 60};
 
     PlatformDifficultyConfig[] configs = new PlatformDifficultyConfig[]
     {
         new PlatformDifficultyConfig{ startSecond = 0f,  minGreen = 2, maxGreen = 3, minRed = 0, maxRed = 0},
-        new PlatformDifficultyConfig{ startSecond = 5f,  minGreen = 2, maxGreen = 2, minRed = 0, maxRed = 1},
-        new PlatformDifficultyConfig{ startSecond = 10f, minGreen = 1, maxGreen = 2, minRed = 1, maxRed = 2},
-        new PlatformDifficultyConfig{ startSecond = 15f, minGreen = 1, maxGreen = 2, minRed = 1, maxRed = 2},
-        new PlatformDifficultyConfig{ startSecond = 20f, minGreen = 0, maxGreen = 1, minRed = 1, maxRed = 2},
-        new PlatformDifficultyConfig{ startSecond = 30f, minGreen = 0, maxGreen = 1, minRed = 2, maxRed = 3},
-        new PlatformDifficultyConfig{ startSecond = 40f, minGreen = 0, maxGreen = 1, minRed = 2, maxRed = 4},
-        new PlatformDifficultyConfig{ startSecond = 50f, minGreen = 0, maxGreen = 1, minRed = 3, maxRed = 5},
-        new PlatformDifficultyConfig{ startSecond = 60f, minGreen = 0, maxGreen = 1, minRed = 3, maxRed = 6},
+        new PlatformDifficultyConfig{ startSecond = 10f,  minGreen = 2, maxGreen = 2, minRed = 0, maxRed = 1},
+        new PlatformDifficultyConfig{ startSecond = 30f, minGreen = 1, maxGreen = 2, minRed = 1, maxRed = 2},
+        new PlatformDifficultyConfig{ startSecond = 50f, minGreen = 1, maxGreen = 2, minRed = 1, maxRed = 2},
+        new PlatformDifficultyConfig{ startSecond = 80f, minGreen = 0, maxGreen = 1, minRed = 1, maxRed = 2},
+        new PlatformDifficultyConfig{ startSecond = 120f, minGreen = 0, maxGreen = 1, minRed = 2, maxRed = 3},
+        new PlatformDifficultyConfig{ startSecond = 160f, minGreen = 0, maxGreen = 1, minRed = 2, maxRed = 4},
+        new PlatformDifficultyConfig{ startSecond = 200f, minGreen = 0, maxGreen = 1, minRed = 3, maxRed = 5},
+        new PlatformDifficultyConfig{ startSecond = 250f, minGreen = 0, maxGreen = 1, minRed = 3, maxRed = 6},
 
     };
 
@@ -40,19 +41,25 @@ public class TimePlatformManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(GameInfo.instance.levelID != 3)
+		{
+            foreach(TimePlatform platform in platforms)
+			{
+                Destroy(platform.gameObject);
+			}
+            return;
+		}
+
         if(GameInfo.instance != null)
             GameInfo.instance.StartTimeCounter();
 
-
+        
         
         PlatformDifficultyConfig currentDifConfig = configs[0];
         foreach(var config in configs){
             if(config.startSecond <= GameInfo.matchTimeCounter)
             {
                 currentDifConfig = config;
-            }else
-            {
-                break;
             }
         }
 
@@ -93,7 +100,7 @@ public class TimePlatformManager : MonoBehaviour
         }
 
         foreach (var platform in platforms)
-            Destroy(platform);
+            Destroy(platform.gameObject);
     
 
     }

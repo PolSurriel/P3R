@@ -7,8 +7,7 @@ public class LevelEnd : MonoBehaviour
 {
     const int CurrencyMult = 2;
     float startingTime;
-    [SerializeField]
-    GameObject rankingMenu;
+    public GameObject rankingMenu;
     [SerializeField]
     GameObject prefabRankingSlot;
 
@@ -33,17 +32,9 @@ public class LevelEnd : MonoBehaviour
 
         if(collision.GetComponent<PlayerController>() != null || (collision.GetComponent<AIController>() != null && GameInfo.instance.levelID == 2))
         {
-            rankingMenu.SetActive(true);
-            // Add Soft Currency
             float multipier = Mathf.Clamp((120.0f - (Time.time - startingTime)), 0, 120);
             int currencyToAdd = CurrencyMult * (int)Mathf.Round(multipier) + 100;
-            GameObject rankingSlot = Instantiate(prefabRankingSlot, rankingMenu.transform.GetChild(0).GetChild(1));
-            rankingSlot.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = currencyToAdd.ToString();
-            GameInfo.AddSoftCurrency(currencyToAdd);
-            collision.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-            Destroy(collision.GetComponent<PlayerController>());
-
-            
+            SetRankingMenuPlayer(currencyToAdd);
         }
         if(collision.GetComponent<AIController>() != null)
         {
@@ -56,6 +47,17 @@ public class LevelEnd : MonoBehaviour
             //Destroy(collision.GetComponent<AIController>());
 
         }
+    }
+
+    public void SetRankingMenuPlayer(int currencyToAdd)
+	{
+        rankingMenu.SetActive(true);
+        // Add Soft Currency
+        GameObject rankingSlot = Instantiate(prefabRankingSlot, rankingMenu.transform.GetChild(0).GetChild(1));
+        rankingSlot.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = currencyToAdd.ToString();
+        GameInfo.AddSoftCurrency(currencyToAdd);
+        GameObject.FindObjectOfType<PlayerController>().GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        Destroy(GameObject.FindObjectOfType<PlayerController>().GetComponent<PlayerController>());
     }
 
 }

@@ -9,8 +9,8 @@ public class TimePlatform : MonoBehaviour
     bool isGreen = false;
 
 
-    const float GREEN_TIME_TO_ADD = 3f;
-    const float RED_TIME_TO_SUBSTRACT = 1f;
+    const float GREEN_TIME_TO_ADD = 7f;
+    const float RED_TIME_TO_SUBSTRACT = 3f;
 
     ParticleSystem particles;
     SpriteRenderer spriteRenderer;
@@ -36,12 +36,10 @@ public class TimePlatform : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.tag == "Player")
         {
-            Destroy(gameObject);
-
             if (isGreen)
             {
                 GameInfo.instance.platformsCountDown += GREEN_TIME_TO_ADD;
@@ -52,6 +50,27 @@ public class TimePlatform : MonoBehaviour
                 GameInfo.instance.platformsCountDown -= RED_TIME_TO_SUBSTRACT;
                 // PLAY SOUND
             }
+
+            Destroy(gameObject);
+        }
+    }
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+        if (collision.transform.tag == "Player")
+        {
+            if (isGreen)
+            {
+                GameInfo.instance.platformsCountDown += GREEN_TIME_TO_ADD;
+                //PLAY SOUND
+            }
+            else
+            {
+                GameInfo.instance.platformsCountDown -= RED_TIME_TO_SUBSTRACT;
+                // PLAY SOUND
+            }
+
+            Destroy(gameObject);
         }
     }
 

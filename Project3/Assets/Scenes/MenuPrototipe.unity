@@ -602,9 +602,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c9a9b3095d76143b1f76551ee9772e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformsCountDown: 0
   floatingText: {fileID: 0}
   sfxEnable: 0
   musicEnable: 0
+  maxScore: 0
   playerPrefab: {fileID: 328328316266981640, guid: 22ffd39eb4a48de4bb4bee3a14b0c483,
     type: 3}
   ai_playerPrefab: {fileID: 0}
@@ -625,6 +627,7 @@ MonoBehaviour:
     totalPerkCost: 0
     equippedPerkCost: 0
     softCurrency: 0
+    maxScore: 0
     sfxEnable: 0
     musicEnable: 0
   levelID: 0
@@ -6812,6 +6815,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8498631544728642075, guid: 3076439530bfc0a4f8c3660211d36108,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8545891616978052640, guid: 3076439530bfc0a4f8c3660211d36108,
         type: 3}

@@ -15,6 +15,7 @@ public class FloatingMessage : MonoBehaviour
 
 	public void ShowText(string _text, Color color)
 	{
+		this.transform.SetAsLastSibling();
 		text.text = _text;
 		text.color = color;
 		myAnimator.Play("Base Layer.FloatingText");

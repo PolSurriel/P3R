@@ -181,7 +181,7 @@ public class PlayerAspect : MonoBehaviour
 
     private void LateUpdate()
     {
-        lastFrameVelocity = rb.velocity;
+        //lastFrameVelocity = rb.velocity;
         transform.localRotation = Quaternion.identity;
     }
 

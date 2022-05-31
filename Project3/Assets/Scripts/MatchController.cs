@@ -26,12 +26,6 @@ public class MatchController : MonoBehaviour
 
     public void Quit()
     {
-        if(GameInfo.instance.levelID == 3)
-        {
-            float multipier = Mathf.Clamp((120.0f - (Time.time - startingTime)), 0, 120);
-            int currencyToAdd = (int)Mathf.Round(Mathf.Clamp((Time.time - startingTime), 0, 300));
-            GameInfo.AddSoftCurrency(currencyToAdd);
-        }
         GoToMainMenu();
     }
 
@@ -44,7 +38,7 @@ public class MatchController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
 
-        GameInfo.instance.InitPlayers();
+        //GameInfo.instance.InitPlayers();
         AsyncOperation ao = SceneManager.LoadSceneAsync(scene);
         ao.allowSceneActivation = false;
 

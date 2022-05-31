@@ -87,6 +87,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadLevel1()
     {
+        // Tutorial
         GameInfo.instance.levelID = 1;
         StartCoroutine(LoadAsyncScene(level1));
 
@@ -94,6 +95,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void LoadLevel2()
     {
+        // Modo IA
         GameInfo.instance.levelID = 2;
         StartCoroutine(LoadAsyncScene(level2));
 
@@ -101,6 +103,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void LoadLevel3()
     {
+        // Modo TimeAttack
         GameInfo.instance.levelID = 3;
         StartCoroutine(LoadAsyncScene(level3));
 
@@ -108,7 +111,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void LoadLevel4()
     {
-        // TODO: to debug has changed levelID to 2 instead of 3
+        // Modo Versus
         GameInfo.instance.levelID = 4;
         StartCoroutine(LoadAsyncScene(level3));
 
@@ -146,7 +149,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void PreviousMode()
     {
-        //modeType = (ModeType)(((int)modeType - 1) % 3);
         switch (modeType)
         {
             case ModeType.PLAYER:
@@ -170,7 +172,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void NextMode()
     {
-        //modeType = (ModeType)(((int)modeType + 1) % 3);
         switch (modeType)
         {
             case ModeType.PLAYER:

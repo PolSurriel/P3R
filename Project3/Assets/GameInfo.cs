@@ -7,7 +7,41 @@ using UnityEngine.UI;
 
 public class GameInfo : MonoBehaviour
 {
-    
+    public const float INITIAL_TIME = 30f;
+    public static float matchTimeCounter = 0f;
+    static bool countingMatchTime = false;
+
+    public float platformsCountDown;
+
+    Coroutine timeCounterRoutineExecution;
+
+    IEnumerator TimeCountRoutine()
+    {
+        matchTimeCounter = 0f;
+        yield return new WaitForSeconds(5);
+        countingMatchTime = true;
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+            matchTimeCounter += Time.deltaTime;
+            if (levelID == 3)
+			{
+                platformsCountDown -= Time.deltaTime;
+			}
+        }
+    }
+
+    public void StartTimeCounter()
+    {
+        if (!countingMatchTime)
+		{
+            if(timeCounterRoutineExecution != null)
+                StopCoroutine(timeCounterRoutineExecution);
+            timeCounterRoutineExecution = StartCoroutine(TimeCountRoutine());
+		}
+
+    }
+
     public class PreloadedSprites {
 
 
@@ -31,6 +65,7 @@ public class GameInfo : MonoBehaviour
     public static int softCurrency;
     public bool sfxEnable;
     public bool musicEnable;
+    public int maxScore;
 
     public static bool showAIStatusInfo = false;
 
@@ -99,6 +134,9 @@ public class GameInfo : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
         defaultPerk = Resources.Load<ScriptablePerk>("Perks/Default");
         instance = this;
         freePerkSlotUnlocked = false;
@@ -112,8 +150,8 @@ public class GameInfo : MonoBehaviour
         LoadData();
         DontDestroyOnLoad(instance.gameObject);
 
-        AudioController.instance.mixer.SetFloat("sfxVolume", Mathf.Log10(Convert.ToSingle(sfxEnable)) * 90f - 80f);
-        AudioController.instance.mixer.SetFloat("musicVolume", Mathf.Log10(Convert.ToSingle(musicEnable)) * 90f - 80f);
+        //AudioController.instance.mixer.SetFloat("sfxVolume", Mathf.Log10(Convert.ToSingle(sfxEnable)) * 90f - 80f);
+        //AudioController.instance.mixer.SetFloat("musicVolume", Mathf.Log10(Convert.ToSingle(musicEnable)) * 90f - 80f);
 
         MapController.LoadTilemaps();
 
@@ -127,6 +165,7 @@ public class GameInfo : MonoBehaviour
             case 1:
             case 3:
 
+                countingMatchTime = false;
                 player = Instantiate(playerPrefab);
                 DontDestroyOnLoad(player);
 
@@ -292,6 +331,7 @@ public class GameInfo : MonoBehaviour
             softCurrency = data.softCurrency;
             sfxEnable = data.sfxEnable;
             musicEnable = data.musicEnable;
+            maxScore = data.maxScore;
 
             Debug.Log(playerSkin.baseSkinName + " " + playerSkin.suitSkinName + " " + playerSkin.accessory1SkinName + " " + playerSkin.accessory2SkinName + "Unlocked: " + equippedPerkCost);
         }
@@ -319,6 +359,7 @@ public class GameInfo : MonoBehaviour
             premiumCostUnlocked = data.premiumCostUnlocked;
             totalPerkCost = data.totalPerkCost;
             equippedPerkCost = data.equippedPerkCost;
+            maxScore = data.maxScore;
         }
     }
 
