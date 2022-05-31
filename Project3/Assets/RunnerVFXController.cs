@@ -5,18 +5,6 @@ using UnityEngine;
 public class RunnerVFXController : MonoBehaviour
 {
     const float DEFAULT_TIME_DESTROY_PARTICLE = 1f;
-    IEnumerator DestroyObjectIn(float seconds, GameObject obj)
-    {
-        float t = 0;
-
-        do
-        {
-            yield return null;
-
-        } while ((t += Time.deltaTime) < seconds);
-
-        Destroy(obj);
-    }
 
     public GameObject wallCollisionParticle;
 
@@ -24,7 +12,7 @@ public class RunnerVFXController : MonoBehaviour
     {
         var obj = Instantiate(wallCollisionParticle);
         obj.transform.position = contactPoint;
-        StartCoroutine(DestroyObjectIn(DEFAULT_TIME_DESTROY_PARTICLE, obj));
+        Destroy(obj, DEFAULT_TIME_DESTROY_PARTICLE);
     }
 
 }
