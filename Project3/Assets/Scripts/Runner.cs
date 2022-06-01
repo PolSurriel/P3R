@@ -54,12 +54,15 @@ public class Runner : MonoBehaviour
         aspect.SetFlipX(rb.velocity.x < 0f);
     }
 
+    private Vector3 stainCollisionPosition;
+
     public void EnterOnStain()
     {
         stainJumpsCounter = 0;
         onStain = true;
         aspect.stainParticleSys.Play();
 
+        stainCollisionPosition = transform.position;
     }
 
 
@@ -158,41 +161,45 @@ public class Runner : MonoBehaviour
             rb.gravityScale = 1f;
         }
 
-        if (jumpCounter >= 2)
+        switch (jumpCounter)
         {
-            CantJumpFeedback();
-            return;
-        } else if (jumpCounter == 0)
-        {
-            if (isPlayer)
-            {
-                AudioController.instance.sounds.player_jump.Play();
-
-            }else
-            {
-                AudioController.instance.sounds.runner_jump.Play();
-
-            }
-        } else
-        {
-            if (isPlayer)
-            {
-                AudioController.instance.sounds.player_doubleJump.Play();
-
-            }
-            else
-            {
-                AudioController.instance.sounds.runner_doubleJump.Play();
-
-            }
-
+            case 0:
+                if (isPlayer)
+                {
+                    AudioController.instance.sounds.player_jump.Play();
+                }
+                else
+                {
+                    AudioController.instance.sounds.runner_jump.Play();
+                }
+                break;
+            case 1:
+                if (isPlayer)
+                {
+                    AudioController.instance.sounds.player_doubleJump.Play();
+                }
+                else
+                {
+                    AudioController.instance.sounds.runner_doubleJump.Play();
+                }
+                break;
+            default:
+                CantJumpFeedback();
+                return;
         }
+
 
         if (onStain)
         {
-            aspect.stainParticleSys.Play();
-            JumpOnStain(direction);
-            return;
+            float dist = Vector3.Distance(transform.position, stainCollisionPosition);
+
+            // If to check if runner is jumping from the stain
+            if (dist < 1f)
+            {
+                aspect.stainParticleSys.Play();
+                JumpOnStain(direction);
+                return;
+            }
         }
 
         jumpCounter++;
@@ -334,7 +341,6 @@ public class Runner : MonoBehaviour
     public bool wallup;
     void CollideWithFloor(Collision2D collision)
     {
-
         if (isPlayer)
         {
             AudioController.instance.sounds.wallCollision.Play();
