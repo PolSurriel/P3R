@@ -50,6 +50,8 @@ public class MapController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameInfo.instance.levelID == 3)
+            GameInfo.instance.platformsCountDown = GameInfo.INITIAL_TIME;
         lineaMeta = FindObjectOfType<LevelEnd>().gameObject;
 
         instanceGameObject = this.gameObject;

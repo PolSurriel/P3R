@@ -15,37 +15,59 @@ public class ItemShop : MonoBehaviour
     }
     public void BuyPerk()
     {
-        if(GameInfo.softCurrency >= cost)
-        {
-            GameInfo.AddPerkToInventory(perk);
-            GameInfo.AddSoftCurrency(-cost);
+        if(!(GameInfo.softCurrency >= cost))
+		{
+            ErrorBuyMessage();
+            return;
         }
+        AudioController.instance.sounds.buttonSound.Play();
+        GameInfo.AddPerkToInventory(perk);
+        GameInfo.AddSoftCurrency(-cost);
+        GameObject.FindObjectOfType<BuyWindowUI>().SetBuyWindowUI(perk);
     }
 
     public void BuyFreePerkSlot()
     {
-        if (GameInfo.softCurrency >= cost && !GameInfo.freePerkSlotUnlocked)
+        if (!(GameInfo.softCurrency >= cost && !GameInfo.freePerkSlotUnlocked))
         {
-            GameInfo.freePerkSlotUnlocked = true;
-            GameInfo.AddSoftCurrency(-cost);
+            ErrorBuyMessage();
+            return;
         }
+        AudioController.instance.sounds.buttonSound.Play();
+        GameInfo.freePerkSlotUnlocked = true;
+        GameInfo.AddSoftCurrency(-cost);
+        GameObject.FindObjectOfType<BuyWindowUI>().SetBuyWindowUI(perk);
     }
     
     public void BuyPremiumPerkSlot()
     {
-        if (GameInfo.softCurrency >= cost && GameInfo.premiumPerkSlotsUnlocked < 2)
+        if (!(GameInfo.softCurrency >= cost && GameInfo.premiumPerkSlotsUnlocked < 2))
         {
-            GameInfo.premiumPerkSlotsUnlocked++;
-            GameInfo.AddSoftCurrency(-cost);
+            ErrorBuyMessage();
+            return;
         }
+        AudioController.instance.sounds.buttonSound.Play();
+        GameInfo.premiumPerkSlotsUnlocked++;
+        GameInfo.AddSoftCurrency(-cost);
+        GameObject.FindObjectOfType<BuyWindowUI>().SetBuyWindowUI(perk);
     }
 
     public void BuyPerkCostSlot()
     {
-        if (GameInfo.softCurrency >= cost && GameInfo.freeCostUnlocked < 4)
+        if (!(GameInfo.softCurrency >= cost && GameInfo.freeCostUnlocked < 4))
         {
-            GameInfo.freeCostUnlocked++;
-            GameInfo.AddSoftCurrency(-cost);
+            ErrorBuyMessage();
+            return;
         }
+        AudioController.instance.sounds.buttonSound.Play();
+        GameInfo.freeCostUnlocked++;
+        GameInfo.AddSoftCurrency(-cost);
+        GameObject.FindObjectOfType<BuyWindowUI>().SetBuyWindowUI(perk);
     }
+
+    void ErrorBuyMessage()
+	{
+        AudioController.instance.sounds.errorButtonSound.Play();
+        GameInfo.instance.floatingText.ShowText("Could not buy this item", Color.red);
+	}
 }

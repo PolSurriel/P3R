@@ -30,6 +30,14 @@ public class InventoryGridGenerator : MonoBehaviour
                 if(inventoryIndex < GameInfo.inventoryPerks.Count)
                 {
                     child.GetComponent<PerkDisplay>().perk = GameInfo.inventoryPerks[inventoryIndex];
+                    child.GetComponent<PerkDisplay>().perkIndex = inventoryIndex;
+                    child.GetComponent<PerkDisplay>().RefreshCard();
+                    inventoryIndex++;
+				}
+				else
+				{
+                    child.GetComponent<PerkDisplay>().perk = def;
+                    child.GetComponent<PerkDisplay>().perkIndex = inventoryIndex;
                     child.GetComponent<PerkDisplay>().RefreshCard();
                     inventoryIndex++;
                 }
