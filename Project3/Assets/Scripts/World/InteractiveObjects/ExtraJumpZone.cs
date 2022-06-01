@@ -11,6 +11,7 @@ public class ExtraJumpZone : MonoBehaviour
     ParticleSystem bgParticleEffect;
     SpriteRenderer sr;
 
+    const float POWERUP_PARTICLE_LIFE_TIME = 3f;
     const float TIME_TO_RESTORE = 3f;
 
     [HideInInspector]
@@ -97,6 +98,7 @@ public class ExtraJumpZone : MonoBehaviour
             pickEffect.Play();
 
             var particle = Instantiate(powerUpParticle);
+            Destroy(particle, POWERUP_PARTICLE_LIFE_TIME);
 
             particle.transform.position = collision.transform.position;
 
