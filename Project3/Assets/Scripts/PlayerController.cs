@@ -16,32 +16,12 @@ public class PlayerController : MonoBehaviour
 
     Runner runner;
 
+    public Color inputLineColor;
+
     public LineRenderer inputLR;
 
     public bool ignoreLevel = false;
     
-    private void Awake()
-    {
-        // cutre pero es para la alpha
-
-        return;
-        if(GameInfo.instance != null)
-        {
-            if(GameInfo.instance.levelID == 2)
-            {
-                this.enabled = false;
-                Destroy(this);
-            }
-
-            else if (!ignoreLevel && GameInfo.instance.levelID == 3)
-            {
-                this.enabled = false;
-                Destroy(this);
-
-            }
-        }
-    }
-
     Rigidbody2D rb;
 
     void SetupInitialInputVector()
@@ -114,14 +94,14 @@ public class PlayerController : MonoBehaviour
 
         float totalTime = usingPrecalculatedUI && !runner.wallup ? uiSimulationTime : 0.6f;
         float dt = totalTime / (float)uipoints.Count;
-        float itdt = itdt = dt / 10f;
+        float itdt = dt / 10f;
 
         float magnitude = Mathf.Min(inputVector.magnitude, MAX_INPUT_LENGHT) / MAX_INPUT_LENGHT;
         magnitude = runner.jumpMagnitude * magnitude;
         Vector2 currentVelocity = inputVector.normalized * magnitude;
 
         float inputmag = (inputVector - initialInputVector).magnitude;
-        float alpha = Mathf.Min(inputmag * 3f, 0.7f);
+        float alpha = Mathf.Min(inputmag * 3f, 0.8f);
 
         foreach (var point in uipoints)
         {
@@ -135,7 +115,10 @@ public class PlayerController : MonoBehaviour
             }
             point.transform.position = currentPos;
 
-            point.color = new Color(1.0f, 1f, 1f, alpha);
+            Color colorToAssign = inputLineColor;
+            colorToAssign.a = alpha;
+
+            point.color = colorToAssign;
             point.enabled = true;
         }
     }

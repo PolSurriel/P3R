@@ -721,7 +721,6 @@ MonoBehaviour:
   lastVelocity: {x: 0, y: 0}
   onATreadmill: 0
   usingPortal: 0
-  ignoreTreadmill: 0
   isPlayer: 0
   jumpCounter: 0
   edgeWallUp: 0
@@ -772,6 +771,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  inputLineColor: {r: 0, g: 0, b: 0, a: 1}
   inputLR: {fileID: 328328317467772853}
   ignoreLevel: 0
   uiSimulationTime: 0.8
