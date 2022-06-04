@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0f330b4210a904a9b1d1724acb1b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 0}
+  obstacle: {fileID: 3980828438196763616}
   clockwiseDirection: 1
   rotationSpeed: 100
   avoidCollider: {fileID: 1625673382}

@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 00000202BDD751D8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 00000279A0CE57E8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Priority: 0, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -18,10 +18,150 @@
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSound                     : filename = ..\FMODProject\ALIENS\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] Thread::initThread                       : Init FMOD nonblocking thread (0). Priority: 1, Stack Size: 114688, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
+[LOG] SystemI::createSound                     : setdata soundi = 00000279BABBD6F8 : node = 0000027997505160
+[LOG] SystemI::createSound                     : add node to async list : head = 00000279B08DEB08.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000279BABBD6F8
+[LOG] SystemI::createSound                     : filename = ..\FMODProject\ALIENS\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     Create name='..\FMODProject\ALIENS\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     setdata soundi = 00000279BABBF708 : node = 00000279975052A0
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000279B08DEB08.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4774176
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 40992
+[LOG] SystemI::createSound                     :     filename = ..\FMODProject\ALIENS\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     :     setdata soundi = 00000279BABBE2C8 : node = 0000027997506420
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000279B08DEB08.  list count = 1
+[LOG] SystemI::createSound                     :     filename = ..\FMODProject\ALIENS\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     :     setdata soundi = 00000279BABBEE98 : node = 0000027997504760
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000279B08DEB08.  list count = 2
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000027997505270
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='theme layer 2', format=2, channels=2, frequency=48000, lengthbytes=531264, lengthpcm=4610507, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.949371.
+[LOG] Thread::initThread                       :     Init FMOD file thread. Priority: 1, Stack Size: 49152, Semaphore: No, Sleep Time: 10, Looping: Yes.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000279BABBD6F8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000279BABBF708
+[LOG] SystemI::createSoundInternal             :     Create name='..\FMODProject\ALIENS\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4774176
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 40992
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000279975053B0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='theme layer 1', format=2, channels=2, frequency=48000, lengthbytes=966208, lengthpcm=4610507, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.949463.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000279BABBF708
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000279BABBE2C8
+[LOG] SystemI::createSoundInternal             :     Create name='..\FMODProject\ALIENS\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4774176
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 40992
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000027997506530
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='theme layer 4', format=2, channels=2, frequency=48000, lengthbytes=1016352, lengthpcm=4610507, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.726074.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000279BABBE2C8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000279BABBEE98
+[LOG] SystemI::createSoundInternal             :     Create name='..\FMODProject\ALIENS\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4774176
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 40992
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000027997504870
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='theme layer 3', format=2, channels=2, frequency=48000, lengthbytes=833600, lengthpcm=4610507, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.879883.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000279BABBEE98
+[LOG] SoundI::getSubSound                      : sound 00000279BABBD6F8.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 00000279BABBF708.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 00000279BABBE2C8.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 00000279BABBEE98.  Subsound index 0 / 1
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000279BABBE988
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000279BABBE988
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000279BABBF8B8
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000279BABBF8B8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000279BABBF8B8
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000279BABBF8B8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000279BABBF8B8
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000279BABBF8B8
+[LOG] SoundI::release                          : theme layer 3 (00000279BABBEE98)
+[LOG] SoundI::release                          :     theme layer 3 (00000279A3409788)
+[LOG] SoundI::release                          :     theme layer 3 (00000279BABBF8B8)
+[LOG] SoundI::release                          : theme layer 4 (00000279BABBE2C8)
+[LOG] SoundI::release                          :     theme layer 4 (00000279A34095E8)
+[LOG] SoundI::release                          :     theme layer 4 (00000279BABBF048)
+[LOG] SoundI::release                          : theme layer 1 (00000279BABBF708)
+[LOG] SoundI::release                          :     theme layer 1 (00000279A3404988)
+[LOG] SoundI::release                          :     theme layer 1 (00000279BABBE988)
+[LOG] SoundI::release                          : theme layer 2 (00000279BABBD6F8)
+[LOG] SoundI::release                          :     theme layer 2 (00000279A3404308)
+[LOG] SoundI::release                          :     theme layer 2 (00000279BABBD038)
+[LOG] SoundI::release                          :  (00000279B0A3B938)
+[LOG] SoundI::release                          :     alien voice (00000279B0B96588)
+[LOG] SoundI::release                          :  (00000279B0A3F148)
+[LOG] SoundI::release                          :     woosh 3 (00000279B0649D68)
+[LOG] SoundI::release                          :  (00000279B0A3EA18)
+[LOG] SoundI::release                          :     woosh 1 (00000279B064A248)
+[LOG] SoundI::release                          :  (00000279B0A3F878)
+[LOG] SoundI::release                          :     windmill static hum (00000279C136E068)
+[LOG] SoundI::release                          :  (00000279B0A3F9E8)
+[LOG] SoundI::release                          :     impact 2 (00000279C136ED68)
+[LOG] SoundI::release                          :  (00000279B0A3EFD8)
+[LOG] SoundI::release                          :     neptoons warp portal (00000279B061F388)
+[LOG] SoundI::release                          :  (00000279B0A3C908)
+[LOG] SoundI::release                          :     jump sound (00000279B0B96A68)
+[LOG] SoundI::release                          :  (00000279B0A40288)
+[LOG] SoundI::release                          :     neptoons treadmill (00000279B0B968C8)
+[LOG] SoundI::release                          :  (00000279B0A3B7C8)
+[LOG] SoundI::release                          :     neptoons sticky stain 1 (00000279B064A728)
+[LOG] SoundI::release                          :  (00000279B0A40848)
+[LOG] SoundI::release                          :     neptoons sticky stain 2 (00000279B064A588)
+[LOG] SoundI::release                          :  (00000279B0A3E8A8)
+[LOG] SoundI::release                          :     neptoons sticky stain 3 (00000279B0620088)
+[LOG] SoundI::release                          :  (00000279B0A3E008)
+[LOG] SoundI::release                          :     hydraulic door (00000279B061F868)
+[LOG] SoundI::release                          :  (00000279B0A3E2E8)
+[LOG] SoundI::release                          :     powerupsoda (00000279B0649F08)
+[LOG] SoundI::release                          :  (00000279B0A3D5F8)
+[LOG] SoundI::release                          :     third jump crystal (00000279B061F6C8)
+[LOG] SoundI::release                          :  (00000279B0A3E738)
+[LOG] SoundI::release                          :     powerupsoda bleeps (00000279B064A3E8)
+[LOG] SoundI::release                          :  (00000279B0A3FE38)
+[LOG] SoundI::release                          :     crazy impact (00000279B0B96C08)
+[LOG] SoundI::release                          :  (00000279B0A3C4B8)
+[LOG] SoundI::release                          :     damage (00000279B061FD48)
+[LOG] SoundI::release                          :  (00000279B0A3C798)
+[LOG] SoundI::release                          :     Foam24 (00000279B0B963E8)
+[LOG] SoundI::release                          :  (00000279B0A3F708)
+[LOG] SoundI::release                          :     Foam12 (00000279B064A0A8)
+[LOG] SoundI::release                          :  (00000279B0A3EB88)
+[LOG] SoundI::release                          :     bumper 3 (00000279B064AA68)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
 [LOG] SystemI::close                           : Closed.
