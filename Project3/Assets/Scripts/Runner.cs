@@ -132,16 +132,6 @@ public class Runner : MonoBehaviour
     }
 
 
-    public bool ignoreTreadmill = false;
-
-    IEnumerator IgnoreTreadmill()
-    {
-        float t = 0f;
-        do { yield return null; } while ((t += Time.deltaTime) < 0.3f);
-        ignoreTreadmill = false;
-
-    }
-
     [HideInInspector]
     public bool isPlayer = false;
 
@@ -154,8 +144,6 @@ public class Runner : MonoBehaviour
         if (onATreadmill)
         {
             treadmill.playersIn.Remove(this);
-            ignoreTreadmill = true;
-            StartCoroutine(IgnoreTreadmill());
             onATreadmill = false;
             rb.isKinematic = false;
             rb.gravityScale = 1f;
