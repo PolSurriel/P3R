@@ -38,6 +38,8 @@ public class MatchController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
 
+        SceneManager.LoadScene(scene);
+        /*
         //GameInfo.instance.InitPlayers();
         AsyncOperation ao = SceneManager.LoadSceneAsync(scene);
         ao.allowSceneActivation = false;
@@ -54,5 +56,6 @@ public class MatchController : MonoBehaviour
 
             yield return null;
         }
+        */
     }
 }

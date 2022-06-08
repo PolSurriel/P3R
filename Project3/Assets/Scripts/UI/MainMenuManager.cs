@@ -37,15 +37,29 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {;
         RefreshCurrencies();
-        StartCoroutine(InitaliceMainMenu(0.1f));
+        StartCoroutine(InitaliceMainMenu(0.05f));
+    }
+    IEnumerator InitaliceMainMenu(float _waitTime)
+    {
+        // Initialice and refresh all variables needed in menu
+        // Ex: Currency amount, skin selected previsualizer, etc.
+        yield return new WaitForSeconds(_waitTime);
+
+        modeType = ModeType.VERSUS;
+        if (!GameInfo.instance.tutorialDone)
+            modeType = ModeType.PLAYER;
+        raceText.text = modeType.ToString();
+
+        RefreshCurrencies();
+        RefreshSkinPrev();
+        RefreshToggles();
+
     }
 
-    
 
     private void Start()
     {
-        modeType = ModeType.PLAYER;
-        raceText.text = modeType.ToString();
+        
     }
 
     private void Update()
@@ -152,10 +166,9 @@ public class MainMenuManager : MonoBehaviour
         switch (modeType)
         {
             case ModeType.PLAYER:
-                modeType = ModeType.AI;
                 break;
             case ModeType.VERSUS:
-                modeType = ModeType.PLAYER;
+                modeType = ModeType.AI;
                 break;
             case ModeType.INFINITE:
                 modeType = ModeType.VERSUS;
@@ -175,7 +188,6 @@ public class MainMenuManager : MonoBehaviour
         switch (modeType)
         {
             case ModeType.PLAYER:
-                modeType = ModeType.VERSUS;
                 break;
             case ModeType.VERSUS:
                 modeType = ModeType.INFINITE;
@@ -184,7 +196,7 @@ public class MainMenuManager : MonoBehaviour
                 modeType = ModeType.AI;
                 break;
             case ModeType.AI:
-                modeType = ModeType.PLAYER;
+                modeType = ModeType.VERSUS;
                 break;
             default:
                 break;
@@ -249,6 +261,7 @@ public class MainMenuManager : MonoBehaviour
 
     }
 
+
     public void ResetSkinMat()
     {
         Material mat = GameObject.Find("SkinTexture").GetComponent<Image>().material;
@@ -261,17 +274,7 @@ public class MainMenuManager : MonoBehaviour
         RefreshCurrencies();
     }
 
-    IEnumerator InitaliceMainMenu(float _waitTime)
-    {
-        // Initialice and refresh all variables needed in menu
-        // Ex: Currency amount, skin selected previsualizer, etc.
-        yield return new WaitForSeconds(_waitTime);
-
-        RefreshCurrencies();
-        RefreshSkinPrev();
-        RefreshToggles();
-
-    }
+    
 
     private void RefreshToggles()
     {

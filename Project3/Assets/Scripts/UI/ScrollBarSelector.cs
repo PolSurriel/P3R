@@ -8,7 +8,6 @@ public class ScrollBarSelector : MonoBehaviour
     const int NUMBER_OF_MENUS = 4;
     //horizontalNormalizedPosition
     public ScrollRect scrollbar;
-    private float scroll_pos = 0;
     private int indexMenu = 0;
     public float[] pos;
     public float distanceBetweenObjects;
@@ -16,8 +15,14 @@ public class ScrollBarSelector : MonoBehaviour
 
     private bool flagChanging = false;
 
+	private void Start()
+	{
+        indexMenu = 0;
+        scrollbar.horizontalNormalizedPosition = 0.0456f;
+    }
 
-    private void Update()
+
+	private void Update()
     {
         //scrollbar.horizontalNormalizedPosition = Mathf.Clamp(scrollbar.horizontalNormalizedPosition, 0.085f, 0.91f);
 
@@ -32,21 +37,22 @@ public class ScrollBarSelector : MonoBehaviour
                 }
             }
         if (!Input.GetMouseButton(0))
-        scrollbar.horizontalNormalizedPosition = Mathf.Lerp(scrollbar.horizontalNormalizedPosition, pos[indexMenu], 0.1f);
+            scrollbar.horizontalNormalizedPosition = Mathf.Lerp(scrollbar.horizontalNormalizedPosition, pos[indexMenu], 0.1f);
     }
 
     public void IndexMenuInc()
     {
-        Debug.Log("Pressed");
-        indexMenu++;
+        indexMenu+=1;
         indexMenu = Mathf.Clamp(indexMenu, 0, NUMBER_OF_MENUS);
+        Debug.Log("Pressed" + indexMenu);
         ChangeMenuText();
     }
 
     public void IndexMenuDec()
     {
-        indexMenu--;
+        indexMenu-=1;
         indexMenu = Mathf.Clamp(indexMenu, 0, NUMBER_OF_MENUS);
+        Debug.Log("Pressed" + indexMenu);
         ChangeMenuText();
     }
 
@@ -79,7 +85,7 @@ public class ScrollBarSelector : MonoBehaviour
 
     IEnumerator IsChanging()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         flagChanging = false;
     }
 }

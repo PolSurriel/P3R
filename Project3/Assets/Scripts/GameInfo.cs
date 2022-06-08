@@ -66,6 +66,13 @@ public class GameInfo : MonoBehaviour
     public bool sfxEnable;
     public bool musicEnable;
     public int maxScore;
+    public bool tutorialDone = false;
+    public bool taskPlayGame = false;
+    public bool taskHighScore = false;
+    public bool taskEquipSkill = false;
+    public bool taskPlayGameClaim = false;
+    public bool taskHighScoreClaim = false;
+    public bool taskEquipSkillClaim = false;
 
     public static bool showAIStatusInfo = false;
 
@@ -332,6 +339,13 @@ public class GameInfo : MonoBehaviour
             sfxEnable = data.sfxEnable;
             musicEnable = data.musicEnable;
             maxScore = data.maxScore;
+            tutorialDone = data.tutorialDone;
+            taskPlayGame = data.taskPlayGame;
+            taskHighScore = data.taskHighScore;
+            taskEquipSkill = data.taskEquipSkill;
+            taskEquipSkillClaim = data.taskEquipSkillClaim;
+            taskHighScoreClaim = data.taskHighScoreClaim;
+            taskPlayGameClaim = data.taskPlayGameClaim;
 
             Debug.Log(playerSkin.baseSkinName + " " + playerSkin.suitSkinName + " " + playerSkin.accessory1SkinName + " " + playerSkin.accessory2SkinName + "Unlocked: " + equippedPerkCost);
         }
@@ -360,6 +374,13 @@ public class GameInfo : MonoBehaviour
             totalPerkCost = data.totalPerkCost;
             equippedPerkCost = data.equippedPerkCost;
             maxScore = data.maxScore;
+            tutorialDone = data.tutorialDone;
+            taskPlayGame = data.taskPlayGame;
+            taskHighScore = data.taskHighScore;
+            taskEquipSkill = data.taskEquipSkill;
+            taskEquipSkillClaim = data.taskEquipSkillClaim;
+            taskHighScoreClaim = data.taskHighScoreClaim;
+            taskPlayGameClaim = data.taskPlayGameClaim;
         }
     }
 

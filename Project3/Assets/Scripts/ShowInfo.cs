@@ -29,6 +29,7 @@ public class ShowInfo : MonoBehaviour
             frames = 0;
         }
     }
+    /*
     void Draw_DrawCalls()
     {
         foreach (GameObject g in AllObjects)
@@ -39,6 +40,7 @@ public class ShowInfo : MonoBehaviour
             }
         }
     }
+    */
     void Start()
     {
 		guiStyle.fontSize = 40;
@@ -52,11 +54,11 @@ public class ShowInfo : MonoBehaviour
     void Update()
     {
         CalculateFPS();
-        Draw_DrawCalls();
+        //Draw_DrawCalls();
     }
     void OnGUI()
     {
         GUI.Label(new Rect(50.0f, 300.0f, 100.0f, 25.0f), fpsText, guiStyle);
-        GUI.Label(new Rect(0.0f, 50.0f, 200.0f, 25.0f), "Total Draw Calls : " + DrawCalls.ToString(), guiStyle);
+        //GUI.Label(new Rect(0.0f, 50.0f, 200.0f, 25.0f), "Total Draw Calls : " + DrawCalls.ToString(), guiStyle);
     }
 }

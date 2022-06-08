@@ -23,6 +23,13 @@ public class SaveData
 
     public bool sfxEnable;
     public bool musicEnable;
+    public bool tutorialDone;
+    public bool taskPlayGame;
+    public bool taskHighScore;
+    public bool taskEquipSkill;
+    public bool taskPlayGameClaim;
+    public bool taskHighScoreClaim;
+    public bool taskEquipSkillClaim;
 
     public SaveData()
     {
@@ -46,6 +53,13 @@ public class SaveData
         sfxEnable = false;
         musicEnable = false;
         maxScore = 0;
+        tutorialDone = false;
+        taskPlayGame = false;
+        taskHighScore = false;
+        taskEquipSkill = false;
+        taskPlayGameClaim = false;
+        taskHighScoreClaim = false;
+        taskEquipSkillClaim = false;
     }
 
     public SaveData(GameInfo gameInfo)
@@ -71,6 +85,13 @@ public class SaveData
         sfxEnable = gameInfo.sfxEnable;
         musicEnable = gameInfo.musicEnable;
         maxScore = gameInfo.maxScore;
+        tutorialDone = gameInfo.tutorialDone;
+        taskPlayGame = gameInfo.taskPlayGame;
+        taskHighScore = gameInfo.taskHighScore;
+        taskEquipSkill = gameInfo.taskEquipSkill;
+        taskEquipSkillClaim = gameInfo.taskEquipSkillClaim;
+        taskHighScoreClaim = gameInfo.taskHighScoreClaim;
+        taskPlayGameClaim = gameInfo.taskPlayGameClaim;
     }
 
     public void UpdateState(GameInfo gameInfo)
@@ -95,6 +116,13 @@ public class SaveData
         sfxEnable = gameInfo.sfxEnable;
         musicEnable = gameInfo.musicEnable;
         maxScore = gameInfo.maxScore;
+        tutorialDone = gameInfo.tutorialDone;
+        taskPlayGame = gameInfo.taskPlayGame;
+        taskHighScore = gameInfo.taskHighScore;
+        taskEquipSkill = gameInfo.taskEquipSkill;
+        taskEquipSkillClaim = gameInfo.taskEquipSkillClaim;
+        taskHighScoreClaim = gameInfo.taskHighScoreClaim;
+        taskPlayGameClaim = gameInfo.taskPlayGameClaim;
     }
 
     public void SaveInventory(List<ScriptablePerk> _inventory)

@@ -35,6 +35,10 @@ public class LevelEnd : MonoBehaviour
             float multipier = Mathf.Clamp((120.0f - (Time.time - startingTime)), 0, 120);
             int currencyToAdd = CurrencyMult * (int)Mathf.Round(multipier) + 100;
             SetRankingMenuPlayer(currencyToAdd);
+            if (GameInfo.instance.levelID == 1)
+                GameInfo.instance.tutorialDone = true;
+            else
+                GameInfo.instance.taskPlayGame = true;
         }
         if(collision.GetComponent<AIController>() != null)
         {
