@@ -34,7 +34,7 @@ public class ShowInfo : MonoBehaviour
     {
         foreach (GameObject g in AllObjects)
         {
-            if (g.GetComponent<Renderer>() && g.GetComponent<Renderer>().isVisible)
+            if (g != null && g.GetComponent<Renderer>() && g.GetComponent<Renderer>().isVisible)
             {
                 DrawCalls++;
             }
