@@ -9,7 +9,7 @@ public class TimePlatform : MonoBehaviour
     bool isGreen = false;
 
 
-    const float GREEN_TIME_TO_ADD = 7f;
+    const float GREEN_TIME_TO_ADD = 5f;
     const float RED_TIME_TO_SUBSTRACT = 3f;
 
     ParticleSystem particles;
@@ -43,12 +43,15 @@ public class TimePlatform : MonoBehaviour
             if (isGreen)
             {
                 GameInfo.instance.platformsCountDown += GREEN_TIME_TO_ADD;
+                GameInfo.instance.platformsCountDown = Mathf.Clamp(GameInfo.instance.platformsCountDown, -1f, 30f);
                 //PLAY SOUND
+                AudioController.instance.sounds.greenPlatformSound.Play();
             }
             else
             {
                 GameInfo.instance.platformsCountDown -= RED_TIME_TO_SUBSTRACT;
                 // PLAY SOUND
+                AudioController.instance.sounds.redPlatformSound.Play();
             }
 
             Destroy(gameObject);
@@ -62,12 +65,15 @@ public class TimePlatform : MonoBehaviour
             if (isGreen)
             {
                 GameInfo.instance.platformsCountDown += GREEN_TIME_TO_ADD;
+                GameInfo.instance.platformsCountDown = Mathf.Clamp(GameInfo.instance.platformsCountDown, -1f, 30f);
                 //PLAY SOUND
+                AudioController.instance.sounds.greenPlatformSound.Play();
             }
             else
             {
                 GameInfo.instance.platformsCountDown -= RED_TIME_TO_SUBSTRACT;
                 // PLAY SOUND
+                AudioController.instance.sounds.redPlatformSound.Play();
             }
 
             Destroy(gameObject);

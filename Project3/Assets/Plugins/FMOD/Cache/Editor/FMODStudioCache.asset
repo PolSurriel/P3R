@@ -36,11 +36,12 @@ MonoBehaviour:
   - {fileID: -7932657887831443382}
   - {fileID: -4421830085698432764}
   - {fileID: -4019086605741306909}
+  - {fileID: -6623475457116704903}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -4839523885454644562}
+  - {fileID: 708238279522674506}
   MinDistance: 0
   MaxDistance: 0
   Length: 125
@@ -185,6 +186,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 453
+--- !u!114 &-7941869704401796841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/doublejump/character voice
+  m_EditorClassIdentifier: 
+  Name: character voice
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &-7932657887831443382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +264,7 @@ MonoBehaviour:
   - {fileID: -7932657887831443382}
   - {fileID: -4421830085698432764}
   - {fileID: -4019086605741306909}
+  - {fileID: -6623475457116704903}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -294,6 +313,7 @@ MonoBehaviour:
   - {fileID: -7932657887831443382}
   - {fileID: -4421830085698432764}
   - {fileID: -4019086605741306909}
+  - {fileID: -6623475457116704903}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -301,6 +321,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 673
+--- !u!114 &-6623475457116704903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.bank
+  SubDir: 
+  lastModified: 637846800809356123
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-5889747925430853620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +546,7 @@ MonoBehaviour:
   lastModified: 637846952248268022
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-3028532020013347189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,6 +589,7 @@ MonoBehaviour:
   - {fileID: -7932657887831443382}
   - {fileID: -4421830085698432764}
   - {fileID: -4019086605741306909}
+  - {fileID: -6623475457116704903}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -624,6 +663,7 @@ MonoBehaviour:
   - {fileID: -7932657887831443382}
   - {fileID: -4421830085698432764}
   - {fileID: -4019086605741306909}
+  - {fileID: -6623475457116704903}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -668,7 +708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../FMODProject/ALIENS/Build/Desktop/Master Bank.strings.bank
   SubDir: 
-  lastModified: 637846952247240769
+  lastModified: 637846800809015804
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -742,6 +782,7 @@ MonoBehaviour:
   - {fileID: 8501851592859611869}
   - {fileID: -7932657887831443382}
   - {fileID: -4019086605741306909}
+  - {fileID: -6623475457116704903}
   EditorEvents:
   - {fileID: -1894421421253404070}
   - {fileID: 3806737785147342922}
@@ -766,7 +807,7 @@ MonoBehaviour:
   - {fileID: 8501851592859611869}
   StringsBanks:
   - {fileID: -1237477176589689296}
-  stringsBankWriteTime: 637846952247240769
+  stringsBankWriteTime: 637846800809015804
   cacheVersion: 3
 --- !u!114 &515481224413545698
 MonoBehaviour:
@@ -806,6 +847,23 @@ MonoBehaviour:
   Name: layering
   Min: 0
   Max: 4
+  Default: 0
+  Exists: 1
+--- !u!114 &708238279522674506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/jump/character voice
+  m_EditorClassIdentifier: 
+  Name: character voice
+  Min: 0
+  Max: 2
   Default: 0
   Exists: 1
 --- !u!114 &1095937686786823714
@@ -998,11 +1056,12 @@ MonoBehaviour:
   - {fileID: -7932657887831443382}
   - {fileID: -4421830085698432764}
   - {fileID: -4019086605741306909}
+  - {fileID: -6623475457116704903}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 8518144892377418039}
+  - {fileID: -7941869704401796841}
   MinDistance: 0
   MaxDistance: 0
   Length: 453
@@ -1308,6 +1367,7 @@ MonoBehaviour:
   - {fileID: -7932657887831443382}
   - {fileID: -4421830085698432764}
   - {fileID: -4019086605741306909}
+  - {fileID: -6623475457116704903}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

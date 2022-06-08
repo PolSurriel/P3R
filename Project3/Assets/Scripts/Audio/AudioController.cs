@@ -48,6 +48,8 @@ public class AudioController : MonoBehaviour
         public SurrealBoost.Audio perkButtonSound = new UnityAudio("Audios/perkButtonSound", instance.sfx_Mixer);
         public SurrealBoost.Audio changeTabSound = new UnityAudio("Audios/changeTabSound", instance.sfx_Mixer);
         public SurrealBoost.Audio errorButtonSound = new UnityAudio("Audios/ErrorSound", instance.sfx_Mixer);
+        public SurrealBoost.Audio redPlatformSound = new UnityAudio("Audios/redPlatform", instance.sfx_Mixer);
+        public SurrealBoost.Audio greenPlatformSound = new UnityAudio("Audios/greenPlatform", instance.sfx_Mixer);
         
         public SurrealBoost.Audio matchSong = new FMODAudio("event:/MUSIC/ingame music");
     }

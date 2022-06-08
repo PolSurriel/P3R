@@ -134,7 +134,7 @@ public class GameInfo : MonoBehaviour
     //Esto es temporal para la pre-alpha. De hecho los niveles dejaran de existir despues de la entrega.
     public int levelID;
 
-    private void Awake()
+    private void Start()
     {
         if(instance != null)
         {
@@ -149,7 +149,7 @@ public class GameInfo : MonoBehaviour
         freePerkSlotUnlocked = false;
         premiumPerkSlotsUnlocked = 0;
         floatingText = GameObject.FindObjectOfType<FloatingMessage>();
-        DontDestroyOnLoad(floatingText);
+        DontDestroyOnLoad(floatingText.gameObject);
         for (int i = 0; i < 4; i++)
         {
             equippedPerks.Add(defaultPerk);
