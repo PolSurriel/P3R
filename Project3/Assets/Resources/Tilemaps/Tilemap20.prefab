@@ -1312,6 +1312,7 @@ MonoBehaviour:
   cellsY: 8
   cellSize: 1
   centerOffset: {x: 5.5, y: 4.5}
+  exclude: 0
 --- !u!1 &1532986393709221115
 GameObject:
   m_ObjectHideFlags: 0

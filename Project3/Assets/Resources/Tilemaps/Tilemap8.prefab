@@ -1243,6 +1243,7 @@ MonoBehaviour:
   cellsY: 5
   cellSize: 1
   centerOffset: {x: 5.5, y: 1.5}
+  exclude: 0
 --- !u!1001 &1942548609175751
 PrefabInstance:
   m_ObjectHideFlags: 0

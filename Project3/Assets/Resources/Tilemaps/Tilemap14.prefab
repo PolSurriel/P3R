@@ -1552,6 +1552,7 @@ MonoBehaviour:
   cellsY: 8
   cellSize: 1
   centerOffset: {x: 5.5, y: 4.5}
+  exclude: 0
 --- !u!114 &6751795762637527693
 MonoBehaviour:
   m_ObjectHideFlags: 0

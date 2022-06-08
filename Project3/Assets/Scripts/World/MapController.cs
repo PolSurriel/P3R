@@ -232,6 +232,10 @@ public class MapController : MonoBehaviour
         if (doNotRepeat.Contains(index) && !closedLevel)
             throw new System.Exception("Tilemap repeated. You cannot instantiate a repeated tilemap until "+MAX_DONOTREPEAT_ITEMS+" (at least) new tilemaps have been instanced since it's last instantiation.)");
         
+
+        if (tilemaps[index].GetComponent<TilemapAIInfo>().exclude)
+            return;
+
         doNotRepeat.Enqueue(index);
         enqueuedCount++;
 

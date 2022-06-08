@@ -116,6 +116,8 @@ public class TilemapAIInfo : MonoBehaviour
     [SerializeField]
     public Vector2 centerOffset;
 
+    public bool exclude = false;
+
 
     public delegate void Delegation(AINode node);
 
